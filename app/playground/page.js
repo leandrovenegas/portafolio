@@ -1,9 +1,18 @@
-import portfolio from "@/data/portfolio";
+import supabase from "@/lib/supabase";
 
-export default function Playground() {
+export default async function Playground() {
+  const { data: organizations, error } = await supabase
+    .from("organizations")
+    .select("*");
+
+  if (error) {
+    return <pre>Error: {error.message}</pre>;
+  }
+
   return (
     <main>
-      <pre>{JSON.stringify(portfolio, null, 2)}</pre>
+      <h1>Playground</h1>
+      <pre>{JSON.stringify(organizations, null, 2)}</pre>
     </main>
   );
 }
