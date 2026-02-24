@@ -1,6 +1,9 @@
 import supabase from "@/lib/supabase";
 import Link from "next/link";
 import { marked } from "marked";
+import { readFile } from "fs/promises";
+import path from "path";
+import Nav from "@/components/Nav";
 
 export default async function OrganizacionPage({ params }) {
   const { slug } = await params;
@@ -11,60 +14,103 @@ export default async function OrganizacionPage({ params }) {
     .eq("slug", slug)
     .single();
 
-  if (orgError || !org) return <p>Organización no encontrada</p>;
+  if (orgError || !org) return <p className="text-white p-8">Organización no encontrada</p>;
 
-  // Sub organizaciones hijas
   const { data: hijas } = await supabase
     .from("organizations")
     .select("*")
     .eq("parent_organization_id", org.id);
 
-  // Proyectos directos de esta organización
   const { data: proyectos } = await supabase
     .from("projects")
     .select("*")
-    .eq("owner_organization_id", org.id);
+    .eq("owner_organization_id", org.id)
+    .eq("status", "published");
 
-  // Markdown de la descripción
   let descripcion = null;
   if (org.markdown_url) {
-    const res = await fetch(org.markdown_url);
-    const text = await res.text();
-    descripcion = marked(text);
+    const filePath = path.join(process.cwd(), "public", org.markdown_url);
+    const markdown = await readFile(filePath, "utf-8");
+    descripcion = marked(markdown);
   }
 
   return (
-    <main>
-      <h1>{org.name}</h1>
+    <>
+      <Nav />
+      <main className="min-h-screen bg-black px-6 py-16 md:px-12 lg:px-24">
 
-      {descripcion && (
-        <div dangerouslySetInnerHTML={{ __html: descripcion }} />
-      )}
+        {/* Header */}
+        <div className="mb-16 max-w-2xl">
+          <Link href="/portafolio" className="text-zinc-600 text-xs tracking-widest uppercase hover:text-zinc-400 transition-colors duration-200 mb-8 block">
+            ← Portafolio
+          </Link>
+          <span className="text-zinc-600 text-xs tracking-widest uppercase">
+            {org.type}
+          </span>
+          <h1 className="text-white text-4xl font-bold tracking-tighter mt-2 mb-6 md:text-6xl">
+            {org.name}
+          </h1>
+          {descripcion && (
+            <div
+              className="text-zinc-400 text-base leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: descripcion }}
+            />
+          )}
+        </div>
 
-      {hijas && hijas.length > 0 && (
-        <section>
-          <h2>Áreas</h2>
-          {hijas.map((hija) => (
-            <div key={hija.id}>
-              <h3>{hija.name}</h3>
-              <Link href={`/portafolio/${hija.slug}`}>Ver proyectos</Link>
+        {/* Sub organizaciones */}
+        {hijas && hijas.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Áreas</h2>
+            <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800 md:grid-cols-2">
+              {hijas.map((hija) => (
+                <Link
+                  key={hija.id}
+                  href={`/portafolio/${hija.slug}`}
+                  className="bg-black p-8 flex flex-col gap-4 hover:bg-zinc-900 transition-colors duration-200 group"
+                >
+                  <span className="text-zinc-600 text-xs tracking-widest uppercase">
+                    {hija.type}
+                  </span>
+                  <h3 className="text-white text-xl font-bold tracking-tight group-hover:text-zinc-300 transition-colors duration-200">
+                    {hija.name}
+                  </h3>
+                  <span className="text-zinc-600 text-xs tracking-widest uppercase mt-auto group-hover:text-zinc-400 transition-colors duration-200">
+                    Ver proyectos →
+                  </span>
+                </Link>
+              ))}
             </div>
-          ))}
-        </section>
-      )}
+          </section>
+        )}
 
-      {proyectos && proyectos.length > 0 && (
-        <section>
-          <h2>Proyectos</h2>
-          {proyectos.map((proyecto) => (
-            <div key={proyecto.id}>
-              <h2>{proyecto.title}</h2>
-              <p>{proyecto.date}</p>
-              <Link href={`/proyectos/${proyecto.slug}`}>Ver proyecto</Link>
+        {/* Proyectos */}
+        {proyectos && proyectos.length > 0 && (
+          <section>
+            <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Proyectos</h2>
+            <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800 md:grid-cols-2 lg:grid-cols-3">
+              {proyectos.map((proyecto) => (
+                <Link
+                  key={proyecto.id}
+                  href={`/proyectos/${proyecto.slug}`}
+                  className="bg-black p-8 flex flex-col gap-4 hover:bg-zinc-900 transition-colors duration-200 group"
+                >
+                  <span className="text-zinc-600 text-xs tracking-widest uppercase">
+                    {proyecto.date}
+                  </span>
+                  <h3 className="text-white text-xl font-bold tracking-tight group-hover:text-zinc-300 transition-colors duration-200">
+                    {proyecto.title}
+                  </h3>
+                  <span className="text-zinc-600 text-xs tracking-widest uppercase mt-auto group-hover:text-zinc-400 transition-colors duration-200">
+                    Ver proyecto →
+                  </span>
+                </Link>
+              ))}
             </div>
-          ))}
-        </section>
-      )}
-    </main>
+          </section>
+        )}
+
+      </main>
+    </>
   );
 }
