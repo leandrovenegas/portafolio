@@ -1,7 +1,8 @@
 import supabase from "@/lib/supabase";
 import Link from "next/link";
+import { marked } from "marked";
 
-export default async function OrganizacionProyectos({ params }) {
+export default async function OrganizacionPage({ params }) {
   const { slug } = await params;
 
   const { data: org, error: orgError } = await supabase
@@ -12,25 +13,58 @@ export default async function OrganizacionProyectos({ params }) {
 
   if (orgError || !org) return <p>Organización no encontrada</p>;
 
-  const { data: proyectos, error: proyectosError } = await supabase
+  // Sub organizaciones hijas
+  const { data: hijas } = await supabase
+    .from("organizations")
+    .select("*")
+    .eq("parent_organization_id", org.id);
+
+  // Proyectos directos de esta organización
+  const { data: proyectos } = await supabase
     .from("projects")
     .select("*")
     .eq("owner_organization_id", org.id);
 
-  if (proyectosError) return <pre>Error: {proyectosError.message}</pre>;
+  // Markdown de la descripción
+  let descripcion = null;
+  if (org.markdown_url) {
+    const res = await fetch(org.markdown_url);
+    const text = await res.text();
+    descripcion = marked(text);
+  }
 
   return (
     <main>
       <h1>{org.name}</h1>
-      <p>{org.type}</p>
-      {proyectos.length === 0 && <p>No hay proyectos aún.</p>}
-      {proyectos.map((proyecto) => (
-        <div key={proyecto.id}>
-          <h2>{proyecto.title}</h2>
-          <p>{proyecto.date}</p>
-          <Link href={`/proyectos/${proyecto.slug}`}>Ver proyecto</Link>
-        </div>
-      ))}
+
+      {descripcion && (
+        <div dangerouslySetInnerHTML={{ __html: descripcion }} />
+      )}
+
+      {hijas && hijas.length > 0 && (
+        <section>
+          <h2>Áreas</h2>
+          {hijas.map((hija) => (
+            <div key={hija.id}>
+              <h3>{hija.name}</h3>
+              <Link href={`/portafolio/${hija.slug}`}>Ver proyectos</Link>
+            </div>
+          ))}
+        </section>
+      )}
+
+      {proyectos && proyectos.length > 0 && (
+        <section>
+          <h2>Proyectos</h2>
+          {proyectos.map((proyecto) => (
+            <div key={proyecto.id}>
+              <h2>{proyecto.title}</h2>
+              <p>{proyecto.date}</p>
+              <Link href={`/proyectos/${proyecto.slug}`}>Ver proyecto</Link>
+            </div>
+          ))}
+        </section>
+      )}
     </main>
   );
 }
