@@ -1,0 +1,3 @@
+# LAN
+
+Para la fuimos parte de su campaña que mostraban cómo funcionaba su protocolo de entrega de órganos para transplantes, fue una increíble experiencia poder documentar este proceso y saber lo rápido que tiene que ser al entregar un órgano, desde el momento en que es estirpado por los doctores, y trasladado en ambulancia rápidamente hasta el aeropuerto donde en un viaje increíblemente rápido es entregado en las intimas condiciones a los hospitales de regiones para su pronto transplante y de esta forma salvarle la vida a una persona.
