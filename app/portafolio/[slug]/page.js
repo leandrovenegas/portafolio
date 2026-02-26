@@ -114,3 +114,26 @@ export default async function OrganizacionPage({ params }) {
     </>
   );
 }
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  const { data: org } = await supabase
+    .from("organizations")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (!org) return { title: "Organización no encontrada" };
+
+  return {
+    title: org.name,
+    description: `Proyectos y trabajo de ${org.name}. ${org.type} desde Chile.`,
+    openGraph: {
+      title: `${org.name} | Leandro Venegas`,
+      description: `Proyectos y trabajo de ${org.name}.`,
+      url: `https://www.leandrovenegas.cl/portafolio/${org.slug}`,
+      type: "website",
+    },
+  };
+}

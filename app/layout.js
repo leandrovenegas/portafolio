@@ -2,8 +2,32 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata = {
-  title: "Leandro Venegas",
-  description: "Portafolio",
+  metadataBase: new URL("https://www.leandrovenegas.cl"),
+  title: {
+    default: "Leandro Venegas",
+    template: "%s | Leandro Venegas",
+  },
+  description: "Creador de productos. Portafolio de proyectos audiovisuales y productos creativos desde Chile.",
+  keywords: ["portafolio", "diseño", "audiovisual", "productos creativos", "Chile", "Leandro Venegas"],
+  authors: [{ name: "Leandro Venegas" }],
+  creator: "Leandro Venegas",
+  openGraph: {
+    title: "Leandro Venegas",
+    description: "Creador de productos. Portafolio de proyectos audiovisuales y productos creativos desde Chile.",
+    url: "https://www.leandrovenegas.cl",
+    siteName: "Leandro Venegas",
+    locale: "es_CL",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Leandro Venegas",
+    description: "Creador de productos. Portafolio de proyectos audiovisuales y productos creativos desde Chile.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
