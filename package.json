@@ -10,6 +10,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",
     "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/typography": "^0.5.19",
     "marked": "^17.0.3",
     "next": "16.1.6",
     "postcss": "^8.5.6",
