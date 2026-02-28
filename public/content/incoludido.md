@@ -1,18 +1,14 @@
 # INCOLUDIDO
 
-Incoludido el papel higiénico que limpia y no te caga, En este proyecto parte del team fundador desde  cuando el proyecto cuando solo era una idea antes que viera la luz.
+Incoludido el papel higiénico que limpia y no te caga, En este proyecto fuí parte del team fundador desde  cuando el proyecto solo era una idea
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1769993553/INCOLUDIDO/fotos/Fondo-Incoludido-TV_mdmsie.jpg)
 
-me dieron la tarea de dirigir el departamento audio visual y hacerme cargo del story telling de la marca, comunicar quienes eramos y por que tenían que apoyar nuestra propuesta de valor, la lucha contra la colucion del papel higiénico.
+![](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1771680105/Fondo-Incoludido-TV_mdmsie_eofdtb.jpg)
 
-[https://res.cloudinary.com/crazypapa/video/upload/v1769993987/INCOLUDIDO/videos/Graficas_-_Simples_-_01_txirju.mp4](https://res.cloudinary.com/crazypapa/video/upload/v1769993987/INCOLUDIDO/videos/Graficas_-_Simples_-_01_txirju.mp4)
+Carlos Mansilla me dio  la tarea de dirigir el departamento audio visual y hacerme cargo del story telling de la marca, comunicar quienes eramos y por que tenían que apoyar nuestra propuesta de valor, la lucha contra la colucion del papel higiénico.
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1769993014/INCOLUDIDO/fotos/ESCENARIO_mycjbt.png)
 
-[https://res.cloudinary.com/crazypapa/video/upload/v1770214550/INCOLUDIDO/videos/Master_17_Low_fotr_net_up8w5m.mp4](https://res.cloudinary.com/crazypapa/video/upload/v1770214550/INCOLUDIDO/videos/Master_17_Low_fotr_net_up8w5m.mp4)
-
-El primer desafio fue la campaña para promover el crowd founding donde logramos reunir al rededor de 15 millones de pesos con los cuales pudimos importar un camión de papel higiénico libre de colación desde Perú a Chile. 
+El primer desafio fue la campaña para promover el crowd founding donde logramos reunir al rededor de 15 millones de pesos, con los cuales pudimos importar un container lleno de papel higiénico desde Perú, papel higiénico libre de colación.
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1769993851/INCOLUDIDO/fotos/Flayer-Capitulo-17_q8lx2z.png)
 
