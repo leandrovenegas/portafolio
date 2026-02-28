@@ -1,6 +1,9 @@
 import supabase from "@/lib/supabase";
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import { marked } from "marked";
+import { readFile } from "fs/promises";
+import path from "path";
 
 export default async function Portafolio() {
   const { data: organizaciones, error } = await supabase
@@ -8,6 +11,15 @@ export default async function Portafolio() {
     .select("*")
     .is("parent_organization_id", null)
     .neq("type", "client");
+
+  let descripcionLocal = null;
+  try {
+    const filePath = path.join(process.cwd(), "public", "content", "portafolio.md");
+    const markdown = await readFile(filePath, "utf-8");
+    descripcionLocal = marked(markdown);
+  } catch (e) {
+    console.error("Error al leer portafolio.md:", e);
+  }
 
   if (error) return <pre>Error: {error.message}</pre>;
 
@@ -18,9 +30,16 @@ export default async function Portafolio() {
         <h1 className="text-white text-3xl font-bold tracking-tighter mb-2 md:text-5xl">
           Portafolio
         </h1>
-        <p className="text-zinc-500 text-sm tracking-widest uppercase mb-16">
+        <p className="text-zinc-500 text-sm tracking-widest uppercase mb-12">
           Proyectos y organizaciones
         </p>
+
+        {descripcionLocal && (
+          <div
+            className="text-zinc-400 text-base leading-relaxed mb-16 max-w-2xl prose prose-invert"
+            dangerouslySetInnerHTML={{ __html: descripcionLocal }}
+          />
+        )}
         <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800 md:grid-cols-2">
           {organizaciones.map((org) => (
             <Link
