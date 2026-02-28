@@ -1,2 +1,1 @@
-# Hola
-esto es **negrita**
+mi portafolio es una recopilación de los proyectos más relevantes donde he creado dirigido o participado, tengo campañas publicitarias productos audiovisuales y productos de consumo todos documentados en los siguientes proyectos que puedes revisar más abajo.
