@@ -1,14 +1,12 @@
 import supabase from "@/lib/supabase";
-import fs from "fs";
+import { readFile } from "fs/promises";
 import path from "path";
-import { remark } from "remark";
-import html from "remark-html";
+import { marked } from "marked";
 
 async function getMarkdownContent(filename) {
-  const filePath = path.join(process.cwd(), "content", filename);
-  const fileContent = fs.readFileSync(filePath, "utf8");
-  const processed = await remark().use(html).process(fileContent);
-  return processed.toString();
+  const filePath = path.join(process.cwd(), "public", "content", filename);
+  const fileContent = await readFile(filePath, "utf8");
+  return marked(fileContent);
 }
 
 export default async function Proyectos() {
