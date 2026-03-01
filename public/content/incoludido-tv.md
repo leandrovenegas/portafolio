@@ -1,28 +1,8 @@
-# INCOLUDIDO
-
-Incoludido el papel higiénico que limpia y no te caga, En este proyecto fuí parte del team fundador, cuando el proyecto solo era una idea
-
-
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1771680105/Fondo-Incoludido-TV_mdmsie_eofdtb.jpg)
-
-Carlos Mansilla me dio la tarea de dirigir el departamento audio visual y hacerme cargo del story telling de la marca, comunicar que era Incoludido y por que tenían que apoyar nuestra propuesta de valor, en ese entonces  luchar contra la colucion del papel higiénico. pues es de ahí que nace el nombre Incoludido. 
-
-
-Incoludido partió desde cero, en una oficina en el centro de Santiago con gente joven y optimista, pero había que levantar capital para cumplir con la idea y ese plan comenzó con un crowdfunding.
-
-
-El primer desafio fue la campaña para promover el crowd founding con el que buscábamos reunir 15 millones de pesos para importar papel higiénico no coludido desde Perú. 
-
-la campaña Hera multicanal el equipo de Pancho One estaba trabajando para la campaña callejera y yo en la campaña audiovisual para redes sociales, el vídeo era un motion graphic de la época con la voz en off de Carlos quién relataba la propuesta de valor y los beneficios de invertir en el crowd founding, este es el vídeo de la campaña. 
-
-
-nuestra campaña terminó reuniendo 20 millones de pesos con los cuales pudimos importar un container lleno de papel higiénico desde Perú, papel higiénico libre de colación.
+# .
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1769993851/INCOLUDIDO/fotos/Flayer-Capitulo-17_q8lx2z.png)
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1769993850/INCOLUDIDO/fotos/incoludidotv2_2x_tr4fm8.png)
-
-El spot principal era una moton graphic que relataba el por que y el como y cuales eran los beneficios de comprar por adelantado tu papel higiénico, como es de costumbre en los crowd finding quienes son parte tienen acceso a merchandise exclusivo de la marca, en nuestro caso stickers pegatinas, poleras y el cómic versión uno de INCOLUDIDO, este comic también tuvo su versión animada en video que fue parte de esta campaña inicial.
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1769994099/INCOLUDIDO/fotos/Cut_p0x484.jpg)
 
@@ -33,12 +13,6 @@ El spot principal era una moton graphic que relataba el por que y el como y cual
 La campaña fue a acompañada de un steaming diario que nos permitía mantener al tanto a nuestros seguidores en la meta, algo que convertimos en una micro Teletón. 
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1770214614/INCOLUDIDO/fotos/20180111_190022_utu3cm.jpg)
-
-Luego de llegar a la meta volvimos a crear otras campañas para la búsqueda de inversionistas lo que en INCOLUDIDO llamamos padrinos financieros.
-
-[https://res.cloudinary.com/crazypapa/video/upload/v1770214582/INCOLUDIDO/videos/Escena-03_uasmyn.mp4](https://res.cloudinary.com/crazypapa/video/upload/v1770214582/INCOLUDIDO/videos/Escena-03_uasmyn.mp4)
-
-Lo siguiente fue la expansión de INCOLUDIDO la idea era llegar a todo Chile y aumentar la cantidad de almacenes INCOLUDIDO en todo el país, entonces ahí nació uno de los vídeos que más cariño le tengo de INCOLUDIDO este proyecto fue una escuela, un proceso largo pero hecho con mucha pasión 
 
 [https://res.cloudinary.com/crazypapa/video/upload/v1769994031/INCOLUDIDO/videos/Incoludido_yrsslk.mp4](https://res.cloudinary.com/crazypapa/video/upload/v1769994031/INCOLUDIDO/videos/Incoludido_yrsslk.mp4)
 
