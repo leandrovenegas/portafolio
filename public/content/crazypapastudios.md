@@ -2,11 +2,8 @@
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1771198082/CRAZYPAPASTUDIO/graficos/Miniatura_de_video_-_Instagram_srfht8.png)
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770964431/CRAZYPAPASTUDIO/IMG_20230707_222436_133_ydak8f.webp)
-
 Crazy papa estudio es un proyecto multidisciplinario del cual fui cofundador me desempeñe como product manager, desarrollando ideas de productos y todas sus fases de comercialización, para diferentes canales con sus respectivas campañas de marketing digital 
 
-No sólo desarrollamos productos audiovisuales también productos de diseño  de autor, este proyecto me permitió poner el ingenio y toda las habilidades creativas en acción, en este portafolio recopilo  los mejores productos desarrollados en este creativo proyecto.
 
 En este reel puedes hechar un vistaso rapido a los proyectos adudiovisuales desarollados en crazy papa, para conocer detalles de los videos en ver 
 
