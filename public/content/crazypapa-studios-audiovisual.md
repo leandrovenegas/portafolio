@@ -1,7 +1,5 @@
 # AUDIOVISUAL
 
-[https://res.cloudinary.com/crazypapa/video/upload/v1770214486/CRAZYPAPASTUDIO/audiovisual/0001-0030_ogjbab.mp4](https://res.cloudinary.com/crazypapa/video/upload/v1770214486/CRAZYPAPASTUDIO/audiovisual/0001-0030_ogjbab.mp4)
-
 Crazypapa esrtudio creativo baso su estrategia comercial en publicidad usando videos, donde producto comercial era lanzado junto con un video que aumentaba a conectar con la gente y aumentar el encanche con el publico. donde combinabamos el entreteminiento con la venta de productos, 
 
 primero hablare sobre los videos comerciales y como desarollamos las estrategias de marketing para lanzar los videos juntos con los productos, en este apartado puedes encontrar todos los videos de productos y mas abajo los videos de entretencion 
