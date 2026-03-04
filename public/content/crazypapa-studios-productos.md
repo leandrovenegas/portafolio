@@ -1,6 +1,6 @@
-# PRODUCTOS
+No sólo desarrollamos productos audiovisuales también productos de diseño  de autor, este proyecto me permitió poner el ingenio y toda las habilidades creativas en acción, en este portafolio recopilo  los mejores productos desarrollados en este creativo proyecto.
 
-[Portafolio](https://www.notion.so/Portafolio-304bb7096f9480eeb31ccd36f31848a6?pvs=21) 
+ 
 
 **Ropa con diseños de autor**
 
