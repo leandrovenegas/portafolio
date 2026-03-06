@@ -24,9 +24,13 @@ export default async function Proyecto({ params }) {
 
   let contenido = null;
   if (proyecto.markdown_url) {
-    const filePath = path.join(process.cwd(), "public", proyecto.markdown_url);
-    const markdown = await readFile(filePath, "utf-8");
-    contenido = marked(markdown);
+    try {
+      const filePath = path.join(process.cwd(), "public", proyecto.markdown_url);
+      const markdown = await readFile(filePath, "utf-8");
+      contenido = marked(markdown);
+    } catch (e) {
+      // archivo .md no existe, continúa sin contenido
+    }
   }
 
   return (
@@ -34,12 +38,24 @@ export default async function Proyecto({ params }) {
       <Nav />
       <main className="min-h-screen bg-black px-6 py-16 md:px-12 lg:px-24">
         <div className="mb-16 max-w-2xl">
-          <Link
-            href={`/portafolio/${proyecto.owner?.slug}`}
-            className="text-zinc-600 text-xs tracking-widest uppercase hover:text-zinc-400 transition-colors duration-200 mb-8 block"
-          >
-            ← {proyecto.owner?.name}
-          </Link>
+
+          <div className="flex gap-6 mb-8">
+            <Link
+              href="/proyectos"
+              className="text-zinc-600 text-xs tracking-widest uppercase hover:text-zinc-400 transition-colors duration-200"
+            >
+              ← Proyectos
+            </Link>
+            {proyecto.owner && (
+              <Link
+                href={`/portafolio/${proyecto.owner.slug}`}
+                className="text-zinc-600 text-xs tracking-widest uppercase hover:text-zinc-400 transition-colors duration-200"
+              >
+                {proyecto.owner.name}
+              </Link>
+            )}
+          </div>
+
           <span className="text-zinc-600 text-xs tracking-widest uppercase">
             {proyecto.date}
           </span>
@@ -61,30 +77,40 @@ export default async function Proyecto({ params }) {
 
         {mediaItems && mediaItems.length > 0 && (
           <section>
-            <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Contenidos</h2>
-            <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800 md:grid-cols-2 lg:grid-cols-3">
-              {mediaItems.map((item) => {
-                return (
-                  <a
-                    key={item.id}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black p-8 flex flex-col gap-4 hover:bg-zinc-900 transition-colors duration-200 group"
-                  >
-                    <span className="text-zinc-600 text-xs tracking-widest uppercase">{item.type}</span>
-                    <h3 className="text-white text-xl font-bold tracking-tight group-hover:text-zinc-300 transition-colors duration-200">
-                      {item.title}
-                    </h3>
-                    {item.caption && (
-                      <p className="text-zinc-600 text-sm">{item.caption}</p>
-                    )}
-                    <span className="text-zinc-600 text-xs tracking-widest uppercase mt-auto group-hover:text-zinc-400 transition-colors duration-200">
-                      Ver →
-                    </span>
-                  </a>
-                );
-              })}
+            <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">
+              Contenidos
+            </h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              {mediaItems.map((item) => (
+                <div key={item.id} className="flex flex-col gap-4">
+                  {item.type === "video" && (
+                    <video
+                      controls
+                      poster={item.thumbnail || undefined}
+                      className="w-full rounded"
+                      aria-label={item.alt || item.title}
+                    >
+                      <source src={item.url} type="video/mp4" />
+                    </video>
+                  )}
+                  {(item.type === "photo" || item.type === "graphic") && (
+                    <img
+                      src={item.url}
+                      alt={item.alt || item.title}
+                      className="w-full rounded"
+                    />
+                  )}
+                  <span className="text-zinc-600 text-xs tracking-widest uppercase">
+                    {item.type}
+                  </span>
+                  <h3 className="text-white text-xl font-bold tracking-tight">
+                    {item.title}
+                  </h3>
+                  {item.caption && (
+                    <p className="text-zinc-600 text-sm">{item.caption}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </section>
         )}
