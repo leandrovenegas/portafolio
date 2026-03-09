@@ -71,3 +71,40 @@ En este momento en chile se estaba desarollando una revuelta social y nos impuls
   <source src="
   https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773037861/CrazyPapa-Studio-Animation-Roto-Nos-quieren-Ciegos-2019_ais9s8.mp4 ">
 </video>
+
+Otro proyecto importante que realice como content Manager es el de la vela Contact la guia para el contacto extraterretre 
+<video controls class="w-full rounded my-6">
+  <source src="
+https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773039209/CrazyPapa-Studios-Contact-CE5-guia-de-contacto-extraterrestre-vela-minilibrito_eqdicf.mp4">
+</video>
+puedes descargar el brief del proyecto en el siguiente link
+<a href="/documents/CrazyPapa-Brief-Contact-colab_crazytofucandell.pdf" download style="color: #0070f3; text-decoration: underline;">Descargar Brief (PDF)</a> y conocer mas sobre el proceso creativo de este proyecto en el siguiente link 
+
+![polera-CrazyPapa-Studios-I-want-to-believe-primer-producto](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1773040959/CrazyPapa-studio-Bosquejos-Vela-Contact-extraterreste-2020_kcsqo9.png)
+
+Esta es una fotografía de la sesión fotografica de la vela Contact para redes sociales ![CrazyPapa-Studios-Contact-CE5-guia-de-contacto-extraterrestre-vela-minilibrito](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1771680866/VelaAlien_Morada_lwfodv_mcyzeq.jpg)
+
+Luego vieno nuevos productos como esta coleccion llamada virus hack 
+
+<video controls class="w-full rounded my-6">
+  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773041958/New-Coleccion-KaliYuga-05_yfeecc.mp4" type="video/mp4">
+</video>
+ya teniamos muchos productos y realizamos una pagian web que fue nuestra tienda online
+
+crazypapa estudi creativo logro posicionar su marca uno de los hitos mas importantes fue que llamanos la atencion de una delas relojerias mas famosas de chile Dando la hora, quien se comunico con nuestro estudio creativo y nos hizo variados encargos. 
+nos encargo la relizacion de uno de sus manuales, nos dijo que le encanto unas tiras comicas que estabamos lanzando en nuestras redes sociales, nuestra tematica al igual que la del es extraterreste, la historia de dando la hora habla sobre extraterrestes que viene a salbar a la humanidad de los celulares. 
+
+puedes ver el encargo de dando la hora. 
+
+Floreser espot 
+<video controls class="w-full rounded my-6">
+  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773044443/Fluoreser-Spot-Resumen-Crazypapa-Studios_ahsdr2.mp4" type="video/mp4">
+</video>
+
+
+
+
+en el siguiente link puedes ver el video completo de floreser
+<a href="https://www.instagram.com/p/Cfuq_G_gUqe/?hl=es" target="_blank" rel="noopener noreferrer"> Floreser espot</a>
+
+<a href="https://fluoreser.com/bio/" target="_blank" rel="noopener noreferrer"> Fluoreser sitio web</a>
