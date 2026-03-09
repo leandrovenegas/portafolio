@@ -124,19 +124,21 @@ export async function generateMetadata({ params }) {
 
   const { data: proyecto } = await supabase
     .from("projects")
-    .select("*, owner:owner_organization_id(name)")
+    .select("title, slug, seo_title, seo_description, og_image, keywords, owner:owner_organization_id(name)")
     .eq("slug", slug)
     .single();
 
   if (!proyecto) return { title: "Proyecto no encontrado" };
 
   return {
-    title: proyecto.title,
-    description: `${proyecto.title} — proyecto de ${proyecto.owner?.name} desde Chile.`,
+    title: proyecto.seo_title || `${proyecto.title} | Leandro Venegas`,
+    description: proyecto.seo_description || `${proyecto.title} — proyecto de ${proyecto.owner?.name} desde Chile.`,
+    keywords: proyecto.keywords || undefined,
     openGraph: {
-      title: `${proyecto.title} | Leandro Venegas`,
-      description: `${proyecto.title} — proyecto de ${proyecto.owner?.name}.`,
+      title: proyecto.seo_title || proyecto.title,
+      description: proyecto.seo_description || `${proyecto.title} — proyecto de ${proyecto.owner?.name}.`,
       url: `https://www.leandrovenegas.cl/proyectos/${proyecto.slug}`,
+      images: proyecto.og_image ? [{ url: proyecto.og_image }] : [],
       type: "website",
     },
   };

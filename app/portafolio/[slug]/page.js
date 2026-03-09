@@ -120,19 +120,21 @@ export async function generateMetadata({ params }) {
 
   const { data: org } = await supabase
     .from("organizations")
-    .select("*")
+    .select("name, slug, seo_title, seo_description, og_image, keywords")
     .eq("slug", slug)
     .single();
 
   if (!org) return { title: "Organización no encontrada" };
 
   return {
-    title: org.name,
-    description: `Proyectos y trabajo de ${org.name}. ${org.type} desde Chile.`,
+    title: org.seo_title || `${org.name} | Leandro Venegas`,
+    description: org.seo_description || `Proyectos y trabajo de ${org.name} desde Chile.`,
+    keywords: org.keywords || undefined,
     openGraph: {
-      title: `${org.name} | Leandro Venegas`,
-      description: `Proyectos y trabajo de ${org.name}.`,
+      title: org.seo_title || org.name,
+      description: org.seo_description || `Proyectos y trabajo de ${org.name}.`,
       url: `https://www.leandrovenegas.cl/portafolio/${org.slug}`,
+      images: org.og_image ? [{ url: org.og_image }] : [],
       type: "website",
     },
   };

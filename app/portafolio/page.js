@@ -5,6 +5,24 @@ import { marked } from "marked";
 import { readFile } from "fs/promises";
 import path from "path";
 
+export const metadata = {
+  title: "Portafolio | Leandro Venegas - Proyectos Audiovisuales y Diseño",
+  description: "Explora la trayectoria y organizaciones lideradas por Leandro Venegas. Proyectos desde Chile sobre narrativa audiovisual, diseño de producto y comunicación.",
+  openGraph: {
+    title: "Portafolio Creativo de Leandro Venegas",
+    description: "Recopilación de proyectos y organizaciones: Incoludido, Crazy Papa y más.",
+    url: "https://www.leandrovenegas.cl/portafolio",
+    images: [
+      {
+        url: "/og-portafolio.jpg", // Pon una imagen que represente tu trabajo general
+        width: 1200,
+        height: 630,
+        alt: "Portafolio de Leandro Venegas",
+      },
+    ],
+  },
+};
+
 export default async function Portafolio() {
   const { data: organizaciones, error } = await supabase
     .from("organizations")

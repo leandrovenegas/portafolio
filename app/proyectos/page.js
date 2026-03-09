@@ -55,6 +55,13 @@ export default async function Proyectos() {
 }
 
 export const metadata = {
-  title: "Proyectos | Leandro Venegas",
-  description: "Proyectos de diseño, audiovisual y producto desde Valparaíso, Chile.",
+  title: "Portafolio Creativo | Leandro Venegas - Audiovisual & Diseño",
+  description: "Explora el universo visual de Leandro Venegas: Dirección audiovisual, diseño de productos y narrativa transmedia desde Valparaíso, Chile. Creador de Incoludido y Crazy Papa.",
+  keywords: ["Audiovisual Chile", "Diseño de Producto", "Incoludido", "Leandro Venegas", "Valparaíso Creativo", "Ufología", "Narrativa Transmedia"],
+  openGraph: {
+    title: "Leandro Venegas | Realizador Audiovisual y Diseñador Multidisciplinar",
+    description: "Portafolio de proyectos que desafían lo convencional: desde spots para Incoludido hasta diseño de autor y fanzines.",
+    url: "https://www.leandrovenegas.cl/proyectos",
+    type: "website",
+  }
 };

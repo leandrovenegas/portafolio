@@ -1,15 +1,8 @@
 # CRAZY PAPA STUDIOS
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1771198082/CRAZYPAPASTUDIO/graficos/Miniatura_de_video_-_Instagram_srfht8.png)
-
-Crazy papa estudio es un proyecto multidisciplinario del cual fui cofundador me desempeñe como product manager, desarrollando ideas de productos y todas sus fases de comercialización, para diferentes canales con sus respectivas campañas de marketing digital 
+Crazy papa estudio es un proyecto multidisciplinario del cual fui cofundador me desempeñe como product manager, desarrollando ideas de productos y todas sus fases de comercialización y variadas campañas de marketing digital usando el video como base de comunicacion.
 
 
-En este reel puedes hechar un vistaso rapido a los proyectos adudiovisuales desarollados en crazy papa, para conocer detalles de los videos en ver 
-
-si te interesan ver los proyectos de productos comerciales puedes hechar un vistaso rapido viendo este reel , para conocer ser detalles de los proyecto, ver +
-
-produndisa 
 
 Crazy Papa no solo fue un Studio taller de productos también fue un Studio de videos y contenidos creativos, aqui te dejo una selecion de los videos que hicimos en el estudio, el periodo de este contenido es justo para la revuelta social el llamado estallido social en Chile. 
 
