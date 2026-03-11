@@ -1,28 +1,25 @@
-En la Rayandola es un proyecto muy interesante donde tube la oportunidad de tuve la oportunidad de ser un gestor cultural, y gracias a mis conocimientos de marketing y estrategias digitales pude levantar un espacio cualtural durante 4 anos en el pasaje galvez donde artistas, musicos y artesanos se reunieron a generar cultura.
+Intro / Hero
+Valparaíso tiene una particularidad: sus casas más deterioradas suelen ser sus espacios con más potencial. Rayandola fue exactamente eso — un inmueble inhabitable en el Pasaje Gálvez que convertí, junto a una red de artistas, en un punto de producción cultural activo durante cuatro años. No fue un proyecto de rescate urbano romántico: fue una decisión estratégica de generar infraestructura cultural donde no existía.
 
+Reel resumen
+(texto de apoyo al video)
+Cuatro años. Un pasaje. Cuatro proyectos distintos. Lo que empezó como una casa sin condiciones para vivir se transformó en el lugar donde ocurrieron algunas de las iniciativas culturales más consistentes de la escena local de Valparaíso.
 
-Reel resumen de Rayandola 
+Las Ferias del Pasaje Gálvez — Área 51
+El primer desafío fue demostrar que el espacio funcionaba. En colaboración con Fluoreser, produjimos las primeras instancias públicas de Rayandola: las ferias de artes y oficios del Pasaje Gálvez, que culminaron en la mítica Área 51. Para cada edición, desarrollé las campañas digitales en video — aplicando la misma lógica de producción estratégica que ya había probado en proyectos anteriores. El resultado fue una feria con convocatoria real y una comunidad de creadores que empezó a identificar Rayandola como su espacio.
 
-la historia  de rayandola comienza con algo muy comun en valparaiso casas inabhilitadas para vivir por falta de mantencion, pero gracias a la ayuda de muchos artistas pudimos levantar una casa para crear arte y cultura en valparaiso y aportar el grano de arena que es recuperar esta ciudad un poco abandonada 
+Galería Cósmica
+Con el espacio ya activado, el siguiente paso fue darle continuidad programática. Asumí la curaduría de la Galería Cósmica, donde gestioné una cartera de artistas visuales de la escena local. La primera exposición fue de Coco Smock; entre las que más definieron el perfil de la galería estuvo Siempre es hoy, una muestra con una carga filosófica deliberada que marcó el tono del espacio.
+[Ver cartera de artistas →]
 
+Mutatis Mutandi
+Con una red de artistas consolidada y el espacio con vida propia, identifiqué la oportunidad de escalar el formato. Produje Mutatis Mutandi, un microfestival de dos días de música, artes y oficios que reunió a referentes de la escena local de Valparaíso. La decisión de mantenerlo acotado en duración y enfocado en lo local fue intencional: densidad sobre masividad.
+[Conoce más sobre Mutatis Mutandi →]
 
-este proyecto tubo variados procesos de transformacion, todo comenzo con las serias de artes y oficios del pasaje galvez, la mitica feria Area 51, gracias a la producion y gestion de fluoreser pudimos gerar la primera instancia cultural en Rayandola.
+Crazy Room
+El último proyecto nacido en Rayandola fue también el de mayor alcance. La premisa era simple: registrar en video los sets de DJs de la escena local de Valparaíso, con la misma calidad de producción de un Boiler Room. Lo que comenzó como una idea entre colegas se convirtió en un proyecto audiovisual con repercusión real y una recepción que superó el circuito local.
+[Conoce Crazy Room →]
 
-Gracias a todas todo el conocimiento que he adquirido en mis anteriores proyectos genere las campa;as digitales en video para promociar estra ingreible feria donde se presentaron muchos creadores. 
-
-
-El siguiente proyecto levantado en Rayandola fue la galeria cosmica, donde fui curador de varios artistas comenzando por coco smock que fue el primer artista que se expuso en la galeria, luego vinieron muchos. de las exposiciones que mas me marcaron fue la de siempre es hoy, uan exposicion con un sentido filosofico muy marcado. conoce la cartera de artistas que pasaron por la Galeria cosmica en el siguitente link
-
-
-Despues de crear varios exposicones y generar una  red de artistas y mientras la casa comenzo a revivir y a transformarse  naciom Mutatis Mutandi un micro festival de de Musica Artes y ofocios de dos dias de duracion, que logro reunion a ingreibles artistas de la escna local de valparaiso,
-
-
-conoce mas sobre este proyecto en el siguiente link 
-
-
-
-el ultimo proyecto realizado en rayandola fue un Boiler room en valparaiso, donde la premisa fue grabar set de en video de la escna local de los djs de valparaiso, era solo una idea entre amigos que reapidamente se convirtio en un proyecto que genero mucha repercusion y una increible aceptacion por parte del publico, conoce mas sobre el CrazyROOM este increible procto audiovisual en el siguiente link 
-
-
-
-tienes un proyecto de arte en mente, crees que puedo aportar a tu equipo, contactame para hablar de ello, solo presiona el boton y comenzcemos hablar. 
+CTA
+Tenés un proyecto de arte o cultura y creés que puedo sumar. Escribime — empecemos a hablar.
+[Contacto →]
