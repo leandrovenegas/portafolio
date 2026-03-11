@@ -1,20 +1,28 @@
-Rayandola fue mi proyecto cultural realizado en Valparaíso, donde levante junto con la ayuda de muchos artistas, una casa abandonada que fue transformada en galería de arte y centro de eventos culturales durante 4 años, está casa ubicada en Galvez 49 en el cerro concepción, realice ferias de arte y oficio, exposiciones, eventos musicales y hasta un festival, en este documento te explico cómo fue mi papel de productor.
-
-El primer proyecte realizado en rayandola fue la feria de artes y oficios Área 51 un proyecto que reunió diferentes emprendimientos locales, 
-
-esta feria contó con una campaña de redes sociales donde publicamos los proyectos usando el siguiente spot publicitario. 
-
-en este mismo periodo Ibagué la galería de arte donde expusieron variadiados artistas, conoce más en el siguiente link.
-
-una de las exposiciones más relevantes que cure en la galería fuenla exposición siempr es hoy de una pareja de españoles que llegaron aquí gracias a la campaña de marketing digital que realice para el festival de artes y oficios mutatis Mutandi,
-
-se hacer varón ye me contaron que el lugar les encantó y llegamos a poner una fecha para poder realizar esta exposición fotográfica y literaria, aquí algunas imágenes del registro, si quieres conocer más sobre este proyecto puedes visitar el siguiente link. 
+En la Rayandola es un proyecto muy interesante donde tube la oportunidad de tuve la oportunidad de ser un gestor cultural, y gracias a mis conocimientos de marketing y estrategias digitales pude levantar un espacio cualtural durante 4 anos en el pasaje galvez donde artistas, musicos y artesanos se reunieron a generar cultura.
 
 
-el otro evento relevante de rayandola fue el festival mutatis-mutandi un festival que reunión a muchos artistas locales y variados oficios junto con un selecto grupo de gente dedicada a la música rap del puerto. 
+Reel resumen de Rayandola 
 
-aquí puedes ver parte de la campaña de marketing utilizada para promover el evento 
+la historia  de rayandola comienza con algo muy comun en valparaiso casas inabhilitadas para vivir por falta de mantencion, pero gracias a la ayuda de muchos artistas pudimos levantar una casa para crear arte y cultura en valparaiso y aportar el grano de arena que es recuperar esta ciudad un poco abandonada 
 
-si quieres conocer más sobre este proyecto no dices en visitar el siguiente link 
 
-el último proyecto que se realizó en rayandola fuea puesta en escena de un boiler room step llamado crazy Ron. 
+este proyecto tubo variados procesos de transformacion, todo comenzo con las serias de artes y oficios del pasaje galvez, la mitica feria Area 51, gracias a la producion y gestion de fluoreser pudimos gerar la primera instancia cultural en Rayandola.
+
+Gracias a todas todo el conocimiento que he adquirido en mis anteriores proyectos genere las campa;as digitales en video para promociar estra ingreible feria donde se presentaron muchos creadores. 
+
+
+El siguiente proyecto levantado en Rayandola fue la galeria cosmica, donde fui curador de varios artistas comenzando por coco smock que fue el primer artista que se expuso en la galeria, luego vinieron muchos. de las exposiciones que mas me marcaron fue la de siempre es hoy, uan exposicion con un sentido filosofico muy marcado. conoce la cartera de artistas que pasaron por la Galeria cosmica en el siguitente link
+
+
+Despues de crear varios exposicones y generar una  red de artistas y mientras la casa comenzo a revivir y a transformarse  naciom Mutatis Mutandi un micro festival de de Musica Artes y ofocios de dos dias de duracion, que logro reunion a ingreibles artistas de la escna local de valparaiso,
+
+
+conoce mas sobre este proyecto en el siguiente link 
+
+
+
+el ultimo proyecto realizado en rayandola fue un Boiler room en valparaiso, donde la premisa fue grabar set de en video de la escna local de los djs de valparaiso, era solo una idea entre amigos que reapidamente se convirtio en un proyecto que genero mucha repercusion y una increible aceptacion por parte del publico, conoce mas sobre el CrazyROOM este increible procto audiovisual en el siguiente link 
+
+
+
+tienes un proyecto de arte en mente, crees que puedo aportar a tu equipo, contactame para hablar de ello, solo presiona el boton y comenzcemos hablar. 
