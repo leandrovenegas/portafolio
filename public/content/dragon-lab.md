@@ -1,30 +1,24 @@
-Fui Cofundador de Dragón Lab, mi primera agencia de marketing digital. estuve a cargo del departamento audiovisual, desempeñándome como director creativo, en dragon lab produje diferentes contenidos audiovisuales para clientes muy variados desde Startups y empresas consolidadas como Lan hasta produciones para bandas musicales.
+Cofundé Dragon Lab, mi primera agencia de marketing digital, donde dirigí el departamento audiovisual como director creativo. Durante esa etapa produjimos contenido para una cartera diversa de clientes: desde startups en sus primeras fases hasta marcas consolidadas como LAN, pasando por artistas y bandas musicales. Fue el espacio donde definí mi forma de entender la producción audiovisual: como herramienta estratégica, no solo creativa.
 
+<video controls class="w-full rounded my-6">
+  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773220121/Agencia-de-Marketing-Digital-Audiovisual-Dragon-Lab-reel-proyectos_yq7viz.mp4">
+</video>
 
-## En este Reel puedes ver el resumen de los trabajos de La agencia de marketing digital Dragon Lab.
-
-
-
-El proyecto mas interesante realizado en Dragon LAb Agencia creativa fue para la marca Valook el mundo del escenario donde usamos una tecnica muy adelantada a su epoca para la creacion de contenidos, SEO con videos, nos adentramos en los datos registrados por la empresa de su sitio web, creamos una uditoria seo profunda y desde alli obtuvimos datos pra crear toda una pila de contenidos en video. de los cuales realizamos tutoriales reviws y unos spot para unas cabezas mobiles, fue un proyecto muy interesante y profesional del cual recuerdo con mucho carino, 
-si quieres conocer a profundiad el caso de exito y de valook puedes verlo en el siguiente enlace.
-
+Uno de los proyectos que más me marcó profesionalmente fue el desarrollo de una estrategia de contenidos en video para Valook, empresa chilena de iluminación profesional para escenarios con más de 20 años en el mercado. Lo que lo hace singular es el enfoque: antes de producir una sola imagen, nos sumergimos en los datos reales del sitio web del cliente. Realizamos una auditoría SEO profunda que nos permitió identificar exactamente qué contenido necesitaba su audiencia — y desde ahí construimos toda la estrategia de producción.
+El resultado fue un ecosistema de 60 videos: tutoriales, reviews y spots para sus cabezas móviles, que hoy acumulan más de 815.000 visualizaciones y han construido una comunidad de 5.300 suscriptores en YouTube. Una metodología que hoy se conoce como SEO de video, pero que en ese momento era una apuesta poco común en el mercado chileno.
 REEL VIDEO
 
 
-El otro proyecto interesante fue el del doctor Patricio Andrade cirugano plastico, quien en una primera instalacia nos contacto para documentar un congreso de cirugia plastica y reconstructiva, luego de eso vino por mas y nos pidio un proyecto grande, crear contenido para su lasa de espera, el queria que la sus clientes mientras estaban en la sala de espera pudiera ver contenido y claramente el doctor andrade tiene mucho que contar, el proyecto fue un programa de televison de una hora duracion, tenia firentes temas y tambien tenia trivias y tips del cuidado por que no solo habia cirugia plastica con el doctor andrade tambien tenia cuidados dela piel, deramatoliga 
+El proyecto con el Dr. Patricio Andrade, cirujano plástico, comenzó con un encargo puntual: documentar un congreso de cirugía plástica y reconstructiva. Lo que no anticipamos es que esa primera colaboración abriría la puerta a algo mucho más ambicioso.
+El doctor quería transformar su sala de espera en un espacio de contenido de valor. La respuesta fue diseñar y producir un programa de televisión de una hora de duración, con secciones diferenciadas: procedimientos de cirugía plástica, dermatología, cuidado de la piel, trivias y consejos prácticos. Un formato editorial completo, pensado para educar y generar confianza en el paciente antes de entrar a consulta.
 
-REEl Video
-
-para profundizar en los contenidos de este proyecto haz clic en el siguiete link 
-
-
-La empresa mas conocida con la que trabajamos fue Lan para area de responsabilidad social empresarial, el primer procto fue mostrar el proceso que tiene lan para trasladar organos aregiones, todos sabemos que los organos son muy escasos entonces cuando un donante de santiago esta dana su organos y en la lista de espera hay una persona de region el tiempo es oro y es necesario y la logistica de este proceso tiene que ser muy rapida para llegar a tiempo a la operacion y este precesiamnete fue el proceso que documentamos para lan el otro proyecto era su proyecto de forestacion del cerro sancristabol donde con un grupo de voluntario estan plantando arboles para forestar el cerro sancristobla.
+Con LAN trabajamos en el área de Responsabilidad Social Empresarial, produciendo dos documentales que requerían sensibilidad narrativa y precisión logística.
+El primero registró el protocolo de traslado de órganos a regiones: un proceso donde cada minuto importa y la coordinación entre equipos es crítica. Documentar eso sin interferir, y contar esa historia con respeto, fue uno de los ejercicios de dirección más exigentes de esa etapa.
+El segundo proyecto fue la campaña de forestación del Cerro San Cristóbal, donde LAN organizaba jornadas de voluntariado para plantar árboles y recuperar el cerro. Un trabajo de registro documental con vocación medioambiental.
 
 
-**BANDAS**
-
-Dentro del equipo de Dragon lab estaba el Hijo de gervacio el cantante Lincoyán Viera  quien para ese entonces habia trabajado muy de cerca con las SCD y nos propuso entrar el mundo de la musica, con lo que logramos hacer varias seciones fotograficas y un proyecto de tocatas al aire libre donde tubimos la oportunidad de trabajar con nino cohete. aqui puedes ver el resumen de este segmento en Dragon lab agencia de marketing 
-
+La conexión de Dragon Lab con el mundo de la música llegó a través de Lincoyán Viera — integrante del equipo e hijo de Gervacio Viera — quien venía de trabajar estrechamente con la SCD. Eso nos abrió las puertas a un nicho que no teníamos en el radar.
+Desarrollamos sesiones fotográficas y un ciclo de tocatas al aire libre, donde tuvimos la oportunidad de trabajar con Niño Cohete, entre otros artistas. Un segmento que demostró que el lenguaje audiovisual que habíamos desarrollado para marcas funcionaba igual de bien para contar historias de músicos.
 
 
 
