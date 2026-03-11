@@ -103,8 +103,9 @@ Floreser espot
 
 
 
-
 en el siguiente link puedes ver el video completo de floreser
 <a href="https://www.instagram.com/p/Cfuq_G_gUqe/?hl=es" target="_blank" rel="noopener noreferrer"> Floreser espot</a>
 
 <a href="https://fluoreser.com/bio/" target="_blank" rel="noopener noreferrer"> Fluoreser sitio web</a>
+Conoce mi siguiente proyecto como Productor en el siguiente link
+[**Raynadola**](https://www.leandrovenegas.cl/portafolio/rayandola)

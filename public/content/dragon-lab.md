@@ -1,6 +1,4 @@
 
-![Dragonlab Logo](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1773057826/10337359_656511677718030_110419324_o_656511677718030_ifnzx7.jpg)
-
 Cofundador de Dragón Lab, mi primera agencia de marketing digital. En los comienzos del 2014 estuve a cargo del departamento audiovisual, desempeñándome como director creativo y generando diferentes contenidos audiovisuales para nuestros clientes. Aquí una recopilación de los proyectos más relevantes.
 
 <video controls class="w-full rounded my-6">
