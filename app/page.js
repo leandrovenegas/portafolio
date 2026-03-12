@@ -8,7 +8,7 @@ export default function Home() {
           Leandro Venegas
         </h1>
         <p className="text-zinc-400 text-xs tracking-widest uppercase md:text-sm">
-          Creador de productos
+          <strong>Creative Director & Marketing Manager</strong>
         </p>
       </div>
       <div className="flex flex-col gap-4 w-full max-w-xs md:flex-row md:w-auto">

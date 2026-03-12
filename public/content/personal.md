@@ -2,8 +2,8 @@ En esta pagina puedes conocer un poco mas de mi, mis proyectos y mis experiencia
 de mis proyectos personales, donde trabaje para mi mismopor que la creativdiad y la expresion es algo que siempre me ha llenado el corazon y de donde toma felicidad. 
 
 
-Ese es mi primera incursion en la animacion se Llama el Arbol en la semilla 
-es una animacion frame a frame, con esta animacion fue parte de una muestra de animacion experimental en el Museo de Arte Contemporaneo el MAC de santiago, donde tuve el agrado compartir con otros artistas de la animacion. 
+El Árbol en la Semilla
+Mi primera incursión en animación fue una pieza frame a frame que construí cuadro por cuadro, sin atajos. El resultado fue seleccionado para la Muestra de Animación Experimental del Museo de Arte Contemporáneo (MAC) de Santiago, donde presenté el trabajo junto a otros animadores del circuito experimental chileno.
 
 
 Estudie comuniacion audiovisual en la Universidad de UNIACC y los proyectos mas imortantes que relice en  mi periodo de aprendizaje es esta obra extrana llamada pan optico donde actue y fui director de fotografia al mismo tiempo, algo que no recomiendo, pero este proyecto luego de que a pasado el tiempo puedo comprender lo diferente que fuimos. 
