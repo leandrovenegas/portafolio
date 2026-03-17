@@ -1,12 +1,12 @@
 
 
-Valparaíso tiene una particularidad: sus casas más deterioradas suelen ser sus espacios con más potencial. Rayandola fue exactamente eso — un inmueble inhabitable en el Pasaje Gálvez que convertí, junto a una red de artistas, en un punto de producción cultural activo durante cuatro años. No fue un proyecto de rescate urbano romántico: fue una decisión estratégica de generar infraestructura cultural donde no existía.
+Valparaíso tiene una particularidad: sus casas más deterioradas suelen ser sus espacios con más potencial. Rayandola fue exactamente eso — un inmueble inhabitable en el Pasaje Gálvez que convertí, junto a una red de artistas, en un punto de producción cultural activo durante cuatro años. 
 <video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773640447/Rayandola-v3_1_skugfy.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773733444/Rayandola-v4_hkvdqk.mp4">
 </video>
 
 
-Cuatro años. Un pasaje. Cuatro proyectos distintos. Lo que empezó como una casa sin condiciones para vivir se transformó en el lugar donde ocurrieron algunas de las iniciativas culturales más consistentes de la escena local de Valparaíso.
+ Lo que empezó como una casa sin condiciones para vivir se transformó en el lugar donde ocurrieron multiples conexiones entre artistas, músicos, curadores y aficionados gente conociendose.
 
 Las Ferias del Pasaje Gálvez — Área 51
 El primer desafío fue demostrar que el espacio funcionaba. En colaboración con Fluoreser, produjimos las primeras instancias públicas de Rayandola: las ferias de artes y oficios del Pasaje Gálvez, que culminaron en la mítica Área 51. Para cada edición, desarrollé las campañas digitales en video — aplicando la misma lógica de producción estratégica que ya había probado en proyectos anteriores. El resultado fue una feria con convocatoria real y una comunidad de creadores que empezó a identificar Rayandola como su espacio.
