@@ -2,24 +2,30 @@
 
 es un proyecto multidisciplinario del cual fui cofundador me desempeñe como product manager, desarrollando ideas de productos y dirigi  variadas campañas de marketing digital usando el video como base de comunicación.
 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1771680778/0001-0030_ogjbab_xnsi6d.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1771680778/0001-0030_ogjbab_xnsi6d.mp4" type="video/mp4">
+  </video>
+</div>
 
 
 ![polera-CrazyPapa-Studios-I-want-to-believe-primer-producto](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1771681086/IMG_4717_hzbfou_v8xuan.jpg)
 
 El primer producto desarollado en crazypapa estudio fueron las poleras y en espesifico la polera i want to believe - luego de una investigacion me di cuenta que habia poca oferta de polas sobre la tematica extraterreste, una tematica que a mi personal mente siempre me ha a pasionado. entonces pusimos manos a la obra y comenzamos a producir estas polera usando la tecnica serigraficas para producirlas.
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773026811/Proceso-Creativo-I-want-to-believe-polera_fg19md.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773026811/Proceso-Creativo-I-want-to-believe-polera_fg19md.mp4" type="video/mp4">
+  </video>
+</div>
 
 rapidamente creamos una curatoria extraterreste donde invitamo a varios artistas a colaborar y todas las habilidades audiovisuales se pusieron a trabajar, este es el primer video de Crazypapa Studios para la campaña de llamada Invasion Alien
 
 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773028421/Invasion-Alien-Version-Corta-Crazy-Papa-Studios-Campa%C3%B1a-poleras_zfjg08.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773028421/Invasion-Alien-Version-Corta-Crazy-Papa-Studios-Campa%C3%B1a-poleras_zfjg08.mp4" type="video/mp4">
+  </video>
+</div>
 
 puedes ver el video completo en el siguiente link [**Video Invasión Alien**](https://www.leandrovenegas.cl/proyectos/sport-invasion-alien)
 
@@ -27,9 +33,11 @@ puedes ver el video completo en el siguiente link [**Video Invasión Alien**](ht
 
 la campaña invasion Alien tuvo buena aceptacion vendimos muchas poleras y nos dimos cuenta que comenzamos a diferenciar la marca por la creatividad de nuestros Spot, el video Invasion alien sorprendio a mucha gente y decidimos crear otro y darle un toque misterioso, el siguiente spot fue we are not alone 
 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773029441/Crazy-Papa-Studios-We-Are-Not-Alone-Spot-Poleras-Nuevo-Dise%C3%B1o-2019_amyr0e.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773029441/Crazy-Papa-Studios-We-Are-Not-Alone-Spot-Poleras-Nuevo-Dise%C3%B1o-2019_amyr0e.mp4" type="video/mp4">
+  </video>
+</div>
 fotos de la sesión fotografíca de la polera y polerones We Are Not alone, en honor a la portada del National Geo Graphycs de ese mismo año No estamos solos. 
 
 ![](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1773029849/Polera-Braulio-We-are-not-alone-Crazy-Papa-Studios-2019_tx1tzr.jpg)
@@ -39,9 +47,11 @@ Si quieres conocer todos los productos de esta campaña puede hacer click en el 
 ![](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1771681112/poleron_instagram2_jxqjv7_fasrkz.png)
 
 El proceso de creacion productos lo fui puliendo y pude comunicarme con variados Ilustradores, aquienes pude negociar la explotacion de sus ilutraciones, la mayoria fueron encargos, como el trabajo de La Isla friendship, el mito extraterreste del sur de Chile. el siguiente video muestra el video promocional para redes sociales del nuevo producto.
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773031452/CrazyPapa-Studio-Isla-Friendship-Spot-Polera-Redes-Sociales-video_hjuhfd.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773031452/CrazyPapa-Studio-Isla-Friendship-Spot-Polera-Redes-Sociales-video_hjuhfd.mp4" type="video/mp4">
+  </video>
+</div>
 en el camino me di cuenta que me estaba convirtiendo en un product manager y por que estaba desarollando productos y teniendo reuniones con un equipo de trabajo, tanto artistas como productores, dejo uno de los primero brief que use para la peticion del producto desarollado con la ilustradora Abi. 
 **<a href="/Documents/Brief-Isla-FriendShip-Diseño-Abi-Crazypapa-Studios.pdf" download style="color: #0070f3; text-decoration: underline;">Descargar Brief (PDF)</a>**
 aqui esta el brief que le envie a <a href="https://www.instagram.com/ibiabigail/" target="_blank" rel="noopener noreferrer">Ibia bigail</a>
@@ -55,28 +65,34 @@ estas son algunos de los boquejos creados por Vicbur puedes conocer más sobre e
 
 Este proyecto me hizo crecer como persona, puesto que pude producir mi primer fanzine, una pequeña revista que contenia el muñeco, era una investifacion sobre los Aliens Grises, desde sus primeras introducion en el inconciente colectivo. 
 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773036317/Crazypapa-studios-fanzine-Glise-Gray-Alien-collection-chile-visualizacion_rlh9h8.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773036317/Crazypapa-studios-fanzine-Glise-Gray-Alien-collection-chile-visualizacion_rlh9h8.mp4" type="video/mp4">
+  </video>
+</div>
 
 En Crazy papa Studios, la produccion audiovisual era  una de nuestras pasiones, y creamos piesas audiovisuales como contenidos para nuestras redes sociales ese era nuestro canal principal de ventas de productos, uno de estos contenidos fue Enciende tu tele, un micro corto  animado en Stop Motions
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773036812/Enciende-tu-tele-Crazypapa-Studio-Stop-motion-video-contenido-creativo_p5pfzo.mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773036812/Enciende-tu-tele-Crazypapa-Studio-Stop-motion-video-contenido-creativo_p5pfzo.mp4" type="video/mp4">
+  </video>
+</div>
 
 conoce el proceso creativo de este proyecto en el siguiente link [Enciende tu tele](https://www.leandrovenegas.cl/proyectos/enciende-tu-tele)
 
 En este momento en chile se estaba desarollando una revuelta social y nos impulso a participar del momento haciendo este video al cual le tengo mucho aprecio, en este proyecto puede incurcionar en la tecnica de la rotoscopia, este proyecto se llama nos quieren ciegos 
-<video controls class="w-full rounded my-6">
-  <source src="
-  https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773037861/CrazyPapa-Studio-Animation-Roto-Nos-quieren-Ciegos-2019_ais9s8.mp4 ">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773037861/CrazyPapa-Studio-Animation-Roto-Nos-quieren-Ciegos-2019_ais9s8.mp4" type="video/mp4">
+  </video>
+</div>
 
 Otro proyecto importante que realice como content Manager es el de la vela Contact la guia para el contacto extraterretre 
-<video controls class="w-full rounded my-6">
-  <source src="
-https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773039209/CrazyPapa-Studios-Contact-CE5-guia-de-contacto-extraterrestre-vela-minilibrito_eqdicf.mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773039209/CrazyPapa-Studios-Contact-CE5-guia-de-contacto-extraterrestre-vela-minilibrito_eqdicf.mp4" type="video/mp4">
+  </video>
+</div>
 puedes descargar el brief del proyecto en el siguiente link
 <a href="/documents/CrazyPapa-Brief-Contact-colab_crazytofucandell.pdf" download style="color: #0070f3; text-decoration: underline;">Descargar Brief (PDF)</a> y conocer mas sobre el proceso creativo de este proyecto en el siguiente link 
 
@@ -86,9 +102,11 @@ Esta es una fotografía de la sesión fotografica de la vela Contact para redes 
 
 Luego vieno nuevos productos como esta coleccion llamada virus hack 
 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773041958/New-Coleccion-KaliYuga-05_yfeecc.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773041958/New-Coleccion-KaliYuga-05_yfeecc.mp4" type="video/mp4">
+  </video>
+</div>
 ya teniamos muchos productos y realizamos una pagian web que fue nuestra tienda online
 
 crazypapa estudi creativo logro posicionar su marca uno de los hitos mas importantes fue que llamanos la atencion de una delas relojerias mas famosas de chile Dando la hora, quien se comunico con nuestro estudio creativo y nos hizo variados encargos. 
@@ -97,9 +115,11 @@ nos encargo la relizacion de uno de sus manuales, nos dijo que le encanto unas t
 puedes ver el encargo de dando la hora. 
 
 Floreser espot 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773044443/Fluoreser-Spot-Resumen-Crazypapa-Studios_ahsdr2.mp4" type="video/mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773044443/Fluoreser-Spot-Resumen-Crazypapa-Studios_ahsdr2.mp4" type="video/mp4">
+  </video>
+</div>
 
 
 

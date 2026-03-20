@@ -1,27 +1,45 @@
 Cofundé Dragon Lab, mi primera agencia de marketing digital, donde dirigí el departamento audiovisual como director creativo. Durante esa etapa produjimos contenido para una cartera diversa de clientes: desde startups en sus primeras fases hasta marcas consolidadas como LAN, pasando por artistas y bandas musicales. Fue el espacio donde definí mi forma de entender la producción audiovisual: como herramienta estratégica, no solo creativa.
 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773220121/Agencia-de-Marketing-Digital-Audiovisual-Dragon-Lab-reel-proyectos_yq7viz.mp4">
-</video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773220121/Agencia-de-Marketing-Digital-Audiovisual-Dragon-Lab-reel-proyectos_yq7viz.mp4" type="video/mp4">
+  </video>
+</div>
 
 Uno de los proyectos que más me marcó profesionalmente fue el desarrollo de una estrategia de contenidos en video para Valook, empresa chilena de iluminación profesional para escenarios con más de 20 años en el mercado. Lo que lo hace singular es el enfoque: antes de producir una sola imagen, nos sumergimos en los datos reales del sitio web del cliente. Realizamos una auditoría SEO profunda que nos permitió identificar exactamente qué contenido necesitaba su audiencia — y desde ahí construimos toda la estrategia de producción.
 El resultado fue un ecosistema de 60 videos: tutoriales, reviews y spots para sus cabezas móviles, que hoy acumulan más de 815.000 visualizaciones y han construido una comunidad de 5.300 suscriptores en YouTube. Una metodología que hoy se conoce como SEO de video, pero que en ese momento era una apuesta poco común en el mercado chileno.
-<video controls src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773223357/Reel-Valook-AGENCIA-Dragon-Lab_tbtod1.mp4" title="REEL VIDEO"></video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" aria-label="REEL VIDEO" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773223357/Reel-Valook-AGENCIA-Dragon-Lab_tbtod1.mp4" type="video/mp4">
+  </video>
+</div>
 
 
 El proyecto con el Dr. Patricio Andrade, cirujano plástico, comenzó con un encargo puntual: documentar un congreso de cirugía plástica y reconstructiva. Lo que no anticipamos es que esa primera colaboración abriría la puerta a algo mucho más ambicioso.
 El doctor quería transformar su sala de espera en un espacio de contenido de valor. La respuesta fue diseñar y producir un programa de televisión de una hora de duración, con secciones diferenciadas: procedimientos de cirugía plástica, dermatología, cuidado de la piel, trivias y consejos prácticos. Un formato editorial completo, pensado para educar y generar confianza en el paciente antes de entrar a consulta.
-<video controls src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773224375/AC2-REEL-Dragon-Lab-Agencia-de-Marketing_lt2uqn.mp4" title="REEL VIDEO"></video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" aria-label="REEL VIDEO" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773224375/AC2-REEL-Dragon-Lab-Agencia-de-Marketing_lt2uqn.mp4" type="video/mp4">
+  </video>
+</div>
 
 Con LAN trabajamos en el área de Responsabilidad Social Empresarial, produciendo dos documentales que requerían sensibilidad narrativa y precisión logística.
 El primero registró el protocolo de traslado de órganos a regiones: un proceso donde cada minuto importa y la coordinación entre equipos es crítica. Documentar eso sin interferir, y contar esa historia con respeto, fue uno de los ejercicios de dirección más exigentes de esa etapa.
 El segundo proyecto fue la campaña de forestación del Cerro San Cristóbal, donde LAN organizaba jornadas de voluntariado para plantar árboles y recuperar el cerro. Un trabajo de registro documental con vocación medioambiental.
 
-<video controls src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773225630/LAN-REEL_tknwrk.mp4" title="REEL VIDEO"></video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" aria-label="REEL VIDEO" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773225630/LAN-REEL_tknwrk.mp4" type="video/mp4">
+  </video>
+</div>
 
 
 La conexión de Dragon Lab con el mundo de la música llegó a través de Lincoyán Viera — integrante del equipo e hijo de Gervacio Viera — quien venía de trabajar estrechamente con la SCD. Eso nos abrió las puertas a un nicho que no teníamos en el radar.
 Desarrollamos sesiones fotográficas y un ciclo de tocatas al aire libre, donde tuvimos la oportunidad de trabajar con Niño Cohete, entre otros artistas. Un segmento que demostró que el lenguaje audiovisual que habíamos desarrollado para marcas funcionaba igual de bien para contar historias de músicos.
-<video controls src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773226288/RanaMusic-reel-nino-cohete_xayiqs.mp4" title="REEL VIDEO"></video>
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" aria-label="REEL VIDEO" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773226288/RanaMusic-reel-nino-cohete_xayiqs.mp4" type="video/mp4">
+  </video>
+</div>
 
 

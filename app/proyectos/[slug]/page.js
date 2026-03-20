@@ -4,6 +4,7 @@ import { readFile } from "fs/promises";
 import path from "path";
 import Nav from "@/components/Nav";
 import Link from "next/link";
+import VideoPlayer from "@/components/VideoPlayer";
 
 export default async function Proyecto({ params }) {
   const { slug } = await params;
@@ -84,14 +85,11 @@ export default async function Proyecto({ params }) {
               {mediaItems.map((item) => (
                 <div key={item.id} className="flex flex-col gap-4">
                   {item.type === "video" && (
-                    <video
-                      controls
+                    <VideoPlayer
+                      src={item.url}
                       poster={item.thumbnail || undefined}
-                      className="w-full rounded"
-                      aria-label={item.alt || item.title}
-                    >
-                      <source src={item.url} type="video/mp4" />
-                    </video>
+                      ariaLabel={item.alt || item.title}
+                    />
                   )}
                   {(item.type === "photo" || item.type === "graphic") && (
                     <img

@@ -1,28 +1,43 @@
 
 
-Valparaíso tiene una particularidad: sus casas más deterioradas suelen ser sus espacios con más potencial. Rayandola fue exactamente eso — un inmueble inhabitable en el Pasaje Gálvez que convertí, junto a una red de artistas, en un punto de producción cultural activo durante cuatro años. 
-<video controls class="w-full rounded my-6">
-  <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773733444/Rayandola-v4_hkvdqk.mp4">
-</video>
+Rayándola fue exactamente eso un inmueble inhabitable, inhumano en el Pasaje Gálvez que convertí junto a una red de artistas y creadores en un punto de producción cultural activo durante cuatro años. cada ves que un artista se presentaba en el lugar aportaba en la reconstruction del inmueble con mano de obra, así fue como esta hermosa casa del 1880 en el cerro Concepcion  fue fue transformada en un punto de encuentro para la cultura local.
 
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773733444/Rayandola-v4_hkvdqk.mp4" type="video/mp4">
+  </video>
+</div>
 
- Lo que empezó como una casa sin condiciones para vivir se transformó en el lugar donde ocurrieron multiples conexiones entre artistas, músicos, curadores y aficionados gente conociendose.
+Lo que empezó como una casa sin condiciones para vivir se transformó en el lugar donde ocurrieron algunas de las iniciativas culturales memorables para muchos de los que fueron parte entre artistas, asistentes, turista y vecinos nadie quedo indiferente a lo que allí vivimos. 
 
-Las Ferias del Pasaje Gálvez — Área 51
-El primer desafío fue demostrar que el espacio funcionaba. En colaboración con Fluoreser, produjimos las primeras instancias públicas de Rayandola: las ferias de artes y oficios del Pasaje Gálvez, que culminaron en la mítica Área 51. Para cada edición, desarrollé las campañas digitales en video — aplicando la misma lógica de producción estratégica que ya había probado en proyectos anteriores. El resultado fue una feria con convocatoria real y una comunidad de creadores que empezó a identificar Rayandola como su espacio.
+Las Ferias de Artes y Oficios del Pasaje Gálvez — Área 51
+El primer desafío fue demostrar que el espacio funcionaba. En colaboración con Fluoreser, produjimos las primeras instancias públicas de Rayandola: las ferias de artes y oficios del Pasaje Galvez la mítica Área 51 el espacio era grande y en un punto estratégico, turistico y cosmopolita.
+
+Estuve a cargo de realizar la diffusion y promoción de las ferias creando flayers Poster y todo el contenido audiovisual para las campañas de redes sociales, esta experiencia abrio un mundo de posibilidades.
+
 
 Galería Cósmica
-Con el espacio ya activado, el siguiente paso fue darle continuidad programática. Asumí la curaduría de la Galería Cósmica, donde gestioné una cartera de artistas visuales de la escena local. La primera exposición fue de Coco Smock; entre las que más definieron el perfil de la galería estuvo Siempre es hoy, una muestra con una carga filosófica deliberada que marcó el tono del espacio.
-[Ver cartera de artistas →]
+Con el espacio ya activado, el siguiente paso fue darle continuidad programática. Asumí la curaduría de la Galería Cósmica, donde gestioné una cartera de artistas visuales de la escena local. La primera exposición fue de Coco Smock con su exposición fauna Oculta, entre las que más definieron el perfil de la galería estuvo Siempre es hoy, una muestra con una carga filosófica muy reflexiva, pronto la lista de artista estará disponible para ver sus exposiciones por ahora dejare un resumen de quienes fueron partes de las muestras o exposiciones en rayándola Galvez 49 Cerro Concepcion.
+Coco Smok 
+Ivan Palmarola
+Amorirse
+Cristhoper Rojo
+UniArtWorkts
+Siempre Es Hoy
+Ivan Angel 
+Daniel Rodriguez 
+Niki Pantera
+Josefa Davila
+NEA
+
 
 Mutatis Mutandi
-Con una red de artistas consolidada y el espacio con vida propia, identifiqué la oportunidad de escalar el formato. Produje Mutatis Mutandi, un microfestival de dos días de música, artes y oficios que reunió a referentes de la escena local de Valparaíso. La decisión de mantenerlo acotado en duración y enfocado en lo local fue intencional: densidad sobre masividad.
+El espacio en plena trasformacion y llego el momento de mutar, en este punto nace Mutatis-Mutandi, con una red de artistas consolidada y el espacio con vida propia, identifiqué la oportunidad de escalar el formato. Produje Mutatis Mutandi junto a un equipo extraordinario de artistas apasionados,  un micro festival de dos días de música, artes y oficios que reunió a referentes de la escena local de Valparaíso. La decisión de mantenerlo acotado en duración y enfocado en lo local fue intencional: densidad sobre masividad.
 [Conoce más sobre Mutatis Mutandi →]
 
 Crazy Room
-El último proyecto nacido en Rayandola fue también el de mayor alcance. La premisa era simple: registrar en video los sets de DJs de la escena local de Valparaíso, con la misma calidad de producción de un Boiler Room. Lo que comenzó como una idea entre colegas se convirtió en un proyecto audiovisual con repercusión real y una recepción que superó el circuito local.
+El último proyecto nacido en Rayándola La premisa era simple: registrar en video los sets de DJs de la escena local de Valparaíso, un Boiler Room casero desde las entrañas de Valparaiso. Lo que comenzó como una idea entre amigos se convirtió en un proyecto audiovisual muy atractivo que rápidamente pasamos de ser unos cuantos en asistir a llenar la habitación completa de gente con ganas de participar el las grabaciones y en el evento en general
 [Conoce Crazy Room →]
+Tienes  un proyecto de arte o cultura y crees  que puedo sumar. Escribirme empecemos a hablar.
 
-CTA
-Tenés un proyecto de arte o cultura y creés que puedo sumar. Escribime — empecemos a hablar.
 [Contacto →]
