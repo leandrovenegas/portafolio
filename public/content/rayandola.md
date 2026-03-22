@@ -18,17 +18,17 @@ Estuve a cargo de realizar la diffusion y promoción de las ferias creando flaye
 ![Coco Smock - Fauna Oculta foto montaje exposición Coco Smock galeria cosmica Rayandola](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774063718/coco-Primer-Dia-Pintando_a2pezx.jpg)
 Galería Cósmica
 Con el espacio ya activado, el siguiente paso fue darle continuidad programática. Asumí la curaduría de la Galería Cósmica, donde gestioné una cartera de artistas visuales de la escena local. La primera exposición fue de Coco Smock con su exposición fauna Oculta, entre las que más definieron el perfil de la galería estuvo Siempre es hoy, una muestra con una carga filosófica muy reflexiva, pronto la lista de artista estará disponible para ver sus exposiciones por ahora dejare un resumen de quienes fueron partes de las muestras o exposiciones en rayándola Galvez 49 Cerro Concepcion.
-Coco Smok 
-Ivan Palmarola
-Amorirse
-Cristhoper Rojo
-UniArtWorkts
-Siempre Es Hoy
-Ivan Angel 
-Daniel Rodriguez 
-Niki Pantera
-Josefa Davila
-NEA
+* **Coco Smok**
+* **Ivan Palmarola**
+* **Amorirse**
+* **Cristhoper Rojo**
+* **UniArtWorkts**
+* **Siempre Es Hoy**
+* **Ivan Angel**
+* **Daniel Rodriguez**
+* **Niki Pantera**
+* **Josefa Davila**
+* **NEA**
 
 ![Afiche calle mutatis mutandi rayandola](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774064475/IMG-20230404-WA0002_hgdlwz.jpg)
 

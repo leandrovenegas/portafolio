@@ -1,6 +1,10 @@
-![Crazypapa-studio-creativo-logo-2018](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1773023670/Crazypapa-studio-creativo-logo-2018_xvfb9p.png)
-
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1774205339/CRAZYPAPA-Studio-REEL-MASTER-WEB-productora-videos_r1abgk.mp4" type="video/mp4">
+  </video>
+</div>
 es un proyecto multidisciplinario del cual fui cofundador me desempeñe como product manager, desarrollando ideas de productos y dirigi  variadas campañas de marketing digital usando el video como base de comunicación.
+
 
 <div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
   <video controls class="w-full h-full object-contain" preload="metadata">

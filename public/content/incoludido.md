@@ -1,4 +1,9 @@
-# INCOLUDIDO
+
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1774210295/INCOLUDIDO-REEL_ancinw.mp4">
+  </video>
+</div>
 
 Incoludido el papel higiénico que limpia y no te caga,
 En este proyecto fui parte del team fundador,  cuando el proyecto solo era una idea,
@@ -24,6 +29,7 @@ lo que me gusto del proyecto fue la energía y la forma de pensar del equipo, au
 pero la forma en como se estaba planeando el marketing termino por cautivarme, lo que estaba por venir sonaba apasionante para mi.
 
 ![](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1773007392/FILE24507_daygay.jpg)
+
 
 Todo el equipo audiovisuales puso manos a la obra para sacar nuestra parte de la campaña de marketing digital, en el siguiente video puedes ver un resumen del Spot de la campaña , si prefieres puedes ver el video completo en el siguiente link [**Campaña Audiovisual de Crowdfounding**](https://www.leandrovenegas.cl/proyectos/campaing-incoludido-crowdfounding)
 
