@@ -1,3 +1,10 @@
+
+
+<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
+  <video controls class="w-full h-full object-contain" preload="metadata">
+    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1774220232/PERSONAL-PROYECTS-REEL-Leandro-Venegas-Productor-Audiovisual-Creador-Valparaiso_yi70t3.mp4" type="video/mp4">
+  </video>
+</div>
 En esta pagina puedes conocer un poco mas de mi, mis proyectos y mis experiencias 
 de mis proyectos personales, donde trabaje para mi mismopor que la creativdiad y la expresion es algo que siempre me ha llenado el corazon y de donde toma felicidad. 
 
