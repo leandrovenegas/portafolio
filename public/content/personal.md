@@ -5,27 +5,17 @@
     <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1774220232/PERSONAL-PROYECTS-REEL-Leandro-Venegas-Productor-Audiovisual-Creador-Valparaiso_yi70t3.mp4" type="video/mp4">
   </video>
 </div>
-En esta pagina puedes conocer un poco mas de mi, mis proyectos y mis experiencias 
-de mis proyectos personales, donde trabaje para mi mismopor que la creativdiad y la expresion es algo que siempre me ha llenado el corazon y de donde toma felicidad. 
-
 
 El Árbol en la Semilla
 Mi primera incursión en animación fue una pieza frame a frame que construí cuadro por cuadro, sin atajos. El resultado fue seleccionado para la Muestra de Animación Experimental del Museo de Arte Contemporáneo (MAC) de Santiago, donde presenté el trabajo junto a otros animadores del circuito experimental chileno.
 
+Pan Óptico
+Estudié Comunicación Audiovisual en UNIACC. El proyecto más exigente de esa etapa fue Pan Óptico: actué y dirigí fotografía al mismo tiempo, una decisión que no repetiría, pero que me obligó a entender el set desde dos lugares simultáneos. Esa tensión dejó una marca visible en mi forma de leer una escena.
 
-Estudie comuniacion audiovisual en la Universidad de UNIACC y los proyectos mas imortantes que relice en  mi periodo de aprendizaje es esta obra extrana llamada pan optico donde actue y fui director de fotografia al mismo tiempo, algo que no recomiendo, pero este proyecto luego de que a pasado el tiempo puedo comprender lo diferente que fuimos. 
+Proyecto Valparaíso (título pendiente)
+En un proyecto universitario filmado en Valparaíso encontré, por primera vez, un lenguaje visual propio. Fue el inicio de una estética que sigo desarrollando.
 
-Extracto pan Optico
-
-En la verinto proyecto Universitario realizado en en Valparaiso donde fui director de fotografia es donde pude ir encontrado mi estilo visual, aqui un extracto del el proyecto.
-
-
-siempre he sido una persona inquieta con las manos y en diferentes ocaciones he incrusionado en la escultura, pero el proyecto del marcionano extraterrestre  es uno de los las raros que he hecho nunca, tanto asi que por cosas de la vida Residente de calle trece me dijo que esoo no lo puedo cree ajajaj. 
-
-
-ve el siguiente link para verlo el poroyecto en profundidad. 
-
-
-desde que trabaje en Dragon Lab Agencia creativa me entro el vichito por la progrmacion y bueno fue asi como nacio mi ultimo proyecto personal llamdo, seres ruidosos. 
-
-conoce mas sobre mis trabajos comerciales en el siguiente link  
+El Marciano Extraterrestre
+He trabajado escultura en distintos momentos, pero esta pieza es probablemente la más extraña que he producido. Tan extraña que Residente, de Calle 13, la vio y dijo que no podía creerlo.
+Seres Ruidosos
+Trabajar en Dragon Lab me expuso a la programación como herramienta creativa. De esa exposición nació Seres Ruidosos, mi proyecto personal más reciente, donde código y diseño operan como un mismo lenguaje.  
