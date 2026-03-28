@@ -58,7 +58,7 @@ export default async function OrganizacionPage({ params }) {
           )}
         </div>
 
-        {/* Sub organizaciones */}
+        {/* Sub organizaciones 
         {hijas && hijas.length > 0 && (
           <section className="mb-16">
             <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Áreas</h2>
@@ -82,9 +82,9 @@ export default async function OrganizacionPage({ params }) {
               ))}
             </div>
           </section>
-        )}
+        )} */}
 
-        {/* Proyectos */}
+        {/* Proyectos 
         {proyectos && proyectos.length > 0 && (
           <section>
             <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Proyectos</h2>
@@ -108,7 +108,7 @@ export default async function OrganizacionPage({ params }) {
               ))}
             </div>
           </section>
-        )}
+        )}*/}
 
       </main>
     </>
