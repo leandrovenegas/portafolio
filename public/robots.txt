@@ -1,0 +1,18 @@
+# Googlebot y otros buscadores
+User-agent: *
+Allow: /
+
+# Bloquear archivos técnicos de Next.js y Vercel para ahorrar presupuesto de rastreo
+Disallow: /_next/
+Disallow: /static/
+Disallow: /api/
+
+# Bloquear archivos de configuración interna
+Disallow: /node_modules/
+Disallow: /.env
+
+# Evitar el rastreo de URLs con parámetros de búsqueda (opcional pero recomendado)
+Disallow: /*?*
+
+# Ubicación del mapa del sitio para facilitar el descubrimiento de nuevas páginas
+Sitemap: https://www.leandrovenegas.cl/sitemap.xml

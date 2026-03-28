@@ -58,7 +58,7 @@ export default async function OrganizacionPage({ params }) {
           )}
         </div>
 
-        {/* Sub organizaciones */}
+        {/* Sub organizaciones 
         {hijas && hijas.length > 0 && (
           <section className="mb-16">
             <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Áreas</h2>
@@ -84,7 +84,7 @@ export default async function OrganizacionPage({ params }) {
           </section>
         )}
 
-        {/* Proyectos */}
+        {/* Proyectos 
         {proyectos && proyectos.length > 0 && (
           <section>
             <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Proyectos</h2>
@@ -108,7 +108,7 @@ export default async function OrganizacionPage({ params }) {
               ))}
             </div>
           </section>
-        )}
+        )}*/}
 
       </main>
     </>
@@ -120,7 +120,7 @@ export async function generateMetadata({ params }) {
 
   const { data: org } = await supabase
     .from("organizations")
-    .select("name, slug, seo_title, seo_description, og_image, keywords")
+    .select("name, slug, seo_title, seo_description, og_image, keywords, is_indexed, markdown_url")
     .eq("slug", slug)
     .single();
 
@@ -130,6 +130,10 @@ export async function generateMetadata({ params }) {
     title: org.seo_title || `${org.name} | Leandro Venegas`,
     description: org.seo_description || `Proyectos y trabajo de ${org.name} desde Chile.`,
     keywords: org.keywords || undefined,
+    robots: {
+      index: org.is_indexed && org.markdown_url ? true : false,
+      follow: true,
+    },
     openGraph: {
       title: org.seo_title || org.name,
       description: org.seo_description || `Proyectos y trabajo de ${org.name}.`,

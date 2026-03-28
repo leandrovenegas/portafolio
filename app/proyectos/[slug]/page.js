@@ -122,7 +122,7 @@ export async function generateMetadata({ params }) {
 
   const { data: proyecto } = await supabase
     .from("projects")
-    .select("title, slug, seo_title, seo_description, og_image, keywords, owner:owner_organization_id(name)")
+    .select("title, slug, seo_title, seo_description, og_image, keywords, is_indexed, markdown_url, owner:owner_organization_id(name)")
     .eq("slug", slug)
     .single();
 
@@ -132,6 +132,10 @@ export async function generateMetadata({ params }) {
     title: proyecto.seo_title || `${proyecto.title} | Leandro Venegas`,
     description: proyecto.seo_description || `${proyecto.title} — proyecto de ${proyecto.owner?.name} desde Chile.`,
     keywords: proyecto.keywords || undefined,
+    robots: {
+      index: proyecto.is_indexed && proyecto.markdown_url ? true : false,
+      follow: true,
+    },
     openGraph: {
       title: proyecto.seo_title || proyecto.title,
       description: proyecto.seo_description || `${proyecto.title} — proyecto de ${proyecto.owner?.name}.`,
