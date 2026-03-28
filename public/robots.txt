@@ -10,6 +10,7 @@ Disallow: /api/
 # Bloquear archivos de configuración interna
 Disallow: /node_modules/
 Disallow: /.env
+Disallow: /proyectos/
 
 # Evitar el rastreo de URLs con parámetros de búsqueda (opcional pero recomendado)
 Disallow: /*?*
