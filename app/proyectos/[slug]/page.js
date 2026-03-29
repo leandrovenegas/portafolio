@@ -15,7 +15,7 @@ export default async function Proyecto({ params }) {
     .eq("slug", slug)
     .single();
 
-  if (error || !proyecto) return <p className="text-white p-8">Proyecto no encontrado</p>;
+  if (error || !proyecto) return <p className="font-mono text-accent p-12">Proyecto no encontrado</p>;
 
   const { data: mediaItems } = await supabase
     .from("media_items")
@@ -37,81 +37,92 @@ export default async function Proyecto({ params }) {
   return (
     <>
       <Nav />
-      <main className="min-h-screen bg-black px-6 py-16 md:px-12 lg:px-24">
-        <div className="mb-16 max-w-2xl">
-
-          <div className="flex gap-6 mb-8">
-            <Link
-              href="/proyectos"
-              className="text-zinc-600 text-xs tracking-widest uppercase hover:text-zinc-400 transition-colors duration-200"
-            >
-              ← Proyectos
-            </Link>
-            {proyecto.owner && (
+      <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
+        <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
+          
+          <header className="pt-12 md:pt-24 flex flex-col items-start gap-4 border-b border-border pb-16">
+            <div className="flex gap-6 mb-4">
               <Link
-                href={`/portafolio/${proyecto.owner.slug}`}
-                className="text-zinc-600 text-xs tracking-widest uppercase hover:text-zinc-400 transition-colors duration-200"
+                href="/proyectos"
+                className="font-mono text-muted text-xs tracking-widest uppercase hover:text-ink transition-colors duration-200"
               >
-                {proyecto.owner.name}
+                ← Proyectos
               </Link>
-            )}
-          </div>
-
-          <span className="text-zinc-600 text-xs tracking-widest uppercase">
-            {proyecto.date}
-          </span>
-          <h1 className="text-white text-4xl font-bold tracking-tighter mt-2 mb-2 md:text-6xl">
-            {proyecto.title}
-          </h1>
-          {proyecto.client && (
-            <p className="text-zinc-600 text-xs tracking-widest uppercase mb-6">
-              Cliente — {proyecto.client.name}
-            </p>
-          )}
-          {contenido && (
-            <div
-              className="text-zinc-400 text-base leading-relaxed mt-6"
-              dangerouslySetInnerHTML={{ __html: contenido }}
-            />
-          )}
-        </div>
-
-        {mediaItems && mediaItems.length > 0 && (
-          <section>
-            <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">
-              Contenidos
-            </h2>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              {mediaItems.map((item) => (
-                <div key={item.id} className="flex flex-col gap-4">
-                  {item.type === "video" && (
-                    <VideoPlayer
-                      src={item.url}
-                      poster={item.thumbnail || undefined}
-                      ariaLabel={item.alt || item.title}
-                    />
-                  )}
-                  {(item.type === "photo" || item.type === "graphic") && (
-                    <img
-                      src={item.url}
-                      alt={item.alt || item.title}
-                      className="w-full rounded"
-                    />
-                  )}
-                  <span className="text-zinc-600 text-xs tracking-widest uppercase">
-                    {item.type}
-                  </span>
-                  <h3 className="text-white text-xl font-bold tracking-tight">
-                    {item.title}
-                  </h3>
-                  {item.caption && (
-                    <p className="text-zinc-600 text-sm">{item.caption}</p>
-                  )}
-                </div>
-              ))}
+              {proyecto.owner && (
+                <Link
+                  href={`/portafolio/${proyecto.owner.slug}`}
+                  className="font-mono text-muted text-xs tracking-widest uppercase hover:text-ink transition-colors duration-200"
+                >
+                  {proyecto.owner.name}
+                </Link>
+              )}
             </div>
-          </section>
-        )}
+
+            <span className="font-mono text-[10px] text-accent tracking-widest uppercase border border-accent/30 bg-accent/5 px-2 py-1">
+              {proyecto.date}
+            </span>
+            <h1 className="font-display text-display-md md:text-display-lg text-ink leading-[0.9] mt-2 mb-2 max-w-4xl">
+              {proyecto.title}
+            </h1>
+            {proyecto.client && (
+              <p className="font-mono text-muted text-xs tracking-widest uppercase mb-4">
+                Cliente — <span className="text-mid">{proyecto.client.name}</span>
+              </p>
+            )}
+            
+            {contenido && (
+              <div
+                className="font-body text-mid text-lg md:text-xl max-w-3xl leading-relaxed mt-4 prose prose-invert prose-p:my-4 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-img:border prose-img:border-border prose-img:rounded-sm"
+                dangerouslySetInnerHTML={{ __html: contenido }}
+              />
+            )}
+          </header>
+
+          {mediaItems && mediaItems.length > 0 && (
+            <section>
+              <h2 className="font-mono text-[10px] md:text-xs uppercase tracking-[3px] text-muted flex items-center gap-4 after:flex-1 after:h-px after:bg-border mb-8">
+                Archivo Multimedia
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+                {mediaItems.map((item) => (
+                  <div key={item.id} className="bg-bg p-6 md:p-8 flex flex-col gap-4">
+                    {item.type === "video" && (
+                      <div className="border border-border bg-s1 relative w-full aspect-video">
+                        <VideoPlayer
+                          src={item.url}
+                          poster={item.thumbnail || undefined}
+                          ariaLabel={item.alt || item.title}
+                        />
+                      </div>
+                    )}
+                    {(item.type === "photo" || item.type === "graphic") && (
+                      <div className="border border-border bg-s1 relative w-full">
+                        <img
+                          src={item.url}
+                          alt={item.alt || item.title}
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    )}
+                    
+                    <div className="mt-4 flex flex-col gap-1">
+                      <span className="font-mono text-[10px] text-accent tracking-widest uppercase">
+                        {item.type}
+                      </span>
+                      <h3 className="font-display text-2xl text-ink">
+                        {item.title}
+                      </h3>
+                      {item.caption && (
+                        <p className="font-body text-muted text-sm leading-relaxed mt-2">{item.caption}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+        </div>
       </main>
     </>
   );
