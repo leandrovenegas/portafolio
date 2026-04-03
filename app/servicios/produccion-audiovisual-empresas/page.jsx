@@ -120,7 +120,7 @@ export default function ProduccionAudiovisualPage() {
                 },
                 {
                   title: "5. Identidad audiovisual de marca",
-                  desc: <>Sistema de video que funciona como lenguaje visual consistente. Puedes ver un ejemplo de desarrollo visual en <Link href="/crazy-papa-studio" className="text-accent hover:underline">Crazy Papa Studio</Link>.</>
+                  desc: <>Sistema de video que funciona como lenguaje visual consistente. Puedes ver un ejemplo de desarrollo visual en <Link href="/portafolio/crazy-papa-studio" className="text-accent hover:underline">Crazy Papa Studio</Link>.</>
                 }
               ].map((item, i) => (
                 <div key={i} className="flex flex-col gap-2">
