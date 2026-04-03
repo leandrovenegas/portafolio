@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-
 Allow: /_next/static/
 Allow: /_next/data/
 
@@ -9,6 +8,5 @@ Disallow: /node_modules/
 Disallow: /.env
 Disallow: /proyectos
 
-Disallow: /*?*
 
 Sitemap: https://www.leandrovenegas.cl/sitemap.xml
