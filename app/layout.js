@@ -9,7 +9,6 @@ export const metadata = {
     template: "%s | Leandro Venegas",
   },
   description: "Creador de productos. Portafolio de proyectos audiovisuales y productos creativos desde Chile.",
-  keywords: ["portafolio", "diseño", "audiovisual", "productos creativos", "Chile", "Leandro Venegas"],
   authors: [{ name: "Leandro Venegas" }],
   creator: "Leandro Venegas",
   openGraph: {

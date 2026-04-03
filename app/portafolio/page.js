@@ -56,7 +56,7 @@ export default async function Portafolio() {
               Proyectos y Organizaciones
             </p>
             <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] max-w-4xl">
-              Portafolio
+              Portafolio de Dirección Creativa y Producción Audiovisual
             </h1>
 
             {descripcionLocal && (
