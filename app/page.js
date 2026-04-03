@@ -18,6 +18,9 @@ export const metadata = {
     description: 'Dirección creativa, producción audiovisual y SEO con video.',
     url: 'https://www.leandrovenegas.cl/',
   },
+  alternates: {
+    canonical: 'https://www.leandrovenegas.cl/',
+  },
 };
 
 export default function Home() {

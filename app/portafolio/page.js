@@ -25,6 +25,9 @@ export const metadata = {
       },
     ],
   },
+  alternates: {
+    canonical: "https://www.leandrovenegas.cl/portafolio",
+  },
 };
 
 export default async function Portafolio() {

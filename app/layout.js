@@ -37,34 +37,36 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className="bg-black">
-        <>
-          <Script id="google-consent" strategy="beforeInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              
-              gtag('consent', 'default', {
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied',
-                'analytics_storage': 'denied'
-              });
-            `}
-          </Script>
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-W51B8J0QD2"
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-W51B8J0QD2');
-              gtag('config', 'AW-18060110034');
-            `}
-          </Script>
-        </>
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script id="google-consent" strategy="beforeInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                
+                gtag('consent', 'default', {
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'denied',
+                  'analytics_storage': 'denied'
+                });
+              `}
+            </Script>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-W51B8J0QD2"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-W51B8J0QD2');
+                gtag('config', 'AW-18060110034');
+              `}
+            </Script>
+          </>
+        )}
         {children}
         <CookieBanner />
       </body>

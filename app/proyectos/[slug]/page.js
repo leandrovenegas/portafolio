@@ -154,5 +154,8 @@ export async function generateMetadata({ params }) {
       images: proyecto.og_image ? [{ url: proyecto.og_image }] : [],
       type: "website",
     },
+    alternates: {
+      canonical: `https://www.leandrovenegas.cl/proyectos/${proyecto.slug}`,
+    },
   };
 }

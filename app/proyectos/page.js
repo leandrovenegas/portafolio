@@ -11,7 +11,10 @@ export const metadata = {
     description: "Portafolio de proyectos que desafían lo convencional: desde spots para Incoludido hasta diseño de autor y fanzines.",
     url: "https://www.leandrovenegas.cl/proyectos",
     type: "website",
-  }
+  },
+  alternates: {
+    canonical: "https://www.leandrovenegas.cl/proyectos",
+  },
 };
 
 export default async function Proyectos() {

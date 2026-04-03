@@ -65,6 +65,9 @@ export async function generateMetadata({ params }) {
       images: org.og_image ? [{ url: org.og_image }] : [],
       type: "website",
     },
+    alternates: {
+      canonical: `https://www.leandrovenegas.cl/portafolio/${org.slug}`,
+    },
   };
 }
 
