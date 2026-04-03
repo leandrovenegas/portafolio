@@ -32,15 +32,12 @@ Para algunos este festival fue un hito crucial, pues logramos conectar gente y a
 
 Pusimos manos a la obra y creamos estos spot publicitarios para promocionar el evento y a cada uno de los artistas, videos que subimos a redes sociales y otros en formatos de historia de Instagram
 
-[VID_20250929_140021_252.mp4](VID_20250929_140021_252.mp4)
 
-[mutatis-expo-fest-reel-promo-nigth-nitty.mp4](mutatis-expo-fest-reel-promo-nigth-nitty.mp4)
 
-[Mutatis-mutandi-expofest-valpaaiso-reel-promo-flow-mila.mp4](Mutatis-mutandi-expofest-valpaaiso-reel-promo-flow-mila.mp4)
+
 
 Tambien hicimos este video que fue el video de la publicidad general para la campañas de Meta Ads donde distribuimos por Instagram y Facebook estos
 
-[VID_20250929_212025_118.mp4](VID_20250929_212025_118.mp4)
 
 la lista de artistas que fueron parte de este de este evento cultural fue extensa, aqui pueden ver aqui en el afiche del Line UP pueden ver todos los artistas que fueron parte de de este evento.  
 
@@ -56,7 +53,7 @@ La gente en la calle, aqui tenemos la escultura de Daniel rodriguez
 
 entrevista a Daniel Rodriguez 
 
-[https://www.notion.so](https://www.notion.so)
+
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1769447884/Mutatis-Mutandi/Fotos/IMG-20230410-WA0018_iifmui.jpg)
 
