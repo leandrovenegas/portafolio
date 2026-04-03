@@ -7,14 +7,7 @@ export const metadata = {
   keywords: [
     'producción audiovisual Valparaíso',
     'producción audiovisual Viña del Mar',
-    'producción audiovisual empresas Chile',
-    'video corporativo Valparaíso',
-    'video corporativo Chile',
-    'spot publicitario Valparaíso',
-    'spot publicitario Chile',
-    'productora audiovisual Valparaíso',
-    'video marketing Chile',
-    'producción video empresas Valparaíso',
+
   ],
   openGraph: {
     title: 'Producción Audiovisual para Empresas — Valparaíso y Chile | Leandro Venegas',
@@ -31,7 +24,7 @@ export default function ProduccionAudiovisualPage() {
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
-          
+
           {/* HERO */}
           <section className="pt-12 md:pt-24 min-h-[60vh] flex flex-col justify-center">
             <p className="font-mono text-accent text-sm md:text-base mb-6 tracking-wide">
@@ -44,16 +37,16 @@ export default function ProduccionAudiovisualPage() {
               ¿Estás a punto de contratar un editor o productor de video? Antes de publicar ese aviso, evalúa esta opción: toda la producción audiovisual que necesitas tu empresa, sin costo fijo mensual, sin equipo que gestionar, sin oficina que pagar.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
-                href={WA_LINK} 
-                target="_blank" 
+              <a
+                href={WA_LINK}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-8 py-4 hover:bg-accent2 transition-colors"
               >
                 Escribir por WhatsApp
               </a>
-              <Link 
-                href="/portafolio" 
+              <Link
+                href="/portafolio"
                 className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
               >
                 Ver portafolio
@@ -71,7 +64,7 @@ export default function ProduccionAudiovisualPage() {
                 La diferencia es importante. Un empleado audiovisual tiene un costo fijo, un rol fijo y un horario fijo — independiente de cuánto trabajo hay ese mes. Una colaboración externa se activa cuando la necesitas y se paga por lo que produces. Para la mayoría de las empresas chilenas, esto es económicamente superior.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
               <div className="bg-s1 p-8 md:p-12 flex flex-col gap-6">
                 <h3 className="font-mono text-[10px] md:text-xs text-muted tracking-widest uppercase mb-4">
@@ -85,7 +78,7 @@ export default function ProduccionAudiovisualPage() {
                   <li className="flex gap-3"><span className="text-muted">×</span> Finiquito si no funciona</li>
                 </ul>
               </div>
-              
+
               <div className="bg-s2 p-8 md:p-12 flex flex-col gap-6 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-5 rounded-full blur-[50px]"></div>
                 <h3 className="font-mono text-[10px] md:text-xs text-accent tracking-widest uppercase mb-4 relative z-10">
@@ -127,7 +120,7 @@ export default function ProduccionAudiovisualPage() {
                 },
                 {
                   title: "5. Identidad audiovisual de marca",
-                  desc: "Sistema de video que funciona como lenguaje visual consistente. No solo piezas sueltas."
+                  desc: <>Sistema de video que funciona como lenguaje visual consistente. Puedes ver un ejemplo de desarrollo visual en <Link href="/crazy-papa-studio" className="text-accent hover:underline">Crazy Papa Studio</Link>.</>
                 }
               ].map((item, i) => (
                 <div key={i} className="flex flex-col gap-2">
@@ -165,7 +158,7 @@ export default function ProduccionAudiovisualPage() {
               Casos reales
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
-              
+
               {[
                 { d1: "LAN → LATAM", d2: "Spot publicitario", d3: "Producción audiovisual para aerolínea nacional" },
                 { d1: "Dr. Patricio Andrade", d2: "Video corporativo", d3: "Producción para cliente del área salud" },
@@ -193,18 +186,18 @@ export default function ProduccionAudiovisualPage() {
               <p className="font-body text-mid text-lg md:text-xl max-w-2xl">
                 Cuéntame el proyecto — tamaño, plazos y qué necesitas. En 30 minutos tenemos claridad sobre si puedo ayudarte y en qué términos.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a 
-                  href={WA_LINK} 
-                  target="_blank" 
+                <a
+                  href={WA_LINK}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-8 py-4 hover:bg-accent2 transition-colors w-full sm:w-auto"
                 >
                   Escribir por WhatsApp
                 </a>
-                <a 
-                  href="mailto:leandrovenegas@live.com" 
+                <a
+                  href="mailto:leandrovenegas@live.com"
                   className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors w-full sm:w-auto"
                 >
                   leandrovenegas@live.com

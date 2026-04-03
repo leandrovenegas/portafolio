@@ -233,7 +233,7 @@ export default function DirectorCreativoPage() {
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
                 <h4 className="font-display text-6xl md:text-7xl text-accent mb-2">4</h4>
                 <p className="font-body text-ink font-semibold mb-1 relative z-10">Organizaciones fundadas</p>
-                <p className="font-body text-mid text-sm relative z-10">Dragon Lab, Crazy Papa Studio, Incoludido y Rayandola</p>
+                <p className="font-body text-mid text-sm relative z-10">Dragon Lab, <Link href="/crazy-papa-studio" className="text-accent hover:underline">Crazy Papa Studio</Link>, Incoludido y Rayandola</p>
               </div>
 
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
