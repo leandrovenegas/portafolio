@@ -28,7 +28,7 @@ export default function DirectorCreativoPage() {
     <>
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
-        
+
         {/* Decoración de fondo */}
         <span
           className="absolute top-20 left-1/2 -translate-x-1/2 font-display pointer-events-none select-none opacity-[0.15] whitespace-nowrap z-0"
@@ -39,7 +39,7 @@ export default function DirectorCreativoPage() {
         </span>
 
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
-          
+
           {/* SECCIÓN 1 — Hero */}
           <section className="pt-12 md:pt-24 min-h-[60vh] flex flex-col justify-center">
             <p className="font-mono text-accent text-sm md:text-base mb-6 tracking-wide">
@@ -53,16 +53,16 @@ export default function DirectorCreativoPage() {
               Dirección creativa, motion design y producción audiovisual — todo desde una sola fuente.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
-                href={WA_LINK} 
-                target="_blank" 
+              <a
+                href={WA_LINK}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-8 py-4 hover:bg-accent2 transition-colors"
               >
                 Escribir por WhatsApp
               </a>
-              <Link 
-                href="/portafolio" 
+              <Link
+                href="/portafolio"
                 className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
               >
                 Ver portafolio
@@ -76,7 +76,7 @@ export default function DirectorCreativoPage() {
               ¿Estás buscando contratar a alguien así?
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border mb-8">
-              
+
               <div className="bg-s1 p-8 md:p-12 hover:bg-s2 transition-colors flex flex-col gap-4">
                 <span className="font-mono text-muted text-sm">01</span>
                 <h3 className="font-display text-3xl md:text-4xl text-ink">Director Creativo</h3>
@@ -84,7 +84,7 @@ export default function DirectorCreativoPage() {
                   Alguien que lidere la estrategia visual, coordine equipos y entregue resultados medibles. Sin años de onboarding.
                 </p>
               </div>
-              
+
               <div className="bg-s1 p-8 md:p-12 hover:bg-s2 transition-colors flex flex-col gap-4">
                 <span className="font-mono text-muted text-sm">02</span>
                 <h3 className="font-display text-3xl md:text-4xl text-ink">Motion Designer</h3>
@@ -108,7 +108,7 @@ export default function DirectorCreativoPage() {
                   Posicionamiento con video, SEO audiovisual y flujos de contenido que generan visibilidad orgánica real.
                 </p>
               </div>
-              
+
             </div>
             <p className="font-body text-lg md:text-xl text-ink max-w-3xl leading-relaxed">
               Si estás buscando cualquiera de estos perfiles, ya lo encontraste — sin contrato laboral, sin costo fijo mensual, sin todas las complicaciones de contratar a alguien.
@@ -175,9 +175,9 @@ export default function DirectorCreativoPage() {
                 Tres líneas de trabajo con trayectoria demostrada y casos documentados.
               </p>
             </div>
-            
+
             <div className="flex flex-col gap-16 border-l border-border pl-6 md:pl-12">
-              
+
               <div className="flex flex-col gap-4">
                 <div className="flex flex-wrap gap-2 mb-2">
                   <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Estrategia</span>
@@ -223,7 +223,7 @@ export default function DirectorCreativoPage() {
               Trayectoria
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border mb-8">
-              
+
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
                 <h4 className="font-display text-6xl md:text-7xl text-accent mb-2">15+</h4>
                 <p className="font-body text-ink font-semibold mb-1 relative z-10">Años de práctica</p>
@@ -233,7 +233,7 @@ export default function DirectorCreativoPage() {
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
                 <h4 className="font-display text-6xl md:text-7xl text-accent mb-2">4</h4>
                 <p className="font-body text-ink font-semibold mb-1 relative z-10">Organizaciones fundadas</p>
-                <p className="font-body text-mid text-sm relative z-10">Dragon Lab, <Link href="/crazy-papa-studio" className="text-accent hover:underline">Crazy Papa Studio</Link>, Incoludido y Rayandola</p>
+                <p className="font-body text-mid text-sm relative z-10">Dragon Lab, <Link href="/portafolio/crazy-papa-studio" className="text-accent hover:underline">Crazy Papa Studio</Link>, Incoludido y Rayandola</p>
               </div>
 
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
@@ -253,11 +253,11 @@ export default function DirectorCreativoPage() {
             {/* Strip de clientes */}
             <div className="border border-border bg-s1 py-6 px-4 overflow-hidden relative flex items-center">
               <p className="font-mono text-muted text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap overflow-x-auto w-full text-center scrollbar-hide">
-                <span className="inline-block px-4">LAN → LATAM</span> •  
-                <span className="inline-block px-4">Canal 13</span> • 
-                <span className="inline-block px-4">Dr. Patricio Andrade</span> • 
-                <span className="inline-block px-4">Dando la Hora</span> •  
-                <span className="inline-block px-4">Valook</span> •  
+                <span className="inline-block px-4">LAN → LATAM</span> •
+                <span className="inline-block px-4">Canal 13</span> •
+                <span className="inline-block px-4">Dr. Patricio Andrade</span> •
+                <span className="inline-block px-4">Dando la Hora</span> •
+                <span className="inline-block px-4">Valook</span> •
                 <span className="inline-block px-4">Incoludido</span>
               </p>
             </div>
@@ -266,7 +266,7 @@ export default function DirectorCreativoPage() {
           {/* SECCIÓN 6 — CTA final */}
           <section id="contacto">
             <div className="bg-s1 border border-border p-8 md:p-16 flex flex-col items-start gap-8 relative overflow-hidden">
-              
+
               <div className="absolute top-0 right-0 p-16 opacity-10 blur-3xl pointer-events-none">
                 <div className="w-64 h-64 bg-accent rounded-full"></div>
               </div>
@@ -277,18 +277,18 @@ export default function DirectorCreativoPage() {
               <p className="font-body text-mid text-lg md:text-xl max-w-2xl relative z-10">
                 Una conversación de 30 minutos es suficiente para saber si podemos trabajar juntos. Sin compromiso, sin presentación de ventas.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto relative z-10">
-                <a 
-                  href={WA_LINK} 
-                  target="_blank" 
+                <a
+                  href={WA_LINK}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-8 py-4 hover:bg-accent2 transition-colors w-full sm:w-auto"
                 >
                   Escribir por WhatsApp
                 </a>
-                <a 
-                  href="mailto:leandrovenegas@live.com" 
+                <a
+                  href="mailto:leandrovenegas@live.com"
                   className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors w-full sm:w-auto"
                 >
                   leandrovenegas@live.com

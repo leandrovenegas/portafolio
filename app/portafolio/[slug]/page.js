@@ -1,38 +1,80 @@
+import { cache } from "react";
 import supabase from "@/lib/supabase";
 import Link from "next/link";
 import { marked } from "marked";
 import { readFile } from "fs/promises";
 import path from "path";
 import Nav from "@/components/Nav";
+import { notFound } from "next/navigation";
 
-export default async function OrganizacionPage({ params }) {
-  const { slug } = await params;
-
-  const { data: org, error: orgError } = await supabase
+// 1. Centralizamos la obtención de datos y la cacheamos para evitar doble consulta
+const getOrganization = cache(async (slug) => {
+  const { data: org } = await supabase
     .from("organizations")
     .select("*")
     .eq("slug", slug)
     .single();
 
-  if (orgError || !org) return <p className="font-mono text-accent p-12">Organización no encontrada</p>;
+  if (!org) return null;
 
-  const { data: hijas } = await supabase
-    .from("organizations")
-    .select("*")
-    .eq("parent_organization_id", org.id);
-
-  const { data: proyectos } = await supabase
-    .from("projects")
-    .select("*")
-    .eq("owner_organization_id", org.id)
-    .eq("status", "published");
+  // Ejecutamos consultas secundarias en paralelo
+  const [hijasRes, proyectosRes] = await Promise.all([
+    supabase.from("organizations").select("*").eq("parent_organization_id", org.id),
+    supabase.from("projects").select("*").eq("owner_organization_id", org.id).eq("status", "published")
+  ]);
 
   let descripcion = null;
   if (org.markdown_url) {
-    const filePath = path.join(process.cwd(), "public", org.markdown_url);
-    const markdown = await readFile(filePath, "utf-8");
-    descripcion = marked(markdown);
+    try {
+      const filePath = path.join(process.cwd(), "public", org.markdown_url);
+      const markdown = await readFile(filePath, "utf-8");
+      descripcion = marked(markdown);
+    } catch (e) {
+      console.error("Error leyendo el archivo markdown:", e);
+    }
   }
+
+  return {
+    org,
+    hijas: hijasRes.data || [],
+    proyectos: proyectosRes.data || [],
+    descripcion
+  };
+});
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const data = await getOrganization(slug);
+
+  if (!data) return { title: "Organización no encontrada" };
+
+  const { org } = data;
+
+  return {
+    title: org.seo_title || `${org.name} | Leandro Venegas`,
+    description: org.seo_description || `Proyectos y trabajo de ${org.name} desde Chile.`,
+    keywords: org.keywords || undefined,
+    robots: {
+      index: !!(org.is_indexed && org.markdown_url),
+      follow: true,
+    },
+    openGraph: {
+      title: org.seo_title || org.name,
+      description: org.seo_description || `Proyectos y trabajo de ${org.name}.`,
+      url: `https://www.leandrovenegas.cl/portafolio/${org.slug}`,
+      images: org.og_image ? [{ url: org.og_image }] : [],
+      type: "website",
+    },
+  };
+}
+
+export default async function OrganizacionPage({ params }) {
+  const { slug } = await params;
+  const data = await getOrganization(slug);
+
+  if (!data) return notFound(); // Usa el componente not-found.js de Next.js
+
+  const { org, hijas, proyectos, descripcion } = data;
 
   return (
     <>
@@ -42,7 +84,10 @@ export default async function OrganizacionPage({ params }) {
 
           {/* Header */}
           <header className="pt-12 md:pt-24 flex flex-col items-start gap-4 border-b border-border pb-16">
-            <Link href="/portafolio" className="font-mono text-muted text-xs tracking-widest uppercase hover:text-ink transition-colors duration-200 mb-4 block">
+            <Link
+              href="/portafolio"
+              className="font-mono text-muted text-xs tracking-widest uppercase hover:text-ink transition-colors duration-200 mb-4 block"
+            >
               ← Volver a Portafolio
             </Link>
             <span className="font-mono text-[10px] text-accent tracking-widest uppercase border border-accent/30 bg-accent/5 px-2 py-1">
@@ -60,11 +105,8 @@ export default async function OrganizacionPage({ params }) {
           </header>
 
           {/* Sub organizaciones */}
-          {hijas && hijas.length > 0 && (
-            <section className="mb-8">
-              <h2 className="font-mono text-[10px] md:text-xs uppercase tracking-[3px] text-muted flex items-center gap-4 after:flex-1 after:h-px after:bg-border mb-8">
-                Áreas de Operación
-              </h2>
+          {hijas.length > 0 && (
+            <SectionWrapper title="Áreas de Operación">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
                 {hijas.map((hija) => (
                   <Link
@@ -81,15 +123,12 @@ export default async function OrganizacionPage({ params }) {
                   </Link>
                 ))}
               </div>
-            </section>
+            </SectionWrapper>
           )}
 
           {/* Proyectos */}
-          {proyectos && proyectos.length > 0 && (
-            <section>
-              <h2 className="font-mono text-[10px] md:text-xs uppercase tracking-[3px] text-muted flex items-center gap-4 after:flex-1 after:h-px after:bg-border mb-8">
-                Proyectos Indexados
-              </h2>
+          {proyectos.length > 0 && (
+            <SectionWrapper title="Proyectos Indexados">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
                 {proyectos.map((proyecto) => (
                   <Link
@@ -109,7 +148,7 @@ export default async function OrganizacionPage({ params }) {
                   </Link>
                 ))}
               </div>
-            </section>
+            </SectionWrapper>
           )}
 
         </div>
@@ -118,31 +157,14 @@ export default async function OrganizacionPage({ params }) {
   );
 }
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-
-  const { data: org } = await supabase
-    .from("organizations")
-    .select("name, slug, seo_title, seo_description, og_image, keywords, is_indexed, markdown_url")
-    .eq("slug", slug)
-    .single();
-
-  if (!org) return { title: "Organización no encontrada" };
-
-  return {
-    title: org.seo_title || `${org.name} | Leandro Venegas`,
-    description: org.seo_description || `Proyectos y trabajo de ${org.name} desde Chile.`,
-    keywords: org.keywords || undefined,
-    robots: {
-      index: org.is_indexed && org.markdown_url ? true : false,
-      follow: true,
-    },
-    openGraph: {
-      title: org.seo_title || org.name,
-      description: org.seo_description || `Proyectos y trabajo de ${org.name}.`,
-      url: `https://www.leandrovenegas.cl/portafolio/${org.slug}`,
-      images: org.og_image ? [{ url: org.og_image }] : [],
-      type: "website",
-    },
-  };
+// Sub-componente interno para mantener consistencia visual en las secciones
+function SectionWrapper({ title, children }) {
+  return (
+    <section>
+      <h2 className="font-mono text-[10px] md:text-xs uppercase tracking-[3px] text-muted flex items-center gap-4 after:flex-1 after:h-px after:bg-border mb-8">
+        {title}
+      </h2>
+      {children}
+    </section>
+  );
 }

@@ -57,7 +57,7 @@ El proceso de creacion productos lo fui puliendo y pude comunicarme con variados
   </video>
 </div>
 en el camino me di cuenta que me estaba convirtiendo en un product manager y por que estaba desarollando productos y teniendo reuniones con un equipo de trabajo, tanto artistas como productores, dejo uno de los primero brief que use para la peticion del producto desarollado con la ilustradora Abi. 
-**<a href="/Documents/Brief-Isla-FriendShip-Diseño-Abi-Crazypapa-Studios.pdf" download style="color: #0070f3; text-decoration: underline;">Descargar Brief (PDF)</a>**
+**<a href="/documents/Brief-Isla-FriendShip-Diseño-Abi-Crazypapa-Studios.pdf" download style="color: #0070f3; text-decoration: underline;">Descargar Brief (PDF)</a>**
 aqui esta el brief que le envie a <a href="https://www.instagram.com/ibiabigail/" target="_blank" rel="noopener noreferrer">Ibia bigail</a>
 ![Polera Isla Friendship](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1771681089/polera_ibiabi-1000x1000_cl0lj8_navhom.png)
 

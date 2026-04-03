@@ -128,9 +128,9 @@ otro hito importante para Incoludido fue la busqueda de almacenes que para compl
   </video>
 </div>
 
-revisa la versión completa de este contenido audiovisual en el siguiente link 
+ 
 
-nuestra [campaña de Almacenes Incoludido](https://www.leandrovenegas.cl/incoludido-campana) era con todo desde la decoración de los Almacenes hasta un sistema informático que se estaba desarrollando en la empresa sobre logística y toma de pedidos, 
+nuestra campaña de Almacenes Incoludido era con todo desde la decoración de los Almacenes hasta un sistema informático que se estaba desarrollando en la empresa sobre logística y toma de pedidos, 
 
 ![](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1772917980/la_vega_2_qmrlyj.png)
 
