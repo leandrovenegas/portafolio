@@ -1,5 +1,5 @@
 import supabase from "@/lib/supabase";
-import { marked } from "marked";
+import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
 import Nav from "@/components/Nav";
@@ -28,7 +28,7 @@ export default async function Proyecto({ params }) {
     try {
       const filePath = path.join(process.cwd(), "public", proyecto.markdown_url);
       const markdown = await readFile(filePath, "utf-8");
-      contenido = marked(markdown);
+      contenido = parseMarkdown(markdown);
     } catch (e) {
       // archivo .md no existe, continúa sin contenido
     }

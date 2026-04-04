@@ -1,7 +1,7 @@
 import supabase from "@/lib/supabase";
 import Link from "next/link";
 import Nav from "@/components/Nav";
-import { marked } from "marked";
+import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
 
@@ -41,7 +41,7 @@ export default async function Portafolio() {
   try {
     const filePath = path.join(process.cwd(), "public", "content", "portafolio.md");
     const markdown = await readFile(filePath, "utf-8");
-    descripcionLocal = marked(markdown);
+    descripcionLocal = parseMarkdown(markdown);
   } catch (e) {
     console.error("Error al leer portafolio.md:", e);
   }

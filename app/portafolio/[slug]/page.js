@@ -1,7 +1,7 @@
 import { cache } from "react";
 import supabase from "@/lib/supabase";
 import Link from "next/link";
-import { marked } from "marked";
+import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
 import Nav from "@/components/Nav";
@@ -28,7 +28,7 @@ const getOrganization = cache(async (slug) => {
     try {
       const filePath = path.join(process.cwd(), "public", org.markdown_url);
       const markdown = await readFile(filePath, "utf-8");
-      descripcion = marked(markdown);
+      descripcion = parseMarkdown(markdown);
     } catch (e) {
       console.error("Error leyendo el archivo markdown:", e);
     }
