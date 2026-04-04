@@ -21,6 +21,9 @@ export const metadata = {
     description: 'El único servicio en Chile que integra producción de video y estrategia SEO.',
     url: 'https://www.leandrovenegas.cl/servicios/seo-video',
   },
+  alternates: {
+    canonical: 'https://www.leandrovenegas.cl/servicios/seo-video',
+  },
 };
 
 export default function SeoVideoPage() {

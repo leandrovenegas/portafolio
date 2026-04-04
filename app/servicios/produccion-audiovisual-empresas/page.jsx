@@ -14,6 +14,9 @@ export const metadata = {
     description: 'Tu área audiovisual externa. Spots, reels y video corporativo sin costo fijo.',
     url: 'https://www.leandrovenegas.cl/servicios/produccion-audiovisual-empresas',
   },
+  alternates: {
+    canonical: 'https://www.leandrovenegas.cl/servicios/produccion-audiovisual-empresas',
+  },
 };
 
 export default function ProduccionAudiovisualPage() {

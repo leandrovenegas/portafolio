@@ -19,6 +19,9 @@ export const metadata = {
     description: 'Estrategia de posicionamiento en Google usando video como activo central.',
     url: 'https://www.leandrovenegas.cl/casos-de-exito/valook-seo-video',
   },
+  alternates: {
+    canonical: 'https://www.leandrovenegas.cl/casos-de-exito/valook-seo-video',
+  },
 };
 
 export default function ValookSeoVideoPage() {

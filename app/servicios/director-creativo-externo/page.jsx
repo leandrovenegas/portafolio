@@ -21,6 +21,9 @@ export const metadata = {
     description: 'Dirección creativa estratégica para empresas en Chile, sin contrato laboral.',
     url: 'https://www.leandrovenegas.cl/servicios/director-creativo-externo',
   },
+  alternates: {
+    canonical: 'https://www.leandrovenegas.cl/servicios/director-creativo-externo',
+  },
 };
 
 export default function DirectorCreativoExternoPage() {

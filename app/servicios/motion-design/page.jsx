@@ -21,6 +21,9 @@ export const metadata = {
     description: 'Servicio externo de motion design y animación para empresas en Chile.',
     url: 'https://www.leandrovenegas.cl/servicios/motion-design',
   },
+  alternates: {
+    canonical: 'https://www.leandrovenegas.cl/servicios/motion-design',
+  },
 };
 
 export default function MotionDesignPage() {

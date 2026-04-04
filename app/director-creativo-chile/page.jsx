@@ -19,6 +19,9 @@ export const metadata = {
     description: 'Capacidad creativa senior sin costo de planilla.',
     url: 'https://www.leandrovenegas.cl/director-creativo-chile',
   },
+  alternates: {
+    canonical: 'https://www.leandrovenegas.cl/director-creativo-chile',
+  },
 };
 
 const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20conversar%20sobre%20un%20proyecto";

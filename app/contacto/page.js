@@ -3,6 +3,9 @@ import Nav from "@/components/Nav";
 export const metadata = {
   title: "Contacto | Leandro Venegas",
   description: "Contacta a Leandro Venegas — creador de productos desde Chile.",
+  alternates: {
+    canonical: "https://www.leandrovenegas.cl/contacto",
+  },
 };
 
 export default function Contacto() {
