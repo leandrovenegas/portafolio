@@ -1,5 +1,3 @@
-# CRAZY ROOM
-
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1770078193/RAYANDOLA/CRAZYROOM/imagenes/LOGO-CRAZY-ROOM-REC-LIVE-SESSIONS-valparaiso_jbv5mb.png)
 
 El Ultimo proyecto en rayandola me desempeñe  como productor, hicimos  CRAZY ROOM,  un Boiler Room creado en Valparaíso específicamente en mi habitación personal que en cada evento transformaba en una pista de baile donde invitaba a los amigos que estaban pinchando música, proyecto me hizo incursionar en la iluminación y la puesta en escena del show,  nunca pensamos que se volverse popular en poco tiempo este proyecto obtuvo una buena recepción por parte del

@@ -1,4 +1,3 @@
-# MUTATIS MUTANDI
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1690222562/Mutatis-Mutandi/Brand/Texto_ozylc0.png)
 
