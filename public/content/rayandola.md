@@ -9,13 +9,13 @@ Rayándola fue exactamente eso un inmueble inhabitable, inhumano en el Pasaje G�
 </div>
 
 Lo que empezó como una casa sin condiciones para vivir se transformó en el lugar donde ocurrieron algunas de las iniciativas culturales memorables para muchos de los que fueron parte entre artistas, asistentes, turista y vecinos nadie quedo indiferente a lo que allí vivimos. 
-![Feria de Artes y Oficios del Pasaje Gálvez — Área 51 Afiche](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774062467/20211220_174239_fajypv.jpg)
+![Feria de Artes y Oficios del Pasaje Gálvez — Área 51 Afiche](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774062467/20211220_174239_fajypv.jpg)
 Las Ferias de Artes y Oficios del Pasaje Gálvez — Área 51
 El primer desafío fue demostrar que el espacio funcionaba. En colaboración con Fluoreser, produjimos las primeras instancias públicas de Rayandola: las ferias de artes y oficios del Pasaje Galvez la mítica Área 51 el espacio era grande y en un punto estratégico, turistico y cosmopolita.
 
 Estuve a cargo de realizar la diffusion y promoción de las ferias creando flayers Poster y todo el contenido audiovisual para las campañas de redes sociales, esta experiencia abrio un mundo de posibilidades.
 
-![Coco Smock - Fauna Oculta foto montaje exposición Coco Smock galeria cosmica Rayandola](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774063718/coco-Primer-Dia-Pintando_a2pezx.jpg)
+![Coco Smock - Fauna Oculta foto montaje exposición Coco Smock galeria cosmica Rayandola](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774063718/coco-Primer-Dia-Pintando_a2pezx.jpg)
 Galería Cósmica
 Con el espacio ya activado, el siguiente paso fue darle continuidad programática. Asumí la curaduría de la Galería Cósmica, donde gestioné una cartera de artistas visuales de la escena local. La primera exposición fue de Coco Smock con su exposición fauna Oculta, entre las que más definieron el perfil de la galería estuvo Siempre es hoy, una muestra con una carga filosófica muy reflexiva, pronto la lista de artista estará disponible para ver sus exposiciones por ahora dejare un resumen de quienes fueron partes de las muestras o exposiciones en rayándola Galvez 49 Cerro Concepcion.
 * **Coco Smok**
@@ -30,13 +30,13 @@ Con el espacio ya activado, el siguiente paso fue darle continuidad programátic
 * **Josefa Davila**
 * **NEA**
 
-![Afiche calle mutatis mutandi rayandola](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774064475/IMG-20230404-WA0002_hgdlwz.jpg)
+![Afiche calle mutatis mutandi rayandola](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774064475/IMG-20230404-WA0002_hgdlwz.jpg)
 
 Mutatis Mutandi
 El espacio en plena trasformacion y llego el momento de mutar, en este punto nace Mutatis-Mutandi, con una red de artistas consolidada y el espacio con vida propia, identifiqué la oportunidad de escalar el formato. Produje Mutatis Mutandi junto a un equipo extraordinario de artistas apasionados,  un micro festival de dos días de música, artes y oficios que reunió a referentes de la escena local de Valparaíso. La decisión de mantenerlo acotado en duración y enfocado en lo local fue intencional: densidad sobre masividad.
 [Conoce más sobre Mutatis Mutandi →]
 
-![Crazy Room Afiche Manojo Rayandola ](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774072672/Flayer_Crazy_Room-Ma-CALLE-v1_ltwjal.png)
+![Crazy Room Afiche Manojo Rayandola ](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774072672/Flayer_Crazy_Room-Ma-CALLE-v1_ltwjal.png)
 
 Crazy Room
 El último proyecto nacido en Rayándola La premisa era simple: registrar en video los sets de DJs de la escena local de Valparaíso, un Boiler Room casero desde las entrañas de Valparaiso. Lo que comenzó como una idea entre amigos se convirtió en un proyecto audiovisual muy atractivo que rápidamente pasamos de ser unos cuantos en asistir a llenar la habitación completa de gente con ganas de participar el las grabaciones y en el evento en general

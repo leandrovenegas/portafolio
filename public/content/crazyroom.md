@@ -16,7 +16,7 @@ si guiendo con el proceso creativo del Crazy ROOM valparaíso, con estas fotos c
 
 ![](https://res.cloudinary.com/crazypapa/image/upload/v1770078030/RAYANDOLA/CRAZYROOM/imagenes/IMG_9604_vp2qqj.jpg)
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770954702/Rayandola/crazyroom/imagenes/cover-concurso_hik8xt.png)
+![](https://res.cloudinary.com/crazypapa/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1770954702/Rayandola/crazyroom/imagenes/cover-concurso_hik8xt.png)
 
 La idea provincial era grabar un play set de una hora hora con un solo djs, pero despues de que pasamos nuestro proyecto piloto con Barrera, los siguente fueron mas extensos y con otros djs invitados puesto que ya no solo paso de ser una simple grabacion del djs sets, puesto que aqui en valparaiso hay muchos entusiastas de la musica electronica, la experiencia de la fiesta que se fomo era algo muy potente y que aprovechamos para hacer la oficial fiesta de la CRAZY ROOM
 
@@ -24,7 +24,7 @@ La idea provincial era grabar un play set de una hora hora con un solo djs, pero
 
 entonces creamos un cartel para la calle y toda la publicidad necesaria para mover el siguiente evento, esta vez fue la presentación de José manojo, un clásico del cerro concepción,  a parte de ser artista visual y escultor también es djs y que contra cosas más, toda una caja de sorpresa es Jose Manono,
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770954631/Rayandola/crazyroom/imagenes/POSTER-CALLE-CRAZYROOM-HELLO-KETTA_udnudw.png)
+![](https://res.cloudinary.com/crazypapa/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1770954631/Rayandola/crazyroom/imagenes/POSTER-CALLE-CRAZYROOM-HELLO-KETTA_udnudw.png)
 
 Este artista viene de las artes plásticas, no es un dj normal y el quiso aportar en dirección creando una noche temática donde invitó a todos a asistir con máscaras, para crear un ambiente, aquí tengo algunas fotos de esa presentación. tambien puedes conocer parte de su presentacion en el siguiente links donde podras ver por completo su dj Set.
 
