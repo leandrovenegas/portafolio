@@ -22,7 +22,7 @@ La idea provincial era grabar un play set de una hora hora con un solo djs, pero
 
 entonces creamos un cartel para la calle y toda la publicidad necesaria para mover el siguiente evento, esta vez fue la presentación de José manojo, un clásico del cerro concepción,  a parte de ser artista visual y escultor también es djs y que contra cosas más, toda una caja de sorpresa es Jose Manono,
 
-![](https://res.cloudinary.com/crazypapa/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1770954631/Rayandola/crazyroom/imagenes/POSTER-CALLE-CRAZYROOM-HELLO-KETTA_udnudw.png)
+![crazy room flayer calle line up 2025](https://res.cloudinary.com/crazypapa/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1770954631/Rayandola/crazyroom/imagenes/POSTER-CALLE-CRAZYROOM-HELLO-KETTA_udnudw.png)
 
 Este artista viene de las artes plásticas, no es un dj normal y el quiso aportar en dirección creando una noche temática donde invitó a todos a asistir con máscaras, para crear un ambiente, aquí tengo algunas fotos de esa presentación. tambien puedes conocer parte de su presentacion en el siguiente links donde podras ver por completo su dj Set.
 
