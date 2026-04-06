@@ -10,12 +10,12 @@
 
 ## PANÓPTICO
 
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774528717/Pan-Optico-corto-Universitario-Leandro-Venegas-UNIACC_u2dohb.png)
+![escena final pan-optico corto metraje estudiantes uniacc panoptico escena fotografia referencia desde el video](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774528717/Pan-Optico-corto-Universitario-Leandro-Venegas-UNIACC_u2dohb.png)
 Estudié Comunicación Audiovisual en UNIACC. El proyecto más exigente de esa etapa fue Panóptico un corto universitario de la carrera de comunicación audiovisual : actué y dirigí fotografía al mismo tiempo, una decisión que no repetiría, pero que me obligó a entender que uno solo tiene cabeza para ser actor o para ser técnico, no para ambas cosas al mismo tiempo, este es un proyecto muy apasionado del cual tengo mi propia versión con escenas recortadas pues siento que estamos en otros tiempos y los espectadores de hoy no tienen la misma paciencia que antes, para ver el cortometraje completo pronto estará disponible en esta página web.
 
 
 
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774527209/264699_213438375358698_3112902_n_213438375358698_nvdemb.jpg)
+![Cartel corto metraje Laberinto, estudiantes de comuniacion universidad uniacc](https://res.cloudinary.com/dx2rvpvwr/image/upload/v1774527209/264699_213438375358698_3112902_n_213438375358698_nvdemb.jpg)
 
 ## Laberinto
 En un proyecto universitario filmado en el cerro Polanco de Valparaíso, una de las locaciones inusuales de Chile, es este tremendo túnel que termina como un ascensor, Laberinto cuenta la historia de  un joven vuelve de un largo viaje al igual que sus fantasmas, en este proyecto encontré por primera vez un lenguaje visual propio, fue  el inicio de una estética que sigo desarrollando  que surge de las formas naturales de las formas en comos los asentamientos urbanos se construyen, mostrar lo que la gente piensa que es feo como un montón de cables en el poste o la oscuridad del túnel o los granos de la baja exposición en la fotografía, el grano el caos de las partículas la naturaleza asomando la naturaleza de lo impredecible, allí está entre todos siendo parte de nuestra cultura Chilena y aqui desde valparaíso he aprendido a mirar el mundo con otros ojos y eso es un reflejo de mi fotografía.
@@ -41,6 +41,6 @@ En diferentes momentos de mi vida llega la necesidad intrínseca de moldear la m
 
 
 ## Seres Ruidosos
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774532910/IMG_20250411_202309731_MFNR_z1xbsz.jpg)
+![imagen de seres ruidosos la instalacion artistica con phyton realizada en la exposicion lado d con jose manojo en espacio valpo](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774532910/IMG_20250411_202309731_MFNR_z1xbsz.jpg)
 Esta es una instalación de arte tecnológico que lleva código y puesta en escena, trabajar en Dragon Lab me expuso a la programación como herramienta creativa, puesto que esta 
 agencia estaba enfocada en el desarrollo web y de app tecnológicas fue que el virus de la programación incubó en mi una oculta pasión por la programación, Seres Ruidosos, este proyecto programado en Python interpreta el ruido que hacemos sin darnos cuenta por medio de nuestros dispositivos electrónicos como los celulares que llevamos a todas partes , quizá no lo sabes pero llevas el wifi encendido y claro no estas en tu casa conectado a tu red pero ese wifi está tratando de conectarse y al hacerlo comienza a enviar señales preguntando dónde está la red de tu casa y emite ruidos y esta instalación detecta e interpreta como ruido, esta instalación fue realizada para la exposición  colectiva Lado b de pandemia records en el espacio valpo. 

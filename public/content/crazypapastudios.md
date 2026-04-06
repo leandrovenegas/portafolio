@@ -33,7 +33,7 @@ rapidamente creamos una curatoria extraterreste donde invitamo a varios artistas
 
 puedes ver el video completo en el siguiente link [**Video Invasión Alien**](https://www.leandrovenegas.cl/proyectos/sport-invasion-alien)
 
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1773028398/Miniatura_de_video_1_fzpuqf.png)
+![making off spot invasion alien para crazypapa estudios, marciano en la coicina con fondo de luz que entra por la ventana aqui actua vicbur ](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1773028398/Miniatura_de_video_1_fzpuqf.png)
 
 la campaña invasion Alien tuvo buena aceptacion vendimos muchas poleras y nos dimos cuenta que comenzamos a diferenciar la marca por la creatividad de nuestros Spot, el video Invasion alien sorprendio a mucha gente y decidimos crear otro y darle un toque misterioso, el siguiente spot fue we are not alone 
 
@@ -44,11 +44,11 @@ la campaña invasion Alien tuvo buena aceptacion vendimos muchas poleras y nos d
 </div>
 fotos de la sesión fotografíca de la polera y polerones We Are Not alone, en honor a la portada del National Geo Graphycs de ese mismo año No estamos solos. 
 
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1773029849/Polera-Braulio-We-are-not-alone-Crazy-Papa-Studios-2019_tx1tzr.jpg)
+![braulio venenegas como el modelo del poleron we are not alone, locacion estacion central limite con la quinta normal ](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1773029849/Polera-Braulio-We-are-not-alone-Crazy-Papa-Studios-2019_tx1tzr.jpg)
 
 Si quieres conocer todos los productos de esta campaña puede hacer click en el siguiente link 
 ¨
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1771681112/poleron_instagram2_jxqjv7_fasrkz.png)
+![poleron i want to belive version para redes sociales mackup con fondo alien crazypapa estudios polerones](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1771681112/poleron_instagram2_jxqjv7_fasrkz.png)
 
 El proceso de creacion productos lo fui puliendo y pude comunicarme con variados Ilustradores, aquienes pude negociar la explotacion de sus ilutraciones, la mayoria fueron encargos, como el trabajo de La Isla friendship, el mito extraterreste del sur de Chile. el siguiente video muestra el video promocional para redes sociales del nuevo producto.
 <div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
@@ -63,7 +63,7 @@ aqui esta el brief que le envie a <a href="https://www.instagram.com/ibiabigail/
 
 Luego de las polera comenzamos a inovar en la creacion de productos y nos propusimos la tarea de crear un juguete extraterrestre y creamos un muñeco muy adorable llamado  Grise gray alien collector.
 
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit,e_saturation:-100,e_brightness:23,e_gamma:6,e_contrast:65/20200320_213623_y0twml_wrht2a)
+![bosquejos muñeco alien, estos son los bosquejos creados por vicbur sobre el muñeco alien gray colecciont ](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit,e_saturation:-100,e_brightness:23,e_gamma:6,e_contrast:65/20200320_213623_y0twml_wrht2a)
 estas son algunos de los boquejos creados por Vicbur puedes conocer más sobre el proceso creativo de este proyecto en el siguiente link [**Muñeco Alien**](https://www.leandrovenegas.cl/proyectos/muneco-alien)
 ![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1771681105/mu%C3%B1eco_alien_cjlimg_hodhmx.jpg)
 

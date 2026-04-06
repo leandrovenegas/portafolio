@@ -1,24 +1,24 @@
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770078193/RAYANDOLA/CRAZYROOM/imagenes/LOGO-CRAZY-ROOM-REC-LIVE-SESSIONS-valparaiso_jbv5mb.png)
+![Logo Crazyroom valparaiso oficial](https://res.cloudinary.com/crazypapa/image/upload/v1770955424/Rayandola/crazyroom/imagenes/LOGO-CRAZY-ROOM-REC-LIVE-SESSIONS-valparaiso_cmvh7k.png)
 
 El Ultimo proyecto en rayandola me desempeñe  como productor, hicimos  CRAZY ROOM,  un Boiler Room creado en Valparaíso específicamente en mi habitación personal que en cada evento transformaba en una pista de baile donde invitaba a los amigos que estaban pinchando música, proyecto me hizo incursionar en la iluminación y la puesta en escena del show,  nunca pensamos que se volverse popular en poco tiempo este proyecto obtuvo una buena recepción por parte del
 
 la sección de foto que realicé para este proyecto fue un ejercicio muy personal y intimo con los artistas donde realicé algunas entrevistas para que el público los conociera.
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770077822/RAYANDOLA/CRAZYROOM/imagenes/ma-v3_avanzj.png)
+![Portada de sesión DJ en Crazy Room](https://res.cloudinary.com/crazypapa/image/upload/v1770955424/Rayandola/crazyroom/imagenes/LOGO-CRAZY-ROOM-REC-LIVE-SESSIONS-valparaiso_cmvh7k.png)
 
 este nivel de ruido y suciedad en la imagen me gusta lo pone en la idea de lo oscuro y quiero dejar en claro que no es necesario tener una gran producción para lograr una buena imagen, todo está en la forma en cómo usas tu iluminación y la dirección que le das a tu modelo. personalmente me gusto este trabajo.
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770077903/RAYANDOLA/CRAZYROOM/imagenes/IMG_9530_cqliva.jpg)
+![Fotografía de sesión DJ en Crazy Room](https://res.cloudinary.com/crazypapa/image/upload/v1770955424/Rayandola/crazyroom/imagenes/LOGO-CRAZY-ROOM-REC-LIVE-SESSIONS-valparaiso_cmvh7k.png)
 
 si guiendo con el proceso creativo del Crazy ROOM valparaíso, con estas fotos creamos los flyers usando photoshop, les recuerdo que este proyecto es muy personal, el equipo de trabajo fue  muy reducido, yo estaba a cargo de la publicidad y la comunicación el concepto del proyecto.
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770078030/RAYANDOLA/CRAZYROOM/imagenes/IMG_9604_vp2qqj.jpg)
+![Flyer de sesión DJ en Crazy Room]
 
-![](https://res.cloudinary.com/crazypapa/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1770954702/Rayandola/crazyroom/imagenes/cover-concurso_hik8xt.png)
+![Cover del concurso Crazy Room]
 
 La idea provincial era grabar un play set de una hora hora con un solo djs, pero despues de que pasamos nuestro proyecto piloto con Barrera, los siguente fueron mas extensos y con otros djs invitados puesto que ya no solo paso de ser una simple grabacion del djs sets, puesto que aqui en valparaiso hay muchos entusiastas de la musica electronica, la experiencia de la fiesta que se fomo era algo muy potente y que aprovechamos para hacer la oficial fiesta de la CRAZY ROOM
 
-![](https://res.cloudinary.com/crazypapa/image/upload/v1770078420/RAYANDOLA/CRAZYROOM/imagenes/HELLO-KETA-FLAYER-CALLE-V1_kebyqm.png)
+![Flayer callejero de Hello Keta]
 
 entonces creamos un cartel para la calle y toda la publicidad necesaria para mover el siguiente evento, esta vez fue la presentación de José manojo, un clásico del cerro concepción,  a parte de ser artista visual y escultor también es djs y que contra cosas más, toda una caja de sorpresa es Jose Manono,
 
