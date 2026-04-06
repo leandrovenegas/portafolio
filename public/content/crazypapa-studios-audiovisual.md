@@ -78,7 +78,7 @@ Este es otra animación donde una niña  pide para navidad al viejito pascuero y
 
 [https://res.cloudinary.com/crazypapa/video/upload/v1770214455/CRAZYPAPASTUDIO/audiovisual/Enciende_tu_Tele_gl6ndo.mp4](https://res.cloudinary.com/crazypapa/video/upload/v1770214455/CRAZYPAPASTUDIO/audiovisual/Enciende_tu_Tele_gl6ndo.mp4)
 
-![](https://res.cloudinary.com/crazypapa/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1770703525/CRAZYPAPASTUDIO/audiovisual/20200116_235206_gfno4u.jpg)
+![fotograma stop motion apaga tu tele tras de escena vista del televisoar de monitore la botella con fuego en plasticina](https://res.cloudinary.com/crazypapa/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1770703525/CRAZYPAPASTUDIO/audiovisual/20200116_235206_gfno4u.jpg)
 
 Arcenio el extraterreste robot
 
