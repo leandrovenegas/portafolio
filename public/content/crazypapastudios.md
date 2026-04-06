@@ -65,7 +65,8 @@ Luego de las polera comenzamos a inovar en la creacion de productos y nos propus
 
 ![bosquejos muñeco alien, estos son los bosquejos creados por vicbur sobre el muñeco alien gray colecciont ](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit,e_saturation:-100,e_brightness:23,e_gamma:6,e_contrast:65/20200320_213623_y0twml_wrht2a)
 estas son algunos de los boquejos creados por Vicbur puedes conocer más sobre el proceso creativo de este proyecto en el siguiente link [**Muñeco Alien**](https://www.leandrovenegas.cl/proyectos/muneco-alien)
-![](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1771681105/mu%C3%B1eco_alien_cjlimg_hodhmx.jpg)
+
+![foto muñeco alien session peluche de crazypapa estudios](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1771681105/mu%C3%B1eco_alien_cjlimg_hodhmx.jpg)
 
 Este proyecto me hizo crecer como persona, puesto que pude producir mi primer fanzine, una pequeña revista que contenia el muñeco, era una investifacion sobre los Aliens Grises, desde sus primeras introducion en el inconciente colectivo. 
 
