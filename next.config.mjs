@@ -34,11 +34,11 @@ const nextConfig = {
         ],
       },
       {
-        source: '/documents/Brief-Isla-FriendShip-Dise%C3%B1o-Abi-Crazypapa-Studios.pdf',
+        source: '/documents/Brief-Isla-FriendShip-Diseno-Abi-Crazypapa-Studios.pdf',
         headers: [
           {
             key: 'Link',
-            value: '<https://www.leandrovenegas.cl/documents/Brief-Isla-FriendShip-Dise%C3%B1o-Abi-Crazypapa-Studios.pdf>; rel="canonical"',
+            value: '<https://www.leandrovenegas.cl/documents/Brief-Isla-FriendShip-Diseno-Abi-Crazypapa-Studios.pdf>; rel="canonical"',
           },
         ],
       },
