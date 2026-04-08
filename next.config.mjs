@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
+    connect-src 'self' https://*.googlesyndication.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;
+    img-src 'self' data: blob: https://*.googlesyndication.com https://*.google.com res.cloudinary.com;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: res.cloudinary.com;
     font-src 'self';
     object-src 'none';
     base-uri 'self';
