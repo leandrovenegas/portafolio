@@ -11,11 +11,7 @@ El resultado fue un ecosistema de 60 videos: tutoriales, reviews y spots para su
 
 El proyecto con el Dr. Patricio Andrade, cirujano plástico, comenzó con un encargo puntual: documentar un congreso de cirugía plástica y reconstructiva. Lo que no anticipamos es que esa primera colaboración abriría la puerta a algo mucho más ambicioso.
 El doctor quería transformar su sala de espera en un espacio de contenido de valor. La respuesta fue diseñar y producir un programa de televisión de una hora de duración, con secciones diferenciadas: procedimientos de cirugía plástica, dermatología, cuidado de la piel, trivias y consejos prácticos. Un formato editorial completo, pensado para educar y generar confianza en el paciente antes de entrar a consulta.
-<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
-  <video controls class="w-full h-full object-contain" aria-label="REEL VIDEO" preload="metadata">
-    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773224375/AC2-REEL-Dragon-Lab-Agencia-de-Marketing_lt2uqn.mp4" type="video/mp4">
-  </video>
-</div>
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/633307/881f734f-597d-4c7f-b98d-60501584a299?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
 
 Con LAN trabajamos en el área de Responsabilidad Social Empresarial, produciendo dos documentales que requerían sensibilidad narrativa y precisión logística.
 El primero registró el protocolo de traslado de órganos a regiones: un proceso donde cada minuto importa y la coordinación entre equipos es crítica. Documentar eso sin interferir, y contar esa historia con respeto, fue uno de los ejercicios de dirección más exigentes de esa etapa.
