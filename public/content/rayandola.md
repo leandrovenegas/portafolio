@@ -1,7 +1,5 @@
 
 
-Rayándola fue exactamente eso un inmueble inhabitable, inhumano en el Pasaje Gálvez que convertí junto a una red de artistas y creadores en un punto de producción cultural activo durante cuatro años. cada ves que un artista se presentaba en el lugar aportaba en la reconstruction del inmueble con mano de obra, así fue como esta hermosa casa del 1880 en el cerro Concepcion  fue fue transformada en un punto de encuentro para la cultura local.
-
 <div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
   <iframe
     src="https://player.mediadelivery.net/play/633307/857a51e1-dbc6-4e46-b774-160e041e3e16"
@@ -12,6 +10,9 @@ Rayándola fue exactamente eso un inmueble inhabitable, inhumano en el Pasaje G�
     class="absolute inset-0 w-full h-full border-0"
   />
 </div>
+
+Rayándola fue exactamente eso un inmueble inhabitable, inhumano en el Pasaje Gálvez que convertí junto a una red de artistas y creadores en un punto de producción cultural activo durante cuatro años. cada ves que un artista se presentaba en el lugar aportaba en la reconstruction del inmueble con mano de obra, así fue como esta hermosa casa del 1880 en el cerro Concepcion  fue fue transformada en un punto de encuentro para la cultura local.
+
 
 Lo que empezó como una casa sin condiciones para vivir se transformó en el lugar donde ocurrieron algunas de las iniciativas culturales memorables para muchos de los que fueron parte entre artistas, asistentes, turista y vecinos nadie quedo indiferente a lo que allí vivimos. 
 ![Feria de Artes y Oficios del Pasaje Gálvez — Área 51 Afiche](https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto:eco,w_1200,c_limit/v1774062467/20211220_174239_fajypv.jpg)
