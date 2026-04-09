@@ -1,10 +1,6 @@
 
 
-<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
-  <video controls class="w-full h-full object-contain" preload="metadata">
-    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1774220232/PERSONAL-PROYECTS-REEL-Leandro-Venegas-Productor-Audiovisual-Creador-Valparaiso_yi70t3.mp4" type="video/mp4">
-  </video>
-</div>
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/633307/f88ed187-513f-460d-8b4f-cd724b7ce6e5?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
 
 
 
