@@ -21,11 +21,7 @@ Con LAN trabajamos en el área de Responsabilidad Social Empresarial, produciend
 El primero registró el protocolo de traslado de órganos a regiones: un proceso donde cada minuto importa y la coordinación entre equipos es crítica. Documentar eso sin interferir, y contar esa historia con respeto, fue uno de los ejercicios de dirección más exigentes de esa etapa.
 El segundo proyecto fue la campaña de forestación del Cerro San Cristóbal, donde LAN organizaba jornadas de voluntariado para plantar árboles y recuperar el cerro. Un trabajo de registro documental con vocación medioambiental.
 
-<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
-  <video controls class="w-full h-full object-contain" aria-label="REEL VIDEO" preload="metadata">
-    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773225630/LAN-REEL_tknwrk.mp4" type="video/mp4">
-  </video>
-</div>
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/633307/c836ad29-1c6d-47f3-81f9-1568d6093df9?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
 
 
 La conexión de Dragon Lab con el mundo de la música llegó a través de Lincoyán Viera — integrante del equipo e hijo de Gervacio Viera — quien venía de trabajar estrechamente con la SCD. Eso nos abrió las puertas a un nicho que no teníamos en el radar.
