@@ -1,10 +1,8 @@
+
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/633307/43908d17-17e2-4eb9-8bfb-3caa224a8967?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
+
 Cofundé Dragon Lab, mi primera agencia de marketing digital, donde dirigí el departamento audiovisual como director creativo. Durante esa etapa produjimos contenido para una cartera diversa de clientes: desde startups en sus primeras fases hasta marcas consolidadas como LAN, pasando por artistas y bandas musicales. Fue el espacio donde definí mi forma de entender la producción audiovisual: como herramienta estratégica, no solo creativa.
 
-<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
-  <video controls class="w-full h-full object-contain" preload="metadata">
-    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773220121/Agencia-de-Marketing-Digital-Audiovisual-Dragon-Lab-reel-proyectos_yq7viz.mp4" type="video/mp4">
-  </video>
-</div>
 
 Uno de los proyectos que más me marcó profesionalmente fue el desarrollo de una estrategia de contenidos en video para Valook, empresa chilena de iluminación profesional para escenarios con más de 20 años en el mercado. Lo que lo hace singular es el enfoque: antes de producir una sola imagen, nos sumergimos en los datos reales del sitio web del cliente. Realizamos una auditoría SEO profunda que nos permitió identificar exactamente qué contenido necesitaba su audiencia — y desde ahí construimos toda la estrategia de producción.
 El resultado fue un ecosistema de 60 videos: tutoriales, reviews y spots para sus cabezas móviles, que hoy acumulan más de 815.000 visualizaciones y han construido una comunidad de 5.300 suscriptores en YouTube. Una metodología que hoy se conoce como SEO de video, pero que en ese momento era una apuesta poco común en el mercado chileno.
