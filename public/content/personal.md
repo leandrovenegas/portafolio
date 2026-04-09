@@ -18,11 +18,7 @@ En un proyecto universitario filmado en el cerro Polanco de Valparaíso, una de 
 
 
 ## El Árbol en la Semilla
-<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
-  <video controls class="w-full h-full object-contain" preload="metadata">
-    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1774528036/El_arbol_en_la_semilla_ss9u3k.mp4" type="video/mp4">
-  </video>
-</div>
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/633307/03bbbc16-17f4-4baf-8b83-25be1e664d12?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
 Mi primera incursión en animación fue una pieza frame a frame, el resultado de esta experimentación de dibujo y collage, seleccionado para la Muestra de Animación Experimental del Museo de Arte Contemporáneo (MAC) de Santiago, donde presenté el trabajo junto a otros animadores del circuito experimental chileno, fue una experiencia a otro nivel que no olvidaré nunca.
 
 
