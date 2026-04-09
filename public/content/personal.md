@@ -27,11 +27,7 @@ Mi primera incursión en animación fue una pieza frame a frame, el resultado de
 
 
 ## ESCULTURA GIGANTE 
-<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
-  <video controls class="w-full h-full object-contain" preload="metadata">
-    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1774533389/marciano-0003_yzf2yw.mp4" type="video/mp4">
-  </video>
-</div>
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/633307/d10c9d23-2157-487c-a622-a92a31fb4656?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
 En diferentes momentos de mi vida llega la necesidad intrínseca de moldear la materia con mis propias manos al igual que el proceso de editar un vídeo donde moldeo la materia del tiempo para generar lenguaje visual, llega esta forma de expresión y este extraterrestre gigante vino de un sueño donde la imágenes de un alien de 3 metros dentro de mi habitación me impactó tanto que me empeñe en compartir esta experiencia con los espectadores de esta obra. Quienes han estado debajo de este extraterrestre hecho con materiales reciclados podrán entender la sensación de la cual estoy hablando, esta pieza es probablemente la más extraña que he producido. Tan extraña que Residente de Calle 13, la vio y dijo que no podía creerlo esta es una historia que me gustaría compartir contigo, pronto tendré el link del video que preparé para ello. 
 
 
