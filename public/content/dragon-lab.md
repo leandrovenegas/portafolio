@@ -22,10 +22,5 @@ El segundo proyecto fue la campaña de forestación del Cerro San Cristóbal, do
 
 La conexión de Dragon Lab con el mundo de la música llegó a través de Lincoyán Viera — integrante del equipo e hijo de Gervacio Viera — quien venía de trabajar estrechamente con la SCD. Eso nos abrió las puertas a un nicho que no teníamos en el radar.
 Desarrollamos sesiones fotográficas y un ciclo de tocatas al aire libre, donde tuvimos la oportunidad de trabajar con Niño Cohete, entre otros artistas. Un segmento que demostró que el lenguaje audiovisual que habíamos desarrollado para marcas funcionaba igual de bien para contar historias de músicos.
-<div class="w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6">
-  <video controls class="w-full h-full object-contain" aria-label="REEL VIDEO" preload="metadata">
-    <source src="https://res.cloudinary.com/dx2rvpvwr/video/upload/v1773226288/RanaMusic-reel-nino-cohete_xayiqs.mp4" type="video/mp4">
-  </video>
-</div>
-
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/633307/881f734f-597d-4c7f-b98d-60501584a299?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
 
