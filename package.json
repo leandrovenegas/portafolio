@@ -8,11 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "^16.2.3",
     "@supabase/supabase-js": "^2.97.0",
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/typography": "^0.5.19",
     "marked": "^17.0.3",
     "next": "16.1.6",
+    "next-mdx-remote": "^6.0.0",
     "postcss": "^8.5.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",

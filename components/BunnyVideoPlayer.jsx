@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 
-const BUNNY_CDN = 'https://cdn.bunny.net';
+const BUNNY_PLAYER = 'https://player.mediadelivery.net';
 
 export default function BunnyVideoPlayer({
   videoId,
@@ -29,10 +29,10 @@ export default function BunnyVideoPlayer({
     uploadDate: uploadDate || new Date().toISOString().split('T')[0],
     duration: duration || 'PT0M0S',
     contentUrl: `https://cdn.bunny.net/video/${videoId}`,
-    embedUrl: `https://player.bunny.net/${videoId}?libraryId=${libraryId}`
+    embedUrl: `${BUNNY_PLAYER}/play/${libraryId}/${videoId}`
   };
 
-  const iframeSrc = `${BUNNY_CDN}/embed/${videoId}?libraryId=${libraryId}&autoplay=false&mute=false&title=false&logo=false&skippable=false`;
+  const iframeSrc = `${BUNNY_PLAYER}/embed/${libraryId}/${videoId}?autoplay=false&mute=false&title=false&logo=false&skippable=false`;
 
   return (
     <div className={`w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative ${className}`}>

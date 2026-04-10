@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+import mdx from '@next/mdx'
+
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.bunny.net;
@@ -63,4 +65,12 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = mdx({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(nextConfig);

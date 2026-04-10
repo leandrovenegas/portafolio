@@ -1,11 +1,12 @@
 import { cache } from "react";
 import supabase from "@/lib/supabase";
 import Link from "next/link";
-import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
 import Nav from "@/components/Nav";
 import { notFound } from "next/navigation";
+import { compileMDX } from 'next-mdx-remote/rsc';
+import BunnyVideoPlayer from '@/components/BunnyVideoPlayer';
 
 // 1. Centralizamos la obtención de datos y la cacheamos para evitar doble consulta
 const getOrganization = cache(async (slug) => {
@@ -23,14 +24,23 @@ const getOrganization = cache(async (slug) => {
     supabase.from("projects").select("*").eq("owner_organization_id", org.id).eq("status", "published")
   ]);
 
-  let descripcion = null;
+  let content = null;
   if (org.markdown_url) {
     try {
-      const filePath = path.join(process.cwd(), "public", org.markdown_url);
-      const markdown = await readFile(filePath, "utf-8");
-      descripcion = parseMarkdown(markdown);
+      const filePath = path.join(process.cwd(), "app", org.markdown_url.replace(/\.md$/, '.mdx'));
+      const mdxContent = await readFile(filePath, "utf-8");
+      const { content: compiledContent } = await compileMDX({
+        source: mdxContent,
+        components: {
+          BunnyVideoPlayer,
+        },
+        options: {
+          parseFrontmatter: true,
+        },
+      });
+      content = compiledContent;
     } catch (e) {
-      console.error("Error leyendo el archivo markdown:", e);
+      console.error("Error compilando el archivo MDX:", e);
     }
   }
 
@@ -38,7 +48,7 @@ const getOrganization = cache(async (slug) => {
     org,
     hijas: hijasRes.data || [],
     proyectos: proyectosRes.data || [],
-    descripcion
+    content
   };
 });
 
@@ -77,7 +87,7 @@ export default async function OrganizacionPage({ params }) {
 
   if (!data) return notFound(); // Usa el componente not-found.js de Next.js
 
-  const { org, hijas, proyectos, descripcion } = data;
+  const { org, hijas, proyectos, content } = data;
 
   return (
     <>
@@ -99,11 +109,12 @@ export default async function OrganizacionPage({ params }) {
             <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mt-2 mb-4">
               {org.name}
             </h1>
-            {descripcion && (
+            {content && (
               <div
                 className="font-body text-mid text-lg md:text-xl max-w-3xl leading-relaxed mt-4 prose prose-invert prose-p:my-4 prose-a:text-accent prose-a:no-underline hover:prose-a:underline"
-                dangerouslySetInnerHTML={{ __html: descripcion }}
-              />
+              >
+                {content}
+              </div>
             )}
           </header>
 

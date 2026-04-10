@@ -1,10 +1,11 @@
 import supabase from "@/lib/supabase";
-import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
 import Nav from "@/components/Nav";
 import Link from "next/link";
 import VideoPlayer from "@/components/VideoPlayer";
+import { compileMDX } from 'next-mdx-remote/rsc';
+import BunnyVideoPlayer from '@/components/BunnyVideoPlayer';
 
 export default async function Proyecto({ params }) {
   const { slug } = await params;
@@ -23,14 +24,23 @@ export default async function Proyecto({ params }) {
     .eq("project_id", proyecto.id)
     .order("order", { ascending: true });
 
-  let contenido = null;
+  let content = null;
   if (proyecto.markdown_url) {
     try {
-      const filePath = path.join(process.cwd(), "public", proyecto.markdown_url);
-      const markdown = await readFile(filePath, "utf-8");
-      contenido = parseMarkdown(markdown);
+      const filePath = path.join(process.cwd(), "app", proyecto.markdown_url.replace(/\.md$/, '.mdx'));
+      const mdxContent = await readFile(filePath, "utf-8");
+      const { content: compiledContent } = await compileMDX({
+        source: mdxContent,
+        components: {
+          BunnyVideoPlayer,
+        },
+        options: {
+          parseFrontmatter: true,
+        },
+      });
+      content = compiledContent;
     } catch (e) {
-      // archivo .md no existe, continúa sin contenido
+      // archivo .mdx no existe, continúa sin contenido
     }
   }
 
@@ -70,11 +80,12 @@ export default async function Proyecto({ params }) {
               </p>
             )}
             
-            {contenido && (
+            {content && (
               <div
                 className="font-body text-mid text-lg md:text-xl max-w-3xl leading-relaxed mt-4 prose prose-invert prose-p:my-4 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-img:border prose-img:border-border prose-img:rounded-sm"
-                dangerouslySetInnerHTML={{ __html: contenido }}
-              />
+              >
+                {content}
+              </div>
             )}
           </header>
 
