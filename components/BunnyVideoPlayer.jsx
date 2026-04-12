@@ -35,7 +35,7 @@ export default function BunnyVideoPlayer({
   const iframeSrc = `${BUNNY_PLAYER}/embed/${libraryId}/${videoId}?autoplay=false&mute=false&title=false&logo=false&skippable=false`;
 
   return (
-    <div className={`w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative ${className}`}>
+    <div className={`w-full max-w-full overflow-hidden rounded-lg bg-black shadow-lg aspect-video relative my-6 ${className}`}>
       <Script
         id={`video-schema-${videoId}`}
         type="application/ld+json"
