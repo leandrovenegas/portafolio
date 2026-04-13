@@ -118,7 +118,7 @@ export default async function OrganizacionPage({ params }) {
             )}
           </header>
 
-          {/* Sub organizaciones */}
+          {/* Sub organizaciones 
           {hijas.length > 0 && (
             <SectionWrapper title="Áreas de Operación">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
@@ -139,7 +139,7 @@ export default async function OrganizacionPage({ params }) {
               </div>
             </SectionWrapper>
           )}
-
+*/}
           {/* Proyectos */}
           {proyectos.length > 0 && (
             <SectionWrapper title="Proyectos Indexados">
