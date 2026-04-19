@@ -2,8 +2,8 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 
 export const metadata = {
-  title: 'Leandro Venegas | Director Creativo, Producción Audiovisual y SEO con Video',
-  description: 'Dirección creativa, motion design y SEO con video para marcas exigentes. Capacidad creativa senior por proyecto u horas, sin contratos en planilla. Valparaíso, Chile.',
+  title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
+  description: 'Producción de video para pymes en Valparaíso , Viña del Mar y Santiago. Contenido audiovisual con inteligencia artificial: más videos, menor costo, dirección creativa profesional.',
   keywords: [
     'Leandro Venegas',
     'director creativo Chile',
@@ -14,8 +14,8 @@ export const metadata = {
     'freelance creativo Chile',
   ],
   openGraph: {
-    title: 'Leandro Venegas | Capacidad Creativa Senior',
-    description: 'Dirección creativa, producción audiovisual y SEO con video.',
+    title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
+    description: 'Producción de video para pymes en Valparaíso , Viña del Mar y Santiago. Contenido audiovisual con inteligencia artificial: más videos, menor costo, dirección creativa profesional.',
     url: 'https://www.leandrovenegas.cl/',
   },
   alternates: {
@@ -23,171 +23,164 @@ export const metadata = {
   },
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta producir un video para mi empresa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depende del formato y el objetivo. Trabajo con presupuestos reales de pymes — por eso la primera conversación es para entender qué necesitas y qué es posible con tu presupuesto. Sin compromiso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tipos de video puedo producir para mi negocio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Videos para redes sociales, video corporativo, animación con IA, y piezas para campañas digitales en Meta, Google o YouTube."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La inteligencia artificial reemplaza la dirección creativa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. La IA reduce tiempos y costos de producción, pero el concepto, el guión y la dirección creativa siguen siendo trabajo humano. Esa es la diferencia entre un video que funciona y uno genérico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Trabajas solo con empresas de Valparaíso y Viña del Mar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mi foco es la quinta región, pero trabajo con empresas de todo Chile según el proyecto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo toma producir un video?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un video para redes sociales puede estar listo en menos de una semana. Un video corporativo o animación toma entre 2 y 4 semanas dependiendo de la complejidad."
+      }
+    }
+  ]
+};
+
 export default function Home() {
   const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20llegu%C3%A9%20al%20sitio%20y%20quiero%20conversar%20sobre%20un%20proyecto";
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         
-        {/* HERO SECTION */}
+        {/* BLOQUE 1 — HERO */}
         <section className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl min-h-[70vh] flex flex-col justify-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
 
-          <p className="font-mono text-accent text-xs md:text-sm mb-6 tracking-wide uppercase">
-            Leandro Venegas · Director Creativo
-          </p>
           <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl">
-            Capacidad creativa sénior. Activada cuando tu marca la necesita.
+            El video con IA cambió las reglas del juego.
           </h1>
           <p className="font-body text-mid text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
-            Dirección creativa estratégica, producción audiovisual de alta calidad y posicionamiento orgánico con video. El músculo de una agencia, la agilidad de un experto independiente.
+            Producir contenido audiovisual ya no requiere presupuestos grandes. Con IA, el mismo dinero rinde más: más videos, más variedad, más velocidad — sin perder dirección creativa.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/portafolio"
-              className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-8 py-4 hover:bg-accent2 transition-colors w-full sm:w-auto"
-            >
-              Explorar Portafolio
-            </Link>
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors w-full sm:w-auto"
-            >
-              Escribir por WhatsApp
-            </a>
-          </div>
+          <p className="font-body text-mid text-lg md:text-xl max-w-2xl leading-relaxed">
+            Es el momento de usarlo.
+          </p>
         </section>
-
-        {/* STRIP CLIENTES (Social Proof INMEDIATO para bajar rebote) */}
-        <div className="border-y border-border bg-s1 py-6 px-4 overflow-hidden relative flex items-center">
-          <p className="font-mono text-muted text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap overflow-x-auto w-full text-center scrollbar-hide">
-            CONFIARON EN ESTE TRABAJO: 
-            <span className="inline-block px-4 ml-4 text-mid">LAN → LATAM</span> •  
-            <span className="inline-block px-4 text-mid">Canal 13</span> • 
-            <span className="inline-block px-4 text-mid">Dr. Patricio Andrade</span> • 
-            <span className="inline-block px-4 text-mid">Dando la Hora</span> •  
-            <span className="inline-block px-4 text-mid">Valook</span> •  
-            <span className="inline-block px-4 text-mid">Incoludido</span>
-          </p>
-        </div>
 
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
           
-          {/* SECCIÓN DE SERVICIOS (SEO Internal Linking Hub) */}
+          {/* BLOQUE 2 — H2 */}
           <section>
-            <div className="mb-12">
-              <p className="font-mono text-[10px] md:text-xs uppercase tracking-[3px] text-muted flex items-center gap-4 after:flex-1 after:h-px after:bg-border mb-6">
-                Especialidades
-              </p>
-              <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl">
-                ¿Qué problema necesitas resolver hoy?
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
-              
-              <Link href="/servicios/director-creativo-externo" className="bg-bg p-8 md:p-12 hover:bg-s1 transition-colors group flex flex-col items-start">
-                <div className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4 border border-accent/30 bg-accent/5 px-2 py-1">Estrategia</div>
-                <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 group-hover:text-accent transition-colors">Dirección Creativa Externa</h3>
-                <p className="font-body text-mid flex-1">
-                  Liderazgo creativo por proyecto o retainer. Define cómo tu marca se ve y se comporta, sin cargar el costo de un rol ejecutivo fijo en planilla.
-                </p>
-                <span className="font-mono text-xs text-muted mt-8 group-hover:text-ink transition-colors">Conocer modalidad →</span>
-              </Link>
-
-              <Link href="/servicios/produccion-audiovisual-empresas" className="bg-bg p-8 md:p-12 hover:bg-s1 transition-colors group flex flex-col items-start">
-                <div className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4 border border-accent/30 bg-accent/5 px-2 py-1">Video Corporativo</div>
-                <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 group-hover:text-accent transition-colors">Producción Audiovisual</h3>
-                <p className="font-body text-mid flex-1">
-                  Spots, reels, casos de estudio y contenido digital para tu empresa. Tu propia productora audiovisual a un clic de distancia.
-                </p>
-                <span className="font-mono text-xs text-muted mt-8 group-hover:text-ink transition-colors">Ver qué producimos →</span>
-              </Link>
-
-              <Link href="/servicios/motion-design" className="bg-bg p-8 md:p-12 hover:bg-s1 transition-colors group flex flex-col items-start">
-                <div className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4 border border-accent/30 bg-accent/5 px-2 py-1">Animación & 2D</div>
-                <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 group-hover:text-accent transition-colors">Motion Design</h3>
-                <p className="font-body text-mid flex-1">
-                  Haz que tu marca se mueva. Motion graphics, postproducción y animación de sistemas visuales orientados a redes y campañas digitales.
-                </p>
-                <span className="font-mono text-xs text-muted mt-8 group-hover:text-ink transition-colors">Saber más →</span>
-              </Link>
-
-              <Link href="/servicios/seo-video" className="bg-bg p-8 md:p-12 hover:bg-s1 transition-colors group flex flex-col items-start">
-                <div className="font-mono text-[10px] text-accent tracking-widest uppercase mb-4 border border-accent/30 bg-accent/5 px-2 py-1">Growth & Tráfico</div>
-                <h3 className="font-display text-3xl md:text-4xl text-ink mb-4 group-hover:text-accent transition-colors">SEO con Video</h3>
-                <p className="font-body text-mid flex-1">
-                  Estrategia de posicionamiento en Google combinada con producción de video. Captura búsquedas orgánicas dominando los Video Rich Snippets.
-                </p>
-                <span className="font-mono text-xs text-muted mt-8 group-hover:text-ink transition-colors">Descubrir el método →</span>
-              </Link>
-
-            </div>
+            <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-8">
+              El momento que las pymes no pueden ignorar
+            </h2>
+            <p className="font-body text-mid text-lg leading-relaxed mb-6">
+              Hasta hace poco, un video comercial de calidad en Chile costaba entre 3 y 10 millones de pesos. Equipo técnico, postproducción, animación, locución — cada ítem sumaba.
+            </p>
+            <p className="font-body text-mid text-lg leading-relaxed mb-6">
+              Hoy, con inteligencia artificial integrada al proceso de producción, esa misma calidad se logra en una fracción del tiempo y del presupuesto. No es magia. Es que las herramientas cambiaron.
+            </p>
+            <p className="font-body text-mid text-lg leading-relaxed">
+              Llevo años produciendo <Link href="/portafolio" className="text-accent hover:text-accent2 transition-colors">contenido audiovisual</Link> para empresas en Valparaíso y Viña del Mar. Integrar IA a ese proceso cambió lo que es posible entregar — en tiempo, en cantidad y en presupuesto.
+            </p>
           </section>
 
-          {/* CASO DESTACADO (Caso de éxito para Authority) */}
-          <section className="bg-s1 border border-border p-8 md:p-16 flex flex-col md:flex-row gap-12 items-center">
-            <div className="flex-1 flex flex-col items-start">
-              <span className="font-mono text-[10px] text-muted tracking-widest uppercase mb-4 block">Caso de Éxito Destacado</span>
-              <h2 className="font-display text-4xl md:text-5xl text-ink mb-6">Valook: Dominando la búsqueda orgánica</h2>
-              <p className="font-body text-mid text-lg mb-8 max-w-xl">
-                Descubre cómo unificamos la investigación SEO clásica con la producción de contenidos en video para posicionar a Valook en la primera página de Google, venciendo al texto plano.
-              </p>
-              <Link
-                href="/casos-de-exito/valook-seo-video"
-                className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-ink text-bg px-6 py-3 hover:bg-white transition-colors"
-              >
-                Leer Caso de Estudio Completo
-              </Link>
-            </div>
-            <div className="flex-1 w-full bg-border rounded-sm min-h-[300px] flex items-center justify-center border border-border2">
-              <span className="font-display text-6xl text-s1 pointer-events-none select-none">VALOOK x DRAGON LAB</span>
-            </div>
-          </section>
-
-          {/* ACERCA DE LEANDRO VELOZ (Generar confianza / Reducir bouncerate) */}
+          {/* BLOQUE 3 — H2 */}
           <section>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
-              <div>
-                <h2 className="font-display text-4xl md:text-5xl text-ink mb-6">
-                  15+ años creando desde Valparaíso para el mundo.
-                </h2>
-                <p className="font-body text-mid text-lg leading-relaxed">
-                  He fundado 4 organizaciones creativas (incluyendo <em>Dragon Lab, Crazy Papa Studio, Rayandola e Incoludido</em>), diseñado campañas multimillonarias con plataformas de crowdfunding propias, y llevado piezas animadas al Museo de Arte Contemporáneo (MAC). Todo mi conocimiento acumulado está a tu disposición bajo un esquema flexible y externo, para que pagues únicamente por lo que tu marca realmente necesita.
-                </p>
-              </div>
-              <div className="flex flex-col justify-center border-l-2 border-border pl-6 md:pl-12">
-                <div className="flex flex-col gap-6">
-                  <div className="flex justify-between items-center border-b border-border pb-4">
-                    <span className="font-body text-ink text-lg">Proyectos Entregados</span>
-                    <span className="font-mono text-accent">500+</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b border-border pb-4">
-                    <span className="font-body text-ink text-lg">Fondos Crowdfunding</span>
-                    <span className="font-mono text-accent">15M+ CLP</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-4">
-                    <span className="font-body text-ink text-lg">Disponibilidad Actual</span>
-                    <span className="font-mono text-accent">Aceptando</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-8">
+              Por qué las empresas de Valparaíso están eligiendo el video como su principal formato de marketing
+            </h2>
+            <p className="font-body text-mid text-lg leading-relaxed mb-6">
+              El video no es una tendencia. Es el formato que más tiempo retiene a una persona en una pantalla, el que más se comparte y el que mejor convierte visitas en clientes.
+            </p>
+            <p className="font-body text-mid text-lg leading-relaxed mb-6">
+              Los números lo dicen hace años: una página con video convierte hasta 80% más que una sin él. Un mensaje en video se recuerda 6 veces más que uno escrito. Y en redes sociales — Instagram, TikTok, YouTube, LinkedIn — el algoritmo favorece el video por sobre cualquier otro formato.
+            </p>
+            <p className="font-body text-mid text-lg leading-relaxed">
+              El problema hasta ahora era el costo. Producir video de calidad estaba fuera del alcance de la mayoría de las pymes en Valparaíso y Viña del Mar. Eso cambió.
+            </p>
           </section>
 
-          {/* CTA FINAL (Home Footer Contact) */}
+          {/* BLOQUE 4 — H2 */}
+          <section>
+            <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-12">
+              Qué puedo producir para tu empresa
+            </h2>
+            <p className="font-body text-mid text-lg leading-relaxed mb-12">
+              Trabajo con pymes y marcas de Valparaíso y Viña del Mar que necesitan contenido audiovisual real — no stock, no plantillas genéricas. Cada video tiene dirección creativa, guión y producción adaptada a tu negocio y tu presupuesto.
+            </p>
+            <ul className="space-y-8">
+              <li>
+                <strong className="font-display text-xl text-ink">Videos para redes sociales</strong> — Reels, TikToks y contenido corto diseñado para retener y convertir. Formato optimizado para Instagram, TikTok y LinkedIn.
+              </li>
+              <li>
+                <strong className="font-display text-xl text-ink">Video corporativo</strong> — Presentación de empresa, cultura organizacional, lanzamiento de producto. El formato que más credibilidad genera con clientes y socios.
+              </li>
+              <li>
+                <strong className="font-display text-xl text-ink">Animación y motion graphics con IA</strong> — Explicación de servicios, procesos o productos complejos. Lo que antes costaba millones, hoy es accesible.
+              </li>
+              <li>
+                <strong className="font-display text-xl text-ink">Video para campañas digitales</strong> — Piezas específicas para publicidad en Meta, Google o YouTube. Diseñadas para el objetivo de la campaña, no para ganar premios.
+              </li>
+            </ul>
+          </section>
+
+          {/* BLOQUE 5 — H2 */}
+          <section>
+            <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-8">
+              Cuando el contenido audiovisual hace el trabajo de ventas
+            </h2>
+            <p className="font-body text-mid text-lg leading-relaxed mb-6">
+              Incoludido es una marca chilena. Cuando lanzaron su campaña de crowdfunding, necesitaban que personas que no los conocían confiaran en ellos y pusieran dinero.
+            </p>
+            <p className="font-body text-mid text-lg leading-relaxed mb-6">
+              Desarrollé la identidad audiovisual completa — concepto, dirección y producción. La campaña tenía una meta de 15 millones de pesos. Recaudó 23 millones.
+            </p>
+            <p className="font-body text-mid text-lg leading-relaxed">
+              Eso es lo que hace el video bien producido: convierte desconocidos en clientes.
+            </p>
+          </section>
+
+          {/* BLOQUE 6 — CTA */}
           <section id="contacto">
             <div className="border-t border-border pt-16 flex flex-col items-center text-center gap-8">
               <h2 className="font-display text-5xl md:text-6xl text-ink max-w-2xl">
-                Desbloquea el crecimiento de tu marca
+                El mejor momento para hacer tu primer video era hace un año. El segundo mejor momento es ahora.
               </h2>
               <p className="font-body text-mid text-lg max-w-xl">
-                Sin intermediarios, sin retenciones interminables. Cuéntame tu desafío hoy y comencemos a planificar el impacto.
+                Conversamos 20 minutos. Te cuento qué es posible con tu presupuesto real y diseñamos juntos un primer video que tenga sentido para tu negocio en Valparaíso o Viña del Mar.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
@@ -197,8 +190,37 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-10 py-5 hover:bg-accent2 transition-colors w-full sm:w-auto"
                 >
-                  Hablar con Leandro →
+                  Agendar conversación →
                 </a>
+              </div>
+            </div>
+          </section>
+
+          {/* BLOQUE 7 — FAQ */}
+          <section>
+            <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-12">
+              Preguntas Frecuentes
+            </h2>
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-display text-2xl text-ink mb-4">¿Cuánto cuesta producir un video para mi empresa?</h3>
+                <p className="font-body text-mid text-lg leading-relaxed">Depende del formato y el objetivo. Trabajo con presupuestos reales de pymes — por eso la primera conversación es para entender qué necesitas y qué es posible con tu presupuesto. Sin compromiso.</p>
+              </div>
+              <div>
+                <h3 className="font-display text-2xl text-ink mb-4">¿Qué tipos de video puedo producir para mi negocio?</h3>
+                <p className="font-body text-mid text-lg leading-relaxed">Videos para redes sociales, video corporativo, animación con IA, y piezas para campañas digitales en Meta, Google o YouTube.</p>
+              </div>
+              <div>
+                <h3 className="font-display text-2xl text-ink mb-4">¿La inteligencia artificial reemplaza la dirección creativa?</h3>
+                <p className="font-body text-mid text-lg leading-relaxed">No. La IA reduce tiempos y costos de producción, pero el concepto, el guión y la dirección creativa siguen siendo trabajo humano. Esa es la diferencia entre un video que funciona y uno genérico.</p>
+              </div>
+              <div>
+                <h3 className="font-display text-2xl text-ink mb-4">¿Trabajas solo con empresas de Valparaíso y Viña del Mar?</h3>
+                <p className="font-body text-mid text-lg leading-relaxed">Mi foco es la quinta región, pero trabajo con empresas de todo Chile según el proyecto.</p>
+              </div>
+              <div>
+                <h3 className="font-display text-2xl text-ink mb-4">¿Cuánto tiempo toma producir un video?</h3>
+                <p className="font-body text-mid text-lg leading-relaxed">Un video para redes sociales puede estar listo en menos de una semana. Un video corporativo o animación toma entre 2 y 4 semanas dependiendo de la complejidad.</p>
               </div>
             </div>
           </section>
