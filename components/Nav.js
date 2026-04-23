@@ -8,6 +8,7 @@ export default function Nav() {
       </Link>
       <nav className="flex flex-wrap gap-6">
         <Link href="/portafolio" className="text-zinc-400 text-sm tracking-widest uppercase hover:text-white transition-colors duration-200">Portafolio</Link>
+        <Link href="/sobre-mi" className="text-zinc-400 text-sm tracking-widest uppercase hover:text-white transition-colors duration-200">Sobre Mí</Link>
         <Link href="/contacto" className="text-zinc-400 text-sm tracking-widest uppercase hover:text-white transition-colors duration-200">Contacto</Link>
       </nav>
     </header>
