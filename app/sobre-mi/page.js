@@ -14,16 +14,9 @@ export default function SobreMi() {
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <section className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Espacio para fotografía */}
-            <div className="flex justify-center lg:justify-start">
-              <div className="w-80 h-80 bg-s2 rounded-lg flex items-center justify-center text-ink">
-                <span className="text-lg">Foto de Leandro</span>
-              </div>
-            </div>
-
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Contenido */}
-            <div className="space-y-8">
+            <div className="space-y-8 order-2 lg:order-1">
               {/* Encabezado llamativo */}
               <div>
                 <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-4">
@@ -77,17 +70,24 @@ export default function SobreMi() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href={WA_LINK}
-                    className="bg-accent text-ink px-8 py-3 rounded-lg font-display text-lg hover:bg-accent/80 transition-colors duration-200 text-center"
+                    className="bg-accent text-white px-8 py-3 rounded-lg font-display text-lg hover:bg-accent/80 transition-colors duration-200 text-center"
                   >
                     Contactar por WhatsApp
                   </Link>
                   <Link
                     href="/portafolio"
-                    className="border border-accent text-accent px-8 py-3 rounded-lg font-display text-lg hover:bg-accent hover:text-ink transition-colors duration-200 text-center"
+                    className="border border-accent text-accent px-8 py-3 rounded-lg font-display text-lg hover:bg-accent hover:text-white transition-colors duration-200 text-center"
                   >
                     Ver mi trabajo
                   </Link>
                 </div>
+              </div>
+            </div>
+
+            {/* Espacio para fotografía */}
+            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+              <div className="w-full max-w-sm h-80 bg-s2 rounded-lg flex items-center justify-center text-ink">
+                <span className="text-lg">Foto de Leandro</span>
               </div>
             </div>
           </div>
