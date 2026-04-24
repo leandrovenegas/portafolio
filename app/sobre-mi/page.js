@@ -23,7 +23,7 @@ export default function SobreMi() {
                   Hola, soy Leandro Venegas
                 </h1>
                 <p className="font-body text-mid text-lg md:text-xl max-w-2xl leading-relaxed">
-Aumento la visibilidad en internet para diferentes empresas en Valparaíso, Viña del Mar y Santiago, diseño estrategias de marketing digital basadas en el formato preferido del Homo sapiens, videos largos videos cortos, videos para todo el ciclo del producto, en definitiva soy un vendedor de productos y servicios potenciado por la IA, un Product Manager moderno.                </p>
+Aumento la visibilidad en internet para diferentes empresas en Valparaíso, Viña del Mar y Santiago, diseño estrategias de marketing digital basadas en el formato preferido del Homo sapiens, videos cortos, videos largos, videos para todo el ciclo del producto, en definitiva soy un vendedor de productos y servicios potenciado por la IA, un Product Manager moderno.                </p>
               </div>
 
               {/* Propuesta de valor */}
@@ -69,13 +69,13 @@ Si buscas elevar tu presencia digital con contenido audiovisual profesional y es
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href={WA_LINK}
-                    className="bg-accent text-white px-8 py-3 rounded-lg font-display text-lg hover:bg-accent/80 transition-colors duration-200 text-center"
+                    className="bg-accent text-black px-8 py-3 rounded-lg font-display text-lg hover:bg-accent/80 transition-colors duration-200 text-center"
                   >
                     Contactar por WhatsApp
                   </Link>
                   <Link
                     href="/portafolio"
-                    className="border border-accent text-accent px-8 py-3 rounded-lg font-display text-lg hover:bg-accent hover:text-white transition-colors duration-200 text-center"
+                    className="border border-accent text-accent px-8 py-3 rounded-lg font-display text-lg hover:bg-accent hover:text-black transition-colors duration-200 text-center"
                   >
                     Ver mi trabajo
                   </Link>
@@ -86,7 +86,7 @@ Si buscas elevar tu presencia digital con contenido audiovisual profesional y es
             {/* Espacio para fotografía */}
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="w-full max-w-sm h-80 bg-s2 rounded-lg flex items-center justify-center text-ink">
-                <span className="text-lg">Foto de Leandro</span>
+                <span className="text-lg">Leandro Venegas Foto</span>
               </div>
             </div>
           </div>
