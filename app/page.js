@@ -98,9 +98,6 @@ export default function Home() {
             Es el momento de usarlo.
           </p>
         </section>
-      </main>
-      <Footer />
-    </>
 
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
           
@@ -230,6 +227,7 @@ export default function Home() {
 
         </div>
       </main>
+      <Footer />
     </>
   );
 }

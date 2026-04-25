@@ -12,7 +12,7 @@ const cspHeader = `
     object-src 'none';
     base-uri 'self';
     form-action 'self';
-    frame-src 'self' https://*.bunny.net https://player.mediadelivery.net;
+    frame-src 'self' https://*.bunny.net https://player.mediadelivery.net https://iframe.mediadelivery.net;
     frame-ancestors 'none';
     upgrade-insecure-requests;
 `.replace(/\s{2,}/g, ' ').trim();

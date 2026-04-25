@@ -101,11 +101,17 @@ export default function VideoConfigDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-3xl border border-border bg-bg p-6 shadow-sm">
-        <h2 className="font-display text-2xl text-ink mb-2">Configuración de videos</h2>
-        <p className="font-body text-mid text-sm text-muted leading-relaxed">
-          Aquí puedes habilitar los videos que se muestran en el sitio, editar su metadata y controlar la indexación.
-        </p>
+      <div className="rounded-3xl border border-border bg-bg p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 className="font-display text-2xl text-ink mb-2">Configuración de videos</h2>
+          <p className="font-body text-mid text-sm text-muted leading-relaxed">
+            Aquí puedes habilitar los videos que se muestran en el sitio, editar su metadata y controlar la indexación.
+          </p>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-muted">
+          <span>Mostrando:</span>
+          <strong className="text-ink">{videos.length} videos</strong>
+        </div>
       </div>
 
       <div className="rounded-3xl border border-border bg-bg p-6 shadow-sm">
@@ -167,30 +173,39 @@ export default function VideoConfigDashboard() {
                 <div className="min-w-0">
                   <h3 className="font-display text-lg text-ink line-clamp-2">{video.title}</h3>
                   <p className="mt-1 text-xs text-muted">
-                    {video.uploadDate} · {video.duration}
+                    {new Date(video.uploadDate).toLocaleDateString('es-ES')} · {video.duration}
                   </p>
                 </div>
-                <div className="rounded-full bg-s1 px-3 py-1 text-xs font-medium text-ink">
-                  {videoConfig.enabled ? 'ON' : 'OFF'}
-                </div>
+                <button
+                  onClick={() => updateVideo(video.id, { enabled: !videoConfig.enabled })}
+                  disabled={saving}
+                  className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                    videoConfig.enabled 
+                      ? 'bg-green-100 text-green-700 hover:bg-green-200 border border-green-200' 
+                      : 'bg-s2 text-muted hover:bg-s3 border border-transparent'
+                  }`}
+                >
+                  <span className={`w-2 h-2 rounded-full ${videoConfig.enabled ? 'bg-green-500' : 'bg-muted'}`}></span>
+                  {videoConfig.enabled ? 'Visible' : 'Oculto'}
+                </button>
               </div>
 
-              <div className="mt-4 flex flex-wrap items-center gap-2">
+              <div className="mt-3 flex flex-wrap items-center gap-2">
                 {video.organization && (
-                  <span className="rounded-full bg-s2 px-2 py-1 text-[11px] uppercase tracking-[0.18rem] text-muted">
+                  <span className="rounded-full bg-s1 px-2.5 py-1 text-[11px] font-medium tracking-wide text-ink">
                     {video.organization}
                   </span>
                 )}
                 {video.category && (
-                  <span className="rounded-full bg-s2 px-2 py-1 text-[11px] uppercase tracking-[0.18rem] text-muted">
+                  <span className="rounded-full bg-s1 px-2.5 py-1 text-[11px] font-medium tracking-wide text-ink">
                     {video.category}
                   </span>
                 )}
               </div>
 
-              <div className="mt-5 space-y-3 rounded-3xl border border-border bg-bg p-4">
+              <div className="mt-5 space-y-4 rounded-2xl bg-s1/50 p-4 border border-s2">
                 <div>
-                  <label className="font-medium text-sm text-ink">Título</label>
+                  <label className="font-medium text-xs uppercase tracking-wider text-muted mb-1.5 block">Título SEO</label>
                   <input
                     type="text"
                     value={draft.title}
@@ -200,11 +215,11 @@ export default function VideoConfigDashboard() {
                         [video.id]: { ...prev[video.id], title: event.target.value },
                       }))
                     }
-                    className="mt-2 w-full rounded-2xl border border-border bg-s2 px-4 py-3 text-sm text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+                    className="w-full rounded-xl border border-border bg-bg px-3 py-2.5 text-sm text-ink outline-none transition focus:border-accent focus:ring-1 focus:ring-accent"
                   />
                 </div>
                 <div>
-                  <label className="font-medium text-sm text-ink">Descripción</label>
+                  <label className="font-medium text-xs uppercase tracking-wider text-muted mb-1.5 block">Descripción SEO</label>
                   <textarea
                     value={draft.description}
                     onChange={(event) =>
@@ -214,7 +229,7 @@ export default function VideoConfigDashboard() {
                       }))
                     }
                     rows={3}
-                    className="mt-2 w-full rounded-3xl border border-border bg-s2 px-4 py-3 text-sm text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+                    className="w-full rounded-xl border border-border bg-bg px-3 py-2.5 text-sm text-ink outline-none transition focus:border-accent focus:ring-1 focus:ring-accent resize-none"
                   />
                 </div>
                 <button
@@ -226,9 +241,9 @@ export default function VideoConfigDashboard() {
                     })
                   }
                   disabled={!hasMetadataChanges || saving}
-                  className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-bg transition disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-full inline-flex items-center justify-center rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-bg transition hover:bg-ink/80 disabled:cursor-not-allowed disabled:opacity-30 disabled:bg-muted"
                 >
-                  Guardar metadatos
+                  {hasMetadataChanges ? 'Guardar Cambios' : 'Actualizado'}
                 </button>
               </div>
 

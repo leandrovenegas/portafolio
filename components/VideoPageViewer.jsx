@@ -9,7 +9,7 @@ const VideoPageViewer = ({ video }) => {
 
   const embedUrl = video.embedUrl ||
     (video.bunnyLibraryId && video.bunnyVideoId
-      ? `https://iframe.bunny.net/${video.bunnyLibraryId}/${video.bunnyVideoId}`
+      ? `https://iframe.mediadelivery.net/embed/${video.bunnyLibraryId}/${video.bunnyVideoId}`
       : '');
 
   return (
@@ -64,41 +64,15 @@ const VideoPageViewer = ({ video }) => {
           ))}
         </div>
       )}
-
       {/* Description */}
-      <div className="prose prose-invert max-w-none mb-8">
-        <p className="font-body text-mid text-lg leading-relaxed text-ink">
-          {video.description}
-        </p>
-      </div>
+      {video.description && (
+        <div className="prose prose-invert max-w-none mb-8">
+          <p className="font-body text-mid text-lg leading-relaxed text-ink">
+            {video.description}
+          </p>
+        </div>
+      )}
 
-      {/* Video Schema.org Metadata (Hidden but for indexing) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org/',
-            '@type': 'VideoObject',
-            name: video.title,
-            description: video.description,
-            thumbnailUrl: video.thumbnailUrl,
-            uploadDate: video.uploadDate,
-            duration: video.duration,
-            contentUrl: video.contentUrl,
-            embedUrl: video.embedUrl,
-            interactionCount: `${video.views || 0}`,
-            isPartOf: {
-              '@type': 'WebPage',
-              url: typeof window !== 'undefined' ? window.location.href : '',
-              isPartOfWebSite: {
-                '@type': 'WebSite',
-                name: 'Leandro Venegas',
-                url: 'https://leandrovenegas.cl',
-              },
-            },
-          }),
-        }}
-      />
     </div>
   );
 };

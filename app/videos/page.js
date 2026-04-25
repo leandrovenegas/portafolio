@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import Link from 'next/link';
 import { fetchBunnyVideos } from '@/lib/bunny';
 import { readVideoConfig } from '@/lib/videoConfig';
+import { readPageConfig } from '@/lib/pageConfig';
 
 export const metadata = {
   title: 'Videos | Leandro Venegas',
@@ -15,7 +16,11 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function VideosPage() {
-  const [videos, config] = await Promise.all([fetchBunnyVideos(), readVideoConfig()]);
+  const [videos, config, pageConfig] = await Promise.all([fetchBunnyVideos(), readVideoConfig(), readPageConfig()]);
+  const pageText = pageConfig?.pages?.videos || {
+    title: 'Videos',
+    description: 'Colección de videos seleccionados para tu página. Solo se muestran los videos activados en el panel de configuración.'
+  };
   const configMap = new Map((config.videos || []).map((item) => [item.videoId, item]));
   const visibleVideos = videos.filter((video) => configMap.get(video.id)?.enabled);
 
@@ -29,30 +34,19 @@ export default async function VideosPage() {
               Visualizador de Contenido
             </p>
             <h1 className="font-display text-display-md md:text-display-lg text-ink leading-[0.9] max-w-4xl">
-              Videos
+              {pageText.title}
             </h1>
             <p className="font-body text-mid text-xl md:text-2xl max-w-2xl leading-relaxed">
-              Colección de videos seleccionados para tu página. Solo se muestran los videos activados en el panel de configuración.
+              {pageText.description}
             </p>
           </header>
 
           <section className="w-full">
-            {visibleVideos.length === 0 ? (
-              <div className="rounded-3xl border border-border bg-bg p-12 text-center">
-                <h2 className="font-display text-2xl text-ink mb-4">No hay videos visibles</h2>
-                <p className="font-body text-mid text-base text-muted mb-6">
-                  Activa los videos que quieras mostrar desde la página de configuración.
-                </p>
-                <Link href="/configuracion" className="inline-flex rounded-full bg-accent px-6 py-3 text-sm font-medium text-bg hover:bg-accent/90 transition">
-                  Ir a configuración de videos
-                </Link>
-              </div>
-            ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {visibleVideos.map((video) => (
                   <Link
                     key={video.id}
-                    href={`/video/${video.slug}`}
+                    href={`/videos/${video.slug}`}
                     className="group flex flex-col gap-4 hover:opacity-80 transition-opacity duration-200"
                   >
                     <div className="relative w-full pb-[56.25%] bg-s1 rounded-lg overflow-hidden border border-border group-hover:border-accent transition-colors">
@@ -89,7 +83,6 @@ export default async function VideosPage() {
                   </Link>
                 ))}
               </div>
-            )}
           </section>
         </div>
       </main>

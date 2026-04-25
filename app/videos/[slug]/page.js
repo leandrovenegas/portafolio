@@ -8,11 +8,12 @@ import { readVideoConfig } from '@/lib/videoConfig';
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
+  const { slug } = await params;
   const videos = await fetchBunnyVideos();
   const config = await readVideoConfig();
   const configMap = new Map((config.videos || []).map((item) => [item.videoId, item]));
   const enabledVideos = videos.filter((video) => configMap.get(video.id)?.enabled);
-  const video = enabledVideos.find((v) => v.slug === params.slug);
+  const video = enabledVideos.find((v) => v.slug === slug);
 
   if (!video) {
     return { title: 'Video no encontrado' };
@@ -22,13 +23,13 @@ export async function generateMetadata({ params }) {
     title: `${video.title} | Leandro Venegas`,
     description: video.description,
     alternates: {
-      canonical: `https://www.leandrovenegas.cl/video/${video.slug}`,
+      canonical: `https://www.leandrovenegas.cl/videos/${video.slug}`,
     },
     openGraph: {
       title: video.title,
       description: video.description,
       type: 'video.other',
-      url: `https://www.leandrovenegas.cl/video/${video.slug}`,
+      url: `https://www.leandrovenegas.cl/videos/${video.slug}`,
       images: [
         {
           url: video.thumbnailUrl,
@@ -58,11 +59,12 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function VideoPage({ params }) {
+  const { slug } = await params;
   const videos = await fetchBunnyVideos();
   const config = await readVideoConfig();
   const configMap = new Map((config.videos || []).map((item) => [item.videoId, item]));
   const enabledVideos = videos.filter((video) => configMap.get(video.id)?.enabled);
-  const video = enabledVideos.find((v) => v.slug === params.slug);
+  const video = enabledVideos.find((v) => v.slug === slug);
 
   if (!video) {
     notFound();
@@ -72,14 +74,45 @@ export default async function VideoPage({ params }) {
     .filter((v) => v.organizationSlug === video.organizationSlug && v.slug !== video.slug)
     .slice(0, 3);
 
+  const pageUrl = `https://www.leandrovenegas.cl/videos/${slug}`;
+  const videoSchema = {
+    '@context': 'https://schema.org/',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: video.thumbnailUrl,
+    uploadDate: video.uploadDate,
+    duration: video.duration,
+    contentUrl: video.contentUrl,
+    embedUrl: video.embedUrl,
+    interactionStatistic: {
+      '@type': 'InteractionCounter',
+      interactionType: 'https://schema.org/WatchAction',
+      userInteractionCount: video.views,
+    },
+    isPartOf: {
+      '@type': 'WebPage',
+      url: pageUrl,
+      isPartOfWebSite: {
+        '@type': 'WebSite',
+        name: 'Leandro Venegas',
+        url: 'https://www.leandrovenegas.cl',
+      },
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+      />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
           <div className="pt-12">
             <Link
-              href="/video"
+              href="/videos"
               className="inline-flex items-center gap-2 text-accent hover:text-ink transition-colors text-sm font-mono"
             >
               <span>←</span> Volver a videos
@@ -99,7 +132,7 @@ export default async function VideoPage({ params }) {
                 {relatedVideos.map((relatedVideo) => (
                   <Link
                     key={relatedVideo.id}
-                    href={`/video/${relatedVideo.slug}`}
+                    href={`/videos/${relatedVideo.slug}`}
                     className="group flex flex-col gap-4 hover:opacity-80 transition-opacity"
                   >
                     <div className="relative w-full pb-[56.25%] bg-s1 rounded-lg overflow-hidden border border-border group-hover:border-accent transition-colors">
