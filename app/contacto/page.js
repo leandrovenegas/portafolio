@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export const metadata = {
   title: "Contacto | Leandro Venegas",
@@ -55,6 +56,10 @@ export default function Contacto() {
               </a>
               
             </div>
+          </section>
+
+          <section>
+            <NewsletterSignup />
           </section>
           
         </div>
