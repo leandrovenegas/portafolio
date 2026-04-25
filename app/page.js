@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
@@ -83,7 +84,6 @@ export default function Home() {
       />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
-        
         {/* BLOQUE 1 — HERO */}
         <section className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl min-h-[70vh] flex flex-col justify-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
@@ -98,6 +98,9 @@ export default function Home() {
             Es el momento de usarlo.
           </p>
         </section>
+      </main>
+      <Footer />
+    </>
 
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
           
