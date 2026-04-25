@@ -5,22 +5,22 @@ import { readVideoConfig } from '@/lib/videoConfig';
 export default async function sitemap() {
     const baseUrl = "https://www.leandrovenegas.cl";
 
-    // 1. Páginas de Servicios y Marca (Estaticas / Fuera de DB)
+    // 1. Páginas de Servicios y Marca (Estáticas)
     const landingPages = [
         "/director-creativo-chile",
         "/casos-de-exito",
         "/servicios/director-creativo-externo",
         "/servicios/produccion-audiovisual-empresas",
-        "/servicios/motion-desing", // Mantengo el slug tal como lo tienes
+        "/servicios/motion-desing",
         "/servicios/seo-video",
     ].map(route => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date().toISOString(),
         changeFrequency: 'weekly',
-        priority: 0.9, // Prioridad alta por ser servicios comerciales
+        priority: 0.9,
     }));
 
-    // 2. Fetch de Proyectos (Solo los listos en DB)
+    // 2. Proyectos (Solo indexados en DB)
     const { data: projects } = await supabase
         .from("projects")
         .select("slug")
@@ -34,7 +34,7 @@ export default async function sitemap() {
         priority: 0.7,
     }));
 
-    // 3. Fetch de Organizaciones (Portafolio listo en DB)
+    // 3. Portafolio (Organizaciones indexadas en DB)
     const { data: organizations } = await supabase
         .from("organizations")
         .select("slug")
@@ -60,24 +60,34 @@ export default async function sitemap() {
         priority: 1.0,
     }));
 
+    // 5. Páginas individuales de video (habilitadas en admin)
+    //    Incluye todos los videos de la librería de Bunny que estén activados,
+    //    incluyendo los que aparecen en el portafolio.
     let videoUrls = [];
     try {
         const videos = await fetchBunnyVideos();
         const config = await readVideoConfig();
-        const enabledIds = new Set((config.videos || []).filter((item) => item.enabled).map((item) => item.videoId));
+        const enabledIds = new Set(
+            (config.videos || [])
+                .filter((item) => item.enabled)
+                .map((item) => item.videoId)
+        );
 
         videoUrls = videos
             .filter((video) => enabledIds.has(video.id))
             .map(video => ({
                 url: `${baseUrl}/videos/${video.slug}`,
-                lastModified: new Date(video.uploadDate).toISOString(),
+                lastModified: video.uploadDate
+                    ? new Date(video.uploadDate).toISOString()
+                    : new Date().toISOString(),
                 changeFrequency: 'monthly',
                 priority: 0.9,
+                // Google Video Sitemap fields (Next.js passes these as-is)
+                images: video.thumbnailUrl ? [{ url: video.thumbnailUrl }] : [],
             }));
     } catch (error) {
         console.warn('Sitemap video fetch failed:', error.message);
     }
 
-    // Unificamos todo el mapa del sitio
     return [...coreUrls, ...landingPages, ...projectUrls, ...organizationUrls, ...videoUrls];
 }

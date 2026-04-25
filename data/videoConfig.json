@@ -144,6 +144,11 @@
       "videoId": "3a3d7d6b-b2d2-4697-8510-d0928c3ca9a2",
       "enabled": true,
       "indexable": true
+    },
+    {
+      "videoId": "c836ad29-1c6d-47f3-81f9-1568d6093df9",
+      "enabled": true,
+      "indexable": true
     }
   ]
 }
