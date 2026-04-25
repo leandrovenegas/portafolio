@@ -1,5 +1,6 @@
-import supabase from "@/lib/supabase";
-import videos from "@/data/videos";
+import supabase from '@/lib/supabase';
+import { fetchBunnyVideos } from '@/lib/bunny';
+import { readVideoConfig } from '@/lib/videoConfig';
 
 export default async function sitemap() {
     const baseUrl = "https://www.leandrovenegas.cl";
@@ -51,7 +52,7 @@ export default async function sitemap() {
         "",
         "/proyectos",
         "/portafolio",
-        "/video",
+        "/videos",
     ].map(route => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date().toISOString(),
@@ -59,13 +60,23 @@ export default async function sitemap() {
         priority: 1.0,
     }));
 
-    // 5. Videos (Páginas de Visualización - Alta prioridad para indexación)
-    const videoUrls = videos.map(video => ({
-        url: `${baseUrl}/video/${video.slug}`,
-        lastModified: new Date(video.uploadDate).toISOString(),
-        changeFrequency: 'monthly',
-        priority: 0.9, // Alta prioridad para videos
-    }));
+    let videoUrls = [];
+    try {
+        const videos = await fetchBunnyVideos();
+        const config = await readVideoConfig();
+        const enabledIds = new Set((config.videos || []).filter((item) => item.enabled).map((item) => item.videoId));
+
+        videoUrls = videos
+            .filter((video) => enabledIds.has(video.id))
+            .map(video => ({
+                url: `${baseUrl}/videos/${video.slug}`,
+                lastModified: new Date(video.uploadDate).toISOString(),
+                changeFrequency: 'monthly',
+                priority: 0.9,
+            }));
+    } catch (error) {
+        console.warn('Sitemap video fetch failed:', error.message);
+    }
 
     // Unificamos todo el mapa del sitio
     return [...coreUrls, ...landingPages, ...projectUrls, ...organizationUrls, ...videoUrls];

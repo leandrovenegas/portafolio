@@ -1,3 +1,9 @@
 {
-  "videos": []
+  "videos": [
+    {
+      "videoId": 2,
+      "enabled": true,
+      "indexable": true
+    }
+  ]
 }

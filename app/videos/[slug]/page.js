@@ -1,23 +1,21 @@
 import Nav from '@/components/Nav';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import VideoPageViewer from '@/components/VideoPageViewer';
-import videos from '@/data/videos';
+import { fetchBunnyVideos } from '@/lib/bunny';
+import { readVideoConfig } from '@/lib/videoConfig';
 
-// Generate static paths para todos los videos
-export async function generateStaticParams() {
-  return videos.map((video) => ({
-    slug: video.slug,
-  }));
-}
+export const dynamic = 'force-dynamic';
 
-// Generar metadata dinámica para cada video
 export async function generateMetadata({ params }) {
-  const video = videos.find((v) => v.slug === params.slug);
+  const videos = await fetchBunnyVideos();
+  const config = await readVideoConfig();
+  const configMap = new Map((config.videos || []).map((item) => [item.videoId, item]));
+  const enabledVideos = videos.filter((video) => configMap.get(video.id)?.enabled);
+  const video = enabledVideos.find((v) => v.slug === params.slug);
 
   if (!video) {
-    return {
-      title: 'Video no encontrado',
-    };
+    return { title: 'Video no encontrado' };
   }
 
   return {
@@ -59,35 +57,19 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function VideoPage({ params }) {
-  const video = videos.find((v) => v.slug === params.slug);
+export default async function VideoPage({ params }) {
+  const videos = await fetchBunnyVideos();
+  const config = await readVideoConfig();
+  const configMap = new Map((config.videos || []).map((item) => [item.videoId, item]));
+  const enabledVideos = videos.filter((video) => configMap.get(video.id)?.enabled);
+  const video = enabledVideos.find((v) => v.slug === params.slug);
 
   if (!video) {
-    return (
-      <>
-        <Nav />
-        <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
-          <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl">
-            <div className="py-24 text-center">
-              <h1 className="font-display text-display-sm text-ink mb-4">
-                Video no encontrado
-              </h1>
-              <Link href="/video" className="text-accent hover:underline">
-                Volver a videos
-              </Link>
-            </div>
-          </div>
-        </main>
-      </>
-    );
+    notFound();
   }
 
-  // Encontrar videos relacionados (misma organización)
-  const relatedVideos = videos
-    .filter(
-      (v) =>
-        v.organizationSlug === video.organizationSlug && v.slug !== video.slug
-    )
+  const relatedVideos = enabledVideos
+    .filter((v) => v.organizationSlug === video.organizationSlug && v.slug !== video.slug)
     .slice(0, 3);
 
   return (
@@ -95,7 +77,6 @@ export default function VideoPage({ params }) {
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
-          {/* Back Button */}
           <div className="pt-12">
             <Link
               href="/video"
@@ -105,12 +86,10 @@ export default function VideoPage({ params }) {
             </Link>
           </div>
 
-          {/* Video Viewer */}
           <section className="w-full">
             <VideoPageViewer video={video} />
           </section>
 
-          {/* Related Videos */}
           {relatedVideos.length > 0 && (
             <section className="w-full border-t border-border pt-16">
               <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
@@ -141,43 +120,6 @@ export default function VideoPage({ params }) {
           )}
         </div>
       </main>
-
-      {/* Rich Video Schema.org Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org/',
-            '@type': 'VideoObject',
-            name: video.title,
-            description: video.description,
-            thumbnailUrl: [video.thumbnailUrl],
-            uploadDate: video.uploadDate,
-            duration: video.duration,
-            contentUrl: video.contentUrl,
-            embedUrl: video.embedUrl,
-            interactionStatistic: {
-              '@type': 'InteractionCounter',
-              interactionType: 'https://schema.org/WatchAction',
-              userInteractionCount: video.views || 0,
-            },
-            author: {
-              '@type': 'Person',
-              name: 'Leandro Venegas',
-              url: 'https://leandrovenegas.cl',
-            },
-            creator: {
-              '@type': 'Organization',
-              name: video.organization,
-            },
-            aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: '5',
-              ratingCount: Math.floor(video.views / 10) || 1,
-            },
-          }),
-        }}
-      />
     </>
   );
 }

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check-bunny": "node scripts/check-bunny.js"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
