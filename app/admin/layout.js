@@ -1,7 +1,17 @@
+'use client';
+
 import Nav from '@/components/Nav';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function AdminLayout({ children }) {
+  const pathname = usePathname();
+  const isLoginPage = pathname === '/admin/login';
+
+  if (isLoginPage) {
+    return <>{children}</>;
+  }
+
   return (
     <>
       <Nav />
@@ -22,12 +32,24 @@ export default function AdminLayout({ children }) {
             >
               Página Videos
             </Link>
-            <span className="px-4 py-2 rounded-lg text-muted font-body text-sm cursor-not-allowed">
-              Portafolio (Pronto)
-            </span>
+            <Link
+              href="/admin/portafolio"
+              className="px-4 py-2 rounded-lg hover:bg-s1 text-ink font-body text-sm transition-colors"
+            >
+              Portafolio
+            </Link>
             <span className="px-4 py-2 rounded-lg text-muted font-body text-sm cursor-not-allowed">
               Proyectos (Pronto)
             </span>
+            <button
+              onClick={async () => {
+                await fetch('/api/auth/login', { method: 'DELETE' });
+                window.location.href = '/';
+              }}
+              className="mt-4 px-4 py-2 rounded-lg hover:bg-red-50 text-red-600 font-mono text-xs uppercase tracking-widest transition-colors text-left border border-transparent hover:border-red-100"
+            >
+              Cerrar Sesión
+            </button>
           </nav>
         </aside>
 
