@@ -1,6 +1,43 @@
 import "./globals.css";
 import Script from "next/script";
 import CookieBanner from "../components/CookieBanner";
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
+
+// Display — Bebas Neue (condensed, impactful headlines)
+const bebasNeue = Bebas_Neue({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bebas',
+  display: 'swap',
+  preload: true, // Critical for LCP text
+});
+
+// Body — DM Sans Variable (single file covers weight 100–900 + optical sizing)
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  axes: ['opsz'], // Optical Sizing: text sharpens at small/large sizes automatically
+  variable: '--font-dmsans',
+  display: 'swap',
+  preload: true,
+});
+
+// Accent Body — Plus Jakarta Sans Variable (more humanist, better for long-form content)
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+  preload: false, // Load after critical path
+});
+
+// Mono — DM Mono (labels, code, technical text)
+const dmMono = DM_Mono({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  variable: '--font-dmmono',
+  display: 'swap',
+  preload: false,
+});
 
 export const metadata = {
   metadataBase: new URL("https://www.leandrovenegas.cl"),
@@ -36,32 +73,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className="bg-black">
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://iframe.mediadelivery.net" />
+        <link rel="preconnect" href="https://vz-a158839f-ce6.b-cdn.net" />
+      </head>
+      <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
         {process.env.NODE_ENV === "production" && (
           <>
-            <Script id="google-consent" strategy="beforeInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                
-                gtag('consent', 'default', {
-                  'ad_storage': 'denied',
-                  'ad_user_data': 'denied',
-                  'ad_personalization': 'denied',
-                  'analytics_storage': 'denied'
-                });
-              `}
-            </Script>
+            <GoogleAnalytics gaId="G-W51B8J0QD2" />
             <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-W51B8J0QD2"
-              strategy="afterInteractive"
+              id="google-ads"
+              strategy="lazyOnload"
+              src="https://www.googletagmanager.com/gtag/js?id=AW-18060110034"
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+            <Script id="google-ads-config" strategy="lazyOnload">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-W51B8J0QD2');
                 gtag('config', 'AW-18060110034');
               `}
             </Script>

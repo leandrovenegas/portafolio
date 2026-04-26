@@ -14,6 +14,9 @@ dependencies:
   '@next/mdx':
     specifier: ^16.2.3
     version: 16.2.3(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1)
+  '@next/third-parties':
+    specifier: ^16.2.4
+    version: 16.2.4(next@16.1.6)(react@19.2.3)
   '@supabase/supabase-js':
     specifier: ^2.97.0
     version: 2.97.0
@@ -486,6 +489,17 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@next/third-parties@16.2.4(next@16.1.6)(react@19.2.3):
+    resolution: {integrity: sha512-FhDDX02cAr0WIo3la+QHP3XaAAV6twCfFk/y8pHikFT8MHwNpB3XgEdaT0omLrIWBORhM5wkbbUJFq+pBqZzmw==}
+    peerDependencies:
+      next: ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0-beta.0
+      react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+    dependencies:
+      next: 16.1.6(react-dom@19.2.3)(react@19.2.3)
+      react: 19.2.3
+      third-party-capital: 1.0.20
+    dev: false
 
   /@supabase/auth-js@2.97.0:
     resolution: {integrity: sha512-2Og/1lqp+AIavr8qS2X04aSl8RBY06y4LrtIAGxat06XoXYiDxKNQMQzWDAKm1EyZFZVRNH48DO5YvIZ7la5fQ==}
@@ -1901,6 +1915,10 @@ packages:
   /tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
+    dev: false
+
+  /third-party-capital@1.0.20:
+    resolution: {integrity: sha512-oB7yIimd8SuGptespDAZnNkzIz+NWaJCu2RMsbs4Wmp9zSDUM8Nhi3s2OOcqYuv3mN4hitXc8DVx+LyUmbUDiA==}
     dev: false
 
   /trim-lines@3.0.1:

@@ -1,59 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
-
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-bg: #090909;
-  --color-s1: #101010;
-  --color-s2: #161616;
-  --color-s3: #1e1e1e;
-  --color-border: #1f1f1f;
+  /* ─── Colors ──────────────────────────────────────────────────── */
+  --color-bg:      #090909;
+  --color-s1:      #101010;
+  --color-s2:      #161616;
+  --color-s3:      #1e1e1e;
+  --color-border:  #1f1f1f;
   --color-border2: #2c2c2c;
-  --color-ink: #eeebe3;
-  --color-mid: #7a7a72;
-  --color-muted: #4a4a45;
-  --color-accent: #c8f135;
+  --color-ink:     #eeebe3;
+  --color-mid:     #7a7a72;
+  --color-muted:   #4a4a45;
+  --color-accent:  #c8f135;
   --color-accent2: #99c010;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
 
-  /* Custom Typography Sizes with Line Heights & Spacings */
-  --text-display-xl: clamp(64px, 10vw, 140px);
-  --text-display-xl--line-height: 0.88;
-  --text-display-xl--letter-spacing: 0.5px;
+  /* ─── Font Families ───────────────────────────────────────────── */
+  /* Bebas Neue: headlines, numbers, impact text */
+  --font-display: var(--font-bebas), 'Arial Narrow', sans-serif;
 
-  --text-display-lg: clamp(48px, 7vw, 96px);
-  --text-display-lg--line-height: 0.9;
-  --text-display-lg--letter-spacing: 0.5px;
+  /* DM Sans Variable: primary body (optical sizing via 'opsz' axis) */
+  --font-body: var(--font-dmsans), system-ui, sans-serif;
 
-  --text-display-md: clamp(32px, 4vw, 56px);
-  --text-display-md--line-height: 0.92;
-  --text-display-md--letter-spacing: 0.5px;
+  /* Plus Jakarta Sans Variable: long-form prose, descriptions, alt body */
+  --font-prose: var(--font-jakarta), var(--font-dmsans), system-ui, sans-serif;
 
-  --text-display-sm: clamp(22px, 3vw, 32px);
-  --text-display-sm--line-height: 1.0;
-  --text-display-sm--letter-spacing: 0.5px;
+  /* DM Mono: labels, codes, tags, badges */
+  --font-mono: var(--font-dmmono), 'Courier New', monospace;
 
-  --text-label: 10px;
-  --text-label--line-height: 1.4;
-  --text-label--letter-spacing: 3px;
+  /* ─── Type Scale — Display ────────────────────────────────────── */
+  /* fluid: min @ 320px → max @ 1440px viewport */
+  --text-display-xl:                clamp(64px, 10vw, 140px);
+  --text-display-xl--line-height:   0.88;
+  --text-display-xl--letter-spacing: -0.5px;
 
-  --text-body-sm: 12px;
-  --text-body-sm--line-height: 1.6;
+  --text-display-lg:                clamp(48px, 7vw, 96px);
+  --text-display-lg--line-height:   0.90;
+  --text-display-lg--letter-spacing: -0.25px;
 
-  --text-body: 14px;
-  --text-body--line-height: 1.7;
+  --text-display-md:                clamp(32px, 4vw, 56px);
+  --text-display-md--line-height:   0.92;
+  --text-display-md--letter-spacing: 0px;
 
-  --text-body-lg: 16px;
-  --text-body-lg--line-height: 1.75;
+  --text-display-sm:                clamp(22px, 3vw, 32px);
+  --text-display-sm--line-height:   1.00;
+  --text-display-sm--letter-spacing: 0.25px;
+
+  /* ─── Type Scale — Body ───────────────────────────────────────── */
+  --text-body-xs:                   11px;
+  --text-body-xs--line-height:      1.5;
+  --text-body-xs--letter-spacing:   0.01em;
+
+  --text-body-sm:                   12px;
+  --text-body-sm--line-height:      1.6;
+
+  --text-body:                      14px;
+  --text-body--line-height:         1.75;
+
+  --text-body-lg:                   16px;
+  --text-body-lg--line-height:      1.8;
+
+  --text-body-xl:                   18px;
+  --text-body-xl--line-height:      1.85;
+
+  /* ─── Type Scale — UI / Labels ────────────────────────────────── */
+  --text-label:                     10px;
+  --text-label--line-height:        1.4;
+  --text-label--letter-spacing:     0.18em;  /* wide tracking for UPPERCASE labels */
+
+  --text-label-lg:                  11px;
+  --text-label-lg--line-height:     1.4;
+  --text-label-lg--letter-spacing:  0.15em;
 }
 
+/* ─── Base Styles ─────────────────────────────────────────────────── */
 @layer base {
   body {
     background-color: var(--color-bg);
-    color: var(--color-ink);
-    font-family: var(--font-body);
+    color:            var(--color-ink);
+    font-family:      var(--font-body);
+    font-size:        var(--text-body);
+    line-height:      var(--text-body--line-height);
+    /* Optical sizing ON by default — DM Sans variable auto-adjusts */
+    font-optical-sizing: auto;
+    /* Better text rendering */
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering:          optimizeLegibility;
+  }
+
+  /* Headings inherit display font, body keeps body font */
+  h1, h2, h3, h4, h5, h6 {
+    font-optical-sizing: auto;
+  }
+
+  /* Monospace: tighten line-height for labels/badges */
+  code, kbd, pre, samp, .font-mono {
+    font-variant-ligatures: none;
   }
 }

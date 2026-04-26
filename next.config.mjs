@@ -7,8 +7,8 @@ const cspHeader = `
     connect-src 'self' https://*.googlesyndication.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.bunny.net;
     img-src 'self' data: blob: https://*.googlesyndication.com https://*.google.com res.cloudinary.com https://*.bunny.net https://*.b-cdn.net;
     media-src 'self' https://*.bunny.net https://cdn.bunny.net https://player.mediadelivery.net https://*.mediadelivery.net;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
+    style-src 'self' 'unsafe-inline';
+    font-src 'self' data:;
     object-src 'none';
     base-uri 'self';
     form-action 'self';
@@ -18,6 +18,9 @@ const cspHeader = `
 `.replace(/\s{2,}/g, ' ').trim();
 
 const nextConfig = {
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   images: {
     remotePatterns: [
       {
