@@ -1,7 +1,5 @@
 import "./globals.css";
-import Script from "next/script";
 import CookieBanner from "../components/CookieBanner";
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 
 // Display — Bebas Neue (condensed, impactful headlines)
@@ -79,25 +77,8 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://vz-a158839f-ce6.b-cdn.net" />
       </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <GoogleAnalytics gaId="G-W51B8J0QD2" />
-            <Script
-              id="google-ads"
-              strategy="lazyOnload"
-              src="https://www.googletagmanager.com/gtag/js?id=AW-18060110034"
-            />
-            <Script id="google-ads-config" strategy="lazyOnload">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('config', 'AW-18060110034');
-              `}
-            </Script>
-          </>
-        )}
         {children}
-        <CookieBanner />
+        {process.env.NODE_ENV === "production" && <CookieBanner />}
       </body>
     </html>
   );
