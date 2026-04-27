@@ -71,11 +71,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <head>
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="preconnect" href="https://iframe.mediadelivery.net" />
-        <link rel="preconnect" href="https://vz-a158839f-ce6.b-cdn.net" />
-      </head>
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
         {children}
         {process.env.NODE_ENV === "production" && <CookieBanner />}

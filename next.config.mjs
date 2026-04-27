@@ -21,6 +21,18 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  experimental: {
+    // Tell SWC to only target modern browsers — eliminates legacy polyfills
+    // for Array.at, Object.fromEntries, flatMap, trimStart/trimEnd, etc.
+    // These are all natively supported since Chrome 90 / Firefox 88 / Safari 14 (2020+)
+    browsersListQueries: [
+      'chrome >= 90',
+      'firefox >= 88',
+      'safari >= 14',
+      'edge >= 90',
+      'not dead',
+    ],
+  },
   images: {
     remotePatterns: [
       {
@@ -43,6 +55,17 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value: cspHeader,
+          },
+        ],
+      },
+      // Aggressive caching for hashed static assets (CSS, JS chunks)
+      // Next.js includes a content hash in the filename, so it's safe to cache forever
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

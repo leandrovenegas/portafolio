@@ -3,13 +3,19 @@ import Link from 'next/link';
 import { fetchBunnyVideos } from '@/lib/bunny';
 import { readVideoConfig } from '@/lib/videoConfig';
 import { readPageConfig } from '@/lib/pageConfig';
+import MediaPreconnect from '@/components/MediaPreconnect';
 
 export const metadata = {
   title: 'Videos | Leandro Venegas',
   description:
     'Galería de videos seleccionados para mostrar en la página de video de Leandro Venegas.',
   alternates: {
-    canonical: 'https://www.leandrovenegas.cl/video',
+    canonical: 'https://www.leandrovenegas.cl/videos',
+  },
+  other: {
+    // Preconnect hints only where Bunny CDN thumbnails are actually loaded
+    'link:preconnect-bunny-cdn': 'https://vz-a158839f-ce6.b-cdn.net',
+    'link:preconnect-bunny-iframe': 'https://iframe.mediadelivery.net',
   },
 };
 
@@ -26,6 +32,7 @@ export default async function VideosPage() {
 
   return (
     <>
+      <MediaPreconnect bunny />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">

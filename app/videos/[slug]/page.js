@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import VideoPageViewer from '@/components/VideoPageViewer';
 import { fetchBunnyVideos } from '@/lib/bunny';
 import { readVideoConfig } from '@/lib/videoConfig';
+import MediaPreconnect from '@/components/MediaPreconnect';
 
 export const dynamic = 'force-dynamic';
 
@@ -103,6 +104,7 @@ export default async function VideoPage({ params }) {
 
   return (
     <>
+      <MediaPreconnect bunny />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}

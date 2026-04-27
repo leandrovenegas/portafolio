@@ -7,6 +7,7 @@ import Nav from "@/components/Nav";
 import { notFound } from "next/navigation";
 import { compileMDX } from 'next-mdx-remote/rsc';
 import BunnyVideoPlayer from '@/components/BunnyVideoPlayer';
+import MediaPreconnect from '@/components/MediaPreconnect';
 
 // 1. Centralizamos la obtención de datos y la cacheamos para evitar doble consulta
 const getOrganization = cache(async (slug) => {
@@ -91,6 +92,7 @@ export default async function OrganizacionPage({ params }) {
 
   return (
     <>
+      <MediaPreconnect cloudinary bunny />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">

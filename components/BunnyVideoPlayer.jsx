@@ -68,14 +68,23 @@ export default function BunnyVideoPlayer({
   const embedUrl     = `${EMBED_BASE}/${libraryId}/${videoId}`;
   const iframeSrc    = `${embedUrl}?autoplay=false&muted=false&preload=false&title=false&logo=false`;
 
+  // uploadDate: must be full ISO-8601 with timezone (Google requirement)
+  const safeUploadDate = uploadDate
+    ? new Date(uploadDate).toISOString()
+    : new Date('2024-01-01T00:00:00Z').toISOString();
+
+  // description: must not be empty (Google flags it as a non-critical error)
+  const safeDescription = description ||
+    `${title} — video producido por Leandro Venegas, director creativo audiovisual en Chile.`;
+
   const videoObject = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: title,
-    description: description || title,
+    description: safeDescription,
     thumbnailUrl,
-    uploadDate: uploadDate || '2024-01-01',
-    duration: duration || 'PT0M0S',
+    uploadDate: safeUploadDate,
+    duration: duration || 'PT0S',
     contentUrl,
     embedUrl,
   };
