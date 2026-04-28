@@ -83,7 +83,7 @@ export default async function sitemap() {
                 changeFrequency: 'monthly',
                 priority: 0.9,
                 // Google Video Sitemap fields (Next.js passes these as-is)
-                images: video.thumbnailUrl ? [{ url: video.thumbnailUrl }] : [],
+                images: video.thumbnailUrl ? [video.thumbnailUrl] : [],
             }));
     } catch (error) {
         console.warn('Sitemap video fetch failed:', error.message);
