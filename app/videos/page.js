@@ -58,7 +58,7 @@ export default async function VideosPage() {
                   >
                     <div className="relative w-full pb-[56.25%] bg-s1 rounded-lg overflow-hidden border border-border group-hover:border-accent transition-colors">
                       <img
-                        src={video.thumbnailUrl}
+                        src={video.thumbnailCdnUrl || video.thumbnailUrl}
                         alt={video.thumbnailAlt}
                         className="absolute top-0 left-0 w-full h-full object-cover"
                         loading="lazy"

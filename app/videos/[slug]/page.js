@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
       url: `https://www.leandrovenegas.cl/videos/${video.slug}`,
       images: [
         {
-          url: video.thumbnailUrl,
+          url: video.thumbnailUrl, // proxy URL — accessible by Google
           width: 1280,
           height: 720,
           alt: video.thumbnailAlt,
@@ -139,7 +139,7 @@ export default async function VideoPage({ params }) {
                   >
                     <div className="relative w-full pb-[56.25%] bg-s1 rounded-lg overflow-hidden border border-border group-hover:border-accent transition-colors">
                       <img
-                        src={relatedVideo.thumbnailUrl}
+                        src={relatedVideo.thumbnailCdnUrl || relatedVideo.thumbnailUrl}
                         alt={relatedVideo.thumbnailAlt}
                         className="absolute top-0 left-0 w-full h-full object-cover"
                         loading="lazy"
