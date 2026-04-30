@@ -4,6 +4,8 @@ import Nav from "@/components/Nav";
 import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
+import BunnyVideoPlayer from "@/components/BunnyVideoPlayer";
+import MediaPreconnect from "@/components/MediaPreconnect";
 
 export const metadata = {
   title: "Portafolio — Dirección Creativa y Producción Audiovisual | Leandro Venegas",
@@ -50,6 +52,7 @@ export default async function Portafolio() {
 
   return (
     <>
+      <MediaPreconnect bunny />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-16 md:gap-24">
@@ -61,6 +64,14 @@ export default async function Portafolio() {
             <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] max-w-4xl">
               Portafolio de Dirección Creativa y Producción Audiovisual
             </h1>
+
+            <div className="w-full max-w-4xl mt-8">
+              <BunnyVideoPlayer 
+                videoId="b9d35e57-14fa-45b8-8ad8-55f2e42cceec"
+                title="Showreel Portafolio Audiovisual"
+                description="Resumen de trabajos de dirección creativa y producción audiovisual por Leandro Venegas."
+              />
+            </div>
 
             {descripcionLocal && (
               <div
