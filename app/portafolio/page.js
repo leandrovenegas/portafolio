@@ -67,7 +67,7 @@ export default async function Portafolio() {
 
             <div className="w-full max-w-4xl mt-8">
               <BunnyVideoPlayer 
-                videoId="b9d35e57-14fa-45b8-8ad8-55f2e42cceec"
+                videoId="fe276f61-28ae-4f6f-99e5-1ec480771801"
                 title="Showreel Portafolio Audiovisual"
                 description="Resumen de trabajos de dirección creativa y producción audiovisual por Leandro Venegas."
               />
