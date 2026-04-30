@@ -2,6 +2,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import HeroVideo from "@/components/HeroVideo";
+import MediaPreconnect from "@/components/MediaPreconnect";
 
 export const metadata = {
   title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
@@ -77,6 +78,7 @@ export default function Home() {
 
   return (
     <>
+      <MediaPreconnect bunny />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -87,13 +89,15 @@ export default function Home() {
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         {/* BLOQUE 1 — HERO DINÁMICO */}
         <HeroVideo
+          // Nota: Si usas Bunny Stream, estos IDs deben tener activado "Direct Play".
+          // Si usas Bunny Storage, asegúrate de que el Hostname sea el correcto.
           mobileAV1={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/56cf860a-193c-470b-9f4e-865b936af473/original`}
           mobileVP9={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/96e06cc2-82ec-431f-8898-eeb0f8a47f9d/original`}
           mobileH264={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/0445fa0f-4e22-4cae-b55c-add19fdcb85b/play_720p.mp4`}
           desktopAV1=""
           desktopVP9=""
           desktopH264=""
-          posterSrc="/images/og-portafolio.jpg" // Placeholder mientras configuras los videos reales
+          posterSrc="/images/og-portafolio.jpg"
         >
           <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl">
             El video con IA cambió las reglas del juego.

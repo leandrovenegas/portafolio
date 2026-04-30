@@ -54,7 +54,6 @@ export default function HeroVideo({
       </div>
 
       {/* 2. Carga Diferida y Fluidez (Video multiformato) */}
-      {/* Solo intentamos renderizar el video si tenemos alguna fuente y estamos en el cliente */}
       {isMounted && hasVideo && (
         <video
           autoPlay
@@ -62,11 +61,14 @@ export default function HeroVideo({
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000"
+          onCanPlay={() => console.log('HeroVideo: Video can play')}
+          onError={(e) => console.error('HeroVideo: Video error', e)}
         >
-          {/* El Trío Dorado: El navegador intentará cargar en orden de arriba hacia abajo */}
-          {activeAV1 && <source src={activeAV1} type={`video/${activeAV1.includes('.webm') ? 'webm' : 'mp4'}; codecs="av01.0.05M.08"`} />}
-          {activeVP9 && <source src={activeVP9} type='video/webm; codecs="vp09.00.10.08"' />}
-          {activeH264 && <source src={activeH264} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />}
+          {/* Versiones optimizadas primero */}
+          {activeAV1 && <source src={activeAV1} type='video/mp4' />}
+          {activeVP9 && <source src={activeVP9} type='video/webm' />}
+          {activeH264 && <source src={activeH264} type='video/mp4' />}
+          Tu navegador no soporta el formato de video.
         </video>
       )}
 
