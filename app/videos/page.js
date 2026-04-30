@@ -27,8 +27,17 @@ export default async function VideosPage() {
     title: 'Videos',
     description: 'Colección de videos seleccionados para tu página. Solo se muestran los videos activados en el panel de configuración.'
   };
-  const configMap = new Map((config.videos || []).map((item) => [item.videoId, item]));
-  const visibleVideos = videos.filter((video) => configMap.get(video.id)?.enabled);
+  const configMap = new Map((config.videos || []).map((item) => [String(item.videoId), item]));
+  const visibleVideos = videos
+    .filter((video) => configMap.get(String(video.id))?.enabled)
+    .map((video) => {
+      const videoConfig = configMap.get(String(video.id));
+      return {
+        ...video,
+        position: videoConfig?.position ?? 999,
+      };
+    })
+    .sort((a, b) => a.position - b.position);
 
   return (
     <>

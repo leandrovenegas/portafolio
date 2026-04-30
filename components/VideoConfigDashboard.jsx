@@ -46,10 +46,11 @@ export default function VideoConfigDashboard() {
 
     const metadata = {};
     videos.forEach((video) => {
-      const existing = config.videos?.find((item) => item.videoId === video.id);
+      const existing = config.videos?.find((item) => String(item.videoId) === String(video.id));
       metadata[video.id] = {
         title: existing?.title ?? video.title,
         description: existing?.description ?? video.description ?? '',
+        position: existing?.position ?? 0,
       };
     });
 
@@ -61,7 +62,7 @@ export default function VideoConfigDashboard() {
       videoId,
       enabled: false,
       indexable: true,
-      ...config.videos?.find((item) => item.videoId === videoId),
+      ...config.videos?.find((item) => String(item.videoId) === String(videoId)),
     };
   }
 
@@ -148,16 +149,21 @@ export default function VideoConfigDashboard() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-        {videos.map((video) => {
+        {videos
+          .map(v => ({ ...v, position: findConfig(v.id).position || 0 }))
+          .sort((a, b) => a.position - b.position)
+          .map((video) => {
           const videoConfig = findConfig(video.id);
           const draft = draftMetadata[video.id] || {
             title: video.title,
             description: video.description || '',
+            position: videoConfig.position ?? 0,
           };
 
           const hasMetadataChanges =
             draft.title !== (videoConfig.title ?? video.title) ||
-            draft.description !== (videoConfig.description ?? video.description ?? '');
+            draft.description !== (videoConfig.description ?? video.description ?? '') ||
+            draft.position !== (videoConfig.position ?? 0);
 
           return (
             <article key={video.id} className="group rounded-3xl border border-border bg-bg p-4 shadow-sm transition hover:shadow-lg">
@@ -232,12 +238,27 @@ export default function VideoConfigDashboard() {
                     className="w-full rounded-xl border border-border bg-bg px-3 py-2.5 text-sm text-ink outline-none transition focus:border-accent focus:ring-1 focus:ring-accent resize-none"
                   />
                 </div>
+                <div>
+                  <label className="font-medium text-xs uppercase tracking-wider text-muted mb-1.5 block">Posición (Menor = Primero)</label>
+                  <input
+                    type="number"
+                    value={draft.position}
+                    onChange={(event) =>
+                      setDraftMetadata((prev) => ({
+                        ...prev,
+                        [video.id]: { ...prev[video.id], position: parseInt(event.target.value) || 0 },
+                      }))
+                    }
+                    className="w-full rounded-xl border border-border bg-bg px-3 py-2.5 text-sm text-ink outline-none transition focus:border-accent focus:ring-1 focus:ring-accent"
+                  />
+                </div>
                 <button
                   type="button"
                   onClick={() =>
                     updateVideo(video.id, {
                       title: draft.title,
                       description: draft.description,
+                      position: draft.position,
                     })
                   }
                   disabled={!hasMetadataChanges || saving}

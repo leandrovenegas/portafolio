@@ -7,7 +7,7 @@ export async function GET() {
 }
 
 export async function PATCH(request) {
-  const { videoId, enabled, indexable, title, description } = await request.json();
+  const { videoId, enabled, indexable, title, description, position } = await request.json();
   if (!videoId) {
     return NextResponse.json({ error: 'videoId is required' }, { status: 400 });
   }
@@ -20,6 +20,7 @@ export async function PATCH(request) {
     if (typeof indexable === 'boolean') existing.indexable = indexable;
     if (typeof title === 'string') existing.title = title;
     if (typeof description === 'string') existing.description = description;
+    if (typeof position === 'number') existing.position = position;
   } else {
     config.videos = config.videos || [];
     config.videos.push({
@@ -28,6 +29,7 @@ export async function PATCH(request) {
       indexable: typeof indexable === 'boolean' ? indexable : true,
       ...(typeof title === 'string' ? { title } : {}),
       ...(typeof description === 'string' ? { description } : {}),
+      ...(typeof position === 'number' ? { position } : { position: 0 }),
     });
   }
 
@@ -49,6 +51,7 @@ export async function PUT(request) {
       indexable: Boolean(item.indexable),
       ...(typeof item.title === 'string' ? { title: item.title } : {}),
       ...(typeof item.description === 'string' ? { description: item.description } : {}),
+      position: typeof item.position === 'number' ? item.position : 0,
     })),
   };
 
