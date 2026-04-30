@@ -91,7 +91,7 @@ export default function Home() {
         <HeroVideo
           // Nota: Si usas Bunny Stream, estos IDs deben tener activado "Direct Play".
           // Si usas Bunny Storage, asegúrate de que el Hostname sea el correcto.
-          mobileAV1={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/56cf860a-193c-470b-9f4e-865b936af473/original`}
+          mobileAV1={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/a6075da8-cbd7-4220-b2f9-e3aa3ebc6997/original`}
           mobileVP9={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/96e06cc2-82ec-431f-8898-eeb0f8a47f9d/original`}
           mobileH264={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/0445fa0f-4e22-4cae-b55c-add19fdcb85b/play_720p.mp4`}
           desktopAV1=""
