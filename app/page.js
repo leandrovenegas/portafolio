@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import HeroVideo from "@/components/HeroVideo";
 
 export const metadata = {
   title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
@@ -84,20 +85,26 @@ export default function Home() {
       />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
-        {/* BLOQUE 1 — HERO */}
-        <section className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl min-h-[70vh] flex flex-col justify-center">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
-
+        {/* BLOQUE 1 — HERO DINÁMICO */}
+        <HeroVideo
+          mobileAV1={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/56cf860a-193c-470b-9f4e-865b936af473/original`}
+          mobileVP9={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/96e06cc2-82ec-431f-8898-eeb0f8a47f9d/original`}
+          mobileH264={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/0445fa0f-4e22-4cae-b55c-add19fdcb85b/play_720p.mp4`}
+          desktopAV1=""
+          desktopVP9=""
+          desktopH264=""
+          posterSrc="/images/og-portafolio.jpg" // Placeholder mientras configuras los videos reales
+        >
           <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl">
             El video con IA cambió las reglas del juego.
           </h1>
-          <p className="font-body text-mid text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
+          <p className="font-body text-mid text-lg md:text-xl max-w-2xl leading-relaxed mb-12 drop-shadow-md text-ink/90">
             Producir contenido audiovisual ya no requiere presupuestos grandes. Con IA, el mismo dinero rinde más: más videos, más variedad, más velocidad — sin perder dirección creativa.
           </p>
-          <p className="font-body text-mid text-lg md:text-xl max-w-2xl leading-relaxed">
+          <p className="font-body text-mid text-lg md:text-xl max-w-2xl leading-relaxed drop-shadow-md text-ink/90">
             Es el momento de usarlo.
           </p>
-        </section>
+        </HeroVideo>
 
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
           
