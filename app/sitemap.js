@@ -1,6 +1,7 @@
 import supabase from '@/lib/supabase';
 import { fetchBunnyVideos } from '@/lib/bunny';
 import { readVideoConfig } from '@/lib/videoConfig';
+import { getBlogPosts } from '@/lib/blog';
 
 export default async function sitemap() {
     const baseUrl = "https://www.leandrovenegas.cl";
@@ -52,6 +53,7 @@ export default async function sitemap() {
         "",
         "/proyectos",
         "/portafolio",
+        "/blog",
         "/videos",
     ].map(route => ({
         url: `${baseUrl}${route}`,
@@ -89,5 +91,19 @@ export default async function sitemap() {
         console.warn('Sitemap video fetch failed:', error.message);
     }
 
-    return [...coreUrls, ...landingPages, ...projectUrls, ...organizationUrls, ...videoUrls];
+    // 6. Blog (Posts en Markdown)
+    let blogUrls = [];
+    try {
+        const posts = await getBlogPosts();
+        blogUrls = posts.map(post => ({
+            url: `${baseUrl}/blog/${post.slug}`,
+            lastModified: post.date ? new Date(post.date).toISOString() : new Date().toISOString(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        }));
+    } catch (error) {
+        console.warn('Sitemap blog fetch failed:', error.message);
+    }
+
+    return [...coreUrls, ...landingPages, ...projectUrls, ...organizationUrls, ...videoUrls, ...blogUrls];
 }

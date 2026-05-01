@@ -6,6 +6,7 @@ import { readFile } from "fs/promises";
 import path from "path";
 import BunnyVideoPlayer from "@/components/BunnyVideoPlayer";
 import MediaPreconnect from "@/components/MediaPreconnect";
+import HeroVideo from "@/components/HeroVideo";
 
 export const metadata = {
   title: "Portafolio — Dirección Creativa y Producción Audiovisual | Leandro Venegas",
@@ -55,31 +56,38 @@ export default async function Portafolio() {
       <MediaPreconnect bunny />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
+        {/* HERO DINÁMICO DEL PORTAFOLIO */}
+        <HeroVideo
+          mobileAV1={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/a6075da8-cbd7-4220-b2f9-e3aa3ebc6997/original`}
+          mobileVP9={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/96e06cc2-82ec-431f-8898-eeb0f8a47f9d/original`}
+          mobileH264={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/0445fa0f-4e22-4cae-b55c-add19fdcb85b/play_720p.mp4`}
+          desktopAV1=""
+          desktopVP9=""
+          desktopH264=""
+          posterSrc="/images/og-portafolio.jpg"
+        >
+          <p className="font-mono text-accent text-sm md:text-base tracking-wide uppercase mb-4">
+            Proyectos y Organizaciones
+          </p>
+          <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] max-w-5xl mb-8">
+            Portafolio de Dirección Creativa y Producción Audiovisual
+          </h1>
+          {descripcionLocal && (
+            <div
+              className="font-body text-mid text-lg md:text-xl max-w-3xl leading-relaxed prose prose-invert prose-p:my-2 prose-a:text-accent prose-a:no-underline hover:prose-a:underline"
+              dangerouslySetInnerHTML={{ __html: descripcionLocal }}
+            />
+          )}
+        </HeroVideo>
+
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-16 md:gap-24">
-
-          <header className="pt-12 md:pt-24 flex flex-col items-start gap-4 border-b border-border pb-16">
-            <p className="font-mono text-accent text-sm md:text-base tracking-wide uppercase">
-              Proyectos y Organizaciones
-            </p>
-            <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] max-w-4xl">
-              Portafolio de Dirección Creativa y Producción Audiovisual
-            </h1>
-
-            <div className="w-full max-w-4xl mt-8">
-              <BunnyVideoPlayer 
-                videoId="fe276f61-28ae-4f6f-99e5-1ec480771801"
-                title="Showreel Portafolio Audiovisual"
-                description="Resumen de trabajos de dirección creativa y producción audiovisual por Leandro Venegas."
-              />
-            </div>
-
-            {descripcionLocal && (
-              <div
-                className="font-body text-mid text-lg md:text-xl max-w-3xl leading-relaxed mt-6 prose prose-invert prose-p:my-2 prose-a:text-accent prose-a:no-underline hover:prose-a:underline"
-                dangerouslySetInnerHTML={{ __html: descripcionLocal }}
-              />
-            )}
-          </header>
+          <div className="w-full max-w-4xl border-b border-border pb-16">
+            <BunnyVideoPlayer 
+              videoId="fe276f61-28ae-4f6f-99e5-1ec480771801"
+              title="Showreel Portafolio Audiovisual"
+              description="Resumen de trabajos de dirección creativa y producción audiovisual por Leandro Venegas."
+            />
+          </div>
 
           <section>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">

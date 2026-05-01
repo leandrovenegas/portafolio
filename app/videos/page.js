@@ -4,6 +4,7 @@ import { fetchBunnyVideos } from '@/lib/bunny';
 import { readVideoConfig } from '@/lib/videoConfig';
 import { readPageConfig } from '@/lib/pageConfig';
 import MediaPreconnect from '@/components/MediaPreconnect';
+import HeroVideo from '@/components/HeroVideo';
 
 export const metadata = {
   title: 'Videos | Leandro Venegas',
@@ -44,18 +45,28 @@ export default async function VideosPage() {
       <MediaPreconnect bunny />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
+        {/* HERO DINÁMICO DE VIDEOS */}
+        <HeroVideo
+          mobileAV1={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/a6075da8-cbd7-4220-b2f9-e3aa3ebc6997/original`}
+          mobileVP9={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/96e06cc2-82ec-431f-8898-eeb0f8a47f9d/original`}
+          mobileH264={`https://${process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net'}/0445fa0f-4e22-4cae-b55c-add19fdcb85b/play_720p.mp4`}
+          desktopAV1=""
+          desktopVP9=""
+          desktopH264=""
+          posterSrc="/images/og-portafolio.jpg"
+        >
+          <p className="font-mono text-accent text-sm md:text-base tracking-wide mb-4">
+            Visualizador de Contenido
+          </p>
+          <h1 className="font-display text-display-md md:text-display-lg text-ink leading-[0.9] max-w-5xl mb-8">
+            {pageText.title}
+          </h1>
+          <p className="font-body text-mid text-xl md:text-2xl max-w-2xl leading-relaxed">
+            {pageText.description}
+          </p>
+        </HeroVideo>
+
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
-          <header className="pt-12 md:pt-24 flex flex-col items-start gap-4 border-b border-border pb-16">
-            <p className="font-mono text-accent text-sm md:text-base tracking-wide">
-              Visualizador de Contenido
-            </p>
-            <h1 className="font-display text-display-md md:text-display-lg text-ink leading-[0.9] max-w-4xl">
-              {pageText.title}
-            </h1>
-            <p className="font-body text-mid text-xl md:text-2xl max-w-2xl leading-relaxed">
-              {pageText.description}
-            </p>
-          </header>
 
           <section className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
