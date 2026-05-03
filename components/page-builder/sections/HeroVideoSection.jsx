@@ -22,7 +22,7 @@ export default function HeroVideoSection({
       desktopH264={desktopH264 || ""}
       posterSrc={posterSrc || ""}
     >
-      <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl">
+      <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl font-bold">
         {title}
       </h1>
       {description1 && (

@@ -17,7 +17,7 @@ export default function PageRenderer({ components }) {
           return null;
         }
 
-        if (comp.type === 'HeroVideoSection') {
+        if (comp.type === 'HeroVideoSection' || comp.type === 'HeroEditorialSection') {
           return <ComponentToRender key={comp.id} {...comp.props} />;
         }
 
