@@ -1,13 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { COMPONENT_DEFINITIONS } from '@/components/page-builder/registry';
 import { DEFAULT_HOME_COMPONENTS } from '@/components/page-builder/defaultConfig';
 import PageRenderer from '@/components/page-builder/PageRenderer';
-
-import { Suspense } from 'react';
-import Link from 'next/link';
 
 function VisualEditorContent() {
   const searchParams = useSearchParams();
@@ -25,9 +23,6 @@ function VisualEditorContent() {
 
   // Selected component for editing props
   const [selectedId, setSelectedId] = useState(null);
-
-  // View mode for preview
-  const [viewMode, setViewMode] = useState('mobile');
 
   useEffect(() => {
     fetchData();
@@ -162,9 +157,9 @@ function VisualEditorContent() {
   if (loading) return <div>Cargando editor...</div>;
 
   return (
-    <div className="flex flex-col min-h-screen bg-bg">
+    <div className="flex flex-col min-h-screen bg-s1">
       {/* Integrated Admin Header */}
-      <header className="w-full border-b border-border bg-white px-6 py-3 z-50 flex items-center justify-between sticky top-0 shadow-sm">
+      <header className="w-full border-b border-border bg-bg px-6 py-3 z-50 flex items-center justify-between sticky top-0 shadow-sm">
         <div className="flex items-center gap-6">
           <Link href="/admin" className="font-display text-xl text-ink hover:opacity-70 transition-opacity">
             Administración
@@ -189,7 +184,7 @@ function VisualEditorContent() {
           <div className="h-8 w-px bg-border mx-2 hidden md:block" />
           
           <select 
-            className="p-2 rounded bg-s1 border border-border text-xs font-medium focus:ring-1 focus:ring-accent outline-none"
+            className="p-2 rounded bg-s1 border border-border text-xs font-medium focus:ring-1 focus:ring-accent outline-none text-ink"
             value={currentVersionId || ''}
             onChange={(e) => {
               if (e.target.value) {
@@ -215,6 +210,17 @@ function VisualEditorContent() {
           >
             {saving ? '...' : 'Guardar'}
           </button>
+
+          <a 
+            href={currentVersionId ? `/?versionId=${currentVersionId}` : '/'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-s2 text-ink font-body text-xs transition-colors border border-border"
+            title="Ver Página en Vivo"
+          >
+            <span>Ver Live</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
 
           <button
             onClick={async () => {
@@ -250,18 +256,18 @@ function VisualEditorContent() {
             Editando: <span className="text-accent">{slug}</span>
           </h1>
           
-          <div className="flex gap-2 items-center bg-white p-1 rounded-lg border border-border shadow-sm">
+          <div className="flex gap-2 items-center bg-bg p-1 rounded-lg border border-border shadow-sm">
             <input 
               type="text" 
               placeholder="Nueva versión..." 
-              className="px-3 py-1.5 text-xs border-none focus:ring-0 outline-none w-32 bg-transparent"
+              className="px-3 py-1.5 text-xs border-none focus:ring-0 outline-none w-32 bg-transparent text-ink placeholder:text-muted"
               value={newVersionName}
               onChange={e => setNewVersionName(e.target.value)}
             />
             <button 
               onClick={() => saveVersion(true)}
               disabled={saving}
-              className="bg-ink text-bg px-3 py-1.5 rounded-md text-xs font-medium hover:opacity-90 transition-opacity"
+              className="bg-accent text-bg px-3 py-1.5 rounded-md text-xs font-medium hover:opacity-90 transition-opacity"
             >
               Nueva Rama
             </button>
@@ -271,7 +277,7 @@ function VisualEditorContent() {
       <div className="flex flex-col md:flex-row gap-6 relative">
         {/* Sidebar components list */}
         <div className="w-full md:w-64 flex-shrink-0 flex flex-col gap-4 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-2 scrollbar-thin">
-          <div className="bg-white border border-border rounded-xl p-3 shadow-sm">
+          <div className="bg-bg border border-border rounded-xl p-3 shadow-sm">
             <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1">Estructura</h3>
             <div className="flex flex-col gap-1.5">
               {components.map((c, idx) => (
@@ -316,35 +322,37 @@ function VisualEditorContent() {
               </select>
             </div>
           </div>
+        </div>
 
+        <div className="flex-1 max-w-2xl flex flex-col gap-4 self-start">
           {/* Properties Editor */}
-          {selectedComp && (
-            <div className="bg-white border border-border rounded-xl p-3 shadow-sm animate-in fade-in slide-in-from-bottom-2">
+          {selectedComp ? (
+            <div className="bg-bg border border-border rounded-xl p-3 shadow-sm animate-in fade-in slide-in-from-bottom-2">
               <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1 flex justify-between items-center">
                 Propiedades
                 <button onClick={() => setSelectedId(null)} className="hover:text-ink">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
                 </button>
               </h3>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 {Object.keys(selectedComp.props).map(propKey => {
                   const val = selectedComp.props[propKey];
                   if (typeof val === 'string') {
                     return (
                       <div key={propKey}>
-                        <label className="block text-[10px] font-bold text-muted mb-1 uppercase tracking-wider pl-1">{propKey}</label>
+                        <label className="block text-[10px] font-bold text-muted mb-1.5 uppercase tracking-wider pl-1">{propKey}</label>
                         {val.length > 50 ? (
                           <textarea 
                             value={val} 
                             onChange={e => updateProp(selectedComp.id, propKey, e.target.value)}
-                            className="w-full p-2 border border-border rounded-lg text-xs min-h-[80px] bg-s1 focus:bg-white focus:ring-1 focus:ring-accent outline-none transition-all"
+                            className="w-full p-3 border border-border rounded-lg text-sm min-h-[120px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
                           />
                         ) : (
                           <input 
                             type="text" 
                             value={val} 
                             onChange={e => updateProp(selectedComp.id, propKey, e.target.value)}
-                            className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-white focus:ring-1 focus:ring-accent outline-none transition-all"
+                            className="w-full p-3 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
                           />
                         )}
                       </div>
@@ -354,7 +362,7 @@ function VisualEditorContent() {
                     // Very simple JSON edit for arrays like paragraphs, items, faqs
                     return (
                       <div key={propKey}>
-                        <label className="block text-xs font-bold text-muted mb-1 uppercase tracking-wider">{propKey} (JSON)</label>
+                        <label className="block text-[10px] font-bold text-muted mb-1.5 uppercase tracking-wider pl-1">{propKey} (JSON)</label>
                         <textarea 
                           value={JSON.stringify(val, null, 2)} 
                           onChange={e => {
@@ -362,7 +370,7 @@ function VisualEditorContent() {
                               updateProp(selectedComp.id, propKey, JSON.parse(e.target.value))
                             } catch (e) {} // ignore parse errors until valid
                           }}
-                          className="w-full p-2 font-mono text-xs border border-border rounded min-h-[150px] bg-bg"
+                          className="w-full p-3 font-mono text-sm border border-border rounded-lg min-h-[200px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
                         />
                       </div>
                     )
@@ -371,44 +379,16 @@ function VisualEditorContent() {
                 })}
               </div>
             </div>
+          ) : (
+            <div className="bg-s1 border border-border rounded-xl p-8 flex flex-col items-center justify-center text-center text-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-4 opacity-50"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              <p className="text-sm">Selecciona un componente en la estructura para editar sus propiedades.</p>
+            </div>
           )}
-        </div>
-
-        {/* Live Preview */}
-        <div className="flex-1 border border-border rounded-lg bg-s1 overflow-hidden relative flex flex-col max-h-[80vh] shadow-inner">
-          <div className="p-3 border-b border-border bg-white sticky top-0 z-50 flex justify-between items-center px-4 shadow-sm">
-            <span className="font-mono text-sm text-muted">Vista Previa</span>
-            <div className="flex bg-s1 rounded p-1">
-              <button 
-                onClick={() => setViewMode('mobile')} 
-                className={`px-3 py-1 text-xs rounded transition-colors ${viewMode === 'mobile' ? 'bg-white shadow text-ink font-bold' : 'text-muted hover:text-ink'}`}
-              >
-                Móvil
-              </button>
-              <button 
-                onClick={() => setViewMode('desktop')} 
-                className={`px-3 py-1 text-xs rounded transition-colors ${viewMode === 'desktop' ? 'bg-white shadow text-ink font-bold' : 'text-muted hover:text-ink'}`}
-              >
-                Escritorio
-              </button>
-            </div>
-          </div>
-          
-          <div className={`overflow-y-auto w-full flex-1 bg-bg ${viewMode === 'mobile' ? 'flex justify-center p-4 md:p-8' : ''}`}>
-            <div 
-              className={`pointer-events-none transition-all duration-300 ${
-                viewMode === 'mobile' 
-                  ? 'w-[375px] min-h-[812px] border-[8px] border-ink rounded-[2.5rem] shadow-2xl overflow-hidden bg-bg origin-top scale-[0.8] md:scale-100' 
-                  : 'w-full scale-100 transform-none'
-              }`}
-            >
-              <PageRenderer components={components} />
-            </div>
-          </div>
-        </div>
         </div>
       </div>
     </div>
+  </div>
   );
 }
 

@@ -75,16 +75,17 @@ const faqSchema = {
   ]
 };
 
-async function getPageComponents() {
+async function getPageComponents(versionId) {
   try {
-    const { data, error } = await supabase
-      .from('page_versions')
-      .select('components')
-      .eq('slug', 'home')
-      .eq('is_active', true)
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .single();
+    let query = supabase.from('page_versions').select('components').eq('slug', 'home');
+    
+    if (versionId) {
+      query = query.eq('id', versionId);
+    } else {
+      query = query.eq('is_active', true).order('created_at', { ascending: false }).limit(1);
+    }
+
+    const { data, error } = await query.single();
 
     if (error || !data) {
       return DEFAULT_HOME_COMPONENTS;
@@ -95,8 +96,10 @@ async function getPageComponents() {
   }
 }
 
-export default async function Home() {
-  const components = await getPageComponents();
+export default async function Home({ searchParams }) {
+  const params = await searchParams;
+  const versionId = params?.versionId;
+  const components = await getPageComponents(versionId);
 
   return (
     <>

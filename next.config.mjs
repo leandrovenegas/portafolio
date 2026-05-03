@@ -14,25 +14,13 @@ const cspHeader = `
     form-action 'self';
     frame-src 'self' https://*.bunny.net https://player.mediadelivery.net https://iframe.mediadelivery.net;
     frame-ancestors 'none';
-    upgrade-insecure-requests;
 `.replace(/\s{2,}/g, ' ').trim();
 
 const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  experimental: {
-    // Tell SWC to only target modern browsers — eliminates legacy polyfills
-    // for Array.at, Object.fromEntries, flatMap, trimStart/trimEnd, etc.
-    // These are all natively supported since Chrome 90 / Firefox 88 / Safari 14 (2020+)
-    browsersListQueries: [
-      'chrome >= 90',
-      'firefox >= 88',
-      'safari >= 14',
-      'edge >= 90',
-      'not dead',
-    ],
-  },
+  experimental: {},
   images: {
     remotePatterns: [
       {

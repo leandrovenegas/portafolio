@@ -32,9 +32,9 @@ export default function HeroVideo({
     return () => window.removeEventListener('resize', checkOrientation);
   }, []);
 
-  const activeAV1 = isMobile ? mobileAV1 : desktopAV1;
-  const activeVP9 = isMobile ? mobileVP9 : desktopVP9;
-  const activeH264 = isMobile ? mobileH264 : desktopH264;
+  const activeAV1 = (isMobile ? mobileAV1 : desktopAV1) || mobileAV1 || desktopAV1;
+  const activeVP9 = (isMobile ? mobileVP9 : desktopVP9) || mobileVP9 || desktopVP9;
+  const activeH264 = (isMobile ? mobileH264 : desktopH264) || mobileH264 || desktopH264;
   
   // Determinamos si hay algún video para renderizar
   const hasVideo = activeAV1 || activeVP9 || activeH264;
@@ -89,7 +89,7 @@ export default function HeroVideo({
       <div className="absolute inset-x-0 bottom-0 h-48 z-10 bg-gradient-to-t from-bg via-bg/80 to-transparent"></div>
 
       {/* 4. Contenido Principal */}
-      <div className="relative z-20 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl w-full">
+      <div className="relative z-20 px-4 pt-20 md:px-12 lg:px-24 mx-auto max-w-7xl w-full">
         {/* Glow de acento (heredado del diseño original) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
         {children}
