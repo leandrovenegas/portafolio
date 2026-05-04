@@ -18,6 +18,9 @@ function toInlineStyle(styleObj) {
   if (styleObj.textTransform && styleObj.textTransform !== 'none') s.textTransform = styleObj.textTransform;
   if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '') s.letterSpacing = `${styleObj.letterSpacing}em`;
   if (styleObj.lineHeight)    s.lineHeight    = styleObj.lineHeight;
+  if (styleObj.textIndent !== undefined && styleObj.textIndent !== '') s.textIndent = `${styleObj.textIndent}px`;
+  if (styleObj.paddingTop !== undefined && styleObj.paddingTop !== '') s.paddingTop = `${styleObj.paddingTop}px`;
+  if (styleObj.paddingBottom !== undefined && styleObj.paddingBottom !== '') s.paddingBottom = `${styleObj.paddingBottom}px`;
   return s;
 }
 
@@ -29,8 +32,10 @@ export default function HeroEditorialSection({
   tagline,
   primaryButtonText,
   primaryButtonLink,
+  primaryButtonIcon,
   secondaryButtonText,
   secondaryButtonLink,
+  secondaryButtonIcon,
   mobileAV1, 
   mobileVP9, 
   mobileH264, 
@@ -68,6 +73,33 @@ export default function HeroEditorialSection({
       }
       return part;
     });
+  };
+
+  const IconRenderer = ({ icon }) => {
+    if (!icon || icon === 'none') return null;
+    switch (icon) {
+      case 'cart':
+        return (
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+            <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        );
+      case 'arrow-right':
+        return (
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+            <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        );
+      case 'play':
+        return (
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+            <circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -131,8 +163,9 @@ export default function HeroEditorialSection({
           {primaryButtonText && primaryButtonLink && (
             <Link 
               href={primaryButtonLink}
-              className="bg-ink text-bg px-8 py-4 rounded-lg font-body font-medium hover:bg-accent hover:text-bg transition-colors shadow-lg"
+              className="flex items-center justify-center gap-2 bg-ink text-bg px-8 py-4 rounded-lg font-body font-medium hover:bg-accent hover:text-bg transition-colors shadow-lg"
             >
+              <IconRenderer icon={primaryButtonIcon} />
               {primaryButtonText}
             </Link>
           )}
@@ -140,13 +173,10 @@ export default function HeroEditorialSection({
           {secondaryButtonText && secondaryButtonLink && (
             <Link 
               href={secondaryButtonLink}
-              className="flex items-center gap-2 text-ink/70 hover:text-accent transition-colors font-body font-medium"
+              className="flex items-center justify-center gap-2 text-ink/70 hover:text-accent transition-colors font-body font-medium"
             >
+              <IconRenderer icon={secondaryButtonIcon || 'arrow-right'} />
               {secondaryButtonText}
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
             </Link>
           )}
         </div>

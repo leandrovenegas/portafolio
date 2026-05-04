@@ -39,223 +39,7 @@ const HERO_EDITORIAL_BUTTON_FIELDS = [
   { key: 'secondaryButtonLink', label: 'Botón 2 — Enlace' },
 ];
 
-// ─── Typography Controls ───────────────────────────────────────────────────
-
-function TypographyControls({ fieldKey, styles, onStylesChange }) {
-  const [activeBp, setActiveBp] = useState('mobile');
-
-  const currentStyle = styles?.[fieldKey]?.[activeBp] || {
-    fontSize: 16, color: '', fontWeight: '400', fontStyle: 'normal',
-    textTransform: 'none', letterSpacing: '0', lineHeight: '1.5'
-  };
-
-  const updateStyle = (prop, value) => {
-    const updated = {
-      ...(styles || {}),
-      [fieldKey]: {
-        ...(styles?.[fieldKey] || {}),
-        [activeBp]: {
-          ...currentStyle,
-          [prop]: value,
-        }
-      }
-    };
-    onStylesChange(updated);
-  };
-
-  return (
-    <div className="mt-2 rounded-lg border border-border bg-s1 overflow-hidden">
-      {/* Breakpoint tabs */}
-      <div className="flex border-b border-border bg-s2">
-        {BREAKPOINTS.map(bp => (
-          <button
-            key={bp.key}
-            onClick={() => setActiveBp(bp.key)}
-            title={bp.title}
-            className={`flex-1 py-1.5 text-xs font-medium transition-colors ${
-              activeBp === bp.key
-                ? 'bg-accent text-bg'
-                : 'text-muted hover:text-ink'
-            }`}
-          >
-            {bp.label} {bp.key.charAt(0).toUpperCase() + bp.key.slice(1)}
-          </button>
-        ))}
-      </div>
-
-      <div className="p-3 flex flex-col gap-3">
-        {/* Font Size */}
-        <div>
-          <div className="flex justify-between items-center mb-1">
-            <label className="text-[9px] font-bold text-muted uppercase tracking-wider">Tamaño</label>
-            <span className="text-[10px] font-mono text-accent">{currentStyle.fontSize}px</span>
-          </div>
-          <input
-            type="range"
-            min={8} max={120} step={1}
-            value={currentStyle.fontSize || 16}
-            onChange={e => updateStyle('fontSize', Number(e.target.value))}
-            className="w-full h-1.5 accent-accent cursor-pointer"
-          />
-        </div>
-
-        {/* Color */}
-        <div className="flex items-center gap-2">
-          <label className="text-[9px] font-bold text-muted uppercase tracking-wider flex-1">Color</label>
-          <div className="flex items-center gap-1.5">
-            <input
-              type="color"
-              value={currentStyle.color || '#ffffff'}
-              onChange={e => updateStyle('color', e.target.value)}
-              className="w-6 h-6 rounded cursor-pointer border border-border bg-transparent"
-              title="Color del texto"
-            />
-            <input
-              type="text"
-              value={currentStyle.color || ''}
-              onChange={e => updateStyle('color', e.target.value)}
-              placeholder="auto"
-              className="w-20 px-2 py-1 text-[10px] font-mono border border-border rounded bg-bg text-ink outline-none focus:ring-1 focus:ring-accent"
-            />
-            {currentStyle.color && (
-              <button
-                onClick={() => updateStyle('color', '')}
-                className="text-muted hover:text-red-400 text-[10px]"
-                title="Quitar color"
-              >✕</button>
-            )}
-          </div>
-        </div>
-
-        {/* Font Weight */}
-        <div className="flex items-center gap-2">
-          <label className="text-[9px] font-bold text-muted uppercase tracking-wider flex-1">Peso</label>
-          <select
-            value={currentStyle.fontWeight || '400'}
-            onChange={e => updateStyle('fontWeight', e.target.value)}
-            className="text-[10px] border border-border rounded px-2 py-1 bg-bg text-ink outline-none focus:ring-1 focus:ring-accent"
-          >
-            <option value="100">Thin (100)</option>
-            <option value="200">ExtraLight (200)</option>
-            <option value="300">Light (300)</option>
-            <option value="400">Regular (400)</option>
-            <option value="500">Medium (500)</option>
-            <option value="600">SemiBold (600)</option>
-            <option value="700">Bold (700)</option>
-            <option value="800">ExtraBold (800)</option>
-            <option value="900">Black (900)</option>
-          </select>
-        </div>
-
-        {/* Font Family */}
-        <div className="flex items-center gap-2">
-          <label className="text-[9px] font-bold text-muted uppercase tracking-wider flex-1">Familia</label>
-          <select
-            value={currentStyle.fontFamily || ''}
-            onChange={e => updateStyle('fontFamily', e.target.value)}
-            className="text-[10px] border border-border rounded px-2 py-1 bg-bg text-ink outline-none focus:ring-1 focus:ring-accent w-24"
-          >
-            <option value="">Por Defecto</option>
-            <option value="var(--font-display)">Display</option>
-            <option value="var(--font-body)">Body</option>
-            <option value="sans-serif">Sans Serif</option>
-            <option value="serif">Serif</option>
-            <option value="monospace">Mono</option>
-          </select>
-        </div>
-
-        {/* Text Align */}
-        <div className="flex items-center gap-2">
-          <label className="text-[9px] font-bold text-muted uppercase tracking-wider flex-1">Alineación</label>
-          <select
-            value={currentStyle.textAlign || ''}
-            onChange={e => updateStyle('textAlign', e.target.value)}
-            className="text-[10px] border border-border rounded px-2 py-1 bg-bg text-ink outline-none focus:ring-1 focus:ring-accent w-24"
-          >
-            <option value="">Por Defecto</option>
-            <option value="left">Izquierda</option>
-            <option value="center">Centro</option>
-            <option value="right">Derecha</option>
-            <option value="justify">Justificado</option>
-          </select>
-        </div>
-
-        {/* Font Style */}
-        <div className="flex items-center gap-2">
-          <label className="text-[9px] font-bold text-muted uppercase tracking-wider flex-1">Estilo</label>
-          <select
-            value={currentStyle.fontStyle || 'normal'}
-            onChange={e => updateStyle('fontStyle', e.target.value)}
-            className="text-[10px] border border-border rounded px-2 py-1 bg-bg text-ink outline-none focus:ring-1 focus:ring-accent w-24"
-          >
-            <option value="normal">Normal</option>
-            <option value="italic">Italic</option>
-            <option value="oblique">Oblique</option>
-          </select>
-        </div>
-
-        {/* Text Decoration */}
-        <div className="flex items-center gap-2">
-          <label className="text-[9px] font-bold text-muted uppercase tracking-wider flex-1">Decoración</label>
-          <select
-            value={currentStyle.textDecoration || 'none'}
-            onChange={e => updateStyle('textDecoration', e.target.value)}
-            className="text-[10px] border border-border rounded px-2 py-1 bg-bg text-ink outline-none focus:ring-1 focus:ring-accent w-24"
-          >
-            <option value="none">None</option>
-            <option value="underline">Subrayado</option>
-            <option value="line-through">Tachado</option>
-          </select>
-        </div>
-
-        {/* Text Transform */}
-        <div className="flex items-center gap-2">
-          <label className="text-[9px] font-bold text-muted uppercase tracking-wider flex-1">Transformar</label>
-          <select
-            value={currentStyle.textTransform || 'none'}
-            onChange={e => updateStyle('textTransform', e.target.value)}
-            className="text-[10px] border border-border rounded px-2 py-1 bg-bg text-ink outline-none focus:ring-1 focus:ring-accent w-24"
-          >
-            <option value="none">None</option>
-            <option value="uppercase">UPPERCASE</option>
-            <option value="lowercase">lowercase</option>
-            <option value="capitalize">Capitalize</option>
-          </select>
-        </div>
-
-        {/* Letter Spacing */}
-        <div>
-          <div className="flex justify-between items-center mb-1">
-            <label className="text-[9px] font-bold text-muted uppercase tracking-wider">Espaciado letras</label>
-            <span className="text-[10px] font-mono text-accent">{currentStyle.letterSpacing}em</span>
-          </div>
-          <input
-            type="range"
-            min={-0.1} max={0.5} step={0.01}
-            value={currentStyle.letterSpacing ?? 0}
-            onChange={e => updateStyle('letterSpacing', parseFloat(e.target.value).toFixed(2))}
-            className="w-full h-1.5 accent-accent cursor-pointer"
-          />
-        </div>
-
-        {/* Line Height */}
-        <div>
-          <div className="flex justify-between items-center mb-1">
-            <label className="text-[9px] font-bold text-muted uppercase tracking-wider">Altura de línea</label>
-            <span className="text-[10px] font-mono text-accent">{currentStyle.lineHeight}</span>
-          </div>
-          <input
-            type="range"
-            min={0.7} max={3} step={0.05}
-            value={currentStyle.lineHeight ?? 1.5}
-            onChange={e => updateStyle('lineHeight', parseFloat(e.target.value).toFixed(2))}
-            className="w-full h-1.5 accent-accent cursor-pointer"
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
+import TypographyPanel from './TypographyPanel';
 
 // ─── Text Field with optional Typography ───────────────────────────────────
 
@@ -300,7 +84,7 @@ function TextField({ fieldKey, label, long, value, onChange, styles, onStylesCha
 
       {hasTypography && showTypo && (
         <div className="px-3 pb-3">
-          <TypographyControls
+          <TypographyPanel
             fieldKey={fieldKey}
             styles={styles}
             onStylesChange={onStylesChange}
@@ -565,14 +349,39 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
           <SectionLabel>Botones</SectionLabel>
 
           {/* Button fields */}
-          {HERO_EDITORIAL_BUTTON_FIELDS.map(({ key, label }) => (
-            <div key={key} className="rounded-xl border border-border bg-bg px-3 py-3">
-              <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1.5">{label}</label>
+          {[
+            { prefix: 'primaryButton', label: 'Botón Primario' },
+            { prefix: 'secondaryButton', label: 'Botón Secundario' }
+          ].map(({ prefix, label }) => (
+            <div key={prefix} className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">{label}</label>
+              
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  placeholder="Texto del botón"
+                  value={props[`${prefix}Text`] || ''}
+                  onChange={e => updateProp(comp.id, `${prefix}Text`, e.target.value)}
+                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+                />
+                <select
+                  value={props[`${prefix}Icon`] || 'none'}
+                  onChange={e => updateProp(comp.id, `${prefix}Icon`, e.target.value)}
+                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all cursor-pointer"
+                >
+                  <option value="none">Sin Icono</option>
+                  <option value="cart">🛒 Carrito</option>
+                  <option value="arrow-right">➔ Flecha Derecha</option>
+                  <option value="play">▶ Play</option>
+                </select>
+              </div>
+              
               <input
                 type="text"
-                value={props[key] || ''}
-                onChange={e => updateProp(comp.id, key, e.target.value)}
-                className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+                placeholder="Enlace (URL)"
+                value={props[`${prefix}Link`] || ''}
+                onChange={e => updateProp(comp.id, `${prefix}Link`, e.target.value)}
+                className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
               />
             </div>
           ))}

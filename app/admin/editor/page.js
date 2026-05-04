@@ -7,6 +7,8 @@ import { COMPONENT_DEFINITIONS } from '@/components/page-builder/registry';
 import { DEFAULT_HOME_COMPONENTS } from '@/components/page-builder/defaultConfig';
 import PageRenderer from '@/components/page-builder/PageRenderer';
 import SmartPropertiesPanel from '@/components/page-builder/SmartPropertiesPanel';
+import SwatchesPanel from '@/components/page-builder/SwatchesPanel';
+import StylesPanel from '@/components/page-builder/StylesPanel';
 
 
 function VisualEditorContent() {
@@ -22,6 +24,12 @@ function VisualEditorContent() {
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState('');
   const [newVersionName, setNewVersionName] = useState('');
+
+  const [showSwatches, setShowSwatches] = useState(false);
+  const [showStyles, setShowStyles] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  
+  const [clipboardStyle, setClipboardStyle] = useState(null);
 
   // Selected component for editing props
   const [selectedId, setSelectedId] = useState(null);
@@ -204,6 +212,30 @@ function VisualEditorContent() {
     setSelectedId(clonedComp.id);
   };
 
+  const handleCopyStyle = (index) => {
+    const compToCopy = components[index];
+    if (compToCopy.props._styles) {
+      setClipboardStyle({ type: compToCopy.type, data: compToCopy.props._styles });
+      alert('Configuración (Estilos) copiada al portapapeles.');
+    } else {
+      alert('Este componente no tiene configuración de estilos para copiar.');
+    }
+  };
+
+  const handlePasteStyle = (index) => {
+    if (!clipboardStyle) {
+      alert('No hay ninguna configuración copiada.');
+      return;
+    }
+    const compTarget = components[index];
+    if (compTarget.type !== clipboardStyle.type) {
+      const confirm = window.confirm(`El estilo copiado es de un componente [${clipboardStyle.type}]. ¿Estás seguro de pegarlo en un componente [${compTarget.type}]?`);
+      if (!confirm) return;
+    }
+    updateProp(compTarget.id, '_styles', clipboardStyle.data);
+    alert('Configuración pegada exitosamente.');
+  };
+
   const addComponent = (e) => {
     const type = e.target.value;
     if (!type) return;
@@ -237,6 +269,16 @@ function VisualEditorContent() {
 
   return (
     <div className="flex flex-col min-h-screen bg-s1">
+      {/* Floating panels */}
+      {showSwatches && <SwatchesPanel onClose={() => setShowSwatches(false)} />}
+      {showStyles && (
+        <StylesPanel 
+          onClose={() => setShowStyles(false)} 
+          selectedComponent={selectedComp} 
+          onApplyStyle={updateProp} 
+        />
+      )}
+
       {/* Integrated Admin Header */}
       <header className="w-full border-b border-border bg-bg px-6 py-3 z-50 flex items-center justify-between sticky top-0 shadow-sm">
         <div className="flex items-center gap-6">
@@ -247,6 +289,40 @@ function VisualEditorContent() {
             <Link href="/admin" className="px-3 py-2 rounded-lg hover:bg-s1 text-ink font-body text-xs transition-colors">
               Dashboard
             </Link>
+            
+            {/* Ventanas Sub-menu */}
+            <div className="relative">
+              <button 
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-s1 text-ink font-body text-xs transition-colors focus:outline-none"
+              >
+                Ventanas
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              
+              {menuOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)}></div>
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-bg border border-border rounded-lg shadow-lg z-50 py-1 flex flex-col">
+                    <button 
+                      onClick={() => { setShowSwatches(!showSwatches); setMenuOpen(false); }}
+                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                    >
+                      <span>Muestras (Color)</span>
+                      {showSwatches && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+                    </button>
+                    <button 
+                      onClick={() => { setShowStyles(!showStyles); setMenuOpen(false); }}
+                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                    >
+                      <span>Estilos Gráficos</span>
+                      {showStyles && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+
             <Link href="/admin/videos" className="px-3 py-2 rounded-lg hover:bg-s1 text-ink font-body text-xs transition-colors">
               Videos
             </Link>
@@ -425,6 +501,20 @@ function VisualEditorContent() {
                       title="Duplicar componente"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleCopyStyle(idx); }}
+                      className="p-1 hover:bg-border rounded text-muted hover:text-blue-500 transition-colors"
+                      title="Copiar Configuración"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handlePasteStyle(idx); }}
+                      className="p-1 hover:bg-border rounded text-muted hover:text-green-500 transition-colors"
+                      title="Pegar Configuración"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line></svg>
                     </button>
                     <button
                       onClick={() => removeComponent(idx)}
