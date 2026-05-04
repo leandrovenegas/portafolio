@@ -9,6 +9,7 @@ import PageRenderer from '@/components/page-builder/PageRenderer';
 import SmartPropertiesPanel from '@/components/page-builder/SmartPropertiesPanel';
 import SwatchesPanel from '@/components/page-builder/SwatchesPanel';
 import StylesPanel from '@/components/page-builder/StylesPanel';
+import HistoryPanel from '@/components/page-builder/HistoryPanel';
 
 
 function VisualEditorContent() {
@@ -27,9 +28,13 @@ function VisualEditorContent() {
 
   const [showSwatches, setShowSwatches] = useState(false);
   const [showStyles, setShowStyles] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   
   const [clipboardStyle, setClipboardStyle] = useState(null);
+
+  const [history, setHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
 
   // Selected component for editing props
   const [selectedId, setSelectedId] = useState(null);
@@ -52,6 +57,40 @@ function VisualEditorContent() {
       setDragOverIndex(index);
     }
   };
+
+  const pushHistory = useCallback((newComps, actionName) => {
+    setHistory(prev => {
+      const nextIndex = historyIndex + 1;
+      const newHist = prev.slice(0, nextIndex);
+      newHist.push({ actionName, components: newComps, timestamp: Date.now() });
+      
+      // Limitar a 10 pasos
+      if (newHist.length > 10) {
+        newHist.shift(); // Elimina el elemento más antiguo
+        setHistoryIndex(9); // Apunta al último índice (10 elementos, de 0 a 9)
+        return newHist;
+      }
+      
+      setHistoryIndex(newHist.length - 1);
+      return newHist;
+    });
+  }, [historyIndex]);
+
+  const handleUndo = useCallback(() => {
+    if (historyIndex > 0) {
+      const prevIndex = historyIndex - 1;
+      setHistoryIndex(prevIndex);
+      setComponents(history[prevIndex].components);
+    }
+  }, [historyIndex, history]);
+
+  const handleRedo = useCallback(() => {
+    if (historyIndex < history.length - 1) {
+      const nextIndex = historyIndex + 1;
+      setHistoryIndex(nextIndex);
+      setComponents(history[nextIndex].components);
+    }
+  }, [historyIndex, history]);
 
   const handleDrop = (e, dropIndex) => {
     e.preventDefault();
@@ -77,19 +116,30 @@ function VisualEditorContent() {
     fetchData();
   }, [slug]);
 
-  // Ctrl+S shortcut to save
+  // Ctrl+S / Ctrl+Z shortcut
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Save
       if ((e.ctrlKey || e.metaKey) && e.key === 's') {
         e.preventDefault();
         if (!saving && currentVersionId) {
           saveVersion(false);
         }
       }
+      // Undo/Redo
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        if (e.shiftKey) {
+          e.preventDefault();
+          handleRedo();
+        } else {
+          e.preventDefault();
+          handleUndo();
+        }
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [saving, currentVersionId, components]);
+  }, [saving, currentVersionId, handleUndo, handleRedo]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -102,17 +152,25 @@ function VisualEditorContent() {
       setVersions(histData);
 
       // Fetch active or latest
-      const activeVer = histData.find(v => v.is_active) || histData[0];
+      const versionParam = searchParams.get('versionId');
+      const targetVersion = versionParam 
+        ? histData.find(v => v.id === parseInt(versionParam)) 
+        : (histData.find(v => v.is_active) || histData[0]);
       
-      if (activeVer) {
-        const verRes = await fetch(`/api/pages?slug=${slug}&versionId=${activeVer.id}`);
+      if (targetVersion) {
+        setCurrentVersionId(targetVersion.id);
+        const verRes = await fetch(`/api/pages?slug=${slug}&versionId=${targetVersion.id}`);
         const verData = await verRes.json();
-        setComponents(verData.components || []);
-        setCurrentVersionId(activeVer.id);
+        const loadedComps = verData.components || [];
+        setComponents(loadedComps);
+        setHistory([{ actionName: 'Cargar versión', components: loadedComps, timestamp: Date.now() }]);
+        setHistoryIndex(0);
       } else {
         // Fallback for first time
         if (slug === 'home') {
           setComponents(DEFAULT_HOME_COMPONENTS);
+          setHistory([{ actionName: 'Inicio (Local)', components: DEFAULT_HOME_COMPONENTS, timestamp: Date.now() }]);
+          setHistoryIndex(0);
         }
       }
     } catch (err) {
@@ -120,6 +178,8 @@ function VisualEditorContent() {
       setError("No se pudo conectar a la base de datos de versiones. Asegúrate de haber ejecutado el script SQL en Supabase. Cargando versión local por defecto...");
       if (slug === 'home') {
         setComponents(DEFAULT_HOME_COMPONENTS);
+        setHistory([{ actionName: 'Inicio (Local)', components: DEFAULT_HOME_COMPONENTS, timestamp: Date.now() }]);
+        setHistoryIndex(0);
       }
     } finally {
       setLoading(false);
@@ -170,6 +230,9 @@ function VisualEditorContent() {
           bc.close();
         }
       }
+      
+      // Guardar estado en historial local cuando se guarda el documento
+      pushHistory(components, `Guardado: ${new Date().toLocaleTimeString()}`);
     } catch (err) {
       setError("Error al guardar: " + err.message);
     } finally {
@@ -177,17 +240,14 @@ function VisualEditorContent() {
     }
   };
 
-  const moveComponent = (index, direction) => {
+  const moveComponent = (index, dir) => {
+    if (dir === 'up' && index === 0) return;
+    if (dir === 'down' && index === components.length - 1) return;
+    
     const newComps = [...components];
-    if (direction === 'up' && index > 0) {
-      const temp = newComps[index - 1];
-      newComps[index - 1] = newComps[index];
-      newComps[index] = temp;
-    } else if (direction === 'down' && index < newComps.length - 1) {
-      const temp = newComps[index + 1];
-      newComps[index + 1] = newComps[index];
-      newComps[index] = temp;
-    }
+    const temp = newComps[index];
+    newComps[index] = newComps[dir === 'up' ? index - 1 : index + 1];
+    newComps[dir === 'up' ? index - 1 : index + 1] = temp;
     setComponents(newComps);
   };
 
@@ -278,6 +338,17 @@ function VisualEditorContent() {
           onApplyStyle={updateProp} 
         />
       )}
+      {showHistory && (
+        <HistoryPanel
+          onClose={() => setShowHistory(false)}
+          history={history}
+          currentIndex={historyIndex}
+          onSelectHistory={(index) => {
+            setHistoryIndex(index);
+            setComponents(history[index].components);
+          }}
+        />
+      )}
 
       {/* Integrated Admin Header */}
       <header className="w-full border-b border-border bg-bg px-6 py-3 z-50 flex items-center justify-between sticky top-0 shadow-sm">
@@ -317,6 +388,13 @@ function VisualEditorContent() {
                     >
                       <span>Estilos Gráficos</span>
                       {showStyles && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+                    </button>
+                    <button 
+                      onClick={() => { setShowHistory(!showHistory); setMenuOpen(false); }}
+                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                    >
+                      <span>Historia</span>
+                      {showHistory && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
                     </button>
                   </div>
                 </>

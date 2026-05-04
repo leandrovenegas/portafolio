@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useDraggable } from './useDraggable';
 
 export default function StylesPanel({ onClose, selectedComponent, onApplyStyle }) {
   const [stylesList, setStylesList] = useState([]);
   const [newStyleName, setNewStyleName] = useState('');
+  
+  const { pos, dragProps } = useDraggable({ x: window.innerWidth - 300, y: 150 });
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -60,10 +63,16 @@ export default function StylesPanel({ onClose, selectedComponent, onApplyStyle }
   };
 
   return (
-    <div className="fixed top-32 right-8 w-64 bg-[#2c2c2c] border border-[#404040] rounded shadow-2xl z-50 overflow-hidden flex flex-col text-[#b3b3b3] select-none" style={{ fontFamily: 'sans-serif' }}>
+    <div 
+      className="fixed bg-[#2c2c2c] border border-[#404040] rounded shadow-2xl z-[100] overflow-hidden flex flex-col text-[#b3b3b3] select-none w-64" 
+      style={{ left: pos.x, top: pos.y, fontFamily: 'sans-serif' }}
+    >
       
       {/* Header */}
-      <div className="flex items-center justify-between px-2 py-1 bg-[#1e1e1e] border-b border-[#404040]">
+      <div 
+        className="flex items-center justify-between px-2 py-1 bg-[#1e1e1e] border-b border-[#404040] cursor-move"
+        {...dragProps}
+      >
         <div className="flex items-center gap-2">
           {/* Mini lines icon */}
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

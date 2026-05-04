@@ -4,6 +4,7 @@ import TextSection from './sections/TextSection';
 import ListSection from './sections/ListSection';
 import CTASection from './sections/CTASection';
 import FAQSection from './sections/FAQSection';
+import SimpleCenteredCTA from './sections/SimpleCenteredCTA';
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -11,7 +12,8 @@ export const COMPONENT_REGISTRY = {
   TextSection,
   ListSection,
   CTASection,
-  FAQSection
+  FAQSection,
+  SimpleCenteredCTA
 };
 
 export const COMPONENT_DEFINITIONS = [
@@ -96,6 +98,23 @@ export const COMPONENT_DEFINITIONS = [
         { q: '¿Pregunta 1?', a: 'Respuesta 1' },
         { q: '¿Pregunta 2?', a: 'Respuesta 2' }
       ]
+    }
+  },
+  {
+    type: 'SimpleCenteredCTA',
+    name: 'Call to Action (Centrado)',
+    defaultProps: {
+      headline: 'Aumenta tu productividad.\nEmpieza a usar nuestra app hoy.',
+      description: 'Llevamos tu marca al siguiente nivel con contenido de alto impacto.',
+      primaryButtonText: 'Empezar ahora',
+      primaryButtonLink: '#',
+      secondaryButtonText: 'Saber más',
+      secondaryButtonLink: '#',
+      backgroundColor: '#3b82f6',
+      _styles: {
+        headline:    { mobile: { fontSize: 30, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, tablet: { fontSize: 36, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, desktop: { fontSize: 40, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' } },
+        description: { mobile: { fontSize: 18, color: '#e0e7ff', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, tablet: { fontSize: 18, color: '#e0e7ff', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, desktop: { fontSize: 18, color: '#e0e7ff', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' } }
+      }
     }
   }
 ];

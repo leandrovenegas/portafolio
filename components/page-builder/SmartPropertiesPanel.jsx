@@ -390,6 +390,88 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
     );
   }
 
+  // ── SimpleCenteredCTA layout ──
+  if (type === 'SimpleCenteredCTA') {
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Call to Action (Centrado) — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <SectionLabel>Fondo</SectionLabel>
+          <div className="flex flex-col gap-1 px-1">
+            <label className="text-[10px] text-muted font-medium uppercase tracking-wide">Color de Fondo</label>
+            <div className="flex items-center gap-2">
+              <input
+                type="color"
+                value={props.backgroundColor || '#3b82f6'}
+                onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                className="w-8 h-8 rounded cursor-pointer border-0 p-0"
+              />
+              <input
+                type="text"
+                value={props.backgroundColor || '#3b82f6'}
+                onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                className="flex-1 p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none uppercase font-mono"
+              />
+            </div>
+          </div>
+
+          <SectionLabel>Textos</SectionLabel>
+          <TextField
+            fieldKey="headline"
+            label="Título Principal"
+            long={true}
+            value={props.headline || ''}
+            onChange={val => updateProp(comp.id, 'headline', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            hasTypography
+          />
+          <TextField
+            fieldKey="description"
+            label="Descripción"
+            long={true}
+            value={props.description || ''}
+            onChange={val => updateProp(comp.id, 'description', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            hasTypography
+          />
+
+          <SectionLabel>Botones</SectionLabel>
+          {['primaryButton', 'secondaryButton'].map((prefix) => (
+            <div key={prefix} className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">
+                {prefix === 'primaryButton' ? 'Botón Primario' : 'Botón Secundario'}
+              </label>
+              <input
+                type="text"
+                placeholder="Texto"
+                value={props[`${prefix}Text`] || ''}
+                onChange={e => updateProp(comp.id, `${prefix}Text`, e.target.value)}
+                className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+              />
+              <input
+                type="text"
+                placeholder="URL"
+                value={props[`${prefix}Link`] || ''}
+                onChange={e => updateProp(comp.id, `${prefix}Link`, e.target.value)}
+                className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   // ── Generic fallback for all other component types ──
   return (
     <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
