@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { COMPONENT_DEFINITIONS } from '@/components/page-builder/registry';
 import { DEFAULT_HOME_COMPONENTS } from '@/components/page-builder/defaultConfig';
 import PageRenderer from '@/components/page-builder/PageRenderer';
+import SmartPropertiesPanel from '@/components/page-builder/SmartPropertiesPanel';
+
 
 function VisualEditorContent() {
   const searchParams = useSearchParams();
@@ -148,8 +150,18 @@ function VisualEditorContent() {
       
       setSaveSuccess('Guardado correctamente');
       setTimeout(() => setSaveSuccess(''), 3000);
-      if (isNew) setNewVersionName('');
-      fetchData(); // Reload
+      
+      if (isNew) {
+        setNewVersionName('');
+        fetchData(); // Reload to get the new version ID
+      } else {
+        // Broadcast update to any open preview tabs so they refresh without F5
+        if (typeof window !== 'undefined' && window.BroadcastChannel) {
+          const bc = new BroadcastChannel('editor-updates');
+          bc.postMessage({ type: 'saved' });
+          bc.close();
+        }
+      }
     } catch (err) {
       setError("Error al guardar: " + err.message);
     } finally {
@@ -176,6 +188,20 @@ function VisualEditorContent() {
     const removed = newComps.splice(index, 1);
     setComponents(newComps);
     if (selectedId === removed[0].id) setSelectedId(null);
+  };
+
+  const cloneComponent = (index) => {
+    const compToClone = components[index];
+    // Deep clone to copy all nested props and _styles
+    const clonedComp = JSON.parse(JSON.stringify(compToClone));
+    clonedComp.id = Date.now().toString() + '-' + Math.random().toString(36).substr(2, 5);
+    
+    const newComps = [...components];
+    // Insert immediately after the original
+    newComps.splice(index + 1, 0, clonedComp);
+    setComponents(newComps);
+    // Optionally auto-select the clone
+    setSelectedId(clonedComp.id);
   };
 
   const addComponent = (e) => {
@@ -394,6 +420,13 @@ function VisualEditorContent() {
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                     </button>
                     <button
+                      onClick={() => cloneComponent(idx)}
+                      className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
+                      title="Duplicar componente"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                    <button
                       onClick={() => removeComponent(idx)}
                       className="p-1 hover:bg-red-50 text-muted hover:text-red-500 transition-colors rounded"
                       title="Eliminar"
@@ -423,58 +456,11 @@ function VisualEditorContent() {
         <div className="flex-1 max-w-2xl flex flex-col gap-4 self-start">
           {/* Properties Editor */}
           {selectedComp ? (
-            <div className="bg-bg border border-border rounded-xl p-3 shadow-sm animate-in fade-in slide-in-from-bottom-2">
-              <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1 flex justify-between items-center">
-                Propiedades
-                <button onClick={() => setSelectedId(null)} className="hover:text-ink">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                </button>
-              </h3>
-              <div className="flex flex-col gap-4">
-                {Object.keys(selectedComp.props).map(propKey => {
-                  const val = selectedComp.props[propKey];
-                  if (typeof val === 'string') {
-                    return (
-                      <div key={propKey}>
-                        <label className="block text-[10px] font-bold text-muted mb-1.5 uppercase tracking-wider pl-1">{propKey}</label>
-                        {val.length > 50 ? (
-                          <textarea 
-                            value={val} 
-                            onChange={e => updateProp(selectedComp.id, propKey, e.target.value)}
-                            className="w-full p-3 border border-border rounded-lg text-sm min-h-[120px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
-                          />
-                        ) : (
-                          <input 
-                            type="text" 
-                            value={val} 
-                            onChange={e => updateProp(selectedComp.id, propKey, e.target.value)}
-                            className="w-full p-3 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
-                          />
-                        )}
-                      </div>
-                    )
-                  }
-                  if (Array.isArray(val)) {
-                    // Very simple JSON edit for arrays like paragraphs, items, faqs
-                    return (
-                      <div key={propKey}>
-                        <label className="block text-[10px] font-bold text-muted mb-1.5 uppercase tracking-wider pl-1">{propKey} (JSON)</label>
-                        <textarea 
-                          value={JSON.stringify(val, null, 2)} 
-                          onChange={e => {
-                            try {
-                              updateProp(selectedComp.id, propKey, JSON.parse(e.target.value))
-                            } catch (e) {} // ignore parse errors until valid
-                          }}
-                          className="w-full p-3 font-mono text-sm border border-border rounded-lg min-h-[200px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
-                        />
-                      </div>
-                    )
-                  }
-                  return null;
-                })}
-              </div>
-            </div>
+            <SmartPropertiesPanel
+              comp={selectedComp}
+              updateProp={updateProp}
+              onClose={() => setSelectedId(null)}
+            />
           ) : (
             <div className="bg-s1 border border-border rounded-xl p-8 flex flex-col items-center justify-center text-center text-muted">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-4 opacity-50"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>

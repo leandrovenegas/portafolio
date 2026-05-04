@@ -1,5 +1,25 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import HeroVideo from "@/components/HeroVideo";
 import Link from "next/link";
+
+// Converts a style config object into a React inline style object
+function toInlineStyle(styleObj) {
+  if (!styleObj) return {};
+  const s = {};
+  if (styleObj.fontSize)      s.fontSize      = `${styleObj.fontSize}px`;
+  if (styleObj.color)         s.color         = styleObj.color;
+  if (styleObj.fontWeight)    s.fontWeight    = styleObj.fontWeight;
+  if (styleObj.fontStyle)     s.fontStyle     = styleObj.fontStyle;
+  if (styleObj.fontFamily)    s.fontFamily    = styleObj.fontFamily;
+  if (styleObj.textAlign)     s.textAlign     = styleObj.textAlign;
+  if (styleObj.textDecoration)s.textDecoration= styleObj.textDecoration;
+  if (styleObj.textTransform && styleObj.textTransform !== 'none') s.textTransform = styleObj.textTransform;
+  if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '') s.letterSpacing = `${styleObj.letterSpacing}em`;
+  if (styleObj.lineHeight)    s.lineHeight    = styleObj.lineHeight;
+  return s;
+}
 
 export default function HeroEditorialSection({ 
   pillText,
@@ -14,11 +34,29 @@ export default function HeroEditorialSection({
   mobileAV1, 
   mobileVP9, 
   mobileH264, 
-  desktopAV1, 
-  desktopVP9, 
-  desktopH264, 
-  posterSrc 
+  desktopAV1,
+  desktopVP9,
+  desktopH264,
+  posterSrc,
+  _styles
 }) {
+  const [bp, setBp] = useState('mobile');
+
+  useEffect(() => {
+    const check = () => {
+      const w = window.innerWidth;
+      setBp(w >= 1024 ? 'desktop' : w >= 768 ? 'tablet' : 'mobile');
+    };
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // Helper: get inline style for a field at current breakpoint
+  const fieldStyle = (fieldName) => {
+    if (!_styles || !_styles[fieldName]) return {};
+    return toInlineStyle(_styles[fieldName][bp]);
+  };
 
   // Procesamos el texto del cuerpo para buscar frases entre comillas y darles estilo
   const formatBodyText = (text) => {
@@ -46,22 +84,32 @@ export default function HeroEditorialSection({
         
         {/* Pill Tag */}
         {pillText && (
-          <div className="px-3 py-1 rounded-full border border-accent/30 text-accent text-[10px] tracking-[0.2em] uppercase mb-2 bg-accent/5">
+          <div
+            className="px-3 py-1 rounded-full border border-accent/30 text-accent text-[10px] tracking-[0.2em] uppercase mb-2 bg-accent/5"
+            style={fieldStyle('pillText')}
+          >
             {pillText}
           </div>
         )}
 
         {/* Headline */}
         {(headline || headlineKeyword) && (
-          <h1 className="font-display text-5xl md:text-6xl lg:text-8xl font-bold leading-[0.95] text-ink max-w-full">
-            {headline}
-            {headlineKeyword && <span className="text-accent block md:inline"> {headlineKeyword}</span>}
+          <h1 className="font-display font-bold leading-[0.95] text-ink max-w-full">
+            <span style={fieldStyle('headline')}>{headline}</span>
+            {headlineKeyword && (
+              <span className="text-accent block md:inline" style={fieldStyle('headlineKeyword')}>
+                {' '}{headlineKeyword}
+              </span>
+            )}
           </h1>
         )}
 
         {/* Body Text */}
         {bodyText && (
-          <p className="font-body text-lg md:text-xl leading-relaxed text-ink/80 max-w-2xl mt-4">
+          <p
+            className="font-body leading-relaxed text-ink/80 max-w-2xl mt-4"
+            style={fieldStyle('bodyText')}
+          >
             {formatBodyText(bodyText)}
           </p>
         )}
@@ -69,7 +117,10 @@ export default function HeroEditorialSection({
         {/* Tagline */}
         {tagline && (
           <div className="border-l-4 border-accent pl-4 py-1 mt-2">
-            <p className="font-body text-lg md:text-xl font-medium text-ink">
+            <p
+              className="font-body font-medium text-ink"
+              style={fieldStyle('tagline')}
+            >
               {tagline}
             </p>
           </div>

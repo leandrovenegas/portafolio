@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import MediaPreconnect from "@/components/MediaPreconnect";
 import PageRenderer from "@/components/page-builder/PageRenderer";
 import { DEFAULT_HOME_COMPONENTS } from "@/components/page-builder/defaultConfig";
+import LivePreviewListener from "@/components/page-builder/LivePreviewListener";
 import supabase from "@/lib/supabase";
 
 export const metadata = {
@@ -103,6 +104,7 @@ export default async function Home({ searchParams }) {
 
   return (
     <>
+      <LivePreviewListener />
       <MediaPreconnect bunny />
       <script
         type="application/ld+json"

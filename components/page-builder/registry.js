@@ -44,7 +44,17 @@ export const COMPONENT_DEFINITIONS = [
       mobileAV1: '',
       mobileVP9: '',
       mobileH264: '',
-      posterSrc: '/images/og-portafolio.jpg'
+      desktopAV1: '',
+      desktopVP9: '',
+      desktopH264: '',
+      posterSrc: '/images/og-portafolio.jpg',
+      _styles: {
+        pillText:        { mobile: { fontSize: 10, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.2', lineHeight: '1.5' }, tablet: { fontSize: 10, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.2', lineHeight: '1.5' }, desktop: { fontSize: 10, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.2', lineHeight: '1.5' } },
+        headline:        { mobile: { fontSize: 48, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' }, tablet: { fontSize: 60, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' }, desktop: { fontSize: 96, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' } },
+        headlineKeyword: { mobile: { fontSize: 48, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' }, tablet: { fontSize: 60, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' }, desktop: { fontSize: 96, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' } },
+        bodyText:        { mobile: { fontSize: 16, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' }, tablet: { fontSize: 18, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' }, desktop: { fontSize: 20, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' } },
+        tagline:         { mobile: { fontSize: 16, color: '', fontWeight: '500', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, tablet: { fontSize: 18, color: '', fontWeight: '500', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, desktop: { fontSize: 20, color: '', fontWeight: '500', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' } }
+      }
     }
   },
   {
