@@ -6,6 +6,7 @@ import { useDraggable } from './useDraggable';
 export default function SwatchesPanel({ onClose }) {
   const [swatches, setSwatches] = useState([]);
   const [newColor, setNewColor] = useState('#ff0000');
+  const [copiedLabel, setCopiedLabel] = useState('');
   
   const { pos, dragProps } = useDraggable({ x: window.innerWidth - 300, y: 150 });
 
@@ -48,6 +49,23 @@ export default function SwatchesPanel({ onClose }) {
 
   const copyToClipboard = (color) => {
     navigator.clipboard.writeText(color);
+    setNewColor(color);
+    setCopiedLabel('¡Copiado!');
+    setTimeout(() => setCopiedLabel(''), 1500);
+  };
+
+  const handleEyeDropper = async () => {
+    if (!window.EyeDropper) {
+      alert("Tu navegador no soporta la herramienta cuentagotas nativa (usa Chrome o Edge).");
+      return;
+    }
+    try {
+      const eyeDropper = new window.EyeDropper();
+      const result = await eyeDropper.open();
+      setNewColor(result.sRGBHex);
+    } catch (e) {
+      console.log('Cuentagotas cancelado', e);
+    }
   };
 
   return (
@@ -95,14 +113,22 @@ export default function SwatchesPanel({ onClose }) {
         </div>
 
         {/* Add new color controls */}
-        <div className="flex items-center gap-2 mt-1">
+        <div className="flex items-center gap-1 mt-1">
+          <button
+            onClick={handleEyeDropper}
+            className="p-1.5 bg-[#333] border border-[#404040] hover:bg-[#444] hover:text-white text-[#888] rounded transition-colors"
+            title="Cuentagotas (Seleccionar de la pantalla)"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m2 22 1-1h3l9-9"/><path d="M3 21v-3l9-9"/><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z"/></svg>
+          </button>
+          
           <div className="flex-1 flex items-center border border-[#404040] rounded bg-[#333] px-1 focus-within:ring-1 focus-within:ring-accent">
             <input
               type="color"
               value={newColor}
               onChange={e => setNewColor(e.target.value)}
               className="w-5 h-5 rounded cursor-pointer border-none bg-transparent p-0"
-              title="Seleccionar color"
+              title="Seleccionar color manual"
             />
             <input
               type="text"
@@ -110,6 +136,13 @@ export default function SwatchesPanel({ onClose }) {
               onChange={e => setNewColor(e.target.value)}
               className="w-full bg-transparent text-[10px] font-mono text-white outline-none px-2 uppercase"
             />
+            <button
+              onClick={() => copyToClipboard(newColor)}
+              className="p-1 hover:text-white text-[#888] transition-colors"
+              title="Copiar código HEX"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            </button>
           </div>
           <button 
             onClick={addSwatch}
@@ -120,8 +153,13 @@ export default function SwatchesPanel({ onClose }) {
           </button>
         </div>
         
-        <div className="text-[9px] text-[#666] text-center mt-1">
-          Click: Copiar HEX • Click Derecho: Eliminar
+        <div className="flex justify-between items-center mt-1">
+          <div className="text-[9px] text-[#666]">
+            Click: Copiar HEX • Click Derecho: Eliminar
+          </div>
+          <div className="text-[9px] text-green-400 font-bold h-3">
+            {copiedLabel}
+          </div>
         </div>
       </div>
     </div>

@@ -43,7 +43,7 @@ import TypographyPanel from './TypographyPanel';
 
 // ─── Text Field with optional Typography ───────────────────────────────────
 
-function TextField({ fieldKey, label, long, value, onChange, styles, onStylesChange, hasTypography }) {
+function TextField({ fieldKey, label, long, value, onChange, styles, onStylesChange, hasTypography, onFocusField }) {
   const [showTypo, setShowTypo] = useState(false);
 
   return (
@@ -70,6 +70,7 @@ function TextField({ fieldKey, label, long, value, onChange, styles, onStylesCha
           <textarea
             value={value}
             onChange={e => onChange(e.target.value)}
+            onFocus={() => onFocusField && onFocusField(fieldKey)}
             className="w-full p-2.5 border border-border rounded-lg text-sm min-h-[100px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all resize-y"
           />
         ) : (
@@ -77,6 +78,7 @@ function TextField({ fieldKey, label, long, value, onChange, styles, onStylesCha
             type="text"
             value={value}
             onChange={e => onChange(e.target.value)}
+            onFocus={() => onFocusField && onFocusField(fieldKey)}
             className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
           />
         )}
@@ -222,6 +224,7 @@ function VideoFieldsAccordion({ props, onChange }) {
                   type="text"
                   value={props[key] || ''}
                   onChange={e => onChange(key, e.target.value)}
+                  onFocus={() => onFocusField && onFocusField(key)}
                   placeholder="https://..."
                   className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
                 />
@@ -236,15 +239,16 @@ function VideoFieldsAccordion({ props, onChange }) {
 
 // ─── Generic Field (for other component types) ────────────────────────────
 
-function GenericField({ propKey, val, onChange }) {
+function GenericField({ propKey, val, onChange, onFocusField }) {
   if (typeof val === 'string') {
     return (
       <div className="rounded-xl border border-border bg-bg px-3 py-3">
         <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1.5">{propKey}</label>
-        {val.length > 60 ? (
+        {val.length > 50 ? (
           <textarea
             value={val}
             onChange={e => onChange(e.target.value)}
+            onFocus={() => onFocusField && onFocusField(propKey)}
             className="w-full p-2.5 border border-border rounded-lg text-sm min-h-[100px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all resize-y"
           />
         ) : (
@@ -252,6 +256,7 @@ function GenericField({ propKey, val, onChange }) {
             type="text"
             value={val}
             onChange={e => onChange(e.target.value)}
+            onFocus={() => onFocusField && onFocusField(propKey)}
             className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
           />
         )}
@@ -289,7 +294,7 @@ function SectionLabel({ children }) {
 
 // ─── Main Panel ───────────────────────────────────────────────────────────
 
-export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
+export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField }) {
   const { props, type } = comp;
 
   const handleStylesChange = (newStyles) => {
@@ -326,6 +331,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
               onChange={val => updateProp(comp.id, key, val)}
               styles={props._styles}
               onStylesChange={handleStylesChange}
+              onFocusField={onFocusField}
               hasTypography
             />
           ))}
@@ -432,6 +438,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
             onChange={val => updateProp(comp.id, 'headline', val)}
             styles={props._styles}
             onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
             hasTypography
           />
           <TextField
@@ -442,6 +449,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
             onChange={val => updateProp(comp.id, 'description', val)}
             styles={props._styles}
             onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
             hasTypography
           />
 
@@ -472,6 +480,51 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
     );
   }
 
+  // ── TextSection layout ──
+  if (type === 'TextSection') {
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Texto — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <SectionLabel>Contenido</SectionLabel>
+          <TextField
+            fieldKey="title"
+            label="Título de la sección"
+            long={false}
+            value={props.title || ''}
+            onChange={val => updateProp(comp.id, 'title', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+          />
+          <TextField
+            fieldKey="description"
+            label="Párrafos"
+            long={true}
+            value={props.description !== undefined ? props.description : (props.paragraphs ? props.paragraphs.join('\n\n') : '')}
+            onChange={val => {
+              updateProp(comp.id, 'description', val);
+              if (props.paragraphs !== undefined) updateProp(comp.id, 'paragraphs', undefined); // Migration
+            }}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+          />
+        </div>
+      </div>
+    );
+  }
+
   // ── Generic fallback for all other component types ──
   return (
     <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
@@ -490,6 +543,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose }) {
               propKey={key}
               val={val}
               onChange={newVal => updateProp(comp.id, key, newVal)}
+              onFocusField={onFocusField}
             />
           );
         })}

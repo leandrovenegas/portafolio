@@ -1,9 +1,44 @@
-import Link from "next/link";
+'use client';
+import { useState, useEffect } from 'react';
 
-export default function TextSection({ title, paragraphs }) {
-  // Simple HTML parsing to support links like the original text had
-  const renderParagraph = (p) => {
-    // This is a very basic replacement for the exact Link used. In a full system you might use a markdown renderer.
+function toInlineStyle(styleObj) {
+  if (!styleObj) return {};
+  const s = {};
+  if (styleObj.fontSize)      s.fontSize      = `${styleObj.fontSize}px`;
+  if (styleObj.color)         s.color         = styleObj.color;
+  if (styleObj.fontWeight)    s.fontWeight    = styleObj.fontWeight;
+  if (styleObj.fontStyle)     s.fontStyle     = styleObj.fontStyle;
+  if (styleObj.fontFamily)    s.fontFamily    = styleObj.fontFamily;
+  if (styleObj.textAlign)     s.textAlign     = styleObj.textAlign;
+  if (styleObj.textDecoration)s.textDecoration= styleObj.textDecoration;
+  if (styleObj.textTransform && styleObj.textTransform !== 'none') s.textTransform = styleObj.textTransform;
+  if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '') s.letterSpacing = `${styleObj.letterSpacing}em`;
+  if (styleObj.lineHeight)    s.lineHeight    = styleObj.lineHeight;
+  if (styleObj.textIndent !== undefined && styleObj.textIndent !== '') s.textIndent = `${styleObj.textIndent}px`;
+  if (styleObj.paddingTop !== undefined && styleObj.paddingTop !== '') s.paddingTop = `${styleObj.paddingTop}px`;
+  if (styleObj.paddingBottom !== undefined && styleObj.paddingBottom !== '') s.paddingBottom = `${styleObj.paddingBottom}px`;
+  return s;
+}
+
+export default function TextSection({ title, paragraphs, description, _styles }) {
+  const [bp, setBp] = useState('mobile');
+
+  useEffect(() => {
+    const check = () => {
+      const w = window.innerWidth;
+      setBp(w >= 1024 ? 'desktop' : w >= 768 ? 'tablet' : 'mobile');
+    };
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const fieldStyle = (fieldName) => {
+    if (!_styles || !_styles[fieldName]) return {};
+    return toInlineStyle(_styles[fieldName][bp]);
+  };
+
+  const renderText = (p) => {
     if (p.includes("<Link")) {
       return (
         <span dangerouslySetInnerHTML={{
@@ -17,18 +52,30 @@ export default function TextSection({ title, paragraphs }) {
     return p;
   };
 
+  const bodyText = description !== undefined ? description : (paragraphs ? paragraphs.join('\n\n') : '');
+
   return (
     <section>
       {title && (
-        <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-8">
+        <h2 
+          className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-8"
+          style={fieldStyle('title')}
+        >
           {title}
         </h2>
       )}
-      {paragraphs && paragraphs.map((p, i) => (
-        <p key={i} className={`font-body text-mid text-lg leading-relaxed ${i === paragraphs.length - 1 ? '' : 'mb-6'}`}>
-          {renderParagraph(p)}
-        </p>
-      ))}
+      {bodyText && bodyText.split('\n').map((p, i) => {
+        if (!p.trim()) return <br key={i} />;
+        return (
+          <p 
+            key={i} 
+            className="font-body text-mid text-lg leading-relaxed mb-6 last:mb-0"
+            style={fieldStyle('description')}
+          >
+            {renderText(p)}
+          </p>
+        );
+      })}
     </section>
   );
 }

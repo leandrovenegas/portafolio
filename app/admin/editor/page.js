@@ -10,6 +10,7 @@ import SmartPropertiesPanel from '@/components/page-builder/SmartPropertiesPanel
 import SwatchesPanel from '@/components/page-builder/SwatchesPanel';
 import StylesPanel from '@/components/page-builder/StylesPanel';
 import HistoryPanel from '@/components/page-builder/HistoryPanel';
+import GlobalTypographyPanel from '@/components/page-builder/GlobalTypographyPanel';
 
 
 function VisualEditorContent() {
@@ -25,10 +26,13 @@ function VisualEditorContent() {
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState('');
   const [newVersionName, setNewVersionName] = useState('');
+  
+  const [focusedField, setFocusedField] = useState(null);
 
   const [showSwatches, setShowSwatches] = useState(false);
   const [showStyles, setShowStyles] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
+  const [showTypography, setShowTypography] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   
   const [clipboardStyle, setClipboardStyle] = useState(null);
@@ -349,6 +353,14 @@ function VisualEditorContent() {
           }}
         />
       )}
+      {showTypography && (
+        <GlobalTypographyPanel
+          onClose={() => setShowTypography(false)}
+          selectedComponent={selectedComp}
+          onApplyStyle={updateProp}
+          focusedField={focusedField}
+        />
+      )}
 
       {/* Integrated Admin Header */}
       <header className="w-full border-b border-border bg-bg px-6 py-3 z-50 flex items-center justify-between sticky top-0 shadow-sm">
@@ -388,6 +400,13 @@ function VisualEditorContent() {
                     >
                       <span>Estilos Gráficos</span>
                       {showStyles && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+                    </button>
+                    <button 
+                      onClick={() => { setShowTypography(!showTypography); setMenuOpen(false); }}
+                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                    >
+                      <span>Tipografía (Carácter/Párrafo)</span>
+                      {showTypography && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
                     </button>
                     <button 
                       onClick={() => { setShowHistory(!showHistory); setMenuOpen(false); }}
@@ -628,6 +647,7 @@ function VisualEditorContent() {
               comp={selectedComp}
               updateProp={updateProp}
               onClose={() => setSelectedId(null)}
+              onFocusField={setFocusedField}
             />
           ) : (
             <div className="bg-s1 border border-border rounded-xl p-8 flex flex-col items-center justify-center text-center text-muted">

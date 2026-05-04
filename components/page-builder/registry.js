@@ -64,7 +64,11 @@ export const COMPONENT_DEFINITIONS = [
     name: 'Texto',
     defaultProps: {
       title: 'Título de la Sección',
-      paragraphs: ['Escribe tu párrafo aquí...']
+      description: 'Escribe tu párrafo aquí...\n\nPuedes crear múltiples líneas.',
+      _styles: {
+        title: { mobile: { fontSize: 36, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, tablet: { fontSize: 48, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, desktop: { fontSize: 48, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' } },
+        description: { mobile: { fontSize: 18, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' }, tablet: { fontSize: 18, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' }, desktop: { fontSize: 18, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' } }
+      }
     }
   },
   {

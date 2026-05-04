@@ -8,7 +8,7 @@ const BREAKPOINTS = [
   { key: 'desktop', label: '🖥', title: 'Desktop' },
 ];
 
-export default function TypographyPanel({ fieldKey, styles, onStylesChange }) {
+export default function TypographyPanel({ fieldKey, styles, onStylesChange, embedded = false }) {
   const [activeBp, setActiveBp] = useState('mobile');
 
   const currentStyle = styles?.[fieldKey]?.[activeBp] || {
@@ -36,7 +36,10 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange }) {
   };
 
   return (
-    <div className="mt-2 border border-border bg-[#2c2c2c] rounded-md shadow-lg overflow-hidden select-none text-[#b3b3b3]" style={{ width: '100%', fontFamily: 'sans-serif' }}>
+    <div 
+      className={`bg-[#2c2c2c] overflow-hidden select-none text-[#b3b3b3] ${embedded ? '' : 'mt-2 border border-[#404040] rounded-md shadow-lg'}`} 
+      style={{ width: '100%', fontFamily: 'sans-serif' }}
+    >
       
       {/* Breakpoint Tabs (Like workspace tabs) */}
       <div className="flex bg-[#1e1e1e] border-b border-[#404040]">
