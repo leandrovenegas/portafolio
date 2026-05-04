@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { COMPONENT_DEFINITIONS } from '@/components/page-builder/registry';
@@ -24,9 +24,62 @@ function VisualEditorContent() {
   // Selected component for editing props
   const [selectedId, setSelectedId] = useState(null);
 
+  // Drag & Drop state
+  const [draggedIndex, setDraggedIndex] = useState(null);
+  const [dragOverIndex, setDragOverIndex] = useState(null);
+
+  const handleDragStart = (e, index) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+    // Needed for Firefox
+    e.dataTransfer.setData('text/plain', index);
+  };
+
+  const handleDragOver = (e, index) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (index !== draggedIndex) {
+      setDragOverIndex(index);
+    }
+  };
+
+  const handleDrop = (e, dropIndex) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === dropIndex) {
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+      return;
+    }
+    const newComps = [...components];
+    const [removed] = newComps.splice(draggedIndex, 1);
+    newComps.splice(dropIndex, 0, removed);
+    setComponents(newComps);
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+  };
+
   useEffect(() => {
     fetchData();
   }, [slug]);
+
+  // Ctrl+S shortcut to save
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        if (!saving && currentVersionId) {
+          saveVersion(false);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [saving, currentVersionId, components]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -279,37 +332,80 @@ function VisualEditorContent() {
         <div className="w-full md:w-64 flex-shrink-0 flex flex-col gap-4 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-2 scrollbar-thin">
           <div className="bg-bg border border-border rounded-xl p-3 shadow-sm">
             <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1">Estructura</h3>
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1">
               {components.map((c, idx) => (
-                <div 
-                  key={c.id} 
-                  className={`flex justify-between items-center p-2 border rounded-lg cursor-pointer transition-all ${selectedId === c.id ? 'border-accent bg-accent/5 ring-1 ring-accent/20' : 'border-border hover:border-accent/30 hover:bg-s1'}`}
+                <div
+                  key={c.id}
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, idx)}
+                  onDragOver={(e) => handleDragOver(e, idx)}
+                  onDrop={(e) => handleDrop(e, idx)}
+                  onDragEnd={handleDragEnd}
+                  className={`relative flex justify-between items-center p-2 border rounded-lg cursor-pointer transition-all select-none
+                    ${selectedId === c.id ? 'border-accent bg-accent/5 ring-1 ring-accent/20' : 'border-border hover:border-accent/30 hover:bg-s1'}
+                    ${draggedIndex === idx ? 'opacity-40 scale-[0.98]' : 'opacity-100'}
+                  `}
                   onClick={() => setSelectedId(c.id)}
                 >
-                  <span className="font-medium truncate text-xs text-ink pl-1">{COMPONENT_DEFINITIONS.find(d=>d.type===c.type)?.name || c.type}</span>
-                  <div className="flex items-center gap-0.5" onClick={e => e.stopPropagation()}>
-                    <button 
-                      onClick={() => moveComponent(idx, 'up')} 
+                  {/* Drop indicator line - above */}
+                  {dragOverIndex === idx && draggedIndex !== idx && draggedIndex > idx && (
+                    <div className="absolute -top-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
+                  )}
+
+                  {/* Drag handle */}
+                  <div
+                    className="flex items-center gap-1.5 flex-1 min-w-0"
+                    title="Arrastrar para reordenar"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="text-muted/50 flex-shrink-0 cursor-grab active:cursor-grabbing"
+                    >
+                      <circle cx="8" cy="6" r="1.5"/>
+                      <circle cx="16" cy="6" r="1.5"/>
+                      <circle cx="8" cy="12" r="1.5"/>
+                      <circle cx="16" cy="12" r="1.5"/>
+                      <circle cx="8" cy="18" r="1.5"/>
+                      <circle cx="16" cy="18" r="1.5"/>
+                    </svg>
+                    <span className="font-medium truncate text-xs text-ink">
+                      {COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
+                    </span>
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="flex items-center gap-0.5 flex-shrink-0" onClick={e => e.stopPropagation()}>
+                    <button
+                      onClick={() => moveComponent(idx, 'up')}
                       className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
                       title="Mover arriba"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
                     </button>
-                    <button 
-                      onClick={() => moveComponent(idx, 'down')} 
+                    <button
+                      onClick={() => moveComponent(idx, 'down')}
                       className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
                       title="Mover abajo"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                     </button>
-                    <button 
-                      onClick={() => removeComponent(idx)} 
-                      className="p-1 hover:bg-red-50 text-muted hover:text-red-500 transition-colors"
+                    <button
+                      onClick={() => removeComponent(idx)}
+                      className="p-1 hover:bg-red-50 text-muted hover:text-red-500 transition-colors rounded"
                       title="Eliminar"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
                     </button>
                   </div>
+
+                  {/* Drop indicator line - below */}
+                  {dragOverIndex === idx && draggedIndex !== idx && draggedIndex < idx && (
+                    <div className="absolute -bottom-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
+                  )}
                 </div>
               ))}
             </div>
