@@ -295,7 +295,7 @@ function SectionLabel({ children }) {
 
 export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField }) {
   const { props, type } = comp;
-  const [videoDeviceMode, setVideoDeviceMode] = useState('mobile'); // mobile | desktop
+  const [videoDeviceMode, setVideoDeviceMode] = useState('mobile'); // mobile | tablet | desktop
 
   const handleStylesChange = (newStyles) => {
     updateProp(comp.id, '_styles', newStyles);
@@ -351,6 +351,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             <div className="flex bg-s1 p-1 gap-1 border-b border-border">
               {[
                 { id: 'mobile', label: 'Móvil', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
+                { id: 'tablet', label: 'Tablet', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
                 { id: 'desktop', label: 'Desktop', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> }
               ].map(tab => (
                 <button
@@ -372,18 +373,18 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
               <div className="flex items-center gap-2 mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                 <span className="text-[10px] font-bold text-muted uppercase tracking-wider">
-                  GUID {videoDeviceMode === 'mobile' ? 'Móvil' : 'Desktop'}
+                  GUID {videoDeviceMode === 'mobile' ? 'Móvil' : videoDeviceMode === 'tablet' ? 'Tablet' : 'Desktop'}
                 </span>
               </div>
               <input
                 type="text"
                 placeholder="Ej: 6859587c-3f26-444e-a131-026852c00325"
-                value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : 'desktopVideoGuid'] || ''}
-                onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : 'desktopVideoGuid', e.target.value)}
+                value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid'] || ''}
+                onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid', e.target.value)}
                 className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
               />
               <p className="text-[9px] text-muted/60 px-1 leading-tight">
-                Usa un GUID diferente si quieres un encuadre distinto para {videoDeviceMode === 'mobile' ? 'celulares' : 'escritorio'}.
+                Usa un GUID diferente si quieres un encuadre distinto para {videoDeviceMode === 'mobile' ? 'celulares' : videoDeviceMode === 'tablet' ? 'tablets' : 'escritorio'}.
               </p>
             </div>
           </div>

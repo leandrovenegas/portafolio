@@ -7,12 +7,13 @@ const CDN_HOSTNAME = process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-
 
 export default function HeroVideo({ 
   mobileVideoGuid,
+  tabletVideoGuid,
   desktopVideoGuid,
   posterSrc = '/images/og-portafolio.jpg',
   children 
 }) {
   const [isMounted, setIsMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(true);
+  const [device, setDevice] = useState('mobile'); // mobile | tablet | desktop
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -20,7 +21,10 @@ export default function HeroVideo({
     setIsMounted(true);
 
     const checkOrientation = () => {
-      setIsMobile(window.innerWidth < 768);
+      const w = window.innerWidth;
+      if (w < 768) setDevice('mobile');
+      else if (w < 1024) setDevice('tablet');
+      else setDevice('desktop');
     };
     
     checkOrientation();
@@ -28,7 +32,10 @@ export default function HeroVideo({
     return () => window.removeEventListener('resize', checkOrientation);
   }, []);
 
-  const activeGuid = (isMobile ? mobileVideoGuid : desktopVideoGuid) || desktopVideoGuid || mobileVideoGuid;
+  const activeGuid = 
+    (device === 'mobile' ? mobileVideoGuid : 
+     device === 'tablet' ? tabletVideoGuid : 
+     desktopVideoGuid) || desktopVideoGuid || tabletVideoGuid || mobileVideoGuid;
 
   // 1. Manejo de HLS (Carga y Configuración)
   useEffect(() => {

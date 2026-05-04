@@ -44,6 +44,7 @@ export const COMPONENT_DEFINITIONS = [
       secondaryButtonText: 'Ver Portafolio',
       secondaryButtonLink: '/portafolio',
       mobileVideoGuid: '6859587c-3f26-444e-a131-026852c00325',
+      tabletVideoGuid: '6859587c-3f26-444e-a131-026852c00325',
       desktopVideoGuid: '6859587c-3f26-444e-a131-026852c00325',
       posterSrc: '/images/og-portafolio.jpg',
       _styles: {

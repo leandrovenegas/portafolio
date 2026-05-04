@@ -37,6 +37,7 @@ export default function HeroEditorialSection({
   secondaryButtonLink,
   secondaryButtonIcon,
   mobileVideoGuid,
+  tabletVideoGuid,
   desktopVideoGuid,
   posterSrc,
   _styles
@@ -101,6 +102,7 @@ export default function HeroEditorialSection({
   return (
     <HeroVideo
       mobileVideoGuid={mobileVideoGuid || ""}
+      tabletVideoGuid={tabletVideoGuid || ""}
       desktopVideoGuid={desktopVideoGuid || ""}
       posterSrc={posterSrc || ""}
     >

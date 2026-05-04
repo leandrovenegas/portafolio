@@ -126,8 +126,13 @@ function VisualEditorContent() {
       // Save
       if ((e.ctrlKey || e.metaKey) && e.key === 's') {
         e.preventDefault();
-        if (!saving && currentVersionId) {
-          saveVersion(false);
+        if (!saving) {
+          if (currentVersionId) {
+            saveVersion(false);
+          } else {
+            // Si no hay versión activa (modo local), creamos una nueva rama automáticamente
+            saveVersion(true);
+          }
         }
       }
       // Undo/Redo
