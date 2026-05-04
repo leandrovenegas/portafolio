@@ -36,12 +36,8 @@ export default function HeroEditorialSection({
   secondaryButtonText,
   secondaryButtonLink,
   secondaryButtonIcon,
-  mobileAV1, 
-  mobileVP9, 
-  mobileH264, 
-  desktopAV1,
-  desktopVP9,
-  desktopH264,
+  mobileVideoGuid,
+  desktopVideoGuid,
   posterSrc,
   _styles
 }) {
@@ -104,12 +100,8 @@ export default function HeroEditorialSection({
 
   return (
     <HeroVideo
-      mobileAV1={mobileAV1 || ""}
-      mobileVP9={mobileVP9 || ""}
-      mobileH264={mobileH264 || ""}
-      desktopAV1={desktopAV1 || ""}
-      desktopVP9={desktopVP9 || ""}
-      desktopH264={desktopH264 || ""}
+      mobileVideoGuid={mobileVideoGuid || ""}
+      desktopVideoGuid={desktopVideoGuid || ""}
       posterSrc={posterSrc || ""}
     >
       <div className="flex flex-col items-start gap-6 w-full max-w-full md:max-w-3xl">

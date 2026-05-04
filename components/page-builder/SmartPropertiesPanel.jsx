@@ -224,7 +224,6 @@ function VideoFieldsAccordion({ props, onChange }) {
                   type="text"
                   value={props[key] || ''}
                   onChange={e => onChange(key, e.target.value)}
-                  onFocus={() => onFocusField && onFocusField(key)}
                   placeholder="https://..."
                   className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
                 />
@@ -296,6 +295,7 @@ function SectionLabel({ children }) {
 
 export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField }) {
   const { props, type } = comp;
+  const [videoDeviceMode, setVideoDeviceMode] = useState('mobile'); // mobile | desktop
 
   const handleStylesChange = (newStyles) => {
     updateProp(comp.id, '_styles', newStyles);
@@ -344,13 +344,49 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onChange={val => updateProp(comp.id, 'posterSrc', val)}
           />
 
-          <SectionLabel>Video</SectionLabel>
+          <SectionLabel>Video (Bunny Stream)</SectionLabel>
 
-          {/* Video URLs accordion */}
-          <VideoFieldsAccordion
-            props={props}
-            onChange={(key, val) => updateProp(comp.id, key, val)}
-          />
+          <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
+            {/* Device Tabs */}
+            <div className="flex bg-s1 p-1 gap-1 border-b border-border">
+              {[
+                { id: 'mobile', label: 'Móvil', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
+                { id: 'desktop', label: 'Desktop', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> }
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setVideoDeviceMode(tab.id)}
+                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
+                    videoDeviceMode === tab.id 
+                      ? 'bg-accent text-bg shadow-sm' 
+                      : 'text-muted hover:text-ink hover:bg-s2'
+                  }`}
+                >
+                  {tab.icon}
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="p-3 flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                <span className="text-[10px] font-bold text-muted uppercase tracking-wider">
+                  GUID {videoDeviceMode === 'mobile' ? 'Móvil' : 'Desktop'}
+                </span>
+              </div>
+              <input
+                type="text"
+                placeholder="Ej: 6859587c-3f26-444e-a131-026852c00325"
+                value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : 'desktopVideoGuid'] || ''}
+                onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : 'desktopVideoGuid', e.target.value)}
+                className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+              />
+              <p className="text-[9px] text-muted/60 px-1 leading-tight">
+                Usa un GUID diferente si quieres un encuadre distinto para {videoDeviceMode === 'mobile' ? 'celulares' : 'escritorio'}.
+              </p>
+            </div>
+          </div>
 
           <SectionLabel>Botones</SectionLabel>
 

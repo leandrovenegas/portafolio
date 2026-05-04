@@ -1,29 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Hls from 'hls.js';
 
 const CDN_HOSTNAME = process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net';
 
 export default function HeroVideo({ 
-  mobileAV1,
-  mobileVP9,
-  mobileH264,
-  desktopAV1,
-  desktopVP9,
-  desktopH264,
+  mobileVideoGuid,
+  desktopVideoGuid,
   posterSrc = '/images/og-portafolio.jpg',
   children 
 }) {
   const [isMounted, setIsMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
+  const videoRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    // Esto asegura que el componente se ha renderizado en el cliente (Carga Diferida)
     setIsMounted(true);
-    
-    // Adaptabilidad de Formato Inteligente
+
     const checkOrientation = () => {
-      // 768px es el breakpoint típico para tablets en adelante
       setIsMobile(window.innerWidth < 768);
     };
     
@@ -32,51 +28,89 @@ export default function HeroVideo({
     return () => window.removeEventListener('resize', checkOrientation);
   }, []);
 
-  const activeAV1 = (isMobile ? mobileAV1 : desktopAV1) || mobileAV1 || desktopAV1;
-  const activeVP9 = (isMobile ? mobileVP9 : desktopVP9) || mobileVP9 || desktopVP9;
-  const activeH264 = (isMobile ? mobileH264 : desktopH264) || mobileH264 || desktopH264;
-  
-  // Determinamos si hay algún video para renderizar
-  const hasVideo = activeAV1 || activeVP9 || activeH264;
+  const activeGuid = (isMobile ? mobileVideoGuid : desktopVideoGuid) || desktopVideoGuid || mobileVideoGuid;
+
+  // 1. Manejo de HLS (Carga y Configuración)
+  useEffect(() => {
+    if (!isMounted || !activeGuid || !videoRef.current) return;
+
+    const video = videoRef.current;
+    video.muted = true; 
+    const hlsUrl = `https://${CDN_HOSTNAME}/${activeGuid}/playlist.m3u8`;
+
+    let hls;
+
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = hlsUrl;
+    } else if (Hls.isSupported()) {
+      hls = new Hls({
+        capLevelToPlayerSize: true,
+        autoStartLoad: true
+      });
+      hls.loadSource(hlsUrl);
+      hls.attachMedia(video);
+    } else {
+      console.warn('HeroVideo: HLS not supported in this browser.');
+    }
+
+    return () => {
+      if (hls) hls.destroy();
+    };
+  }, [isMounted, activeGuid]);
+
+  // 2. Optimización de Recursos (Smart Play/Pause al hacer scroll)
+  useEffect(() => {
+    if (!isMounted || !videoRef.current || !containerRef.current) return;
+
+    const video = videoRef.current;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {}); // Play solo si está a la vista
+        } else {
+          video.pause(); // Pause si el usuario ya no lo ve
+        }
+      },
+      { threshold: 0.4 } // Se activa cuando el 40% del video es visible
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [isMounted]);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] flex flex-col justify-center overflow-hidden">
+    <section 
+      ref={containerRef}
+      className="relative w-full h-screen min-h-[600px] flex flex-col justify-center overflow-hidden"
+    >
       
       {/* 1. Prioridad Absoluta de Carga (Poster) */}
       <div className="absolute inset-0 w-full h-full z-0 bg-bg">
-        {/* fetchPriority="high" indica al navegador que debe descargar esto de inmediato */}
         <img 
           src={posterSrc}
           alt="Reel Audiovisual"
-          className="w-full h-full object-cover opacity-60" // Opacidad ajustada para que el texto siempre sea legible
+          className="w-full h-full object-cover opacity-60"
           fetchPriority="high"
         />
       </div>
 
-      {/* 2. Carga Diferida y Fluidez (Video multiformato) */}
-      {isMounted && hasVideo && (
+      {/* 2. Video HLS Adaptive */}
+      {isMounted && activeGuid && (
         <video
-          autoPlay
+          ref={videoRef}
           loop
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000"
-          onCanPlay={() => console.log('HeroVideo: Video can play')}
-          onError={(e) => console.error('HeroVideo: Video error', e)}
-        >
-          {/* Versiones optimizadas primero */}
-          {activeAV1 && <source src={activeAV1} type='video/mp4' />}
-          {activeVP9 && <source src={activeVP9} type='video/webm' />}
-          {activeH264 && <source src={activeH264} type='video/mp4' />}
-          Tu navegador no soporta el formato de video.
-        </video>
+          onCanPlay={() => console.log('HeroVideo: Smart playing enabled')}
+          onError={() => console.warn('HeroVideo: Failed to load HLS manifest.')}
+        />
       )}
 
       {/* 3. Optimización Estética Invisible (Overlays) */}
-      {/* Capa de oscurecimiento general para asegurar el contraste con la tipografía */}
       <div className="absolute inset-0 w-full h-full z-10 bg-black/50"></div>
       
-      {/* Capa de textura (Dither/Ruido) generada por CSS para disimular compresión */}
       <div 
         className="absolute inset-0 w-full h-full z-10 opacity-[0.15] pointer-events-none mix-blend-overlay" 
         style={{
@@ -85,12 +119,10 @@ export default function HeroVideo({
         }}
       ></div>
 
-      {/* Gradiente de difuminado hacia el fondo principal del sitio en la parte inferior */}
       <div className="absolute inset-x-0 bottom-0 h-48 z-10 bg-gradient-to-t from-bg via-bg/80 to-transparent"></div>
 
       {/* 4. Contenido Principal */}
       <div className="relative z-20 px-4 pt-20 md:px-12 lg:px-24 mx-auto max-w-7xl w-full">
-        {/* Glow de acento (heredado del diseño original) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
         {children}
       </div>
