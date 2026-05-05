@@ -4,22 +4,16 @@ export default function HeroVideoSection({
   title, 
   description1, 
   description2, 
-  mobileAV1, 
-  mobileVP9, 
-  mobileH264, 
-  desktopAV1, 
-  desktopVP9, 
-  desktopH264, 
+  mobileVideoGuid, 
+  tabletVideoGuid,
+  desktopVideoGuid,
   posterSrc 
 }) {
   return (
     <HeroVideo
-      mobileAV1={mobileAV1 || ""}
-      mobileVP9={mobileVP9 || ""}
-      mobileH264={mobileH264 || ""}
-      desktopAV1={desktopAV1 || ""}
-      desktopVP9={desktopVP9 || ""}
-      desktopH264={desktopH264 || ""}
+      mobileVideoGuid={mobileVideoGuid || ""}
+      tabletVideoGuid={tabletVideoGuid || ""}
+      desktopVideoGuid={desktopVideoGuid || ""}
       posterSrc={posterSrc || ""}
     >
       <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl font-bold">

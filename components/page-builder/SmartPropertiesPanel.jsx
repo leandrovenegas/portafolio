@@ -10,19 +10,6 @@ const BREAKPOINTS = [
   { key: 'desktop', label: '🖥',  title: 'Desktop (≥1024px)' },
 ];
 
-const VIDEO_FIELDS = {
-  mobile: [
-    { key: 'mobileAV1',  label: 'Móvil — AV1 (.mp4)' },
-    { key: 'mobileVP9',  label: 'Móvil — VP9 (.webm)' },
-    { key: 'mobileH264', label: 'Móvil — H.264 (.mp4)' },
-  ],
-  desktop: [
-    { key: 'desktopAV1',  label: 'Desktop — AV1 (.mp4)' },
-    { key: 'desktopVP9',  label: 'Desktop — VP9 (.webm)' },
-    { key: 'desktopH264', label: 'Desktop — H.264 (.mp4)' },
-  ],
-};
-
 // Field definitions per component type
 const HERO_EDITORIAL_TEXT_FIELDS = [
   { key: 'pillText',        label: 'Pill / Etiqueta',         long: false },
@@ -30,13 +17,6 @@ const HERO_EDITORIAL_TEXT_FIELDS = [
   { key: 'headlineKeyword', label: 'Palabra Clave (acento)',   long: false },
   { key: 'bodyText',        label: 'Cuerpo de Texto',          long: true  },
   { key: 'tagline',         label: 'Tagline (cita lateral)',   long: false },
-];
-
-const HERO_EDITORIAL_BUTTON_FIELDS = [
-  { key: 'primaryButtonText',   label: 'Botón 1 — Texto' },
-  { key: 'primaryButtonLink',   label: 'Botón 1 — Enlace' },
-  { key: 'secondaryButtonText', label: 'Botón 2 — Texto' },
-  { key: 'secondaryButtonLink', label: 'Botón 2 — Enlace' },
 ];
 
 import TypographyPanel from './TypographyPanel';
@@ -171,72 +151,7 @@ function PosterSrcField({ value, onChange }) {
   );
 }
 
-// ─── Video URLs Accordion ─────────────────────────────────────────────────
-
-function VideoFieldsAccordion({ props, onChange }) {
-  const [open, setOpen] = useState(false);
-  const [activeSide, setActiveSide] = useState('mobile');
-
-  const fields = VIDEO_FIELDS[activeSide] || [];
-
-  return (
-    <div className="rounded-xl border border-border bg-bg overflow-hidden">
-      <button
-        onClick={() => setOpen(v => !v)}
-        className="w-full flex items-center justify-between px-3 py-3 text-left"
-      >
-        <div className="flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-          <span className="text-[10px] font-bold text-muted uppercase tracking-wider">URLs de Video</span>
-          <span className="text-[9px] text-muted/60">(AV1 · VP9 · H.264)</span>
-        </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-          className={`text-muted transition-transform ${open ? 'rotate-180' : ''}`}
-        >
-          <path d="m6 9 6 6 6-6"/>
-        </svg>
-      </button>
-
-      {open && (
-        <div className="border-t border-border px-3 pb-3">
-          {/* Side tabs */}
-          <div className="flex gap-1 mt-3 mb-3">
-            {['mobile', 'desktop'].map(side => (
-              <button
-                key={side}
-                onClick={() => setActiveSide(side)}
-                className={`flex-1 py-1 text-[10px] font-medium rounded-md transition-colors ${
-                  activeSide === side ? 'bg-accent text-bg' : 'bg-s1 text-muted hover:text-ink border border-border'
-                }`}
-              >
-                {side === 'mobile' ? '📱 Móvil' : '🖥 Desktop'}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-2">
-            {fields.map(({ key, label }) => (
-              <div key={key}>
-                <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">{label}</label>
-                <input
-                  type="text"
-                  value={props[key] || ''}
-                  onChange={e => onChange(key, e.target.value)}
-                  placeholder="https://..."
-                  className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─── Generic Field (for other component types) ────────────────────────────
+// ─── Section Divider ──────────────────────────────────────────────────────
 
 function GenericField({ propKey, val, onChange, onFocusField }) {
   if (typeof val === 'string') {
@@ -512,6 +427,81 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
               />
             </div>
           ))}
+        </div>
+      </div>
+    );
+  }
+
+  // ── HeroVideoSection layout (Classic Hero) ──
+  if (type === 'HeroVideoSection') {
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Hero Clásico — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div className="flex flex-col gap-3 p-3">
+          <SectionLabel>Contenido</SectionLabel>
+          <TextField
+            fieldKey="title"
+            label="Título"
+            value={props.title || ''}
+            onChange={val => updateProp(comp.id, 'title', val)}
+            onFocusField={onFocusField}
+          />
+          <TextField
+            fieldKey="description1"
+            label="Descripción 1"
+            long
+            value={props.description1 || ''}
+            onChange={val => updateProp(comp.id, 'description1', val)}
+            onFocusField={onFocusField}
+          />
+          <TextField
+            fieldKey="description2"
+            label="Descripción 2"
+            long
+            value={props.description2 || ''}
+            onChange={val => updateProp(comp.id, 'description2', val)}
+            onFocusField={onFocusField}
+          />
+
+          <SectionLabel>Video (Bunny Stream)</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
+            <div className="flex bg-s1 p-1 gap-1 border-b border-border">
+              {BREAKPOINTS.map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setVideoDeviceMode(tab.key)}
+                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
+                    videoDeviceMode === tab.key ? 'bg-accent text-bg shadow-sm' : 'text-muted hover:text-ink hover:bg-s2'
+                  }`}
+                >
+                  {tab.label} {tab.key === 'mobile' ? 'Móvil' : tab.key === 'tablet' ? 'Tablet' : 'Desktop'}
+                </button>
+              ))}
+            </div>
+            <div className="p-3 flex flex-col gap-2">
+              <input
+                type="text"
+                placeholder="Pegar GUID de Bunny Stream"
+                value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid'] || ''}
+                onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid', e.target.value)}
+                className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+              />
+            </div>
+          </div>
+
+          <SectionLabel>Imagen Poster</SectionLabel>
+          <PosterSrcField
+            value={props.posterSrc || ''}
+            onChange={val => updateProp(comp.id, 'posterSrc', val)}
+          />
         </div>
       </div>
     );

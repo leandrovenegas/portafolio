@@ -116,11 +116,53 @@ function VisualEditorContent() {
     setDragOverIndex(null);
   };
 
+  // --- AUTOSAVE TO LOCALSTORAGE ---
+  useEffect(() => {
+    if (components.length > 0 && slug) {
+      const backup = {
+        slug,
+        components,
+        timestamp: Date.now(),
+        versionId: currentVersionId
+      };
+      localStorage.setItem(`editor_backup_${slug}`, JSON.stringify(backup));
+    }
+  }, [components, slug, currentVersionId]);
+
+  const restoreLocalBackup = () => {
+    const saved = localStorage.getItem(`editor_backup_${slug}`);
+    if (saved) {
+      try {
+        const backup = JSON.parse(saved);
+        if (confirm(`¿Restaurar copia de seguridad local del ${new Date(backup.timestamp).toLocaleString()}?`)) {
+          setComponents(backup.components);
+          setSaveSuccess('Restaurado desde copia local');
+          setTimeout(() => setSaveSuccess(''), 3000);
+        }
+      } catch (e) {
+        console.error("Error al restaurar backup:", e);
+      }
+    } else {
+      alert("No se encontró ninguna copia de seguridad local para esta página.");
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, [slug]);
 
   // Ctrl+S / Ctrl+Z shortcut
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (historyIndex > 0) { // Hay cambios sin persistir en la DB
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [historyIndex]);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       // Save
@@ -199,6 +241,14 @@ function VisualEditorContent() {
     setSaving(true);
     setSaveSuccess('');
     setError('');
+    if (!isNew && currentVersionId) {
+      const currentName = versions.find(v => v.id === currentVersionId)?.version_name || 'v1';
+      if (!confirm(`¿Estás seguro de que quieres sobreescribir la versión "${currentName}"? Esto reemplazará los datos actuales en la base de datos.`)) {
+        setSaving(false);
+        return;
+      }
+    }
+
     try {
       const vName = isNew ? newVersionName || `v${versions.length + 1}` : versions.find(v=>v.id===currentVersionId)?.version_name || 'v1';
       
@@ -417,8 +467,16 @@ function VisualEditorContent() {
                       onClick={() => { setShowHistory(!showHistory); setMenuOpen(false); }}
                       className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
                     >
-                      <span>Historia</span>
+                      <span>Historia de Cambios</span>
                       {showHistory && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+                    </button>
+                    <div className="h-px bg-border my-1" />
+                    <button 
+                      onClick={() => { restoreLocalBackup(); setMenuOpen(false); }}
+                      className="px-4 py-2 text-left text-[10px] font-bold text-accent hover:bg-s1 flex items-center gap-2"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      RESCATAR COPIA LOCAL
                     </button>
                   </div>
                 </>

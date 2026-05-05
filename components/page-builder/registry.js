@@ -24,9 +24,9 @@ export const COMPONENT_DEFINITIONS = [
       title: 'Nuevo Hero Video',
       description1: 'Descripción principal aquí.',
       description2: 'Descripción secundaria aquí.',
-      mobileAV1: '',
-      mobileVP9: '',
-      mobileH264: '',
+      mobileVideoGuid: 'fe276f61-28ae-4f6f-99e5-1ec480771801',
+      tabletVideoGuid: 'fe276f61-28ae-4f6f-99e5-1ec480771801',
+      desktopVideoGuid: 'fe276f61-28ae-4f6f-99e5-1ec480771801',
       posterSrc: '/images/og-portafolio.jpg'
     }
   },
