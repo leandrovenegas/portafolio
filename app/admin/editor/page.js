@@ -195,8 +195,9 @@ function VisualEditorContent() {
   const fetchData = async () => {
     setLoading(true);
     try {
+      const ts = Date.now();
       // Fetch history
-      const histRes = await fetch(`/api/pages?slug=${slug}&action=history`);
+      const histRes = await fetch(`/api/pages?slug=${slug}&action=history&_=${ts}`, { cache: 'no-store' });
       const histData = await histRes.json();
       
       if (!histRes.ok) throw new Error(histData.error || 'Failed to fetch history');
@@ -205,12 +206,12 @@ function VisualEditorContent() {
       // Fetch active or latest
       const versionParam = searchParams.get('versionId');
       const targetVersion = versionParam 
-        ? histData.find(v => v.id === parseInt(versionParam)) 
+        ? histData.find(v => String(v.id) === String(versionParam)) 
         : (histData.find(v => v.is_active) || histData[0]);
       
       if (targetVersion) {
         setCurrentVersionId(targetVersion.id);
-        const verRes = await fetch(`/api/pages?slug=${slug}&versionId=${targetVersion.id}`);
+        const verRes = await fetch(`/api/pages?slug=${slug}&versionId=${targetVersion.id}&_=${ts}`, { cache: 'no-store' });
         const verData = await verRes.json();
         const loadedComps = verData.components || [];
         setComponents(loadedComps);
