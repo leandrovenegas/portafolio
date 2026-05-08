@@ -1,5 +1,7 @@
 'use client';
 
+import './photoshop.css';
+
 import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -419,13 +421,34 @@ function VisualEditorContent() {
       )}
 
       {/* Integrated Admin Header */}
-      <header className="w-full border-b border-border bg-bg px-6 py-3 z-50 flex items-center justify-between sticky top-0 shadow-sm">
+      <header 
+        className="w-full z-50 flex items-center justify-between sticky top-0"
+        style={{
+          height: 'var(--toolbar-height)',
+          background: 'var(--ps-bg-toolbar)',
+          borderBottom: 'var(--ps-border-width) solid var(--ps-border-dark)',
+          padding: '0 var(--sp-md)',
+          color: 'var(--ps-text)',
+          fontFamily: 'var(--font-ui)',
+          fontSize: 'var(--font-size-sm)'
+        }}
+      >
         <div className="flex items-center gap-6">
-          <Link href="/admin" className="font-display text-xl text-ink hover:opacity-70 transition-opacity">
+          <Link href="/admin" style={{ color: 'var(--ps-text)', fontWeight: 'var(--font-weight-bold)' }} className="hover:opacity-70 transition-opacity">
             Administración
           </Link>
           <nav className="hidden md:flex items-center gap-1">
-            <Link href="/admin" className="px-3 py-2 rounded-lg hover:bg-s1 text-ink font-body text-xs transition-colors">
+            <Link href="/admin" 
+              style={{
+                padding: '0 var(--sp-sm)',
+                height: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                color: 'var(--ps-text-dim)',
+                textDecoration: 'none'
+              }}
+              className="hover:text-white transition-colors"
+            >
               Dashboard
             </Link>
             
@@ -433,7 +456,18 @@ function VisualEditorContent() {
             <div className="relative">
               <button 
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-s1 text-ink font-body text-xs transition-colors focus:outline-none"
+                style={{
+                  padding: '0 var(--sp-sm)',
+                  height: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  color: 'var(--ps-text-dim)',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                className="hover:text-white transition-colors focus:outline-none"
               >
                 Ventanas
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -442,39 +476,93 @@ function VisualEditorContent() {
               {menuOpen && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)}></div>
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-bg border border-border rounded-lg shadow-lg z-50 py-1 flex flex-col">
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-48 z-50 flex flex-col"
+                    style={{
+                      background: 'var(--ps-bg-panel)',
+                      border: 'var(--ps-border-width) solid var(--ps-border)',
+                      borderRadius: 'var(--ps-radius)',
+                      boxShadow: 'var(--shadow-dropdown)',
+                      padding: 'var(--sp-xs) 0'
+                    }}
+                  >
                     <button 
                       onClick={() => { setShowSwatches(!showSwatches); setMenuOpen(false); }}
-                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                      style={{
+                        padding: 'var(--sp-sm) var(--sp-md)',
+                        textAlign: 'left',
+                        color: 'var(--ps-text)',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 'var(--font-size-sm)'
+                      }}
+                      className="hover:bg-[var(--ps-bg-hover)] flex items-center justify-between"
                     >
                       <span>Muestras (Color)</span>
                       {showSwatches && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
                     </button>
                     <button 
                       onClick={() => { setShowStyles(!showStyles); setMenuOpen(false); }}
-                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                      style={{
+                        padding: 'var(--sp-sm) var(--sp-md)',
+                        textAlign: 'left',
+                        color: 'var(--ps-text)',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 'var(--font-size-sm)'
+                      }}
+                      className="hover:bg-[var(--ps-bg-hover)] flex items-center justify-between"
                     >
                       <span>Estilos Gráficos</span>
                       {showStyles && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
                     </button>
                     <button 
                       onClick={() => { setShowTypography(!showTypography); setMenuOpen(false); }}
-                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                      style={{
+                        padding: 'var(--sp-sm) var(--sp-md)',
+                        textAlign: 'left',
+                        color: 'var(--ps-text)',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 'var(--font-size-sm)'
+                      }}
+                      className="hover:bg-[var(--ps-bg-hover)] flex items-center justify-between"
                     >
-                      <span>Tipografía (Carácter/Párrafo)</span>
+                      <span>Tipografía</span>
                       {showTypography && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
                     </button>
                     <button 
                       onClick={() => { setShowHistory(!showHistory); setMenuOpen(false); }}
-                      className="px-4 py-2 text-left text-xs font-medium text-ink hover:bg-s1 flex items-center justify-between"
+                      style={{
+                        padding: 'var(--sp-sm) var(--sp-md)',
+                        textAlign: 'left',
+                        color: 'var(--ps-text)',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 'var(--font-size-sm)'
+                      }}
+                      className="hover:bg-[var(--ps-bg-hover)] flex items-center justify-between"
                     >
                       <span>Historia de Cambios</span>
                       {showHistory && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
                     </button>
-                    <div className="h-px bg-border my-1" />
+                    <div style={{ height: '1px', background: 'var(--ps-border-dark)', margin: 'var(--sp-xs) 0' }} />
                     <button 
                       onClick={() => { restoreLocalBackup(); setMenuOpen(false); }}
-                      className="px-4 py-2 text-left text-[10px] font-bold text-accent hover:bg-s1 flex items-center gap-2"
+                      style={{
+                        padding: 'var(--sp-sm) var(--sp-md)',
+                        textAlign: 'left',
+                        color: 'var(--ps-text-link)',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 'var(--font-size-xs)'
+                      }}
+                      className="hover:bg-[var(--ps-bg-hover)] flex items-center gap-2"
                     >
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                       RESCATAR COPIA LOCAL
@@ -484,23 +572,66 @@ function VisualEditorContent() {
               )}
             </div>
 
-            <Link href="/admin/videos" className="px-3 py-2 rounded-lg hover:bg-s1 text-ink font-body text-xs transition-colors">
-              Videos
+            <Link href="/admin/videos" 
+              style={{ padding: '0 var(--sp-sm)', height: '24px', display: 'flex', alignItems: 'center', color: 'var(--ps-text-dim)', textDecoration: 'none' }}
+              className="hover:text-white transition-colors"
+            >
+              Data Videos
             </Link>
-            <Link href="/admin/portafolio" className="px-3 py-2 rounded-lg hover:bg-s1 text-ink font-body text-xs transition-colors">
-              Portafolio
+            <Link href="/admin/portafolio" 
+              style={{ padding: '0 var(--sp-sm)', height: '24px', display: 'flex', alignItems: 'center', color: 'var(--ps-text-dim)', textDecoration: 'none' }}
+              className="hover:text-white transition-colors"
+            >
+              Data Portafolio
             </Link>
-            <span className="px-3 py-2 rounded-lg text-muted font-body text-[10px] uppercase tracking-widest opacity-50">
-              Proyectos (Pronto)
-            </span>
           </nav>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="h-8 w-px bg-border mx-2 hidden md:block" />
+        <div className="flex items-center gap-2">
           
+          <select
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-sm)',
+              background: 'var(--ps-bg-input)',
+              border: 'var(--ps-border-width) solid var(--ps-border-light)',
+              borderRadius: 'var(--ps-radius)',
+              color: 'var(--ps-text)',
+              fontSize: 'var(--font-size-sm)',
+              outline: 'none'
+            }}
+            className="focus:border-[var(--ps-border-focus)] transition-colors"
+            value={slug}
+            onChange={(e) => {
+              const url = new URL(window.location);
+              url.searchParams.set('slug', e.target.value);
+              url.searchParams.delete('versionId');
+              window.location.href = url.toString();
+            }}
+            title="Seleccionar página para editar"
+          >
+            <option value="home">home</option>
+            <option value="videos">videos</option>
+            <option value="portafolio">portafolio</option>
+            <option value="contacto">contacto</option>
+          </select>
+
+          <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
+
           <select 
-            className="p-2 rounded bg-s1 border border-border text-xs font-medium focus:ring-1 focus:ring-accent outline-none text-ink"
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-sm)',
+              background: 'var(--ps-bg-input)',
+              border: 'var(--ps-border-width) solid var(--ps-border-light)',
+              borderRadius: 'var(--ps-radius)',
+              color: 'var(--ps-text)',
+              fontSize: 'var(--font-size-sm)',
+              outline: 'none',
+              maxWidth: '140px'
+            }}
+            className="focus:border-[var(--ps-border-focus)] transition-colors"
             value={currentVersionId || ''}
             onChange={(e) => {
               if (e.target.value) {
@@ -522,20 +653,44 @@ function VisualEditorContent() {
           <button 
             onClick={() => saveVersion(false)} 
             disabled={saving || !currentVersionId}
-            className="bg-accent text-bg px-4 py-2 rounded text-xs font-bold hover:bg-accent2 transition-colors disabled:opacity-50 shadow-sm"
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-md)',
+              background: 'var(--ps-accent)',
+              border: 'none',
+              borderRadius: 'var(--ps-radius)',
+              color: '#fff',
+              fontSize: 'var(--font-size-sm)',
+              cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
+              opacity: (saving || !currentVersionId) ? 0.5 : 1
+            }}
+            className="hover:bg-[var(--ps-accent-hover)] transition-colors"
           >
-            {saving ? '...' : 'Guardar'}
+            {saving ? 'Guardando...' : 'Guardar'}
           </button>
 
           <a 
-            href={currentVersionId ? `/?versionId=${currentVersionId}` : '/'} 
+            href={currentVersionId ? `/${slug === 'home' ? '' : slug}?versionId=${currentVersionId}` : `/${slug === 'home' ? '' : slug}`} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-s2 text-ink font-body text-xs transition-colors border border-border"
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-sm)',
+              background: 'var(--ps-bg-toolbar)',
+              border: 'var(--ps-border-width) solid var(--ps-border-light)',
+              borderRadius: 'var(--ps-radius)',
+              color: 'var(--ps-text)',
+              fontSize: 'var(--font-size-sm)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              textDecoration: 'none'
+            }}
+            className="hover:bg-[var(--ps-bg-hover)] transition-colors"
             title="Ver Página en Vivo"
           >
-            <span>Ver Live</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Live</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
 
           <button
@@ -543,11 +698,21 @@ function VisualEditorContent() {
               await fetch('/api/auth/login', { method: 'DELETE' });
               window.location.href = '/';
             }}
-            className="p-2 text-muted hover:text-red-500 transition-colors"
+            style={{
+              color: 'var(--ps-text-dim)',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '0 var(--sp-xs)'
+            }}
+            className="hover:text-[var(--ps-danger)] transition-colors"
             title="Cerrar Sesión"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
           </button>
+        </div>
         </div>
       </header>
 

@@ -1,5 +1,8 @@
 import Nav from "@/components/Nav";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import PageRenderer from '@/components/page-builder/PageRenderer';
+import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
+import supabase from '@/lib/supabase';
 
 export const metadata = {
   title: "Contacto | Leandro Venegas",
@@ -9,12 +12,42 @@ export const metadata = {
   },
 };
 
-export default function Contacto() {
+export const dynamic = 'force-dynamic';
+
+async function getPageComponents(slug, versionId) {
+  try {
+    let query = supabase.from('page_versions').select('components').eq('slug', slug);
+    if (versionId) {
+      query = query.eq('id', versionId);
+    } else {
+      query = query.eq('is_active', true).order('created_at', { ascending: false }).limit(1);
+    }
+    const { data, error } = await query.single();
+    if (error || !data) return [];
+    return data.components;
+  } catch (e) {
+    return [];
+  }
+}
+
+export default async function Contacto({ searchParams }) {
+  const params = await searchParams;
+  const versionId = params?.versionId;
+  const components = await getPageComponents('contacto', versionId);
+
   return (
     <>
+      <LivePreviewListener />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
-        <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
+        
+        {components && components.length > 0 && (
+          <div className="w-full relative z-20 bg-bg">
+            <PageRenderer components={components} />
+          </div>
+        )}
+
+        <div className="relative z-10 px-6 pt-12 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
           
           <header className="pt-12 md:pt-24 flex flex-col items-start gap-4 border-b border-border pb-16">
             <p className="font-mono text-accent text-sm md:text-base tracking-wide">
