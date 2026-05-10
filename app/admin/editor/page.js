@@ -755,9 +755,9 @@ function VisualEditorContent() {
           </div>
         </div>
 
-      <div className="flex flex-col md:flex-row gap-6 relative">
-        {/* Sidebar components list */}
-        <div className="w-full md:w-64 flex-shrink-0 flex flex-col gap-4 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-2 scrollbar-thin">
+      <div className="flex flex-col lg:flex-row gap-8 relative">
+        {/* LEFT - Components list */}
+        <div className="lg:w-64 w-full flex-shrink-0 flex flex-col gap-4 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-2 scrollbar-thin">
           <div className="bg-bg border border-border rounded-xl p-3 shadow-sm">
             <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1">Estructura</h3>
             <div className="flex flex-col gap-1">
@@ -869,7 +869,8 @@ function VisualEditorContent() {
           </div>
         </div>
 
-        <div className="flex-1 max-w-2xl flex flex-col gap-4 self-start">
+        {/* RIGHT - Properties Panel */}
+        <div className="lg:flex-1 w-full flex flex-col gap-4 max-w-2xl self-start">
           {/* Properties Editor */}
           {selectedComp ? (
             <SmartPropertiesPanel
