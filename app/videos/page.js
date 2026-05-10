@@ -5,6 +5,9 @@ import { readVideoConfig } from '@/lib/videoConfig';
 import { readPageConfig } from '@/lib/pageConfig';
 import MediaPreconnect from '@/components/MediaPreconnect';
 import HeroVideo from '@/components/HeroVideo';
+import PageRenderer from '@/components/page-builder/PageRenderer';
+import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
+import supabase from '@/lib/supabase';
 
 export const metadata = {
   title: 'Videos | Leandro Venegas',
@@ -22,8 +25,31 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 
-export default async function VideosPage() {
-  const [videos, config, pageConfig] = await Promise.all([fetchBunnyVideos(), readVideoConfig(), readPageConfig()]);
+async function getPageComponents(slug, versionId) {
+  try {
+    let query = supabase.from('page_versions').select('components').eq('slug', slug);
+    if (versionId) {
+      query = query.eq('id', versionId);
+    } else {
+      query = query.eq('is_active', true).order('created_at', { ascending: false }).limit(1);
+    }
+    const { data, error } = await query.single();
+    if (error || !data) return [];
+    return data.components;
+  } catch (e) {
+    return [];
+  }
+}
+
+export default async function VideosPage({ searchParams }) {
+  const params = await searchParams;
+  const versionId = params?.versionId;
+  const [videos, config, pageConfig, components] = await Promise.all([
+    fetchBunnyVideos(), 
+    readVideoConfig(), 
+    readPageConfig(),
+    getPageComponents('videos', versionId)
+  ]);
   const pageText = pageConfig?.pages?.videos || {
     title: 'Videos',
     description: 'Colección de videos seleccionados para tu página. Solo se muestran los videos activados en el panel de configuración.'
@@ -42,6 +68,7 @@ export default async function VideosPage() {
 
   return (
     <>
+      <LivePreviewListener />
       <MediaPreconnect bunny />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
@@ -66,7 +93,13 @@ export default async function VideosPage() {
           </p>
         </HeroVideo>
 
-        <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
+        {components && components.length > 0 && (
+          <div className="w-full relative z-20 bg-bg">
+            <PageRenderer components={components} />
+          </div>
+        )}
+
+        <div className="relative z-10 px-6 pt-12 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
 
           <section className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

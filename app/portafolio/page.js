@@ -7,6 +7,8 @@ import path from "path";
 import BunnyVideoPlayer from "@/components/BunnyVideoPlayer";
 import MediaPreconnect from "@/components/MediaPreconnect";
 import HeroVideo from "@/components/HeroVideo";
+import PageRenderer from '@/components/page-builder/PageRenderer';
+import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
 
 export const metadata = {
   title: "Portafolio — Dirección Creativa y Producción Audiovisual | Leandro Venegas",
@@ -33,7 +35,29 @@ export const metadata = {
   },
 };
 
-export default async function Portafolio() {
+export const dynamic = 'force-dynamic';
+
+async function getPageComponents(slug, versionId) {
+  try {
+    let query = supabase.from('page_versions').select('components').eq('slug', slug);
+    if (versionId) {
+      query = query.eq('id', versionId);
+    } else {
+      query = query.eq('is_active', true).order('created_at', { ascending: false }).limit(1);
+    }
+    const { data, error } = await query.single();
+    if (error || !data) return [];
+    return data.components;
+  } catch (e) {
+    return [];
+  }
+}
+
+export default async function Portafolio({ searchParams }) {
+  const params = await searchParams;
+  const versionId = params?.versionId;
+  const components = await getPageComponents('portafolio', versionId);
+
   const { data: organizaciones, error } = await supabase
     .from("organizations")
     .select("*")
@@ -53,6 +77,7 @@ export default async function Portafolio() {
 
   return (
     <>
+      <LivePreviewListener />
       <MediaPreconnect bunny />
       <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
@@ -80,7 +105,13 @@ export default async function Portafolio() {
           )}
         </HeroVideo>
 
-        <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-16 md:gap-24">
+        {components && components.length > 0 && (
+          <div className="w-full relative z-20 bg-bg">
+            <PageRenderer components={components} />
+          </div>
+        )}
+
+        <div className="relative z-10 px-6 pt-12 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-16 md:gap-24">
           <div className="w-full max-w-4xl border-b border-border pb-16">
             <BunnyVideoPlayer 
               videoId="fe276f61-28ae-4f6f-99e5-1ec480771801"

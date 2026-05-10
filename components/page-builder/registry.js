@@ -5,6 +5,7 @@ import ListSection from './sections/ListSection';
 import CTASection from './sections/CTASection';
 import FAQSection from './sections/FAQSection';
 import SimpleCenteredCTA from './sections/SimpleCenteredCTA';
+import CTAWhatsapp from './sections/CTAWhatsapp';
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -13,7 +14,8 @@ export const COMPONENT_REGISTRY = {
   ListSection,
   CTASection,
   FAQSection,
-  SimpleCenteredCTA
+  SimpleCenteredCTA,
+  CTAWhatsapp
 };
 
 export const COMPONENT_DEFINITIONS = [
@@ -116,6 +118,17 @@ export const COMPONENT_DEFINITIONS = [
         headline:    { mobile: { fontSize: 30, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, tablet: { fontSize: 36, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, desktop: { fontSize: 40, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' } },
         description: { mobile: { fontSize: 18, color: '#e0e7ff', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, tablet: { fontSize: 18, color: '#e0e7ff', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, desktop: { fontSize: 18, color: '#e0e7ff', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' } }
       }
+    }
+  },
+  {
+    type: 'CTAWhatsapp',
+    name: 'CTA WhatsApp',
+    defaultProps: {
+      title: '¿Tienes preguntas?',
+      description: 'Conversa directamente con nosotros por WhatsApp. Responderemos en breve.',
+      buttonText: 'Conversar por WhatsApp',
+      message: 'Hola, me gustaría conocer más sobre tus servicios.',
+      phoneNumber: '56988804299'
     }
   }
 ];
