@@ -12,6 +12,7 @@ export default function Nav({ className = '' }) {
         </span>
       </div>
       <nav className="flex flex-wrap gap-6">
+        <Link href="/" className="text-zinc-400 text-sm tracking-widest uppercase hover:text-white transition-colors duration-200">Inicio</Link>
         <Link href="/portafolio" className="text-zinc-400 text-sm tracking-widest uppercase hover:text-white transition-colors duration-200">Portafolio</Link>
         <Link href="/videos" className="text-zinc-400 text-sm tracking-widest uppercase hover:text-white transition-colors duration-200">Videos</Link>
         <Link href="/blog" className="text-zinc-400 text-sm tracking-widest uppercase hover:text-white transition-colors duration-200">Blog</Link>

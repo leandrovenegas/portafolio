@@ -4,6 +4,8 @@ import { useState, useRef } from 'react';
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
+const CDN_HOSTNAME = process.env.NEXT_PUBLIC_BUNNY_CDN_HOSTNAME || 'vz-a158839f-ce6.b-cdn.net';
+
 const BREAKPOINTS = [
   { key: 'mobile',  label: '📱', title: 'Móvil (<768px)' },
   { key: 'tablet',  label: '💻', title: 'Tablet (768-1023px)' },
@@ -79,7 +81,7 @@ function TextField({ fieldKey, label, long, value, onChange, styles, onStylesCha
 
 // ─── Poster Src with Image Upload ──────────────────────────────────────────
 
-function PosterSrcField({ value, onChange }) {
+function PosterSrcField({ value, onChange, thumbnail }) {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const fileRef = useRef();
@@ -111,9 +113,14 @@ function PosterSrcField({ value, onChange }) {
         </label>
 
         {/* Preview */}
-        {value && (
+        {(value || thumbnail) && (
           <div className="mb-2 relative rounded-lg overflow-hidden border border-border h-28 bg-s1">
-            <img src={value} alt="poster" className="w-full h-full object-cover" />
+            <img src={value || thumbnail} alt="poster" className="w-full h-full object-cover" />
+            {!value && thumbnail && (
+              <div className="absolute top-2 right-2 bg-accent/90 text-bg text-[8px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider shadow-sm">
+                Auto Bunny.net
+              </div>
+            )}
           </div>
         )}
 
@@ -122,7 +129,7 @@ function PosterSrcField({ value, onChange }) {
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
-          placeholder="/images/og-portafolio.jpg"
+          placeholder="Dejar vacío para miniatura de Bunny.net automática"
           className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all mb-2"
         />
 
@@ -257,6 +264,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
           <PosterSrcField
             value={props.posterSrc || ''}
             onChange={val => updateProp(comp.id, 'posterSrc', val)}
+            thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
           />
 
           <SectionLabel>Video (Bunny Stream)</SectionLabel>
@@ -501,6 +509,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
           <PosterSrcField
             value={props.posterSrc || ''}
             onChange={val => updateProp(comp.id, 'posterSrc', val)}
+            thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
           />
         </div>
       </div>

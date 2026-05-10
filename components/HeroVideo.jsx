@@ -9,7 +9,7 @@ export default function HeroVideo({
   mobileVideoGuid,
   tabletVideoGuid,
   desktopVideoGuid,
-  posterSrc = '/images/og-portafolio.jpg',
+  posterSrc = '',
   children 
 }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -95,7 +95,13 @@ export default function HeroVideo({
       {/* 1. Prioridad Absoluta de Carga (Poster) */}
       <div className="absolute inset-0 w-full h-full z-0 bg-bg">
         <img 
-          src={posterSrc}
+          src={
+            (posterSrc && posterSrc !== '/images/og-portafolio.jpg') 
+              ? posterSrc 
+              : activeGuid 
+                ? `https://${CDN_HOSTNAME}/${activeGuid}/thumbnail.jpg` 
+                : '/images/og-portafolio.jpg'
+          }
           alt="Reel Audiovisual"
           className="w-full h-full object-cover opacity-60"
           fetchPriority="high"

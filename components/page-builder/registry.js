@@ -29,7 +29,7 @@ export const COMPONENT_DEFINITIONS = [
       mobileVideoGuid: 'fe276f61-28ae-4f6f-99e5-1ec480771801',
       tabletVideoGuid: 'fe276f61-28ae-4f6f-99e5-1ec480771801',
       desktopVideoGuid: 'fe276f61-28ae-4f6f-99e5-1ec480771801',
-      posterSrc: '/images/og-portafolio.jpg'
+      posterSrc: ''
     }
   },
   {
@@ -48,7 +48,7 @@ export const COMPONENT_DEFINITIONS = [
       mobileVideoGuid: '6859587c-3f26-444e-a131-026852c00325',
       tabletVideoGuid: '6859587c-3f26-444e-a131-026852c00325',
       desktopVideoGuid: '6859587c-3f26-444e-a131-026852c00325',
-      posterSrc: '/images/og-portafolio.jpg',
+      posterSrc: '',
       _styles: {
         pillText:        { mobile: { fontSize: 10, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.2', lineHeight: '1.5' }, tablet: { fontSize: 10, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.2', lineHeight: '1.5' }, desktop: { fontSize: 10, color: '', fontWeight: '400', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.2', lineHeight: '1.5' } },
         headline:        { mobile: { fontSize: 48, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' }, tablet: { fontSize: 60, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' }, desktop: { fontSize: 96, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '0.95' } },
