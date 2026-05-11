@@ -7,7 +7,8 @@ export default function HeroVideoSection({
   mobileVideoGuid, 
   tabletVideoGuid,
   desktopVideoGuid,
-  posterSrc 
+  posterSrc,
+  posterAlt
 }) {
   return (
     <HeroVideo
@@ -15,6 +16,9 @@ export default function HeroVideoSection({
       tabletVideoGuid={tabletVideoGuid || ""}
       desktopVideoGuid={desktopVideoGuid || ""}
       posterSrc={posterSrc || ""}
+      alt={posterAlt || title || "Reel Audiovisual"}
+      title={title}
+      description={description1}
     >
       <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl font-bold">
         {title}

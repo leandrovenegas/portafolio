@@ -58,11 +58,6 @@ export default async function Portafolio({ searchParams }) {
   const versionId = params?.versionId;
   const components = await getPageComponents('portafolio', versionId);
 
-  const { data: organizaciones, error } = await supabase
-    .from("organizations")
-    .select("*")
-    .is("parent_organization_id", null)
-    .neq("type", "client");
 
   let descripcionLocal = null;
   try {
@@ -73,7 +68,6 @@ export default async function Portafolio({ searchParams }) {
     console.error("Error al leer portafolio.md:", e);
   }
 
-  if (error) return <pre className="font-mono text-accent p-12">Error: {error.message}</pre>;
 
   return (
     <>
@@ -111,40 +105,7 @@ export default async function Portafolio({ searchParams }) {
           </div>
         )}
 
-        <div className="relative z-10 px-6 pt-12 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-16 md:gap-24">
-          <div className="w-full max-w-4xl border-b border-border pb-16">
-            <BunnyVideoPlayer 
-              videoId="fe276f61-28ae-4f6f-99e5-1ec480771801"
-              title="Showreel Portafolio Audiovisual"
-              description="Resumen de trabajos de dirección creativa y producción audiovisual por Leandro Venegas."
-            />
-          </div>
 
-          <section>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
-              {organizaciones.map((org) => (
-                <Link
-                  key={org.id}
-                  href={`/portafolio/${org.slug}`}
-                  className="bg-bg p-8 md:p-12 flex flex-col gap-4 hover:bg-s1 transition-colors duration-200 group"
-                >
-                  <span className="font-mono text-[10px] text-accent tracking-widest uppercase border border-accent/30 bg-accent/5 px-2 py-1 self-start">
-                    {org.type}
-                  </span>
-
-                  <h2 className="font-display text-3xl md:text-4xl text-ink mt-2 group-hover:text-accent transition-colors duration-200">
-                    {org.name}
-                  </h2>
-
-                  <span className="font-mono text-xs text-muted mt-8 group-hover:text-ink transition-colors duration-200">
-                    Ver proyectos asociados →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-        </div>
       </main>
     </>
   );

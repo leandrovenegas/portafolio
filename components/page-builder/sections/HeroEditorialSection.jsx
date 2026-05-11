@@ -40,6 +40,7 @@ export default function HeroEditorialSection({
   tabletVideoGuid,
   desktopVideoGuid,
   posterSrc,
+  posterAlt,
   _styles
 }) {
   const [bp, setBp] = useState('mobile');
@@ -105,6 +106,9 @@ export default function HeroEditorialSection({
       tabletVideoGuid={tabletVideoGuid || ""}
       desktopVideoGuid={desktopVideoGuid || ""}
       posterSrc={posterSrc || ""}
+      alt={posterAlt || headline || "Reel Audiovisual"}
+      title={headline}
+      description={bodyText}
     >
       <div className="flex flex-col items-start gap-6 w-full max-w-full md:max-w-3xl">
         
@@ -120,14 +124,14 @@ export default function HeroEditorialSection({
 
         {/* Headline */}
         {(headline || headlineKeyword) && (
-          <h1 className="font-display font-bold leading-[0.95] text-ink max-w-full">
+          <h2 className="font-display font-bold leading-[0.95] text-ink max-w-full">
             <span style={fieldStyle('headline')}>{headline}</span>
             {headlineKeyword && (
               <span className="text-accent block md:inline" style={fieldStyle('headlineKeyword')}>
                 {' '}{headlineKeyword}
               </span>
             )}
-          </h1>
+          </h2>
         )}
 
         {/* Body Text */}

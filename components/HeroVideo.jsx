@@ -10,6 +10,9 @@ export default function HeroVideo({
   tabletVideoGuid,
   desktopVideoGuid,
   posterSrc = '',
+  alt = 'Reel Audiovisual',
+  title = '',
+  description = '',
   children 
 }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -36,6 +39,18 @@ export default function HeroVideo({
     (device === 'mobile' ? mobileVideoGuid : 
      device === 'tablet' ? tabletVideoGuid : 
      desktopVideoGuid) || desktopVideoGuid || tabletVideoGuid || mobileVideoGuid;
+
+  // Video Schema for SEO
+  const videoSchema = activeGuid ? {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": title || alt || "Video Portafolio",
+    "description": description || alt || "Video producido por Leandro Venegas",
+    "thumbnailUrl": posterSrc || `https://${CDN_HOSTNAME}/${activeGuid}/thumbnail.jpg`,
+    "uploadDate": "2024-01-01T00:00:00Z",
+    "contentUrl": `https://${CDN_HOSTNAME}/${activeGuid}/playlist.m3u8`,
+    "embedUrl": `https://iframe.mediadelivery.net/embed/${process.env.NEXT_PUBLIC_BUNNY_LIBRARY_ID}/${activeGuid}`,
+  } : null;
 
   // 1. Manejo de HLS (Carga y Configuración)
   useEffect(() => {
@@ -91,6 +106,12 @@ export default function HeroVideo({
       ref={containerRef}
       className="relative w-full h-screen min-h-[600px] flex flex-col justify-center overflow-hidden"
     >
+      {videoSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+        />
+      )}
       
       {/* 1. Prioridad Absoluta de Carga (Poster) */}
       <div className="absolute inset-0 w-full h-full z-0 bg-bg">
@@ -102,7 +123,7 @@ export default function HeroVideo({
                 ? `https://${CDN_HOSTNAME}/${activeGuid}/thumbnail.jpg` 
                 : '/images/og-portafolio.jpg'
           }
-          alt="Reel Audiovisual"
+          alt={alt}
           className="w-full h-full object-cover opacity-60"
           fetchPriority="high"
         />

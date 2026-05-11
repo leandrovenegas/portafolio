@@ -266,6 +266,16 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onChange={val => updateProp(comp.id, 'posterSrc', val)}
             thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
           />
+          <div className="px-1 mt-1">
+            <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
+            <input
+              type="text"
+              placeholder="Descripción de la imagen"
+              value={props.posterAlt || ''}
+              onChange={e => updateProp(comp.id, 'posterAlt', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+            />
+          </div>
 
           <SectionLabel>Video (Bunny Stream)</SectionLabel>
 
@@ -511,6 +521,16 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onChange={val => updateProp(comp.id, 'posterSrc', val)}
             thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
           />
+          <div className="px-1 mt-1">
+            <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
+            <input
+              type="text"
+              placeholder="Descripción de la imagen"
+              value={props.posterAlt || ''}
+              onChange={e => updateProp(comp.id, 'posterAlt', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+            />
+          </div>
         </div>
       </div>
     );
