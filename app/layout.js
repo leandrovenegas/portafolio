@@ -1,5 +1,6 @@
 import "./globals.css";
 import CookieBanner from "../components/CookieBanner";
+import Footer from "@/components/Footer";
 import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 
 // Display — Bebas Neue (condensed, impactful headlines)
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
         {children}
+        <Footer />
         {process.env.NODE_ENV === "production" && <CookieBanner />}
       </body>
     </html>

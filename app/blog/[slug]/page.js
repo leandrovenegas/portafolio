@@ -1,5 +1,4 @@
 import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { getPostBySlug, getBlogPosts } from "@/lib/blog";
 import { parseMarkdown } from "@/lib/markdown";
 import { notFound } from "next/navigation";
@@ -108,7 +107,6 @@ export default async function BlogPostPage({ params }) {
           </article>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

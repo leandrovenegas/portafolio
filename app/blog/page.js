@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { getBlogPosts } from "@/lib/blog";
 import HeroVideo from "@/components/HeroVideo";
 
@@ -79,7 +78,6 @@ export default async function BlogPage() {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
