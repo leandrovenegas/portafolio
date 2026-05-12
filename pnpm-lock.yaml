@@ -26,6 +26,9 @@ dependencies:
   '@tailwindcss/typography':
     specifier: ^0.5.19
     version: 0.5.19(tailwindcss@4.2.1)
+  '@typebot.io/react':
+    specifier: ^0.10.2
+    version: 0.10.2(react@19.2.3)
   hls.js:
     specifier: ^1.6.16
     version: 1.6.16
@@ -727,6 +730,19 @@ packages:
     dependencies:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.2.1
+    dev: false
+
+  /@typebot.io/js@0.10.2:
+    resolution: {integrity: sha512-sW+XyMmLD7sEBXMhSDZBn+UkPaxXdbAaMl0vDY2LjHpxF6wVccxvCO1gdqYXgC0rAdJxDvBzJwr27iOaNpXDNA==}
+    dev: false
+
+  /@typebot.io/react@0.10.2(react@19.2.3):
+    resolution: {integrity: sha512-XiaSHMHQwazQKE6XHVuK5Hbnk+K1CdCztiym0oSJ1EfXcRtUWclmT/fFpMPEYkTareoQXZ4RLrKJ0YormCNwRw==}
+    peerDependencies:
+      react: '>=18'
+    dependencies:
+      '@typebot.io/js': 0.10.2
+      react: 19.2.3
     dev: false
 
   /@types/debug@4.1.13:
