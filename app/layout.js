@@ -1,7 +1,7 @@
 import "./globals.css";
 import CookieBanner from "../components/CookieBanner";
 import Footer from "@/components/Footer";
-import Script from "next/script";
+import TypebotBubble from "@/components/TypebotBubble";
 import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 
 // Display — Bebas Neue (condensed, impactful headlines)
@@ -78,34 +78,7 @@ export default function RootLayout({ children }) {
         <Footer />
         {process.env.NODE_ENV === "production" && <CookieBanner />}
 
-        {/* Typebot Integration */}
-        <Script 
-          src="https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3/dist/web.js" 
-          strategy="afterInteractive" 
-        />
-        <Script id="typebot-init" strategy="afterInteractive">
-          {`
-            (function() {
-              var checkTypebot = setInterval(function() {
-                if (window.Typebot) {
-                  clearInterval(checkTypebot);
-                  window.Typebot.initBubble({
-                    typebot: "my-typebot-p77m21l",
-                    previewMessage: {
-                      text: "¿Qué vendes? Te armo el sistema 👇",
-                      autoShowDelay: 5000,
-                    },
-                    theme: {
-                      button: { backgroundColor: "#000000" },
-                    },
-                  });
-                }
-              }, 100);
-              // Fallback clearance after 10 seconds
-              setTimeout(function() { clearInterval(checkTypebot); }, 10000);
-            })();
-          `}
-        </Script>
+        <TypebotBubble />
       </body>
     </html>
   );
