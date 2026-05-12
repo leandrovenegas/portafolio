@@ -82,24 +82,28 @@ export default function RootLayout({ children }) {
         <Script 
           src="https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3/dist/web.js" 
           strategy="afterInteractive" 
-          type="module"
         />
         <Script id="typebot-init" strategy="afterInteractive">
           {`
-            setTimeout(() => {
-              if (window.Typebot) {
-                window.Typebot.initBubble({
-                  typebot: "my-typebot-p77m21l",
-                  previewMessage: {
-                    text: "¿Qué vendes? Te armo el sistema 👇",
-                    autoShowDelay: 5000,
-                  },
-                  theme: {
-                    button: { backgroundColor: "#000000" },
-                  },
-                });
-              }
-            }, 100);
+            (function() {
+              var checkTypebot = setInterval(function() {
+                if (window.Typebot) {
+                  clearInterval(checkTypebot);
+                  window.Typebot.initBubble({
+                    typebot: "my-typebot-p77m21l",
+                    previewMessage: {
+                      text: "¿Qué vendes? Te armo el sistema 👇",
+                      autoShowDelay: 5000,
+                    },
+                    theme: {
+                      button: { backgroundColor: "#000000" },
+                    },
+                  });
+                }
+              }, 100);
+              // Fallback clearance after 10 seconds
+              setTimeout(function() { clearInterval(checkTypebot); }, 10000);
+            })();
           `}
         </Script>
       </body>
