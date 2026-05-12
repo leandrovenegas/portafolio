@@ -6,6 +6,7 @@ import CTASection from './sections/CTASection';
 import FAQSection from './sections/FAQSection';
 import SimpleCenteredCTA from './sections/SimpleCenteredCTA';
 import CTAWhatsapp from './sections/CTAWhatsapp';
+import EstrelasSection from './sections/EstrelasSection';
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -15,7 +16,8 @@ export const COMPONENT_REGISTRY = {
   CTASection,
   FAQSection,
   SimpleCenteredCTA,
-  CTAWhatsapp
+  CTAWhatsapp,
+  EstrelasSection
 };
 
 export const COMPONENT_DEFINITIONS = [
@@ -131,6 +133,24 @@ export const COMPONENT_DEFINITIONS = [
       buttonText: 'Conversar por WhatsApp',
       message: 'Hola, me gustaría conocer más sobre tus servicios.',
       phoneNumber: '56988804299'
+    }
+  },
+  {
+    type: 'EstrelasSection',
+    name: 'Estrellas (Reseñas)',
+    defaultProps: {
+      rating: 5,
+      reviewCount: 0,
+      showLabel: true,
+      title: 'Calificación de Clientes',
+      description: 'Nuestros clientes confían en la calidad de nuestro trabajo.',
+      alignment: 'center',
+      backgroundColor: '#ffffff',
+      starSizes: { mobile: 28, tablet: 36, desktop: 48 },
+      _styles: {
+        title: { mobile: { fontSize: 20, color: '#111827', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, tablet: { fontSize: 24, color: '#111827', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, desktop: { fontSize: 28, color: '#111827', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' } },
+        description: { mobile: { fontSize: 14, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, tablet: { fontSize: 16, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, desktop: { fontSize: 18, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' } }
+      }
     }
   }
 ];

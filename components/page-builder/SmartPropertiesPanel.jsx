@@ -536,6 +536,114 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
     );
   }
 
+  // ── EstrelasSection layout ──
+  if (type === 'EstrelasSection') {
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-yellow-400" />
+            <h3 className="text-xs font-bold text-ink">Estrellas — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        
+        <div className="flex flex-col gap-4 p-4 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          
+          <SectionLabel>Calificación y Visibilidad</SectionLabel>
+          
+          <div className="rounded-xl border border-border bg-bg p-3 flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Mostrar Etiqueta (Pestillo)</label>
+              <button
+                onClick={() => updateProp(comp.id, 'showLabel', !props.showLabel)}
+                className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors ${props.showLabel ? 'bg-accent' : 'bg-gray-700'}`}
+              >
+                <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${props.showLabel ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <div className="flex justify-between items-center">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Calificación ({props.rating || 5})</label>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="5"
+                step="0.1"
+                value={props.rating || 5}
+                onChange={e => updateProp(comp.id, 'rating', parseFloat(e.target.value))}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+          </div>
+
+          <SectionLabel>Tamaño de Estrellas (Responsivo)</SectionLabel>
+          
+          <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
+            <div className="flex bg-s1 p-1 gap-1 border-b border-border">
+              {BREAKPOINTS.map(tab => (
+                <button
+                  key={tab.key}
+                  onClick={() => setVideoDeviceMode(tab.key)}
+                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
+                    videoDeviceMode === tab.key ? 'bg-accent text-bg shadow-sm' : 'text-muted hover:text-ink hover:bg-s2'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            <div className="p-3 flex flex-col gap-2">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Tamaño (px)</span>
+                <span className="text-xs font-mono text-accent">{(props.starSizes?.[videoDeviceMode]) || (videoDeviceMode === 'mobile' ? 28 : videoDeviceMode === 'tablet' ? 36 : 48)}px</span>
+              </div>
+              <input
+                type="range"
+                min="12"
+                max="120"
+                step="1"
+                value={(props.starSizes?.[videoDeviceMode]) || (videoDeviceMode === 'mobile' ? 28 : videoDeviceMode === 'tablet' ? 36 : 48)}
+                onChange={e => {
+                  const currentSizes = props.starSizes || { mobile: 28, tablet: 36, desktop: 48 };
+                  updateProp(comp.id, 'starSizes', { ...currentSizes, [videoDeviceMode]: parseInt(e.target.value) });
+                }}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+          </div>
+
+          <SectionLabel>Contenido Adicional</SectionLabel>
+          <TextField
+            fieldKey="title"
+            label="Título"
+            value={props.title || ''}
+            onChange={val => updateProp(comp.id, 'title', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+          />
+          <TextField
+            fieldKey="description"
+            label="Descripción"
+            long
+            value={props.description || ''}
+            onChange={val => updateProp(comp.id, 'description', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+          />
+        </div>
+      </div>
+    );
+  }
+
   // ── TextSection layout ──
   if (type === 'TextSection') {
     return (
