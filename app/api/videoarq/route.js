@@ -32,9 +32,14 @@ https://wa.me/56988804299?text=Hola+Leandro%2C+vengo+del+sitio.+Vendo:+[que_vend
       systemInstruction: systemPrompt,
     });
 
-    // Gemini requiere el historial en un formato específico (role: 'user' o 'model')
     // Transformamos los mensajes que ya existen excepto el último que es el mensaje a enviar
-    const history = messages.slice(0, -1).map(msg => ({
+    // Gemini requiere estrictamente que el historial comience con un rol 'user', así que omitimos el primer saludo del bot
+    let historyMessages = messages.slice(0, -1);
+    if (historyMessages.length > 0 && historyMessages[0].role === 'assistant') {
+      historyMessages = historyMessages.slice(1);
+    }
+
+    const history = historyMessages.map(msg => ({
       role: msg.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: msg.content }]
     }));
