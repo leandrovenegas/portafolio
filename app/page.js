@@ -5,6 +5,8 @@ import PageRenderer from "@/components/page-builder/PageRenderer";
 import { DEFAULT_HOME_COMPONENTS } from "@/components/page-builder/defaultConfig";
 import LivePreviewListener from "@/components/page-builder/LivePreviewListener";
 import supabase from "@/lib/supabase";
+import VideoARQ from "@/components/VideoARQ";
+
 
 export const metadata = {
   title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
@@ -112,8 +114,9 @@ export default async function Home({ searchParams }) {
         }}
       />
       <Nav />
-      <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
+      <main className="min-h-screen bg-bg relative overflow-hidden">
         <PageRenderer components={components} />
+        <VideoARQ />
       </main>
 
     </>
