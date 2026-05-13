@@ -54,12 +54,15 @@ export default function VideoARQ({ apiKey, model, systemPrompt }) {
       const data = await response.json();
       if (data.text) {
         setMessages((prev) => [...prev, { role: 'assistant', content: data.text }]);
+      } else if (data.error) {
+        // Muestra el mensaje de error del backend en el chat (rojo o texto normal)
+        setMessages((prev) => [...prev, { role: 'assistant', content: `[Error del Servidor]: ${data.error}` }]);
       } else {
         setMessages((prev) => [...prev, { role: 'assistant', content: 'Lo siento, hubo un problema al procesar tu respuesta.' }]);
       }
     } catch (error) {
       console.error(error);
-      setMessages((prev) => [...prev, { role: 'assistant', content: 'Error de conexión.' }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: `Error de conexión: ${error.message}` }]);
     } finally {
       setIsLoading(false);
     }

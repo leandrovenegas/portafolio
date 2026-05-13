@@ -59,6 +59,8 @@ https://wa.me/56988804299?text=Hola+Leandro%2C+vengo+del+sitio.+Vendo:+[que_vend
     return NextResponse.json({ text: replyText });
   } catch (error) {
     console.error('Error en VideoARQ API (Gemini):', error);
-    return NextResponse.json({ error: 'Hubo un error con el asistente.' }, { status: 500 });
+    // Para depuración, enviamos el mensaje de error real al frontend
+    const errorMessage = error.message || 'Hubo un error con el asistente.';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
