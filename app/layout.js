@@ -1,7 +1,7 @@
 import "./globals.css";
 import CookieBanner from "../components/CookieBanner";
 import Footer from "@/components/Footer";
-import TypebotBubble from "@/components/TypebotBubble";
+import VideoARQ from "@/components/VideoARQ";
 import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 
 // Display — Bebas Neue (condensed, impactful headlines)
@@ -78,7 +78,7 @@ export default function RootLayout({ children }) {
         <Footer />
         {process.env.NODE_ENV === "production" && <CookieBanner />}
 
-        <TypebotBubble />
+        <VideoARQ />
       </body>
     </html>
   );
