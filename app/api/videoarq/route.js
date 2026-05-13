@@ -2,7 +2,7 @@ import { Anthropic } from '@anthropic-ai/sdk';
 import { NextResponse } from 'next/server';
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY || '',
+  apiKey: process.env.ANTHROPIC_API_KEY, // Debe existir en tu .env o .env.local
 });
 
 export async function POST(req) {
@@ -25,7 +25,7 @@ https://wa.me/56988804299?text=Hola+Leandro%2C+vengo+del+sitio.+Vendo:+[que_vend
 
     // Initialize messages if the prompt was empty and we don't pass system in messages
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-3-5-sonnet-20241022',
       max_tokens: 1024,
       system: systemPrompt,
       messages: messages,
