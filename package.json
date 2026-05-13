@@ -16,7 +16,6 @@
     "@supabase/supabase-js": "^2.97.0",
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/typography": "^0.5.19",
-    "@typebot.io/react": "^0.10.2",
     "hls.js": "^1.6.16",
     "marked": "^17.0.3",
     "next": "16.1.6",
