@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
 
+<<<<<<< HEAD
 export async function POST(req) {
   try {
     const { messages, apiKey, model: reqModel, systemPrompt: reqSystemPrompt } = await req.json();
@@ -8,13 +9,27 @@ export async function POST(req) {
     const finalApiKey = apiKey || process.env.GEMINI_API_KEY;
 
     if (!finalApiKey) {
+=======
+// Asegúrate de definir GEMINI_API_KEY en tu archivo .env.local
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+
+export async function POST(req) {
+  try {
+    if (!process.env.GEMINI_API_KEY) {
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
       console.error('Error: GEMINI_API_KEY no está configurada.');
       return NextResponse.json({ error: 'Falta configurar GEMINI_API_KEY.' }, { status: 500 });
     }
 
+<<<<<<< HEAD
     const genAI = new GoogleGenerativeAI(finalApiKey);
 
     const defaultSystemPrompt = `Eres VideoARQ, el asistente de calificación de Leandro Venegas. 
+=======
+    const { messages } = await req.json();
+
+    const systemPrompt = `Eres VideoARQ, el asistente de calificación de Leandro Venegas. 
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
 Tu único objetivo es hacer 4 preguntas en orden para entender el negocio del prospecto. No respondas preguntas fuera de este flujo. No des consejos. No te salgas del guión. 
 Cuando termines las 4 preguntas y captures el email, muestra el resumen y el botón de WhatsApp.
 Habla en español, tono cercano y profesional.
@@ -28,12 +43,18 @@ Las preguntas en orden son:
 Después de la 4ta pregunta, pide el email. Una vez que tengas el email, genera el siguiente enlace de WhatsApp EXACTAMENTE ASÍ, reemplazando las variables con la información que recolectaste y sin agregar markdown adicional al enlace (sólo pon la URL directa para que el usuario pueda hacer clic):
 https://wa.me/56988804299?text=Hola+Leandro%2C+vengo+del+sitio.+Vendo:+[que_vendes]+Redes/Web:+[link_redes]+Mi+problema:+[problema_principal]+Inversión:+[inversion_marketing]+Email:+[email_prospecto]`;
 
+<<<<<<< HEAD
     const finalSystemPrompt = reqSystemPrompt || defaultSystemPrompt;
     const finalModel = reqModel || 'gemini-2.5-flash';
 
     const model = genAI.getGenerativeModel({
       model: finalModel,
       systemInstruction: finalSystemPrompt,
+=======
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      systemInstruction: systemPrompt,
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
     });
 
     // Transformamos los mensajes que ya existen excepto el último que es el mensaje a enviar
@@ -59,8 +80,12 @@ https://wa.me/56988804299?text=Hola+Leandro%2C+vengo+del+sitio.+Vendo:+[que_vend
     return NextResponse.json({ text: replyText });
   } catch (error) {
     console.error('Error en VideoARQ API (Gemini):', error);
+<<<<<<< HEAD
     // Para depuración, enviamos el mensaje de error real al frontend
     const errorMessage = error.message || 'Hubo un error con el asistente.';
     return NextResponse.json({ error: errorMessage }, { status: 500 });
+=======
+    return NextResponse.json({ error: 'Hubo un error con el asistente.' }, { status: 500 });
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
   }
 }

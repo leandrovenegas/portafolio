@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 hola
 =======
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
 User-agent: *
 Allow: /
 Allow: /_next/static/
@@ -12,5 +15,9 @@ Disallow: /.env
 Disallow: /proyectos
 
 
+<<<<<<< HEAD
 Sitemap: https://www.leandrovenegas.cl/sitemap.xml
 >>>>>>> f206729a3c90211a8be1128f6e12178a2a7c9ee5
+=======
+Sitemap: https://www.leandrovenegas.cl/sitemap.xml
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0

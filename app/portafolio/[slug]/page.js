@@ -46,6 +46,7 @@ const getOrganization = cache(async (slug) => {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   return (
     <>
       <Nav />
@@ -127,6 +128,8 @@ const getOrganization = cache(async (slug) => {
   );
 }
 =======
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
   return {
     org,
     hijas: hijasRes.data || [],
@@ -134,7 +137,10 @@ const getOrganization = cache(async (slug) => {
     content
   };
 });
+<<<<<<< HEAD
 >>>>>>> f206729a3c90211a8be1128f6e12178a2a7c9ee5
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;

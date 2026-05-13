@@ -7,7 +7,10 @@ import FAQSection from './sections/FAQSection';
 import SimpleCenteredCTA from './sections/SimpleCenteredCTA';
 import CTAWhatsapp from './sections/CTAWhatsapp';
 import EstrelasSection from './sections/EstrelasSection';
+<<<<<<< HEAD
 import VideoARQSection from './sections/VideoARQSection';
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -18,8 +21,12 @@ export const COMPONENT_REGISTRY = {
   FAQSection,
   SimpleCenteredCTA,
   CTAWhatsapp,
+<<<<<<< HEAD
   EstrelasSection,
   VideoARQSection
+=======
+  EstrelasSection
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
 };
 
 export const COMPONENT_DEFINITIONS = [
@@ -154,6 +161,7 @@ export const COMPONENT_DEFINITIONS = [
         description: { mobile: { fontSize: 14, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, tablet: { fontSize: 16, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, desktop: { fontSize: 18, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' } }
       }
     }
+<<<<<<< HEAD
   },
   {
     type: 'VideoARQSection',
@@ -175,5 +183,7 @@ Las preguntas en orden son:
 Después de la 4ta pregunta, pide el email. Una vez que tengas el email, genera el siguiente enlace de WhatsApp EXACTAMENTE ASÍ, reemplazando las variables con la información que recolectaste y sin agregar markdown adicional al enlace (sólo pon la URL directa para que el usuario pueda hacer clic):
 https://wa.me/56988804299?text=Hola+Leandro%2C+vengo+del+sitio.+Vendo:+[que_vendes]+Redes/Web:+[link_redes]+Mi+problema:+[problema_principal]+Inversión:+[inversion_marketing]+Email:+[email_prospecto]`
     }
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
   }
 ];

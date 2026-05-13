@@ -2,7 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react';
 
+<<<<<<< HEAD
 export default function VideoARQ({ apiKey, model, systemPrompt }) {
+=======
+export default function VideoARQ() {
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -43,26 +47,37 @@ export default function VideoARQ({ apiKey, model, systemPrompt }) {
       const response = await fetch('/api/videoarq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+<<<<<<< HEAD
         body: JSON.stringify({ 
           messages: newMessages,
           apiKey: apiKey || undefined,
           model: model || undefined,
           systemPrompt: systemPrompt || undefined
         }),
+=======
+        body: JSON.stringify({ messages: newMessages }),
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
       });
 
       const data = await response.json();
       if (data.text) {
         setMessages((prev) => [...prev, { role: 'assistant', content: data.text }]);
+<<<<<<< HEAD
       } else if (data.error) {
         // Muestra el mensaje de error del backend en el chat (rojo o texto normal)
         setMessages((prev) => [...prev, { role: 'assistant', content: `[Error del Servidor]: ${data.error}` }]);
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
       } else {
         setMessages((prev) => [...prev, { role: 'assistant', content: 'Lo siento, hubo un problema al procesar tu respuesta.' }]);
       }
     } catch (error) {
       console.error(error);
+<<<<<<< HEAD
       setMessages((prev) => [...prev, { role: 'assistant', content: `Error de conexión: ${error.message}` }]);
+=======
+      setMessages((prev) => [...prev, { role: 'assistant', content: 'Error de conexión.' }]);
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
     } finally {
       setIsLoading(false);
     }

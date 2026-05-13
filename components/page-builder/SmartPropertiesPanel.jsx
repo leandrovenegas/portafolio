@@ -213,6 +213,7 @@ function SectionLabel({ children }) {
   );
 }
 
+<<<<<<< HEAD
 // ─── VideoARQ Panel ───────────────────────────────────────────────────────
 
 function VideoARQPanel({ comp, updateProp, onClose }) {
@@ -320,6 +321,8 @@ function VideoARQPanel({ comp, updateProp, onClose }) {
   );
 }
 
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
 // ─── Main Panel ───────────────────────────────────────────────────────────
 
 export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField }) {
@@ -796,11 +799,14 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
     );
   }
 
+<<<<<<< HEAD
   // ── VideoARQSection layout ──
   if (type === 'VideoARQSection') {
     return <VideoARQPanel comp={comp} updateProp={updateProp} onClose={onClose} />;
   }
 
+=======
+>>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
   // ── Generic fallback for all other component types ──
   return (
     <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
