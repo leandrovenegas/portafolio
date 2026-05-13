@@ -28,7 +28,7 @@ Después de la 4ta pregunta, pide el email. Una vez que tengas el email, genera 
 https://wa.me/56988804299?text=Hola+Leandro%2C+vengo+del+sitio.+Vendo:+[que_vendes]+Redes/Web:+[link_redes]+Mi+problema:+[problema_principal]+Inversión:+[inversion_marketing]+Email:+[email_prospecto]`;
 
     const model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       systemInstruction: systemPrompt,
     });
 
