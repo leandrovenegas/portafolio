@@ -213,6 +213,113 @@ function SectionLabel({ children }) {
   );
 }
 
+// ─── VideoARQ Panel ───────────────────────────────────────────────────────
+
+function VideoARQPanel({ comp, updateProp, onClose }) {
+  const { props } = comp;
+  const [models, setModels] = useState([]);
+  const [fetchingModels, setFetchingModels] = useState(false);
+  const [modelError, setModelError] = useState('');
+
+  const fetchModels = async () => {
+    if (!props.apiKey) {
+      setModelError('Ingresa una API Key primero');
+      return;
+    }
+    setFetchingModels(true);
+    setModelError('');
+    try {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${props.apiKey}`);
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message || 'Error de API Key');
+      if (data.models) {
+        const names = data.models.map(m => m.name.replace('models/', ''));
+        setModels(names);
+      }
+    } catch (err) {
+      setModelError(err.message);
+    } finally {
+      setFetchingModels(false);
+    }
+  };
+
+  return (
+    <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-accent" />
+          <h3 className="text-xs font-bold text-ink">Asistente AI — Propiedades</h3>
+        </div>
+        <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+        
+        <SectionLabel>Configuración Gemini</SectionLabel>
+        
+        <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+          <label className="block text-[10px] font-bold text-muted uppercase tracking-wider">Gemini API Key</label>
+          <input
+            type="password"
+            placeholder="AIzaSy..."
+            value={props.apiKey || ''}
+            onChange={e => updateProp(comp.id, 'apiKey', e.target.value)}
+            className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+          />
+          <p className="text-[9px] text-muted">Si lo dejas vacío, usará la variable de entorno global.</p>
+        </div>
+
+        <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+          <div className="flex justify-between items-center">
+            <label className="block text-[10px] font-bold text-muted uppercase tracking-wider">Modelo</label>
+            <button 
+              onClick={fetchModels}
+              disabled={fetchingModels}
+              className="text-[9px] bg-s2 hover:bg-s3 px-2 py-1 rounded border border-border disabled:opacity-50"
+            >
+              {fetchingModels ? 'Cargando...' : 'Cargar Modelos'}
+            </button>
+          </div>
+          
+          {models.length > 0 ? (
+            <select
+              value={props.model || 'gemini-2.5-flash'}
+              onChange={e => updateProp(comp.id, 'model', e.target.value)}
+              className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+            >
+              {models.map(m => (
+                <option key={m} value={m}>{m}</option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type="text"
+              placeholder="gemini-2.5-flash"
+              value={props.model || ''}
+              onChange={e => updateProp(comp.id, 'model', e.target.value)}
+              className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+            />
+          )}
+          {modelError && <p className="text-red-500 text-[9px]">{modelError}</p>}
+        </div>
+
+        <SectionLabel>Comportamiento</SectionLabel>
+        
+        <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+          <label className="block text-[10px] font-bold text-muted uppercase tracking-wider">System Prompt</label>
+          <textarea
+            value={props.systemPrompt || ''}
+            onChange={e => updateProp(comp.id, 'systemPrompt', e.target.value)}
+            className="w-full p-2.5 border border-border rounded-lg text-[10px] min-h-[250px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all resize-y font-mono"
+          />
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Panel ───────────────────────────────────────────────────────────
 
 export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField }) {
@@ -687,6 +794,11 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
         </div>
       </div>
     );
+  }
+
+  // ── VideoARQSection layout ──
+  if (type === 'VideoARQSection') {
+    return <VideoARQPanel comp={comp} updateProp={updateProp} onClose={onClose} />;
   }
 
   // ── Generic fallback for all other component types ──

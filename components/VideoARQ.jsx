@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-export default function VideoARQ() {
+export default function VideoARQ({ apiKey, model, systemPrompt }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -43,7 +43,12 @@ export default function VideoARQ() {
       const response = await fetch('/api/videoarq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
+        body: JSON.stringify({ 
+          messages: newMessages,
+          apiKey: apiKey || undefined,
+          model: model || undefined,
+          systemPrompt: systemPrompt || undefined
+        }),
       });
 
       const data = await response.json();
