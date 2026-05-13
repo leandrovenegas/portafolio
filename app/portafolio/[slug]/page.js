@@ -45,91 +45,6 @@ const getOrganization = cache(async (slug) => {
     }
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  return (
-    <>
-      <Nav />
-      <main className="min-h-screen bg-black px-6 py-16 md:px-12 lg:px-24">
-
-        {/* Header */}
-        <div className="mb-16 max-w-2xl">
-          <Link href="/portafolio" className="text-zinc-600 text-xs tracking-widest uppercase hover:text-zinc-400 transition-colors duration-200 mb-8 block">
-            ← Portafolio
-          </Link>
-          <span className="text-zinc-600 text-xs tracking-widest uppercase">
-            {org.type}
-          </span>
-          <h1 className="text-white text-4xl font-bold tracking-tighter mt-2 mb-6 md:text-6xl">
-            {org.name}
-          </h1>
-          {descripcion && (
-            <div
-              className="text-zinc-400 text-base leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: descripcion }}
-            />
-          )}
-        </div>
-
-        {/* Sub organizaciones 
-        {hijas && hijas.length > 0 && (
-          <section className="mb-16">
-            <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Áreas</h2>
-            <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800 md:grid-cols-2">
-              {hijas.map((hija) => (
-                <Link
-                  key={hija.id}
-                  href={`/portafolio/${hija.slug}`}
-                  className="bg-black p-8 flex flex-col gap-4 hover:bg-zinc-900 transition-colors duration-200 group"
-                >
-                  <span className="text-zinc-600 text-xs tracking-widest uppercase">
-                    {hija.type}
-                  </span>
-                  <h3 className="text-white text-xl font-bold tracking-tight group-hover:text-zinc-300 transition-colors duration-200">
-                    {hija.name}
-                  </h3>
-                  <span className="text-zinc-600 text-xs tracking-widest uppercase mt-auto group-hover:text-zinc-400 transition-colors duration-200">
-                    Ver proyectos →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )} */}
-
-        {/* Proyectos 
-        {proyectos && proyectos.length > 0 && (
-          <section>
-            <h2 className="text-zinc-600 text-xs tracking-widest uppercase mb-6">Proyectos</h2>
-            <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800 md:grid-cols-2 lg:grid-cols-3">
-              {proyectos.map((proyecto) => (
-                <Link
-                  key={proyecto.id}
-                  href={`/proyectos/${proyecto.slug}`}
-                  className="bg-black p-8 flex flex-col gap-4 hover:bg-zinc-900 transition-colors duration-200 group"
-                >
-                  <span className="text-zinc-600 text-xs tracking-widest uppercase">
-                    {proyecto.date}
-                  </span>
-                  <h3 className="text-white text-xl font-bold tracking-tight group-hover:text-zinc-300 transition-colors duration-200">
-                    {proyecto.title}
-                  </h3>
-                  <span className="text-zinc-600 text-xs tracking-widest uppercase mt-auto group-hover:text-zinc-400 transition-colors duration-200">
-                    Ver proyecto →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}*/}
-
-      </main>
-    </>
-  );
-}
-=======
-=======
->>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
   return {
     org,
     hijas: hijasRes.data || [],
@@ -137,10 +52,6 @@ const getOrganization = cache(async (slug) => {
     content
   };
 });
-<<<<<<< HEAD
->>>>>>> f206729a3c90211a8be1128f6e12178a2a7c9ee5
-=======
->>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -209,7 +120,7 @@ export default async function OrganizacionPage({ params }) {
             )}
           </header>
 
-          {/* Sub organizaciones 
+          {/* Sub organizaciones */}
           {hijas.length > 0 && (
             <SectionWrapper title="Áreas de Operación">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
@@ -230,7 +141,7 @@ export default async function OrganizacionPage({ params }) {
               </div>
             </SectionWrapper>
           )}
-*/}
+
           {/* Proyectos */}
           {proyectos.length > 0 && (
             <SectionWrapper title="Proyectos Indexados">

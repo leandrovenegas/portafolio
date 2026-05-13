@@ -2,11 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-<<<<<<< HEAD
 export default function VideoARQ({ apiKey, model, systemPrompt }) {
-=======
-export default function VideoARQ() {
->>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -47,37 +44,29 @@ export default function VideoARQ() {
       const response = await fetch('/api/videoarq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-<<<<<<< HEAD
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           messages: newMessages,
           apiKey: apiKey || undefined,
           model: model || undefined,
           systemPrompt: systemPrompt || undefined
         }),
-=======
-        body: JSON.stringify({ messages: newMessages }),
->>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
+
       });
 
       const data = await response.json();
       if (data.text) {
         setMessages((prev) => [...prev, { role: 'assistant', content: data.text }]);
-<<<<<<< HEAD
       } else if (data.error) {
         // Muestra el mensaje de error del backend en el chat (rojo o texto normal)
         setMessages((prev) => [...prev, { role: 'assistant', content: `[Error del Servidor]: ${data.error}` }]);
-=======
->>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
+
       } else {
         setMessages((prev) => [...prev, { role: 'assistant', content: 'Lo siento, hubo un problema al procesar tu respuesta.' }]);
       }
     } catch (error) {
       console.error(error);
-<<<<<<< HEAD
       setMessages((prev) => [...prev, { role: 'assistant', content: `Error de conexión: ${error.message}` }]);
-=======
-      setMessages((prev) => [...prev, { role: 'assistant', content: 'Error de conexión.' }]);
->>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
+
     } finally {
       setIsLoading(false);
     }
@@ -91,10 +80,10 @@ export default function VideoARQ() {
         if (waRegex.test(part)) {
           return (
             <div key={i} className="mt-3">
-              <a 
-                href={part.replace(/\]$/, '')} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href={part.replace(/\]$/, '')}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-[#25D366] text-white font-bold py-2 px-4 rounded-full shadow-lg hover:bg-[#128C7E] transition-colors"
               >
                 Enviar a WhatsApp
@@ -110,7 +99,7 @@ export default function VideoARQ() {
 
   if (!isOpen) {
     return (
-      <button 
+      <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 z-50 bg-black text-white px-6 py-4 rounded-full shadow-2xl font-bold hover:scale-105 transition-transform flex items-center gap-2"
       >
@@ -133,11 +122,10 @@ export default function VideoARQ() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
         {messages.map((m, idx) => (
           <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[85%] p-3 rounded-2xl text-sm ${
-              m.role === 'user' 
-                ? 'bg-black text-white rounded-tr-none' 
+            <div className={`max-w-[85%] p-3 rounded-2xl text-sm ${m.role === 'user'
+                ? 'bg-black text-white rounded-tr-none'
                 : 'bg-gray-200 text-black rounded-tl-none whitespace-pre-wrap'
-            }`}>
+              }`}>
               {renderMessageContent(m.content)}
             </div>
           </div>
@@ -164,8 +152,8 @@ export default function VideoARQ() {
           className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-black text-black bg-white"
           disabled={isLoading}
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           disabled={isLoading || !input.trim()}
           className="bg-black text-white rounded-full w-10 h-10 flex items-center justify-center disabled:opacity-50 transition-opacity"
         >

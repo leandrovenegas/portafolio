@@ -4,11 +4,8 @@ import mdx from '@next/mdx'
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.bunny.net;
-<<<<<<< HEAD
     connect-src 'self' https://*.googlesyndication.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.bunny.net https://generativelanguage.googleapis.com;
-=======
-    connect-src 'self' https://*.googlesyndication.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.bunny.net;
->>>>>>> a5eae7b3ec6d4789aa6a8575b502c3527b3d1ed0
+
     img-src 'self' data: blob: https://*.googlesyndication.com https://*.google.com res.cloudinary.com https://*.bunny.net https://*.b-cdn.net;
     media-src 'self' https://*.bunny.net https://cdn.bunny.net https://player.mediadelivery.net https://*.mediadelivery.net https://*.b-cdn.net;
     style-src 'self' 'unsafe-inline';
