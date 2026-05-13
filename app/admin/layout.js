@@ -54,6 +54,12 @@ export default function AdminLayout({ children }) {
                 Portafolio
               </Link>
               <Link
+                href="/admin/tienda"
+                className="px-4 py-2 rounded-lg hover:bg-s1 text-ink font-body text-sm transition-colors"
+              >
+                Tienda
+              </Link>
+              <Link
                 href="/admin/editor?slug=home"
                 className="px-4 py-2 rounded-lg bg-accent text-bg hover:bg-accent2 font-body text-sm transition-colors"
               >

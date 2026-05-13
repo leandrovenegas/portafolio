@@ -1,6 +1,8 @@
 import "./globals.css";
 import CookieBanner from "../components/CookieBanner";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/components/carrito/CartContext";
+import CartButton from "@/components/carrito/CartButton";
 
 import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 
@@ -74,11 +76,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
-        {children}
-        <Footer />
-        {process.env.NODE_ENV === "production" && <CookieBanner />}
-
-
+        <CartProvider>
+          {children}
+          <Footer />
+          {process.env.NODE_ENV === "production" && <CookieBanner />}
+          <CartButton />
+        </CartProvider>
       </body>
     </html>
   );
