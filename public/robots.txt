@@ -1,1 +1,16 @@
+<<<<<<< HEAD
 hola
+=======
+User-agent: *
+Allow: /
+Allow: /_next/static/
+Allow: /_next/data/
+
+Disallow: /api/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /proyectos
+
+
+Sitemap: https://www.leandrovenegas.cl/sitemap.xml
+>>>>>>> f206729a3c90211a8be1128f6e12178a2a7c9ee5

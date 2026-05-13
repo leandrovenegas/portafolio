@@ -1,5 +1,43 @@
 import "./globals.css";
-import Script from "next/script";
+import CookieBanner from "../components/CookieBanner";
+import Footer from "@/components/Footer";
+import VideoARQ from "@/components/VideoARQ";
+import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
+
+// Display — Bebas Neue (condensed, impactful headlines)
+const bebasNeue = Bebas_Neue({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bebas',
+  display: 'swap',
+  preload: true, // Critical for LCP text
+});
+
+// Body — DM Sans Variable (single file covers weight 100–900 + optical sizing)
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  axes: ['opsz'], // Optical Sizing: text sharpens at small/large sizes automatically
+  variable: '--font-dmsans',
+  display: 'swap',
+  preload: true,
+});
+
+// Accent Body — Plus Jakarta Sans Variable (more humanist, better for long-form content)
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+  preload: false, // Load after critical path
+});
+
+// Mono — DM Mono (labels, code, technical text)
+const dmMono = DM_Mono({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  variable: '--font-dmmono',
+  display: 'swap',
+  preload: false,
+});
 
 export const metadata = {
   metadataBase: new URL("https://www.leandrovenegas.cl"),
@@ -8,7 +46,6 @@ export const metadata = {
     template: "%s | Leandro Venegas",
   },
   description: "Creador de productos. Portafolio de proyectos audiovisuales y productos creativos desde Chile.",
-  keywords: ["portafolio", "diseño", "audiovisual", "productos creativos", "Chile", "Leandro Venegas"],
   authors: [{ name: "Leandro Venegas" }],
   creator: "Leandro Venegas",
   openGraph: {
@@ -36,24 +73,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className="bg-black">
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-W51B8J0QD2"
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-W51B8J0QD2');
-              `}
-            </Script>
-          </>
-        )}
+      <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
         {children}
+        <Footer />
+        {process.env.NODE_ENV === "production" && <CookieBanner />}
+
+        <VideoARQ />
       </body>
     </html>
   );

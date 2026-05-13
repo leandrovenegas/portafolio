@@ -1,82 +1,87 @@
 import supabase from "@/lib/supabase";
-import Link from "next/link";
 import Nav from "@/components/Nav";
-import { marked } from "marked";
+import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
+import MediaPreconnect from "@/components/MediaPreconnect";
+import HeroVideo from "@/components/HeroVideo";
+import PageRenderer from '@/components/page-builder/PageRenderer';
+import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
+import HeroPortafolioTexto from "@/components/HeroPortafolioTexto";
 
 export const metadata = {
-  title: "Portafolio | Leandro Venegas - Proyectos Audiovisuales y Diseño",
-  description: "Explora la trayectoria y organizaciones lideradas por Leandro Venegas. Proyectos desde Chile sobre narrativa audiovisual, diseño de producto y comunicación.",
+  title: "Portafolio — Dirección Creativa y Producción Audiovisual | Leandro Venegas",
+  description: "Proyectos de dirección creativa, producción audiovisual y marketing digital para marcas y empresas en Chile. Casos reales: estrategia, contenido, resultados medibles.",
   openGraph: {
-    title: "Portafolio Creativo de Leandro Venegas",
-    description: "Recopilación de proyectos y organizaciones: Incoludido, Crazy Papa y más.",
+    title: "Portafolio — Dirección Creativa y Producción Audiovisual | Leandro Venegas",
+    description:
+      "Proyectos reales para marcas y empresas en Chile: estrategia de contenido, producción audiovisual y dirección creativa. Dragon Lab, Crazy Papa Studio, Incoludido y más.",
     url: "https://www.leandrovenegas.cl/portafolio",
+    siteName: "Leandro Venegas",
+    locale: "es_CL",
+    type: "website",
     images: [
       {
-        url: "/og-portafolio.jpg", // Pon una imagen que represente tu trabajo general
+        url: "/og-portafolio.jpg",
         width: 1200,
         height: 630,
-        alt: "Portafolio de Leandro Venegas",
+        alt: "Portafolio de dirección creativa y producción audiovisual — Leandro Venegas",
       },
     ],
   },
+  alternates: {
+    canonical: "https://www.leandrovenegas.cl/portafolio",
+  },
 };
 
-export default async function Portafolio() {
-  const { data: organizaciones, error } = await supabase
-    .from("organizations")
-    .select("*")
-    .is("parent_organization_id", null)
-    .neq("type", "client");
+export const dynamic = 'force-dynamic';
+
+async function getPageComponents(slug, versionId) {
+  try {
+    let query = supabase.from('page_versions').select('components').eq('slug', slug);
+    if (versionId) {
+      query = query.eq('id', versionId);
+    } else {
+      query = query.eq('is_active', true).order('created_at', { ascending: false }).limit(1);
+    }
+    const { data, error } = await query.single();
+    if (error || !data) return [];
+    return data.components;
+  } catch (e) {
+    return [];
+  }
+}
+
+export default async function Portafolio({ searchParams }) {
+  const params = await searchParams;
+  const versionId = params?.versionId;
+  const components = await getPageComponents('portafolio', versionId);
+
 
   let descripcionLocal = null;
   try {
     const filePath = path.join(process.cwd(), "public", "content", "portafolio.md");
     const markdown = await readFile(filePath, "utf-8");
-    descripcionLocal = marked(markdown);
+    descripcionLocal = parseMarkdown(markdown);
   } catch (e) {
     console.error("Error al leer portafolio.md:", e);
   }
 
-  if (error) return <pre>Error: {error.message}</pre>;
 
   return (
     <>
+      <LivePreviewListener />
+      <MediaPreconnect bunny />
       <Nav />
-      <main className="min-h-screen bg-black px-6 py-16 md:px-12 lg:px-24">
-        <h1 className="text-white text-3xl font-bold tracking-tighter mb-2 md:text-5xl">
-          Portafolio
-        </h1>
-        <p className="text-zinc-500 text-sm tracking-widest uppercase mb-12">
-          Proyectos y organizaciones
-        </p>
-
-        {descripcionLocal && (
-          <div
-            className="text-zinc-400 text-base leading-relaxed mb-16 max-w-2xl prose prose-invert"
-            dangerouslySetInnerHTML={{ __html: descripcionLocal }}
-          />
+      <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
+        <HeroPortafolioTexto descriptionHtml={descripcionLocal} />
+        {components && components.length > 0 && (
+          <div className="w-full relative z-20 bg-bg">
+            <PageRenderer components={components} />
+          </div>
         )}
-        <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800 md:grid-cols-2">
-          {organizaciones.map((org) => (
-            <Link
-              key={org.id}
-              href={`/portafolio/${org.slug}`}
-              className="bg-black p-8 flex flex-col gap-4 hover:bg-zinc-900 transition-colors duration-200 group"
-            >
-              <span className="text-zinc-600 text-xs tracking-widest uppercase">
-                {org.type}
-              </span>
-              <h2 className="text-white text-2xl font-bold tracking-tight group-hover:text-zinc-300 transition-colors duration-200">
-                {org.name}
-              </h2>
-              <span className="text-zinc-600 text-xs tracking-widest uppercase mt-auto group-hover:text-zinc-400 transition-colors duration-200">
-                Ver proyectos →
-              </span>
-            </Link>
-          ))}
-        </div>
+
+
       </main>
     </>
   );

@@ -1,49 +1,54 @@
 import Nav from "@/components/Nav";
+import NewsletterSignup from "@/components/NewsletterSignup";
+import PageRenderer from '@/components/page-builder/PageRenderer';
+import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
+import supabase from '@/lib/supabase';
 
 export const metadata = {
-  title: "Contacto",
+  title: "Contacto | Leandro Venegas",
   description: "Contacta a Leandro Venegas — creador de productos desde Chile.",
+  alternates: {
+    canonical: "https://www.leandrovenegas.cl/contacto",
+  },
 };
 
-export default function Contacto() {
+export const dynamic = 'force-dynamic';
+
+async function getPageComponents(slug, versionId) {
+  try {
+    let query = supabase.from('page_versions').select('components').eq('slug', slug);
+    if (versionId) {
+      query = query.eq('id', versionId);
+    } else {
+      query = query.eq('is_active', true).order('created_at', { ascending: false }).limit(1);
+    }
+    const { data, error } = await query.single();
+    if (error || !data) return [];
+    return data.components;
+  } catch (e) {
+    return [];
+  }
+}
+
+export default async function Contacto({ searchParams }) {
+  const params = await searchParams;
+  const versionId = params?.versionId;
+  const components = await getPageComponents('contacto', versionId);
+
   return (
     <>
+      <LivePreviewListener />
       <Nav />
-      <main className="min-h-screen bg-black px-6 py-16 md:px-12 lg:px-24">
-        <div className="max-w-2xl">
-          <h1 className="text-white text-4xl font-bold tracking-tighter mb-2 md:text-6xl">
-            Contacto
-          </h1>
-
-          <p className="text-zinc-500 text-sm tracking-widest uppercase mb-16">
-            Hablemos
-          </p>
-
-          <div className="flex flex-col gap-px bg-zinc-800 border border-zinc-800">
-            <a
-              href="mailto:leandrovenegas@live.com"
-              className="bg-black px-8 py-6 flex flex-col gap-1 hover:bg-zinc-900 transition-colors duration-200 group"
-            >
-              <span className="text-zinc-600 text-xs tracking-widest uppercase">
-                Email
-              </span>
-              <span className="text-white text-lg font-medium group-hover:text-zinc-300 transition-colors duration-200">
-                leandrovenegas@live.com
-              </span>
-            </a>
-
-            <a
-              href="tel:+56988804299"
-              className="bg-black px-8 py-6 flex flex-col gap-1 hover:bg-zinc-900 transition-colors duration-200 group"
-            >
-              <span className="text-zinc-600 text-xs tracking-widest uppercase">
-                Teléfono
-              </span>
-              <span className="text-white text-lg font-medium group-hover:text-zinc-300 transition-colors duration-200">
-                +56 9 8880 4299
-              </span>
-            </a>
+      <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
+        
+        {components && components.length > 0 && (
+          <div className="w-full relative z-20 bg-bg">
+            <PageRenderer components={components} />
           </div>
+        )}
+
+        <div className="relative z-10 px-6 pt-12 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
+          
         </div>
       </main>
     </>

@@ -1,0 +1,163 @@
+/* ============================================================
+   DESIGN TOKENS — Photoshop UI Style System
+   FUENTE DE VERDAD. No modificar sin aprobación explícita.
+   Proyecto: Editor Web / Leandro Venegas
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     FONDOS (de más oscuro a más claro)
+     Lógica: app → panel → toolbar → hover
+  ---------------------------------------------------------- */
+  --ps-bg-app: #1e1e1e;
+  /* fondo base de la aplicación */
+  --ps-bg-panel: #2c2c2c;
+  /* paneles laterales */
+  --ps-bg-toolbar: #3c3c3c;
+  /* toolbars y headers de sección */
+  --ps-bg-input: #1a1a1a;
+  /* campos de input */
+  --ps-bg-hover: #444444;
+  /* estado hover en elementos */
+  --ps-bg-selected: #2d4a7a;
+  /* elemento seleccionado/activo */
+  --ps-bg-selected-dim: #1e3355;
+  /* selección sin foco */
+  --ps-bg-overlay: rgba(0, 0, 0, 0.6);
+  /* overlays de modal */
+  --ps-bg-tooltip: #1a1a1a;
+  /* tooltips */
+
+  /* ----------------------------------------------------------
+     BORDES
+  ---------------------------------------------------------- */
+  --ps-border: #444444;
+  /* borde estándar */
+  --ps-border-light: #555555;
+  /* borde inputs y elementos interactivos */
+  --ps-border-dark: #333333;
+  /* separadores, divisores internos */
+  --ps-border-focus: #1473e6;
+  /* borde en estado focus */
+  --ps-border-width: 1px;
+
+  /* ----------------------------------------------------------
+     TEXTO
+  ---------------------------------------------------------- */
+  --ps-text: #d4d4d4;
+  /* texto principal */
+  --ps-text-dim: #888888;
+  /* texto secundario, labels, placeholders */
+  --ps-text-disabled: #555555;
+  /* texto deshabilitado */
+  --ps-text-label: #bbbbbb;
+  /* etiquetas de campo */
+  --ps-text-inverse: #1e1e1e;
+  /* texto sobre fondos claros (excepcional) */
+  --ps-text-link: #4d9fe5;
+  /* links */
+  --ps-text-error: #e55;
+  /* mensajes de error */
+  --ps-text-success: #4caf50;
+  /* mensajes de éxito */
+
+  /* ----------------------------------------------------------
+     ACENTO (Adobe Blue)
+  ---------------------------------------------------------- */
+  --ps-accent: #1473e6;
+  /* acento principal */
+  --ps-accent-hover: #1a88ff;
+  /* hover sobre acento */
+  --ps-accent-active: #0f5abf;
+  /* click sobre acento */
+  --ps-accent-dim: rgba(20, 115, 230, 0.2);
+  /* acento translúcido */
+
+  /* ----------------------------------------------------------
+     ESTADOS SEMÁNTICOS
+  ---------------------------------------------------------- */
+  --ps-danger: #cc3333;
+  --ps-danger-hover: #e04040;
+  --ps-warning: #e5a000;
+  --ps-success: #4caf50;
+
+  /* ----------------------------------------------------------
+     BORDES REDONDEADOS
+     Filosofía: mínimo, funcional, nunca decorativo
+  ---------------------------------------------------------- */
+  --ps-radius: 2px;
+  /* radio estándar para UI chrome */
+  --ps-radius-sm: 1px;
+  /* casi nada */
+  --ps-radius-modal: 4px;
+  /* máximo permitido (solo modales) */
+
+  /* ----------------------------------------------------------
+     ESPACIADO
+  ---------------------------------------------------------- */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 32px;
+
+  /* ----------------------------------------------------------
+     TIPOGRAFÍA
+  ---------------------------------------------------------- */
+  --font-ui: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+
+  --font-size-xs: 10px;
+  /* labels muy pequeños */
+  --font-size-sm: 11px;
+  /* UI estándar (el más usado) */
+  --font-size-base: 13px;
+  /* texto de cuerpo */
+  --font-size-md: 14px;
+  /* títulos de sección */
+  --font-size-lg: 16px;
+  /* títulos de panel */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  --line-height-ui: 1.3;
+  --line-height-body: 1.5;
+
+  /* ----------------------------------------------------------
+     LAYOUT DE PANELES
+     No modificar sin revisar el CSS de layout primero
+  ---------------------------------------------------------- */
+  --panel-left-width: 240px;
+  --panel-right-width: 260px;
+  --toolbar-height: 40px;
+  --statusbar-height: 24px;
+  --tab-height: 32px;
+
+  /* ----------------------------------------------------------
+     SOMBRAS
+  ---------------------------------------------------------- */
+  --shadow-panel: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.7);
+  --shadow-tooltip: 0 2px 6px rgba(0, 0, 0, 0.6);
+  --shadow-dropdown: 0 4px 12px rgba(0, 0, 0, 0.6);
+
+  /* ----------------------------------------------------------
+     TRANSICIONES
+  ---------------------------------------------------------- */
+  --transition-fast: 80ms ease;
+  --transition-base: 150ms ease;
+  --transition-slow: 250ms ease;
+
+  /* ----------------------------------------------------------
+     Z-INDEX (capas de la UI)
+  ---------------------------------------------------------- */
+  --z-base: 1;
+  --z-panel: 10;
+  --z-toolbar: 20;
+  --z-dropdown: 100;
+  --z-modal: 200;
+  --z-tooltip: 300;
+}
