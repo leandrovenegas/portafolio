@@ -3,7 +3,6 @@ import supabase from "@/lib/supabase";
 import Link from "next/link";
 import { readFile } from "fs/promises";
 import path from "path";
-import Nav from "@/components/Nav";
 import { notFound } from "next/navigation";
 import { compileMDX } from 'next-mdx-remote/rsc';
 import BunnyVideoPlayer from '@/components/BunnyVideoPlayer';
@@ -93,7 +92,6 @@ export default async function OrganizacionPage({ params }) {
   return (
     <>
       <MediaPreconnect cloudinary bunny />
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
 

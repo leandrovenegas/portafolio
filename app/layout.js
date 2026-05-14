@@ -1,6 +1,7 @@
 import "./globals.css";
 import CookieBanner from "../components/CookieBanner";
 import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
 import { CartProvider } from "@/components/carrito/CartContext";
 import CartButton from "@/components/carrito/CartButton";
 
@@ -77,6 +78,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
         <CartProvider>
+          <Nav />
           {children}
           <Footer />
           {process.env.NODE_ENV === "production" && <CookieBanner />}

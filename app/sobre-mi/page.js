@@ -1,4 +1,3 @@
-import Nav from "@/components/Nav";
 import Link from "next/link";
 
 export const metadata = {
@@ -11,7 +10,6 @@ export default function SobreMi() {
 
   return (
     <>
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <section className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

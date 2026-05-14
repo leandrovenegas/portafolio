@@ -1,5 +1,4 @@
 import supabase from "@/lib/supabase";
-import Nav from "@/components/Nav";
 import { parseMarkdown } from "@/lib/markdown";
 import { readFile } from "fs/promises";
 import path from "path";
@@ -72,7 +71,6 @@ export default async function Portafolio({ searchParams }) {
     <>
       <LivePreviewListener />
       <MediaPreconnect bunny />
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <HeroPortafolioTexto descriptionHtml={descripcionLocal} />
         {components && components.length > 0 && (

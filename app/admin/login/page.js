@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Nav from '@/components/Nav';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -40,7 +39,6 @@ export default function LoginPage() {
 
   return (
     <>
-      <Nav />
       <main className="min-h-screen bg-bg flex items-center justify-center px-6">
         <div className="w-full max-w-md">
           <div className="bg-s1 border border-border rounded-2xl p-8 shadow-xl">

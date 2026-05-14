@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Nav from "@/components/Nav";
 import MediaPreconnect from "@/components/MediaPreconnect";
 import PageRenderer from "@/components/page-builder/PageRenderer";
 import { DEFAULT_HOME_COMPONENTS } from "@/components/page-builder/defaultConfig";
@@ -113,7 +112,6 @@ export default async function Home({ searchParams }) {
           __html: JSON.stringify(faqSchema),
         }}
       />
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden">
         <PageRenderer components={components} />
         <VideoARQ />

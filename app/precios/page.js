@@ -1,5 +1,3 @@
-import Nav from "@/components/Nav";
-
 export const metadata = {
   title: 'Precios de Servicios | Leandro Venegas',
   description: 'Lista de precios para servicios de producción audiovisual, fotografía, video, animación y desarrollo web.',
@@ -8,7 +6,6 @@ export const metadata = {
 export default function Precios() {
   return (
     <>
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <section className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl">
           <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8">

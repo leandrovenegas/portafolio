@@ -1,6 +1,5 @@
 'use client';
 
-import Nav from '@/components/Nav';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -24,7 +23,6 @@ export default function AdminLayout({ children }) {
   // La barra admin también es invariable — siempre está en el DOM.
   return (
     <>
-      <Nav className={isEditor ? 'hidden' : ''} />
       <main className="min-h-screen bg-bg relative overflow-hidden flex flex-col pb-24 pt-24">
 
         {/* Admin topbar — siempre presente en el DOM, solo invisible en el editor */}

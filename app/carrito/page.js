@@ -2,7 +2,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Nav from '@/components/Nav';
 import { useCart } from '@/components/carrito/CartContext';
 
 // ── Número WhatsApp del propietario (sin + ni espacios) ─────────────────────
@@ -299,7 +298,6 @@ function CartContent() {
 export default function CarritoPage() {
   return (
     <>
-      <Nav />
       <Suspense fallback={
         <main className="min-h-screen bg-bg pt-24 flex items-center justify-center">
           <div className="w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin" />

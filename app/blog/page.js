@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Nav from "@/components/Nav";
 import { getBlogPosts } from "@/lib/blog";
 import HeroVideo from "@/components/HeroVideo";
 
@@ -16,7 +15,6 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         {/* HERO DINÁMICO DEL BLOG */}
         <HeroVideo

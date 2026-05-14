@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import VideoPageViewer from '@/components/VideoPageViewer';
@@ -109,7 +108,6 @@ export default async function VideoPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
       />
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
           <div className="pt-12">

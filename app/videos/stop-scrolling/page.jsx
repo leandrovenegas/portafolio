@@ -1,4 +1,3 @@
-import Nav from "@/components/Nav";
 import Link from "next/link";
 
 export const metadata = {
@@ -44,7 +43,6 @@ const CAL_LINK = "https://cal.com/leandrovenegas";
 export default function StopScrollingPage() {
   return (
     <>
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-24 md:gap-32">
 

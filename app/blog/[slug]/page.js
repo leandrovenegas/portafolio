@@ -1,4 +1,3 @@
-import Nav from "@/components/Nav";
 import { getPostBySlug, getBlogPosts } from "@/lib/blog";
 import { parseMarkdown } from "@/lib/markdown";
 import { notFound } from "next/navigation";
@@ -64,7 +63,6 @@ export default async function BlogPostPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-4xl">
           <article className="mt-12 md:mt-24">

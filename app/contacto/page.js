@@ -1,4 +1,3 @@
-import Nav from "@/components/Nav";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import PageRenderer from '@/components/page-builder/PageRenderer';
 import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
@@ -38,7 +37,6 @@ export default async function Contacto({ searchParams }) {
   return (
     <>
       <LivePreviewListener />
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         
         {components && components.length > 0 && (

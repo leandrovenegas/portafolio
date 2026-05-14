@@ -1,4 +1,3 @@
-import Nav from "@/components/Nav";
 import Link from "next/link";
 
 export const metadata = {
@@ -29,7 +28,6 @@ const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20vi%20tu%20p%
 export default function DirectorCreativoPage() {
   return (
     <>
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
 
         {/* Decoración de fondo */}

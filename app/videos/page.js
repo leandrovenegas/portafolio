@@ -1,4 +1,3 @@
-import Nav from '@/components/Nav';
 import Link from 'next/link';
 import { fetchBunnyVideos } from '@/lib/bunny';
 import { readVideoConfig } from '@/lib/videoConfig';
@@ -70,7 +69,6 @@ export default async function VideosPage({ searchParams }) {
     <>
       <LivePreviewListener />
       <MediaPreconnect bunny />
-      <Nav />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         {/* HERO DINÁMICO DE VIDEOS */}
         <HeroVideo
