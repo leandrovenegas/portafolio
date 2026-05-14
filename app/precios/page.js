@@ -138,8 +138,8 @@ export default function Precios() {
                 <p className="font-bold text-accent">$950.000 pago único</p>
               </div>
               <div className="bg-s2 p-6 rounded-lg shadow-md">
-                <h3 className="font-display text-xl text-ink mb-2">Sitio web con blog / noticias</h3>
-                <p className="text-mid mb-2">5 páginas + módulo blog, CMS editable, SEO on-page</p>
+                <h3 className="font-display text-xl text-ink mb-2">Sitio web con Lab / noticias</h3>
+                <p className="text-mid mb-2">5 páginas + módulo Lab, CMS editable, SEO on-page</p>
                 <p className="font-bold text-accent">$1.200.000 pago único</p>
               </div>
               <div className="bg-s2 p-6 rounded-lg shadow-md">
@@ -175,7 +175,7 @@ export default function Precios() {
                 <p className="font-bold text-accent">$350.000 pago único</p>
               </div>
               <div className="bg-s2 p-6 rounded-lg shadow-md">
-                <h3 className="font-display text-xl text-ink mb-2">Blog posts SEO mensual</h3>
+                <h3 className="font-display text-xl text-ink mb-2">Lab posts SEO mensual</h3>
                 <p className="text-mid mb-2">4 artículos optimizados, 600–900 palabras c/u, imágenes incluidas</p>
                 <p className="font-bold text-accent">$200.000 por mes</p>
               </div>

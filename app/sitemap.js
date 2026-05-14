@@ -1,7 +1,7 @@
 import supabase from '@/lib/supabase';
 import { fetchBunnyVideos } from '@/lib/bunny';
 import { readVideoConfig } from '@/lib/videoConfig';
-import { getBlogPosts } from '@/lib/blog';
+import { getLabPosts } from '@/lib/lab';
 
 export default async function sitemap() {
     const baseUrl = "https://www.leandrovenegas.cl";
@@ -53,7 +53,7 @@ export default async function sitemap() {
         "",
         "/proyectos",
         "/portafolio",
-        "/blog",
+        "/lab",
         "/videos",
     ].map(route => ({
         url: `${baseUrl}${route}`,
@@ -63,8 +63,6 @@ export default async function sitemap() {
     }));
 
     // 5. Páginas individuales de video (habilitadas en admin)
-    //    Incluye todos los videos de la librería de Bunny que estén activados,
-    //    incluyendo los que aparecen en el portafolio.
     let videoUrls = [];
     try {
         const videos = await fetchBunnyVideos();
@@ -84,26 +82,25 @@ export default async function sitemap() {
                     : new Date().toISOString(),
                 changeFrequency: 'monthly',
                 priority: 0.9,
-                // Google Video Sitemap fields (Next.js passes these as-is)
                 images: video.thumbnailUrl ? [video.thumbnailUrl] : [],
             }));
     } catch (error) {
         console.warn('Sitemap video fetch failed:', error.message);
     }
 
-    // 6. Blog (Posts en Markdown)
-    let blogUrls = [];
+    // 6. Lab (Posts en Markdown)
+    let labUrls = [];
     try {
-        const posts = await getBlogPosts();
-        blogUrls = posts.map(post => ({
-            url: `${baseUrl}/blog/${post.slug}`,
+        const posts = await getLabPosts();
+        labUrls = posts.map(post => ({
+            url: `${baseUrl}/lab/${post.slug}`,
             lastModified: post.date ? new Date(post.date).toISOString() : new Date().toISOString(),
             changeFrequency: 'monthly',
             priority: 0.8,
         }));
     } catch (error) {
-        console.warn('Sitemap blog fetch failed:', error.message);
+        console.warn('Sitemap lab fetch failed:', error.message);
     }
 
-    return [...coreUrls, ...landingPages, ...projectUrls, ...organizationUrls, ...videoUrls, ...blogUrls];
+    return [...coreUrls, ...landingPages, ...projectUrls, ...organizationUrls, ...videoUrls, ...labUrls];
 }

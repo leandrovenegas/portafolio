@@ -55,11 +55,10 @@ export default function Nav({ className = '' }) {
   }, [isOpen]);
 
   const navLinks = [
-    { href: "/", label: "Inicio" },
+    { href: "/", label: "Sistema" },
     { href: "/portafolio", label: "Portafolio" },
     { href: "/videos", label: "Videos" },
-    { href: "/blog", label: "Blog" },
-    { href: "/sobre-mi", label: "Sobre mí" },
+    { href: "/lab", label: "Lab" },
     { href: "/contacto", label: "Contacto" },
   ];
 
@@ -70,14 +69,13 @@ export default function Nav({ className = '' }) {
 
   return (
     <>
-      <header 
-        className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 border-b ${
-          isOpen 
-            ? "bg-transparent border-transparent py-6" 
-            : scrolled 
-              ? "bg-black/90 backdrop-blur-xl border-zinc-800/50 py-3 shadow-2xl shadow-black/50" 
-              : "bg-transparent border-transparent py-6"
-        } ${className}`}
+      <header
+        className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 border-b ${isOpen
+          ? "bg-transparent border-transparent py-6"
+          : scrolled
+            ? "bg-black/90 backdrop-blur-xl border-zinc-800/50 py-3 shadow-2xl shadow-black/50"
+            : "bg-transparent border-transparent py-6"
+          } ${className}`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
           {/* Logo Section */}
@@ -97,24 +95,22 @@ export default function Nav({ className = '' }) {
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
-                <Link 
+                <Link
                   key={link.href}
-                  href={link.href} 
-                  className={`text-[11px] tracking-[0.2em] uppercase transition-all duration-300 relative group py-2 ${
-                    isActive ? "text-white font-bold" : "text-zinc-400 hover:text-white"
-                  }`}
+                  href={link.href}
+                  className={`text-[11px] tracking-[0.2em] uppercase transition-all duration-300 relative group py-2 ${isActive ? "text-white font-bold" : "text-zinc-400 hover:text-white"
+                    }`}
                 >
                   {link.label}
-                  <span className={`absolute bottom-0 left-0 h-[1px] bg-accent transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
-                  }`} />
+                  <span className={`absolute bottom-0 left-0 h-[1px] bg-accent transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`} />
                 </Link>
               );
             })}
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
             className={`md:hidden menu-toggle-wrapper ${isOpen ? 'active' : ''}`}
             aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
@@ -122,7 +118,8 @@ export default function Nav({ className = '' }) {
             <span className="menu-toggle-icon" />
           </button>
 
-          <style dangerouslySetInnerHTML={{ __html: `
+          <style dangerouslySetInnerHTML={{
+            __html: `
             .menu-toggle-wrapper {
                 position: relative;
                 z-index: 110;
@@ -202,10 +199,9 @@ export default function Nav({ className = '' }) {
       </header>
 
       {/* Mobile Overlay Menu */}
-      <div 
-        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${
-          isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
-        }`}
+      <div
+        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+          }`}
       >
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
           <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent/20 blur-[120px] rounded-full animate-pulse" />
@@ -216,25 +212,24 @@ export default function Nav({ className = '' }) {
           {navLinks.map((link, i) => {
             const isActive = pathname === link.href;
             return (
-              <Link 
+              <Link
                 key={link.href}
-                href={link.href} 
-                style={{ 
+                href={link.href}
+                style={{
                   transitionDelay: isOpen ? `${i * 80}ms` : '0ms',
                   transform: isOpen ? 'translateY(0)' : 'translateY(40px)',
                   opacity: isOpen ? 1 : 0
                 }}
-                className={`text-3xl tracking-[0.15em] uppercase transition-all duration-700 font-display ${
-                  isActive ? "text-accent" : "text-white hover:text-accent"
-                }`}
+                className={`text-3xl tracking-[0.15em] uppercase transition-all duration-700 font-display ${isActive ? "text-accent" : "text-white hover:text-accent"
+                  }`}
               >
                 {link.label}
               </Link>
             );
           })}
         </nav>
-        
-        <div 
+
+        <div
           className="absolute bottom-16 text-center px-6 transition-all duration-1000 delay-500"
           style={{ opacity: isOpen ? 0.4 : 0 }}
         >
