@@ -429,9 +429,23 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             </div>
           </div>
 
+          <SectionLabel>Producto vinculado (Carrito)</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+            <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Slug del Producto</label>
+            <input
+              type="text"
+              placeholder="Ej: video-autoridad"
+              value={props.productSlug || ''}
+              onChange={e => updateProp(comp.id, 'productSlug', e.target.value)}
+              className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+            />
+            <p className="text-[9px] text-muted">Slugs disponibles: video-autoridad, video-confianza, video-conversion, video-retencion, pack-sistema</p>
+          </div>
+
           <SectionLabel>Botones</SectionLabel>
 
           {/* Button fields */}
+
           {[
             { prefix: 'primaryButton', label: 'Botón Primario' },
             { prefix: 'secondaryButton', label: 'Botón Secundario' }

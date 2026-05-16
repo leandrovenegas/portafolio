@@ -109,10 +109,9 @@ export default function Nav({ className = '' }) {
             })}
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden menu-toggle-wrapper ${isOpen ? 'active' : ''}`}
+            className={`flex md:hidden menu-toggle-wrapper ${isOpen ? 'active' : ''}`}
             aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           >
             <span className="menu-toggle-icon" />
@@ -125,7 +124,6 @@ export default function Nav({ className = '' }) {
                 z-index: 110;
                 width: 48px;
                 height: 48px;
-                display: flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 50%;

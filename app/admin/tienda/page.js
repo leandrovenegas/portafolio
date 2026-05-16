@@ -71,6 +71,10 @@ function ProductEditor({ product, onSave }) {
           <label className={lbl}>Nombre del producto</label>
           <input className={inp} value={form.name || ''} onChange={e => set('name', e.target.value)} />
         </div>
+        <div>
+          <label className={lbl}>Slug (Para vincular en el Editor)</label>
+          <input className={inp} value={form.slug || ''} onChange={e => set('slug', e.target.value)} />
+        </div>
         {isVideo && (
           <div>
             <label className={lbl}>Etiqueta del paso</label>
