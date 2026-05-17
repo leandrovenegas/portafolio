@@ -21,7 +21,18 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const HOME_DIR = os.homedir();
 const WATCH_DIR = path.join(HOME_DIR, 'workplans');
 
-console.log(`[WorkTree] Iniciando File Watcher en: ${WATCH_DIR}`);
+console.log(`
+=================================================
+👁️  WORKTREE AGENT INICIADO Y VIGILANDO 👁️
+Carpeta: ${WATCH_DIR}
+=================================================
+`);
+
+// Heartbeat visual (cada 15 minutos imprime en consola para que sepas que no ha muerto)
+setInterval(() => {
+    const time = new Date().toLocaleTimeString('es-CL');
+    console.log(`[${time}] 👀 El agente sigue vigilando silenciosamente...`);
+}, 15 * 60 * 1000);
 
 // Intentar crear el directorio si no existe (solo por conveniencia)
 try {
