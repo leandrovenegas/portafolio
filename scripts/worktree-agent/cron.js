@@ -3,11 +3,16 @@ import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import axios from 'axios';
 import WebSocket from 'ws';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Intentar cargar primero el .env.local de la raíz, y luego el .env local de la carpeta
+dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 const WHATSAPP_API_URL = process.env.WHATSAPP_API_URL; // ej: https://graph.facebook.com/v19.0/PHONE_NUMBER_ID/messages
 const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
 const MY_PHONE_NUMBER = process.env.MY_PHONE_NUMBER;
@@ -18,7 +23,10 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
-  global: { WebSocket }
+  auth: { persistSession: false },
+  realtime: {
+    transport: WebSocket
+  }
 });
 
 console.log("[WorkTree] Cron Agent Iniciado. Esperando tareas...");

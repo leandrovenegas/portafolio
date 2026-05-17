@@ -5,11 +5,15 @@ import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import os from 'os';
 import WebSocket from 'ws';
+import { fileURLToPath } from 'url';
 
-dotenv.config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Intentar cargar primero el .env.local de la raíz, y luego el .env local de la carpeta
+dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.error("Missing Supabase configuration in .env");
@@ -17,7 +21,10 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
-  global: { WebSocket }
+  auth: { persistSession: false },
+  realtime: {
+    transport: WebSocket
+  }
 });
 
 // Use environment variable if provided, otherwise default to ~/workplans
