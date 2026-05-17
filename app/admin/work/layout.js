@@ -30,6 +30,9 @@ export default async function WorkTreeLayout({ children }) {
   return (
     <>
       <style>{`
+        /* Forzar ocultamiento del Nav global por si el caché o React fallan */
+        header, .menu-toggle-wrapper { display: none !important; }
+        
         :root {
           --ps-bg-canvas: #1e1e1e;
           --ps-bg-panel: #252526;
@@ -45,7 +48,7 @@ export default async function WorkTreeLayout({ children }) {
           --panel-right-width: 280px;
         }
       `}</style>
-      <div className="flex fixed inset-0 z-[9999] w-full h-screen overflow-hidden bg-[var(--ps-bg-canvas)] font-sans">
+      <div className="flex w-full h-screen overflow-hidden bg-[var(--ps-bg-canvas)] font-sans">
         <TreeExplorer topics={topics} />
         <div className="flex-1 flex overflow-hidden">
           {children}

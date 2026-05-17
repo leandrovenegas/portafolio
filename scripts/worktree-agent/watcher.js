@@ -20,9 +20,9 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   global: { WebSocket }
 });
 
-// Use ~/workplans as the watch directory
+// Use environment variable if provided, otherwise default to ~/workplans
 const HOME_DIR = os.homedir();
-const WATCH_DIR = path.join(HOME_DIR, 'workplans');
+const WATCH_DIR = process.env.WATCH_DIR || path.join(HOME_DIR, 'workplans');
 
 console.log(`
 =================================================
