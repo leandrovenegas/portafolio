@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import WebSocket from 'ws';
 
 dotenv.config();
 
@@ -16,7 +17,9 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
   process.exit(1);
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  global: { WebSocket }
+});
 
 console.log("[WorkTree] Cron Agent Iniciado. Esperando tareas...");
 

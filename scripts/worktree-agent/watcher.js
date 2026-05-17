@@ -4,6 +4,7 @@ import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import os from 'os';
+import WebSocket from 'ws';
 
 dotenv.config();
 
@@ -15,7 +16,9 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
   process.exit(1);
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  global: { WebSocket }
+});
 
 // Use ~/workplans as the watch directory
 const HOME_DIR = os.homedir();
