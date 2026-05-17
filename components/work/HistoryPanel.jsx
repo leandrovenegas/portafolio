@@ -38,7 +38,7 @@ export default function HistoryPanel({ versions, topicId }) {
               
               <div className="flex items-center gap-1.5 opacity-60 text-[10px]">
                 <Clock size={10} />
-                <span>{new Date(version.created_at).toLocaleString()}</span>
+                <span>{new Date(version.created_at).toLocaleString('es-CL', { timeZone: 'America/Santiago' })}</span>
               </div>
             </Link>
           );
