@@ -2,19 +2,18 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-function getSupabase() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-}
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SPR_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SPR_SUPABASE_ANON_KEY!
+);
+
 
 /**
  * Registra la primera visita web del lead.
  * Inserta en outreach solo si no existe un registro previo canal='web' para ese lead.
  */
 export async function registerPageVisit(leadId: string): Promise<void> {
-  const supabase = getSupabase();
+
 
   const { data: existing, error } = await supabase
     .from('outreach')
@@ -42,7 +41,7 @@ export async function submitEmailLead(
   leadId: string,
   email: string
 ): Promise<{ success: boolean; error?: string }> {
-  const supabase = getSupabase();
+
 
   const { error } = await supabase.from('outreach').insert({
     lead_id: leadId,
@@ -67,7 +66,7 @@ export async function logCtaClick(
   leadId: string,
   section: 'personalized' | 'system' | 'cierre'
 ): Promise<void> {
-  const supabase = getSupabase();
+
 
   const notasMap = {
     personalized: 'Clic oferta video personalizado',

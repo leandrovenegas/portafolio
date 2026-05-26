@@ -6,14 +6,12 @@ import { registerPageVisit } from './actions';
 
 export const dynamic = 'force-dynamic';
 
-// ─── Supabase server-side client ─────────────────────────────────────────────
+// ─── Supabase client initialized with specific SocialProofREEL environment variables ───
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SPR_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SPR_SUPABASE_ANON_KEY!
+);
 
-function getSupabase() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-}
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -52,8 +50,8 @@ export async function generateMetadata({
     };
   }
 
-  const supabase = getSupabase();
   const { data: lead } = await supabase
+
     .from('raw_leads')
     .select('business_name')
     .eq('slug', slug)
@@ -120,7 +118,6 @@ export default async function VideoLandingPage({
   }
 
   // ──── MODO PRODUCCIÓN (Supabase) ────────────────────────────────────────────
-  const supabase = getSupabase();
   const bunnyUrl = process.env.NEXT_PUBLIC_BUNNY_CDN_URL ?? '';
 
   // 1. Buscar el lead por slug
