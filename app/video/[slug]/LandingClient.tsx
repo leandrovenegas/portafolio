@@ -217,6 +217,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               loop
               playsInline
               controls
+              crossOrigin="anonymous"
               style={{
                 width: '100%',
                 height: '100%',
