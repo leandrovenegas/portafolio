@@ -1,2 +1,226 @@
-"import { notFound } from 'next/navigation';\nimport { createClient } from '@supabase/supabase-js';\nimport type { Metadata } from 'next';\nimport LandingClient from './LandingClient';\nimport { registerPageVisit } from './actions';\n\nexport const dynamic = 'force-dynamic';\n\n// ─── Supabase server-side client ─────────────────────────────────────────────\n\nfunction getSupabase() {\n  return createClient(\n    process.env.NEXT_PUBLIC_SUPABASE_URL!,\n    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!\n  );\n}\n\n// ─── Tipos ────────────────────────────────────────────────────────────────────\n\ninterface RawLead {\n  id: string;\n  slug: string;\n  business_name: string;\n}\n\ninterface VideoQueue {\n  id: string;\n  raw_lead_id: string;\n  status: string;\n  defectuoso: boolean;\n  local_video_path: string;\n  created_at: string;\n}\n\n// ─── generateMetadata ─────────────────────────────────────────────────────────\n\nexport async function generateMetadata({\n  params,\n}: {\n  params: Promise<{ slug: string }>;\n}): Promise<Metadata> {\n  const { slug } = await params;\n  const supabase = getSupabase();\n\n  const { data: lead } = await supabase\n    .from('raw_leads')\n    .select('business_name')\n    .eq('slug', slug)\n    .maybeSingle();\n\n  if (!lead) {\n    return {\n      title: 'Video no disponible',\n      description: 'Este video no está disponible aún.',\n    };\n  }\n\n  const title = `${lead.business_name} — Tu video de reseñas`;\n  const description = `${lead.business_name}, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.`;\n\n  return {\n    title,\n    description,\n    openGraph: {\n      ti
-<truncated 3607 bytes>
+import { notFound } from 'next/navigation';
+import { createClient } from '@supabase/supabase-js';
+import type { Metadata } from 'next';
+import LandingClient from './LandingClient';
+import { registerPageVisit } from './actions';
+
+export const dynamic = 'force-dynamic';
+
+// ─── Supabase server-side client ─────────────────────────────────────────────
+
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+
+// ─── Tipos ────────────────────────────────────────────────────────────────────
+
+interface RawLead {
+  id: string;
+  slug: string;
+  business_name: string;
+}
+
+interface VideoQueue {
+  id: string;
+  raw_lead_id: string;
+  status: string;
+  defectuoso: boolean;
+  local_video_path: string;
+  created_at: string;
+}
+
+// ─── generateMetadata ─────────────────────────────────────────────────────────
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  if (slug === 'demo' || slug === 'prueba') {
+    return {
+      title: 'Café del Puerto — Tu video de reseñas',
+      description: 'Café del Puerto, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.',
+      robots: {
+        index: false,
+        follow: false,
+      }
+    };
+  }
+
+  const supabase = getSupabase();
+  const { data: lead } = await supabase
+    .from('raw_leads')
+    .select('business_name')
+    .eq('slug', slug)
+    .maybeSingle();
+
+  if (!lead) {
+    return {
+      title: 'Video no disponible',
+      description: 'Este video no está disponible aún.',
+    };
+  }
+
+  const title = `${lead.business_name} — Tu video de reseñas`;
+  const description = `${lead.business_name}, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+    robots: {
+      index: false, // Página privada por slug, no indexar
+      follow: false,
+    },
+  };
+}
+
+// ─── Page Component (Server) ──────────────────────────────────────────────────
+
+export default async function VideoLandingPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  // ──── MODO DEMO / PRUEBA ────────────────────────────────────────────────────
+  if (slug === 'demo' || slug === 'prueba') {
+    const demoLead = {
+      id: '00000000-0000-0000-0000-000000000000',
+      slug: slug,
+      business_name: 'Café del Puerto'
+    };
+    // Un video vertical de stock de ejemplo para visualizar el reproductor 9:16
+    const demoVideoUrl = 'https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-light-in-a-rainy-night-40357-large.mp4';
+    
+    return (
+      <LandingClient
+        lead={demoLead}
+        video={{
+          videoUrl: demoVideoUrl,
+          localVideoPath: 'demo/cafe-del-puerto.mp4'
+        }}
+      />
+    );
+  }
+
+  // ──── MODO PRODUCCIÓN (Supabase) ────────────────────────────────────────────
+  const supabase = getSupabase();
+  const bunnyUrl = process.env.NEXT_PUBLIC_BUNNY_CDN_URL ?? '';
+
+  // 1. Buscar el lead por slug
+  const { data: lead, error: leadError } = await supabase
+    .from('raw_leads')
+    .select('id, slug, business_name')
+    .eq('slug', slug)
+    .maybeSingle<RawLead>();
+
+  if (leadError || !lead) {
+    return <VideoUnavailable />;
+  }
+
+  // 2. Buscar el video completado más reciente para este lead
+  const { data: videoRow, error: videoError } = await supabase
+    .from('video_queue')
+    .select('id, raw_lead_id, status, defectuoso, local_video_path, created_at')
+    .eq('raw_lead_id', lead.id)
+    .eq('status', 'completed')
+    .eq('defectuoso', false)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle<VideoQueue>();
+
+  if (videoError || !videoRow) {
+    return <VideoUnavailable businessName={lead.business_name} />;
+  }
+
+  // 3. Construir URL del video en Bunny CDN
+  const videoUrl = `${bunnyUrl}/${videoRow.local_video_path}`;
+
+  // 4. Registrar visita en outreach (solo si es la primera vez)
+  try {
+    await registerPageVisit(lead.id);
+  } catch (e) {
+    // Silently handle if table/RLS is missing or error
+    console.error('Error registering page visit:', e);
+  }
+
+  return (
+    <LandingClient
+      lead={{
+        id: lead.id,
+        slug: lead.slug,
+        business_name: lead.business_name,
+      }}
+      video={{
+        videoUrl,
+        localVideoPath: videoRow.local_video_path,
+      }}
+    />
+  );
+}
+
+// ─── Componente de fallback ───────────────────────────────────────────────────
+
+function VideoUnavailable({ businessName }: { businessName?: string }) {
+  return (
+    <main
+      style={{
+        minHeight: '100vh',
+        background: '#090909',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '40px 24px',
+        textAlign: 'center',
+        color: '#eeebe3',
+        fontFamily: 'var(--font-body, system-ui)',
+      }}
+    >
+      {businessName && (
+        <p
+          style={{
+            fontFamily: 'var(--font-dmmono, monospace)',
+            fontSize: 11,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: '#4a4a45',
+            marginBottom: 24,
+          }}
+        >
+          {businessName}
+        </p>
+      )}
+      <h1
+        style={{
+          fontFamily: 'var(--font-bebas, "Arial Narrow", sans-serif)',
+          fontSize: 'clamp(36px, 8vw, 72px)',
+          lineHeight: 0.95,
+          color: '#eeebe3',
+          marginBottom: 16,
+        }}
+      >
+        Video no disponible aún.
+      </h1>
+      <p style={{ color: '#4a4a45', fontSize: 15, maxWidth: 360, lineHeight: 1.7 }}>
+        Tu video personalizado está siendo producido. En breve lo recibirás directamente.
+      </p>
+    </main>
+  );
+}
