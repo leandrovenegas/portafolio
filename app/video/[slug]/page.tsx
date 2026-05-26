@@ -101,17 +101,17 @@ export default async function VideoLandingPage({
     const demoLead = {
       id: '00000000-0000-0000-0000-000000000000',
       slug: slug,
-      business_name: 'Café del Puerto'
+      business_name: 'KMO Servicio Automotriz'
     };
-    // Un video vertical de stock de ejemplo para visualizar el reproductor 9:16
-    const demoVideoUrl = 'https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-light-in-a-rainy-night-40357-large.mp4';
+    // Un video vertical real alojado en el CDN de SocialProofREEL
+    const demoVideoUrl = 'https://socialproofreels.b-cdn.net/videos/393d4c9f26426c894d7f92588cd3d1a5/video_v1.mp4';
     
     return (
       <LandingClient
         lead={demoLead}
         video={{
           videoUrl: demoVideoUrl,
-          localVideoPath: 'demo/cafe-del-puerto.mp4'
+          localVideoPath: 'demo/kmo-servicio-automotriz.mp4'
         }}
       />
     );
