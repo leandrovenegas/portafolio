@@ -35,5 +35,8 @@
     "safari >= 14",
     "edge >= 90",
     "not dead"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
 }
