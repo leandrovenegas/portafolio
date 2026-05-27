@@ -18,7 +18,7 @@ const supabase = createClient(
 interface RawLead {
   id: string;
   slug: string;
-  business_name: string;
+  raw_data: { name: string };
 }
 
 interface VideoQueue {
@@ -64,8 +64,8 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${lead.business_name} — Tu video de reseñas`;
-  const description = `${lead.business_name}, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.`;
+  const title = `${lead.raw_data?.name} — Tu video de reseñas`;
+  const description = `${lead.raw_data?.name}, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.`;
 
   return {
     title,
@@ -123,7 +123,7 @@ export default async function VideoLandingPage({
   // 1. Buscar el lead por slug
   const { data: lead, error: leadError } = await supabase
     .from('raw_leads')
-    .select('id, slug, business_name')
+    .select('id, slug, raw_data')
     .eq('slug', slug)
     .maybeSingle<RawLead>();
 
@@ -143,7 +143,7 @@ export default async function VideoLandingPage({
     .maybeSingle<VideoQueue>();
 
   if (videoError || !videoRow) {
-    return <VideoUnavailable businessName={lead.business_name} />;
+    return <VideoUnavailable businessName={lead.raw_data?.name} />;
   }
 
   // 3. Construir URL del video en Bunny CDN
@@ -162,7 +162,7 @@ export default async function VideoLandingPage({
       lead={{
         id: lead.id,
         slug: lead.slug,
-        business_name: lead.business_name,
+        business_name: lead.raw_data?.name,
       }}
       video={{
         videoUrl,

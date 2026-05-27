@@ -100,7 +100,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
     const wspUrl = `https://wa.me/${waNumber}?text=${encodedMsg}`;
     window.open(wspUrl, '_blank');
   };
-
+console.log('videoUrl:', videoUrl)
   return (
     <div
       style={{
