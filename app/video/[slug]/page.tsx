@@ -53,7 +53,7 @@ export async function generateMetadata({
   const { data: lead } = await supabase
 
     .from('raw_leads')
-    .select('business_name')
+    .select('raw_data')
     .eq('slug', slug)
     .maybeSingle();
 
