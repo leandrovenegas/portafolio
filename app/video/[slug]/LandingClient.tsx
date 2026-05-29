@@ -19,16 +19,27 @@ interface LandingClientProps {
   video: VideoData;
 }
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 // ─── Helper: dispara eventos GA4 ─────────────────────────────────────────────
 
-function trackEvent(name: string, params?: Record<string, any>) {
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', name, params ?? {});
+function gtag(...args: any[]) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag(...args);
   }
+}
+
+function trackEvent(name: string, params?: Record<string, any>) {
+  gtag('event', name, params ?? {});
 }
 
 export default function LandingClient({ lead, video }: LandingClientProps) {
   const { business_name, id: leadId, slug } = lead;
+  const businessName = business_name;
   const { videoUrl } = video;
 
   const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '56988804299';
@@ -42,13 +53,13 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
 
   // ─── GA4 Page View al montar ──────────────────────────────────────────────
   useEffect(() => {
-    trackEvent('page_view_custom', { business_name });
-  }, [business_name]);
+    gtag('event', 'video_landing_view', { slug, business_name: businessName });
+  }, [slug, businessName]);
 
   // ─── Descarga del video ───────────────────────────────────────────────────
 
   const handleDownload = () => {
-    trackEvent('video_download', { business_name });
+    gtag('event', 'video_download_click', { slug, business_name: businessName });
     const link = document.createElement('a');
     link.href = videoUrl;
     link.download = `${slug}-resenas.mp4`;
@@ -85,7 +96,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
   // ─── CTA WhatsApp ─────────────────────────────────────────────────────────
 
   const handleWspClick = async (section: 'personalized' | 'system' | 'cierre', message: string) => {
-    trackEvent('whatsapp_click', { business_name, section });
+    gtag('event', 'whatsapp_click', { slug, business_name: businessName });
     try {
       await logCtaClick(leadId, section);
     } catch (err) {
