@@ -25,10 +25,15 @@ export default function BunnyVideoPlayer({
   description = '',
   thumbnail,
   className = '',
+  style = {},
   uploadDate,
   duration,
   /** Optional: pre-computed slug to skip API lookup */
   slug,
+  muted = false,
+  autoplay = false,
+  hideLink = false,
+  unstyled = false,
 }) {
   const libraryId = process.env.NEXT_PUBLIC_BUNNY_LIBRARY_ID;
 
@@ -66,7 +71,7 @@ export default function BunnyVideoPlayer({
   const thumbnailUrl = thumbnail || `https://${CDN_HOSTNAME}/${videoId}/thumbnail.jpg`;
   const contentUrl   = `https://${CDN_HOSTNAME}/${videoId}/playlist.m3u8`;
   const embedUrl     = `${EMBED_BASE}/${libraryId}/${videoId}`;
-  const iframeSrc    = `${embedUrl}?autoplay=false&muted=false&preload=false&title=false&logo=false`;
+  const iframeSrc    = `${embedUrl}?autoplay=${autoplay}&muted=${muted}&preload=false&title=false&logo=false`;
 
   // uploadDate: must be full ISO-8601 with timezone (Google requirement)
   const safeUploadDate = uploadDate
@@ -89,8 +94,29 @@ export default function BunnyVideoPlayer({
     embedUrl,
   };
 
+  if (unstyled) {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoObject) }}
+        />
+        <iframe
+          src={iframeSrc}
+          title={title}
+          loading="lazy"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          className={className}
+          style={{ border: 0, ...style }}
+        />
+      </>
+    );
+  }
+
   return (
-    <div className={`w-full max-w-full overflow-hidden my-6 ${className}`}>
+    <div className={`w-full max-w-full overflow-hidden my-6 ${className}`} style={style}>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -110,18 +136,20 @@ export default function BunnyVideoPlayer({
       </div>
 
       {/* Link to the dedicated viewing page — required for Google Video Indexing */}
-      <div className="mt-2 flex items-center justify-between gap-4 px-1">
-        {title && (
-          <span className="font-body text-sm text-muted line-clamp-1">{title}</span>
-        )}
-        <Link
-          href={viewingPageHref}
-          className="shrink-0 inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-ink transition-colors"
-          title={`Ver "${title}" en página completa`}
-        >
-          Ver página del video →
-        </Link>
-      </div>
+      {!hideLink && (
+        <div className="mt-2 flex items-center justify-between gap-4 px-1">
+          {title && (
+            <span className="font-body text-sm text-muted line-clamp-1">{title}</span>
+          )}
+          <Link
+            href={viewingPageHref}
+            className="shrink-0 inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-ink transition-colors"
+            title={`Ver "${title}" en página completa`}
+          >
+            Ver página del video →
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

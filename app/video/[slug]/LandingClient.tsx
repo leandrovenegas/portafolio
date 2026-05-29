@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { submitEmailLead, logCtaClick } from './actions';
+import VideoPlayer from '@/components/VideoPlayer';
 
 interface Lead {
   id: string;
@@ -332,41 +333,16 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             boxShadow: '0 12px 40px rgba(0,0,0,0.6)',
           }}
         >
-          {leandroVideoUrl ? (
-            <iframe
-              src={leandroVideoUrl}
-              style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '12px',
-                color: '#333',
-              }}
-            >
-              {/* Ícono play */}
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                <circle cx="24" cy="24" r="23" stroke="#222" strokeWidth="1.5" />
-                <path d="M20 16l14 8-14 8V16z" fill="#333" />
-              </svg>
-              <span
-                style={{
-                  fontFamily: monoFont,
-                  fontSize: '11px',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: '#333',
-                }}
-              >
-                Video próximamente
-              </span>
-            </div>
-          )}
+          <VideoPlayer
+            src="https://vz-a158839f-ce6.b-cdn.net/ad0da156-3ad3-4b19-978e-263bfc90be2e/playlist.m3u8"
+            title="Por qué hice este video para tu negocio"
+            muted={true}
+            autoplay={false}
+            hideLink={true}
+            unstyled={true}
+            className="w-full h-full"
+            style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+          />
         </div>
       </section>
 
