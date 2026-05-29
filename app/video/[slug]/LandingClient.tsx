@@ -233,7 +233,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
         </div>
 
         {/* Botón de descarga */}
-        <button
+        <a href={videoUrl} download target="_blank" rel="noopener noreferrer"
           id="download-btn"
           onClick={handleDownload}
           style={{
@@ -262,7 +262,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           }}
         >
           ⬇ Descargar mi video gratis
-        </button>
+        </a>
 
         {/* Nota */}
         <p
