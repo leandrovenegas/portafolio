@@ -26,7 +26,7 @@ interface VideoQueue {
   raw_lead_id: string;
   status: string;
   defectuoso: boolean;
-  local_video_path: string;
+  bunny_url: string;
   created_at: string;
 }
 
@@ -134,7 +134,7 @@ export default async function VideoLandingPage({
   // 2. Buscar el video completado más reciente para este lead
   const { data: videoRow, error: videoError } = await supabase
     .from('video_queue')
-    .select('id, raw_lead_id, status, defectuoso, local_video_path, created_at')
+    .select('id, raw_lead_id, status, defectuoso, bunny_url, created_at')
     .eq('raw_lead_id', lead.id)
     .eq('status', 'completed')
     .eq('defectuoso', false)
@@ -147,7 +147,7 @@ export default async function VideoLandingPage({
   }
 
   // 3. Construir URL del video en Bunny CDN
-  const videoUrl = `${bunnyUrl}/${videoRow.local_video_path}`;
+  const videoUrl = videoRow.bunny_url;
 
   // 4. Registrar visita en outreach (solo si es la primera vez)
   try {
@@ -166,7 +166,7 @@ export default async function VideoLandingPage({
       }}
       video={{
         videoUrl,
-        localVideoPath: videoRow.local_video_path,
+        localVideoPath: videoRow.bunny_url,
       }}
     />
   );
