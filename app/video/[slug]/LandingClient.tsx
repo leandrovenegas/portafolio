@@ -237,9 +237,9 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             crossOrigin="anonymous"
             style={{
               width: '100%',
-              height: '100%',
+              maxWidth: '400px',
+              aspectRatio: '9/16',
               objectFit: 'cover',
-              display: 'block',
             }}
           />
         </div>
