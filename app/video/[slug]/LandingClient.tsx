@@ -218,7 +218,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           style={{
             position: 'relative',
             width: '100%',
-            maxWidth: '320px',
+            maxWidth: '400px',
             aspectRatio: '9/16',
             margin: '0 auto 36px auto',
             borderRadius: '20px',
@@ -236,9 +236,11 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             controls
             crossOrigin="anonymous"
             style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
               width: '100%',
-              maxWidth: '400px',
-              aspectRatio: '9/16',
+              height: '100%',
               objectFit: 'cover',
             }}
           />
@@ -321,15 +323,15 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
         {/* Reproductor de Leandro o placeholder elegante */}
         <div
           style={{
+            position: 'relative',
             width: '100%',
-            aspectRatio: '16/9',
+            maxWidth: '400px',
+            aspectRatio: '9/16',
+            margin: '0 auto',
             borderRadius: '16px',
             overflow: 'hidden',
             border: '1px solid #1a1a1a',
             backgroundColor: '#0d0d0d',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             boxShadow: '0 12px 40px rgba(0,0,0,0.6)',
           }}
         >
@@ -340,8 +342,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             autoplay={false}
             hideLink={true}
             unstyled={true}
-            className="w-full h-full"
-            style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+            className=""
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
           />
         </div>
       </section>
