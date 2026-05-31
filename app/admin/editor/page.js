@@ -48,6 +48,7 @@ function VisualEditorContent() {
   // Drag & Drop state
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
+  const [editingNameId, setEditingNameId] = useState(null);
 
   const handleDragStart = (e, index) => {
     setDraggedIndex(index);
@@ -81,6 +82,20 @@ function VisualEditorContent() {
       return newHist;
     });
   }, [historyIndex]);
+
+  // Guarda silenciosamente el array de componentes en Supabase (para renombres de bloques)
+  const saveComponentsSilently = useCallback(async (updatedComps) => {
+    if (!currentVersionId) return;
+    try {
+      await fetch('/api/pages', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: currentVersionId, components: updatedComps })
+      });
+    } catch (_) {
+      // silencioso — el nombre igual queda en estado local
+    }
+  }, [currentVersionId]);
 
   const handleUndo = useCallback(() => {
     if (historyIndex > 0) {
@@ -766,7 +781,7 @@ function VisualEditorContent() {
               {components.map((c, idx) => (
                 <div
                   key={c.id}
-                  draggable
+                  draggable={editingNameId !== c.id}
                   onDragStart={(e) => handleDragStart(e, idx)}
                   onDragOver={(e) => handleDragOver(e, idx)}
                   onDrop={(e) => handleDrop(e, idx)}
@@ -776,6 +791,10 @@ function VisualEditorContent() {
                     ${draggedIndex === idx ? 'opacity-40 scale-[0.98]' : 'opacity-100'}
                   `}
                   onClick={() => setSelectedId(c.id)}
+                  onDoubleClick={(e) => {
+                    e.stopPropagation();
+                    setEditingNameId(c.id);
+                  }}
                 >
                   {/* Drop indicator line - above */}
                   {dragOverIndex === idx && draggedIndex !== idx && draggedIndex > idx && (
@@ -802,9 +821,47 @@ function VisualEditorContent() {
                       <circle cx="8" cy="18" r="1.5"/>
                       <circle cx="16" cy="18" r="1.5"/>
                     </svg>
-                    <span className="font-medium truncate text-xs text-ink">
-                      {COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
-                    </span>
+                    {editingNameId === c.id ? (
+                      <input
+                        type="text"
+                        autoFocus
+                        defaultValue={c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
+                        onBlur={(e) => {
+                          const val = e.target.value.trim();
+                          if (val) {
+                            const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
+                            setComponents(updatedComps);
+                            saveComponentsSilently(updatedComps);
+                          }
+                          setEditingNameId(null);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            const val = e.currentTarget.value.trim();
+                            if (val) {
+                              const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
+                              setComponents(updatedComps);
+                              saveComponentsSilently(updatedComps);
+                            }
+                            setEditingNameId(null);
+                          } else if (e.key === 'Escape') {
+                            setEditingNameId(null);
+                          }
+                        }}
+                        className="font-medium text-xs text-ink bg-transparent border-b border-accent outline-none w-full"
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    ) : (
+                      <span 
+                        className="font-medium truncate text-xs text-ink cursor-text"
+                        onDoubleClick={(e) => {
+                          e.stopPropagation();
+                          setEditingNameId(c.id);
+                        }}
+                      >
+                        {c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
+                      </span>
+                    )}
                   </div>
 
                   {/* Action buttons */}
@@ -906,7 +963,7 @@ function VisualEditorContent() {
           </div>
 
           {/* Actual Content */}
-          <div className="flex-1 overflow-y-auto bg-white custom-scrollbar">
+          <div className="flex-1 overflow-y-auto bg-bg custom-scrollbar">
             <div className="origin-top">
               <PageRenderer components={components} />
             </div>

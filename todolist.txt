@@ -1,0 +1,240 @@
+# leandrovenegas.cl — Documento Maestro de Proyecto
+> Para ser usado como contexto completo por una IA en sesiones futuras.
+> Última actualización: Mayo 2026
+
+---
+
+## 1. QUIÉN ES LEANDRO (personaje consolidado)
+
+Leandro Venegas es comunicador audiovisual chileno, basado en Valparaíso. No es un videomaker tradicional. Es un productor que pasó 5 años adentro de los negocios — cofundando empresas, montando un restaurante, aprendiendo a programar — y volvió al audiovisual con algo que ningún videomaker tiene: entiende cómo funciona un negocio antes de encender cualquier herramienta.
+
+**Hitos de credibilidad reales:**
+- Cofundó Dragon Lab, agencia de marketing digital donde dirigió producción para LAN, Valook, Dr. Patricio Andrade y músicos de la SCD.
+- Para Valook produjo 60 videos con estrategia SEO que generaron 815.000 visualizaciones orgánicas y 5.300 suscriptores en YouTube. Cero pauta pagada.
+- Dirigió el departamento audiovisual de Incoludido desde el día 0: animación, streaming, campaña multicanal. La campaña de crowdfunding superó su meta de $15M recaudando $23M. La marca llegó a portada de La Cuarta y al programa "Ellos la Hicieron" de Canal 13.
+- Hoy ha automatizado la producción de video con Python, Remotion y APIs: lleva 1.500 videos renderizados de una base de 10.800 negocios scrapeados de Google My Business en su región.
+
+**Frase núcleo del personaje:**
+> "Descubrí el sistema mirando hacia atrás. Ahora lo construyo para ti."
+
+**Tensión honesta del personaje (mantener en el copy):**
+No promete multiplicar ventas. Promete que el anzuelo estará bien diseñado — porque entiende el negocio antes de producir.
+
+---
+
+## 2. EL SISTEMA (producto principal)
+
+Leandro descubrió que los negocios que vendían con video no lo hacían con uno solo — siempre usaban cuatro, en orden. Lo llamó **Sistema de Ventas con Video**.
+
+| Paso | Video | Función psicológica |
+|------|-------|-------------------|
+| 1 | Stop-Scrolling | Interrupción — detiene el scroll, genera recordación de marca |
+| 2 | Video de Autoridad | Confianza — demuestra que sabe lo que hace |
+| 3 | Video de Validación Social | Prueba social — otros como yo ya lo hicieron |
+| 4 | VSL (Video Sales Letter) | Cierre — lleva al prospecto por el argumento completo de venta |
+
+**Principio estratégico del sistema:**
+Cada video acerca al cliente un paso más a la compra. No son piezas sueltas — son una secuencia que respeta cómo decide un comprador.
+
+**Modelo de venta:**
+- Aspiración: vender el sistema completo (4 videos)
+- Realidad táctica actual: vender videos individuales para generar flujo de caja
+- Ambos deben coexistir en el sitio sin que uno canibalice al otro
+
+---
+
+## 3. ESCALERA DE VALOR COMPLETA
+
+| Peldaño | Oferta | Precio estimado | Objetivo |
+|---------|--------|----------------|----------|
+| 0 | Video de reseñas 15 seg (automatizado) | Gratis | Entrar al radar del negocio local |
+| 1 | Video extendido 30 seg | Gratis + email | Capturar contacto |
+| 2 | Video con branding, logo, voz off | Desde $60 USD | Primer ingreso |
+| 3 | Video individual del sistema (stop-scrolling, autoridad, validación o VSL) | Ticket medio | Flujo de caja |
+| 4 | Sistema completo (4 videos) | Ticket alto | Producto principal |
+| 5 | Pack mensual de videos automatizados | Recurrente | Retención |
+| 6 | Implementar el sistema en el negocio del cliente | Ticket premium | Agencia IA |
+
+---
+
+## 4. FLUJO DE ADQUISICIÓN DE CLIENTES
+
+```
+WhatsApp / Email frío
+  → Landing page personalizada (/video/[nombre-negocio])
+    → Video gratis de reseñas (15 seg)
+      → Video explicativo "por qué lo hice"
+        → Email para video extendido (30 seg)
+          → Oferta video con branding
+            → Navegación al sitio completo
+              → Sistema de 4 videos
+                → WhatsApp con mensaje prellenado por tipo de comprador
+                  → CRM Supabase (tablas: prospectos, conversaciones)
+```
+
+**Principio clave:** cada clic le dice al CRM qué tipo de comprador es el visitante. Las historias que más convierten se identifican midiendo qué hitos generan contacto.
+
+---
+
+## 5. DIAGNÓSTICO DEL SITIO ACTUAL
+
+### Lo que funciona
+- Estructura del sistema en el home está bien ordenada
+- Copy de stop-scrolling es sólido ("trampa diseñada para el cerebro")
+- Caso Valook con números reales está presente
+- Navegación entre pasos del sistema existe
+- WhatsApp como único canal de contacto (correcto para conversión directa)
+
+### Lo que NO sirve y se descarta
+- Copy del "Sobre Mí" actual: lista de 10 pasos genérica que parece consultoría, no personaje. **Descartar completo.**
+- Descripción de Validación Social en home: copy calcado del video de Autoridad. **Reescribir.**
+- URL `/viedeos/validacion` (typo): está rota. **Corregir a `/videos/validacion`.**
+- Botón "Agregar" en home: no tiene sentido en el contexto. **Eliminar o redefinir.**
+- Meta description del home menciona "Valparaíso, Viña del Mar y Santiago" como primer hook — es geográfico, no propuesta de valor. **Revisar para SEO.**
+
+### Lo que falta
+- Video donde Leandro aparece hablando en cada página del sistema (stop-scrolling, autoridad, validación, VSL) — marcado como pendiente
+- Hilo humano visible en el home — el sistema está explicado pero Leandro no aparece como personaje
+- Precio ancla en la oferta paga de la landing
+- Bloque de problema/dolor en la landing (actualmente ausente)
+- Página `/videos/validacion` — contenido incompleto
+
+---
+
+## 6. STORYTELLING — HILO CONDUCTOR
+
+El storytelling no es una página. Es el hilo que atraviesa todo el sitio. Cada sección empuja al visitante hacia una conclusión: *"Este es el tipo que necesito."*
+
+**Tres capas simultáneas:**
+
+| Capa | Dónde vive | Qué hace |
+|------|-----------|----------|
+| Identidad | Home + Sobre mí | Quién es Leandro y por qué importa |
+| Credibilidad | Portafolio | Prueba de que el sistema funciona |
+| Oferta | Sistema + Videos | Qué compras exactamente y por qué vale |
+
+**Secuencia emocional del visitante:**
+1. "Tus clientes ya están hablando de ti" → **espejo** (reconocimiento)
+2. "Así es como te ven, y así puedes controlarlo" → **visión** (posibilidad)
+3. "Este tipo ya lo hizo para otros y funcionó" → **confianza** (credibilidad)
+4. "Quiero esto para mi negocio" → **decisión** (conversión)
+
+---
+
+## 7. BORRADOR DE STORYTELLING (base para desarrollar)
+
+### Quién es Leandro
+Leandro Venegas no empezó como videomaker. Empezó como alguien que necesitaba que las cosas funcionaran. Cofundó una agencia, dirigió campañas para LAN, construyó desde cero el departamento audiovisual de Incoludido. Luego se fue. Montó un restaurante. Aprendió a programar. Y volvió. Pero volvió diferente.
+
+### Lo que descubrió
+Después de años produciendo videos para marcas, agencias y emprendedores, notó un patrón que nadie había nombrado: los negocios que vendían con video no lo hacían con uno solo — siempre usaban cuatro, en el mismo orden. No era intuición. Era el sistema que había usado sin saberlo. Un sistema que generó 815.000 visualizaciones para una empresa de iluminación. Que llevó a televisión abierta una marca de papel higiénico.
+
+### Lo que hace hoy
+Hoy Leandro orquesta ese sistema. Y lo hace a una velocidad que antes era imposible. Con automatización e IA produce videos a escala sin perder el alma narrativa que hace que un video convierta en vez de solo existir.
+
+### A quién le habla
+A negocios locales que gastan en publicidad pero no entienden por qué no convierte. A marcas que copian el comportamiento de la competencia sin entender el sistema detrás.
+
+### Su diferenciador real
+5 años adentro de los negocios le dieron lo que ninguna escuela de video enseña: entiende qué mueve a un comprador antes de encender cualquier herramienta. No vende videos bonitos. Vende el sistema que convierte atención en clientes.
+
+---
+
+## 8. LISTA DE TAREAS — EN ORDEN DE PRIORIDAD
+
+### BLOQUE A — Correcciones urgentes (antes de activar tráfico)
+- [ ] Corregir URL rota: `/viedeos/validacion` → `/videos/validacion`
+- [ ] Eliminar botones "Agregar" del home (no tienen función clara)
+- [ ] Añadir precio ancla en landing `/video/[negocio]` bloque oferta paga
+- [ ] Corregir copy de Validación Social en home (actualmente igual al de Autoridad)
+
+### BLOQUE B — Landing page `/video/[nombre-negocio]`
+Reescribir completa con esta estructura:
+
+1. **Hero:** `[Nombre negocio], tus clientes ya te están recomendando. Convertí sus reseñas de Google en un video listo para usar — y te lo mandé gratis.` + CTA: ▶ Ver mi video
+2. **Problema (nuevo bloque):** 3 líneas sobre reseñas enterradas en texto que nadie ve
+3. **Video gratis:** sin botón de descarga todavía
+4. **Después del video:** "¿Te gustó? Hay una versión de 30 segundos. Te la mando ahora."
+5. **"Por qué hice este video":** cambiar titular a `"No te conozco. Pero sé lo que tus clientes dicen de ti."` + video de Leandro
+6. **Captura email:** `Tu video extendido: 30 segundos, el doble de reseñas, listo para publicar.`
+7. **Oferta paga:** `El mismo video con tu logo, voz off e imágenes. Desde $XX USD.` + WhatsApp prellenado
+8. **CTA final (menú de intención):** 4 opciones que segmentan al comprador
+
+### BLOQUE C — Home (leandrovenegas.cl)
+- [ ] Agregar sección de origen del sistema (2-3 líneas de historia antes de presentar los 4 videos)
+- [ ] Reemplazar subtítulo hero: de genérico a frase núcleo del personaje
+- [ ] Integrar caso Valook y caso Incoludido como prueba social en el home (números reales visibles sin necesidad de clic)
+- [ ] Revisar y simplificar CTA final del home
+
+### BLOQUE D — Sobre Mí
+- [ ] Reescribir completo usando el borrador de storytelling de la sección 7
+- [ ] Eliminar lista de 10 pasos — reemplazar con narrativa en prosa
+- [ ] Estructura propuesta: Origen → Descubrimiento → Sistema → Hoy → CTA
+
+### BLOQUE E — Videos del sistema (páginas individuales)
+Para cada página (stop-scrolling, autoridad, validación, VSL):
+- [ ] Grabar y subir video donde Leandro aparece hablando sobre ese tipo de video específico
+- [ ] Agregar en cada página un párrafo corto de contexto personal: cuándo y dónde usó ese tipo de video, qué resultado tuvo
+- [ ] Verificar que el copy de cada página NO sea genérico — debe tener voz de Leandro
+- [ ] Página de validación: crear contenido completo (actualmente incompleta)
+
+### BLOQUE F — Portafolio
+- [ ] Agregar sección "Crazy Papa Studio" con contenido (actualmente vacía)
+- [ ] Agregar sección "Personal" con proyectos propios
+- [ ] En cada caso del portafolio: agregar explícitamente qué paso del sistema de 4 videos se usó y cuál fue el resultado medible
+
+### BLOQUE G — SEO y técnico
+- [ ] Corregir meta description del home: quitar geografía como primer hook, reemplazar por propuesta de valor
+- [ ] Verificar que landing pages de clientes tengan `noindex` (ya tiene, correcto)
+- [ ] Activar indexación en páginas del sistema y portafolio (ya tienen `index, follow`, correcto)
+- [ ] Revisar que todas las URLs del menú sean consistentes
+
+### BLOQUE H — Videos explicativos (guiones a desarrollar)
+Estos son los guiones de los videos donde Leandro habla directamente:
+
+| Video | Título propuesto | Propósito |
+|-------|-----------------|-----------|
+| Home hero | "Por qué existe el sistema" | Origen del descubrimiento de los 4 videos |
+| Stop-scrolling | "El primer segundo que lo cambia todo" | Qué es, cuándo usarlo, caso real |
+| Autoridad | "Cómo demostrar que sabes sin decirlo" | Mecanismo de confianza, caso real |
+| Validación | "Cuando otros hablan por ti" | Prueba social, caso Incoludido |
+| VSL | "Tu vendedor que nunca duerme" | Qué es un VSL, cuándo convierte |
+| Landing video gratis | "Por qué hice este video para tu negocio" | Humanización, puente a oferta paga |
+
+---
+
+## 9. CONTEXTO TÉCNICO DEL SITIO
+
+- **Stack:** Next.js + Supabase + Tailwind CSS v4 + Cloudinary
+- **Video hosting:** Bunny CDN (b-cdn.net) + Mediadelivery (iframe embed)
+- **CRM:** Supabase — tablas `prospectos` y `conversaciones`
+- **Contacto:** Solo WhatsApp con mensaje prellenado por tipo de comprador
+- **Automatización de videos:** Python + Remotion + APIs scraper de Google My Business
+- **Base de datos de prospectos:** 10.800 negocios locales (Valparaíso, Viña del Mar, Santiago)
+- **Videos producidos hasta ahora:** 1.500 (plantilla de reseñas, 15 segundos)
+
+---
+
+## 10. PRINCIPIOS DE COPY PARA TODA COMUNICACIÓN
+
+1. Primera persona activa. Sin pasivo.
+2. Sin relleno emocional: prohibido "apasionante", "increíble", "poderoso" sin sustento.
+3. Nombrar decisiones: no "trabajé en marketing" sino "dirigí el departamento audiovisual con 22 días de plazo y $0 de presupuesto inicial."
+4. Causa y efecto siempre: acción → resultado medible.
+5. El personaje tiene tensión honesta: no promete lo que no puede garantizar.
+6. Estructura de cada caso: Contexto → Desafío → Solución → Resultado.
+
+---
+
+## 11. LO QUE SE DESCARTÓ (y por qué)
+
+| Idea | Razón del descarte |
+|------|--------------------|
+| Crear nombre de marca para el sistema (VozLocal, EcoVid, Señal) | Leandro es el personaje — la marca personal es más fuerte que una marca sistema para negocios locales en esta etapa |
+| Página separada con identidad propia para la automatización de videos | Prematuro — primero consolidar el sistema de 4 videos como propuesta principal |
+| Prometer resultados específicos (3x, 4x ventas) | Correcto descartar — vender el sistema, no el resultado incontrolable |
+| Landing con todo el sistema visible de golpe | Genera pérdida del visitante — mantener revelación progresiva con salidas laterales |
+
+---
+
+*Documento generado en sesión de trabajo estratégico con Claude — leandrovenegas.cl — Mayo 2026*
