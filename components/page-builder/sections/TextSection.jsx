@@ -58,7 +58,7 @@ export default function TextSection({ title, paragraphs, description, _styles })
     <section>
       {title && (
         <h2 
-          className="font-display text-4xl md:text-5xl text-ink max-w-3xl mb-8"
+          className="font-display text-4xl md:text-5xl text-white max-w-3xl mb-8"
           style={fieldStyle('title')}
         >
           {title}
@@ -69,7 +69,7 @@ export default function TextSection({ title, paragraphs, description, _styles })
         return (
           <p 
             key={i} 
-            className="font-body text-mid text-lg leading-relaxed mb-6 last:mb-0"
+            className="font-body text-white/80 text-lg leading-relaxed mb-6 last:mb-0"
             style={fieldStyle('description')}
           >
             {renderText(p)}
