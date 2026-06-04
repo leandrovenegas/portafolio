@@ -38,7 +38,7 @@ const OTHER_VIDEOS = [
 
 const WA_LINK =
   "https://wa.me/56988804299?text=Hola%2C%20me%20interesa%20el%20video%20stop-scrolling%20para%20mi%20empresa.";
-const CAL_LINK = "https://cal.com/leandrovenegas";
+const CAL_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema";
 
 export default function StopScrollingPage() {
   return (

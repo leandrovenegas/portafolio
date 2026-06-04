@@ -6,7 +6,7 @@ import LivePreviewListener from "@/components/page-builder/LivePreviewListener";
 import supabase from "@/lib/supabase";
 export const metadata = {
   title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
-  description: 'Producción de video para pymes en Valparaíso , Viña del Mar y Santiago. Contenido audiovisual con inteligencia artificial: más videos, menor costo, dirección creativa profesional.',
+  description: 'Sistema de Video Marketing para empresas en Valparaíso, Viña del Mar y Santiago. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas.',
   keywords: [
     'Leandro Venegas',
     'director creativo Chile',
@@ -15,11 +15,17 @@ export const metadata = {
     'motion design Chile',
     'SEO video Chile',
     'freelance creativo Chile',
+    'sistema de video marketing',
+    'funnel de video',
+    'video marketing Chile',
   ],
   openGraph: {
-    title: 'Videos para Empresas en Valparaíso, Viña del Mar y Santiago con IA | Leandro Venegas',
-    description: 'Producción de video para pymes en Valparaíso , Viña del Mar y Santiago. Contenido audiovisual con inteligencia artificial: más videos, menor costo, dirección creativa profesional.',
+    title: 'Sistema de Video Marketing | Leandro Venegas',
+    description: 'Sistema de Video Marketing para empresas en Valparaíso, Viña del Mar y Santiago. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas.',
     url: 'https://www.leandrovenegas.cl/',
+  },
+  twitter: {
+    description: '6 tipos de video que filtran, educan y convierten prospectos las 24 horas del día.',
   },
   alternates: {
     canonical: 'https://www.leandrovenegas.cl/',
