@@ -179,25 +179,25 @@ function VideoUnavailable({ businessName }: { businessName?: string }) {
     <main
       style={{
         minHeight: '100vh',
-        background: '#090909',
+        background: 'var(--color-bg)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '40px 24px',
         textAlign: 'center',
-        color: '#eeebe3',
+        color: 'var(--color-ink)',
         fontFamily: 'var(--font-body, system-ui)',
       }}
     >
       {businessName && (
         <p
           style={{
-            fontFamily: 'var(--font-dmmono, monospace)',
+            fontFamily: 'var(--font-mono, monospace)',
             fontSize: 11,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: '#4a4a45',
+            color: 'var(--color-muted)',
             marginBottom: 24,
           }}
         >
@@ -206,16 +206,16 @@ function VideoUnavailable({ businessName }: { businessName?: string }) {
       )}
       <h1
         style={{
-          fontFamily: 'var(--font-bebas, "Arial Narrow", sans-serif)',
+          fontFamily: 'var(--font-display, sans-serif)',
           fontSize: 'clamp(36px, 8vw, 72px)',
           lineHeight: 0.95,
-          color: '#eeebe3',
+          color: 'var(--color-ink)',
           marginBottom: 16,
         }}
       >
         Video no disponible aún.
       </h1>
-      <p style={{ color: '#4a4a45', fontSize: 15, maxWidth: 360, lineHeight: 1.7 }}>
+      <p style={{ color: 'var(--color-muted)', fontSize: 15, maxWidth: 360, lineHeight: 1.7 }}>
         Tu video personalizado está siendo producido. En breve lo recibirás directamente.
       </p>
     </main>

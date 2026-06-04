@@ -105,15 +105,15 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
 
   // ─── Estilos compartidos ──────────────────────────────────────────────────
 
-  const bebasFont = 'var(--font-bebas, "Arial Narrow", sans-serif)';
+  const bebasFont = 'var(--font-display, var(--font-outfit, sans-serif))';
   const monoFont = '"DM Mono", "Courier New", monospace';
 
   return (
     <div
       style={{
-        backgroundColor: '#090909',
-        color: '#eeebe3',
-        fontFamily: '"Inter", system-ui, sans-serif',
+        backgroundColor: 'var(--color-bg)',
+        color: 'var(--color-ink)',
+        fontFamily: 'var(--font-body)',
         minHeight: '100vh',
         overflowX: 'hidden',
       }}
@@ -127,7 +127,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           alignItems: 'center',
           maxWidth: '960px',
           margin: '0 auto',
-          borderBottom: '1px solid #151515',
+          borderBottom: '1px solid var(--color-border)',
         }}
       >
         <span
@@ -135,16 +135,16 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             fontFamily: bebasFont,
             fontSize: '22px',
             letterSpacing: '0.06em',
-            color: '#c8f135',
+            color: 'var(--color-accent)',
           }}
         >
-          SOCIALPROOF<span style={{ color: '#eeebe3' }}>REEL</span>
+          SOCIALPROOF<span style={{ color: 'var(--color-ink)' }}>REEL</span>
         </span>
         <span
           style={{
             fontSize: '11px',
             fontFamily: monoFont,
-            color: '#444',
+            color: 'var(--color-muted)',
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
           }}
@@ -170,7 +170,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           style={{
             fontFamily: monoFont,
             fontSize: '11px',
-            color: '#c8f135',
+            color: 'var(--color-accent)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             marginBottom: '20px',
@@ -186,12 +186,12 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             fontSize: 'clamp(42px, 9vw, 80px)',
             lineHeight: '0.92',
             textTransform: 'uppercase',
-            color: '#eeebe3',
+            color: 'var(--color-ink)',
             marginBottom: '20px',
           }}
         >
           {business_name},{' '}
-          <span style={{ color: '#c8f135' }}>
+          <span style={{ color: 'var(--color-accent)' }}>
             tus clientes ya están hablando de ti.
           </span>
         </h1>
@@ -200,7 +200,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
         <p
           style={{
             fontSize: '17px',
-            color: '#888',
+            color: 'var(--color-muted)',
             marginBottom: '40px',
             fontWeight: 300,
             letterSpacing: '0.01em',
@@ -219,7 +219,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             margin: '0 auto 36px auto',
             borderRadius: '20px',
             overflow: 'hidden',
-            boxShadow: '0 32px 64px -12px rgba(200, 241, 53, 0.12), 0 0 0 1px #1e1e1e',
+            boxShadow: '0 32px 64px -12px rgba(255, 87, 34, 0.12), 0 0 0 1px var(--color-border)',
             backgroundColor: '#000',
           }}
         >
@@ -247,8 +247,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           id="download-btn"
           onClick={handleDownload}
           style={{
-            backgroundColor: '#c8f135',
-            color: '#090909',
+            backgroundColor: 'var(--color-accent)',
+            color: 'var(--color-bg)',
             fontFamily: bebasFont,
             fontSize: '20px',
             letterSpacing: '0.05em',
@@ -259,16 +259,16 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '10px',
-            boxShadow: '0 4px 24px rgba(200, 241, 53, 0.28)',
+            boxShadow: '0 4px 24px rgba(255, 87, 34, 0.28)',
             transition: 'transform 0.15s ease, box-shadow 0.15s ease',
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(200, 241, 53, 0.38)';
+            e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 87, 34, 0.38)';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 24px rgba(200, 241, 53, 0.28)';
+            e.currentTarget.style.boxShadow = '0 4px 24px rgba(255, 87, 34, 0.28)';
           }}
         >
           ⬇ Descargar mi video gratis
@@ -278,7 +278,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
         <p
           style={{
             fontSize: '12px',
-            color: '#444',
+            color: 'var(--color-muted)',
             marginTop: '16px',
             fontFamily: monoFont,
             letterSpacing: '0.05em',
@@ -292,8 +292,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           style={{
             marginTop: '40px',
             padding: '24px 28px',
-            backgroundColor: '#0d0d0d',
-            border: '1px solid #1e1e1e',
+            backgroundColor: 'var(--color-s1)',
+            border: '1px solid var(--color-border)',
             borderRadius: '16px',
             textAlign: 'center',
           }}
@@ -301,13 +301,13 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           <p
             style={{
               fontSize: '15px',
-              color: '#888',
+              color: 'var(--color-muted)',
               marginBottom: '18px',
               lineHeight: '1.6',
             }}
           >
             ¿Te gustó? Hay una versión de{' '}
-            <span style={{ color: '#eeebe3', fontWeight: 500 }}>30 segundos</span>{' '}
+            <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>30 segundos</span>{' '}
             lista para publicar ahora mismo.
           </p>
           <a
@@ -316,8 +316,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             onClick={() => trackEvent('post_video_cta_click', { business_name })}
             style={{
               display: 'inline-block',
-              backgroundColor: '#c8f135',
-              color: '#090909',
+              backgroundColor: 'var(--color-accent)',
+              color: 'var(--color-bg)',
               fontFamily: bebasFont,
               fontSize: '18px',
               letterSpacing: '0.04em',
@@ -350,7 +350,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           style={{
             fontFamily: monoFont,
             fontSize: '11px',
-            color: '#c8f135',
+            color: 'var(--color-accent)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             marginBottom: '14px',
@@ -363,18 +363,18 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             fontFamily: bebasFont,
             fontSize: 'clamp(28px, 6vw, 44px)',
             textTransform: 'uppercase',
-            color: '#eeebe3',
+            color: 'var(--color-ink)',
             lineHeight: '1.05',
             marginBottom: '0',
           }}
         >
           Tus reseñas están enterradas en Google.{' '}
-          <span style={{ color: '#555' }}>Nadie las ve.</span>
+          <span style={{ color: 'var(--color-muted)' }}>Nadie las ve.</span>
         </h2>
       </section>
 
       {/* Divisor */}
-      <div style={{ height: '1px', backgroundColor: '#131313', maxWidth: '560px', margin: '0 auto' }} />
+      <div style={{ height: '1px', backgroundColor: 'var(--color-border)', maxWidth: '560px', margin: '0 auto' }} />
 
       {/* ═══════════════════════════════════════════════════════════════
           SECCIÓN 2 — VIDEO DE LEANDRO
@@ -393,7 +393,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             fontFamily: bebasFont,
             fontSize: 'clamp(32px, 6vw, 52px)',
             textTransform: 'uppercase',
-            color: '#eeebe3',
+            color: 'var(--color-ink)',
             marginBottom: '32px',
             lineHeight: '1',
           }}
@@ -411,8 +411,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             margin: '0 auto',
             borderRadius: '16px',
             overflow: 'hidden',
-            border: '1px solid #1a1a1a',
-            backgroundColor: '#0d0d0d',
+            border: '1px solid var(--color-border)',
+            backgroundColor: 'var(--color-s1)',
             boxShadow: '0 12px 40px rgba(0,0,0,0.6)',
           }}
         >
@@ -430,7 +430,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
       </section>
 
       {/* Divisor */}
-      <div style={{ height: '1px', backgroundColor: '#131313', maxWidth: '560px', margin: '0 auto' }} />
+      <div style={{ height: '1px', backgroundColor: 'var(--color-border)', maxWidth: '560px', margin: '0 auto' }} />
 
       {/* ═══════════════════════════════════════════════════════════════
           SECCIÓN 3 — GATE EMAIL
@@ -446,10 +446,10 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
       >
         <div
           style={{
-            backgroundColor: '#0f0f0f',
+            backgroundColor: 'var(--color-s1)',
             borderRadius: '20px',
             padding: '44px 32px',
-            border: '1px solid #1c1c1c',
+            border: '1px solid var(--color-border)',
           }}
         >
           <h2
@@ -457,7 +457,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               fontFamily: bebasFont,
               fontSize: 'clamp(32px, 6vw, 52px)',
               textTransform: 'uppercase',
-              color: '#eeebe3',
+              color: 'var(--color-ink)',
               marginBottom: '12px',
               lineHeight: '1',
             }}
@@ -467,13 +467,13 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           <p
             style={{
               fontSize: '15px',
-              color: '#777',
+              color: 'var(--color-muted)',
               marginBottom: '32px',
               lineHeight: '1.6',
             }}
           >
             El doble de reseñas. El doble de duración.{' '}
-            <span style={{ color: '#eeebe3', fontWeight: 500 }}>Gratis en tu bandeja.</span>
+            <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>Gratis en tu bandeja.</span>
           </p>
 
           {!emailSent ? (
@@ -495,26 +495,26 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   style={{
-                    backgroundColor: '#161616',
-                    border: '1px solid #252525',
+                    backgroundColor: 'var(--color-s2)',
+                    border: '1px solid var(--color-border2)',
                     borderRadius: '10px',
                     padding: '15px 18px',
-                    color: '#eeebe3',
+                    color: 'var(--color-ink)',
                     fontSize: '15px',
                     outline: 'none',
                     textAlign: 'center',
                     transition: 'border-color 0.2s ease',
                   }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = '#c8f135'; }}
-                  onBlur={(e) => { e.currentTarget.style.borderColor = '#252525'; }}
+                  onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent)'; }}
+                  onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--color-border2)'; }}
                 />
                 <button
                   id="email-submit-btn"
                   type="submit"
                   disabled={emailLoading}
                   style={{
-                    backgroundColor: '#eeebe3',
-                    color: '#090909',
+                    backgroundColor: 'var(--color-ink)',
+                    color: 'var(--color-bg)',
                     fontFamily: bebasFont,
                     fontSize: '19px',
                     letterSpacing: '0.04em',
@@ -537,7 +537,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               <p
                 style={{
                   fontSize: '11px',
-                  color: '#3a3a3a',
+                  color: 'var(--color-muted)',
                   marginTop: '16px',
                   fontFamily: monoFont,
                   letterSpacing: '0.08em',
@@ -556,8 +556,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
                   width: '52px',
                   height: '52px',
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(200, 241, 53, 0.08)',
-                  color: '#c8f135',
+                  backgroundColor: 'rgba(255, 87, 34, 0.08)',
+                  color: 'var(--color-accent)',
                   fontSize: '22px',
                   marginBottom: '16px',
                 }}
@@ -568,16 +568,16 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
                 style={{
                   fontFamily: bebasFont,
                   fontSize: '26px',
-                  color: '#c8f135',
+                  color: 'var(--color-accent)',
                   marginBottom: '8px',
                   letterSpacing: '0.03em',
                 }}
               >
                 ¡Listo!
               </h4>
-              <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>
+              <p style={{ color: 'var(--color-muted)', fontSize: '14px', lineHeight: '1.6' }}>
                 Te mandamos la versión extendida a{' '}
-                <strong style={{ color: '#eeebe3' }}>{email}</strong>.
+                <strong style={{ color: 'var(--color-ink)' }}>{email}</strong>.
               </p>
             </div>
           )}
@@ -585,7 +585,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
       </section>
 
       {/* Divisor */}
-      <div style={{ height: '1px', backgroundColor: '#131313', maxWidth: '560px', margin: '0 auto' }} />
+      <div style={{ height: '1px', backgroundColor: 'var(--color-border)', maxWidth: '560px', margin: '0 auto' }} />
 
       {/* ═══════════════════════════════════════════════════════════════
           BLOQUE 3 — OFERTA PAGA
@@ -601,17 +601,17 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
       >
         <div
           style={{
-            backgroundColor: '#0f0f0f',
+            backgroundColor: 'var(--color-s1)',
             borderRadius: '20px',
             padding: '44px 32px',
-            border: '1px solid #1c1c1c',
+            border: '1px solid var(--color-border)',
           }}
         >
           <p
             style={{
               fontFamily: monoFont,
               fontSize: '10px',
-              color: '#444',
+              color: 'var(--color-muted)',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
               marginBottom: '16px',
@@ -624,19 +624,19 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               fontFamily: bebasFont,
               fontSize: 'clamp(28px, 5.5vw, 44px)',
               textTransform: 'uppercase',
-              color: '#eeebe3',
+              color: 'var(--color-ink)',
               lineHeight: '1.05',
               marginBottom: '14px',
             }}
           >
             Versión con tu logo,{' '}
-            <span style={{ color: '#c8f135' }}>voz off</span>{' '}
+            <span style={{ color: 'var(--color-accent)' }}>voz off</span>{' '}
             e imágenes
           </h2>
           <p
             style={{
               fontSize: '15px',
-              color: '#666',
+              color: 'var(--color-muted)',
               marginBottom: '10px',
               lineHeight: '1.6',
             }}
@@ -647,7 +647,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             style={{
               fontFamily: monoFont,
               fontSize: '13px',
-              color: '#c8f135',
+              color: 'var(--color-accent)',
               marginBottom: '28px',
               letterSpacing: '0.05em',
             }}
@@ -663,8 +663,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               )
             }
             style={{
-              backgroundColor: '#c8f135',
-              color: '#090909',
+              backgroundColor: 'var(--color-accent)',
+              color: 'var(--color-bg)',
               fontFamily: bebasFont,
               fontSize: '19px',
               letterSpacing: '0.04em',
@@ -689,7 +689,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
       </section>
 
       {/* Divisor */}
-      <div style={{ height: '1px', backgroundColor: '#131313', maxWidth: '560px', margin: '0 auto' }} />
+      <div style={{ height: '1px', backgroundColor: 'var(--color-border)', maxWidth: '560px', margin: '0 auto' }} />
 
       {/* ═══════════════════════════════════════════════════════════════
           SECCIÓN 4 — CTA WHATSAPP
@@ -708,19 +708,19 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             fontFamily: bebasFont,
             fontSize: 'clamp(30px, 5.5vw, 50px)',
             textTransform: 'uppercase',
-            color: '#eeebe3',
+            color: 'var(--color-ink)',
             lineHeight: '1.0',
             marginBottom: '16px',
           }}
         >
           ¿Quieres una versión con tu logo,{' '}
-          <span style={{ color: '#c8f135' }}>voz en off</span>{' '}
+          <span style={{ color: 'var(--color-accent)' }}>voz en off</span>{' '}
           e imágenes de tu producto?
         </h2>
         <p
           style={{
             fontSize: '16px',
-            color: '#666',
+            color: 'var(--color-muted)',
             marginBottom: '36px',
           }}
         >
@@ -730,7 +730,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           style={{
             fontSize: '12px',
             fontFamily: monoFont,
-            color: '#c8f135',
+            color: 'var(--color-accent)',
             textAlign: 'center',
             marginBottom: '36px',
             marginTop: '-20px',
@@ -749,8 +749,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           }
           style={{
             backgroundColor: 'transparent',
-            color: '#c8f135',
-            border: '2px solid #c8f135',
+            color: 'var(--color-accent)',
+            border: '2px solid var(--color-accent)',
             fontFamily: bebasFont,
             fontSize: '20px',
             letterSpacing: '0.04em',
@@ -763,12 +763,12 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             gap: '10px',
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = '#c8f135';
-            e.currentTarget.style.color = '#090909';
+            e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+            e.currentTarget.style.color = 'var(--color-bg)';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = '#c8f135';
+            e.currentTarget.style.color = 'var(--color-accent)';
           }}
         >
           {/* WhatsApp icon */}
@@ -795,7 +795,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           style={{
             fontFamily: monoFont,
             fontSize: '10px',
-            color: '#444',
+            color: 'var(--color-muted)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             marginBottom: '20px',
@@ -815,19 +815,19 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             id="cta-solo-video-btn"
             onClick={() => trackEvent('cta_grid_click', { option: 'solo_video', business_name })}
             style={{
-              backgroundColor: '#0d0d0d',
-              border: '1px solid #1e1e1e',
+              backgroundColor: 'var(--color-s1)',
+              border: '1px solid var(--color-border)',
               borderRadius: '14px',
               padding: '20px 16px',
               cursor: 'pointer',
               textAlign: 'left',
               transition: 'border-color 0.2s ease',
             }}
-            onMouseOver={(e) => { e.currentTarget.style.borderColor = '#333'; }}
-            onMouseOut={(e) => { e.currentTarget.style.borderColor = '#1e1e1e'; }}
+            onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--color-border2)'; }}
+            onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--color-border)'; }}
           >
-            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: '#eeebe3', marginBottom: '6px', letterSpacing: '0.03em' }}>Solo video gratis</p>
-            <p style={{ fontFamily: monoFont, fontSize: '10px', color: '#444', lineHeight: '1.5' }}>Ya lo descargué, gracias</p>
+            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: 'var(--color-ink)', marginBottom: '6px', letterSpacing: '0.03em' }}>Solo video gratis</p>
+            <p style={{ fontFamily: monoFont, fontSize: '10px', color: 'var(--color-muted)', lineHeight: '1.5' }}>Ya lo descargué, gracias</p>
           </button>
 
           {/* Opción 2 */}
@@ -835,19 +835,19 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             id="cta-video-30s-btn"
             onClick={() => handleWspClick('personalized', `Hola Leandro, vi el video de ${business_name} y quiero el video de 30 segundos para publicar.`)}
             style={{
-              backgroundColor: '#0d0d0d',
-              border: '1px solid #1e1e1e',
+              backgroundColor: 'var(--color-s1)',
+              border: '1px solid var(--color-border)',
               borderRadius: '14px',
               padding: '20px 16px',
               cursor: 'pointer',
               textAlign: 'left',
               transition: 'border-color 0.2s ease',
             }}
-            onMouseOver={(e) => { e.currentTarget.style.borderColor = '#c8f135'; }}
-            onMouseOut={(e) => { e.currentTarget.style.borderColor = '#1e1e1e'; }}
+            onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent)'; }}
+            onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--color-border)'; }}
           >
-            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: '#c8f135', marginBottom: '6px', letterSpacing: '0.03em' }}>Video 30 seg</p>
-            <p style={{ fontFamily: monoFont, fontSize: '10px', color: '#444', lineHeight: '1.5' }}>Listo para publicar</p>
+            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: 'var(--color-accent)', marginBottom: '6px', letterSpacing: '0.03em' }}>Video 30 seg</p>
+            <p style={{ fontFamily: monoFont, fontSize: '10px', color: 'var(--color-muted)', lineHeight: '1.5' }}>Listo para publicar</p>
           </button>
 
           {/* Opción 3 */}
@@ -855,19 +855,19 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             id="cta-personalizado-btn"
             onClick={() => handleWspClick('personalized', `Hola Leandro, vi el video de ${business_name} y quiero una versión personalizada con logo y voz en off.`)}
             style={{
-              backgroundColor: '#0d0d0d',
-              border: '1px solid #1e1e1e',
+              backgroundColor: 'var(--color-s1)',
+              border: '1px solid var(--color-border)',
               borderRadius: '14px',
               padding: '20px 16px',
               cursor: 'pointer',
               textAlign: 'left',
               transition: 'border-color 0.2s ease',
             }}
-            onMouseOver={(e) => { e.currentTarget.style.borderColor = '#c8f135'; }}
-            onMouseOut={(e) => { e.currentTarget.style.borderColor = '#1e1e1e'; }}
+            onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent)'; }}
+            onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--color-border)'; }}
           >
-            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: '#c8f135', marginBottom: '6px', letterSpacing: '0.03em' }}>Video personalizado</p>
-            <p style={{ fontFamily: monoFont, fontSize: '10px', color: '#444', lineHeight: '1.5' }}>Logo + voz off + imágenes</p>
+            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: 'var(--color-accent)', marginBottom: '6px', letterSpacing: '0.03em' }}>Video personalizado</p>
+            <p style={{ fontFamily: monoFont, fontSize: '10px', color: 'var(--color-muted)', lineHeight: '1.5' }}>Logo + voz off + imágenes</p>
           </button>
 
           {/* Opción 4 */}
@@ -875,25 +875,25 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             id="cta-sistema-btn"
             onClick={() => handleWspClick('system', `Hola Leandro, vi el video de ${business_name} y quiero conocer el sistema completo de videos.`)}
             style={{
-              backgroundColor: '#0d0d0d',
-              border: '1px solid #1e1e1e',
+              backgroundColor: 'var(--color-s1)',
+              border: '1px solid var(--color-border)',
               borderRadius: '14px',
               padding: '20px 16px',
               cursor: 'pointer',
               textAlign: 'left',
               transition: 'border-color 0.2s ease',
             }}
-            onMouseOver={(e) => { e.currentTarget.style.borderColor = '#c8f135'; }}
-            onMouseOut={(e) => { e.currentTarget.style.borderColor = '#1e1e1e'; }}
+            onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent)'; }}
+            onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--color-border)'; }}
           >
-            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: '#c8f135', marginBottom: '6px', letterSpacing: '0.03em' }}>Sistema completo</p>
-            <p style={{ fontFamily: monoFont, fontSize: '10px', color: '#444', lineHeight: '1.5' }}>Stop-scrolling + Autoridad + Validación + VSL</p>
+            <p style={{ fontFamily: bebasFont, fontSize: '18px', color: 'var(--color-accent)', marginBottom: '6px', letterSpacing: '0.03em' }}>Sistema completo</p>
+            <p style={{ fontFamily: monoFont, fontSize: '10px', color: 'var(--color-muted)', lineHeight: '1.5' }}>Stop-scrolling + Autoridad + Validación + VSL</p>
           </button>
         </div>
       </section>
 
       {/* Divisor */}
-      <div style={{ height: '1px', backgroundColor: '#131313', maxWidth: '560px', margin: '0 auto' }} />
+      <div style={{ height: '1px', backgroundColor: 'var(--color-border)', maxWidth: '560px', margin: '0 auto' }} />
 
       {/* ═══════════════════════════════════════════════════════════════
           SECCIÓN 5 — REFERENCIA AL SISTEMA (mínima)
@@ -905,13 +905,13 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           margin: '0 auto',
           padding: '40px 24px 80px',
           textAlign: 'center',
-          borderTop: '1px solid #131313',
+          borderTop: '1px solid var(--color-border)',
         }}
       >
         <p
           style={{
             fontSize: '14px',
-            color: '#444',
+            color: 'var(--color-muted)',
             lineHeight: '1.6',
           }}
         >
@@ -921,16 +921,16 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              color: '#c8f135',
+              color: 'var(--color-accent)',
               textDecoration: 'none',
-              borderBottom: '1px solid rgba(200, 241, 53, 0.3)',
+              borderBottom: '1px solid rgba(255, 87, 34, 0.3)',
               transition: 'border-color 0.2s ease',
             }}
             onMouseOver={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = '#c8f135';
+              (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'var(--color-accent)';
             }}
             onMouseOut={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'rgba(200, 241, 53, 0.3)';
+              (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'rgba(255, 87, 34, 0.3)';
             }}
           >
             Conoce el sistema →

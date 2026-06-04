@@ -181,9 +181,9 @@ export default function DirectorCreativoPage() {
 
               <div className="flex flex-col gap-4">
                 <div className="flex flex-wrap gap-2 mb-2">
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Estrategia</span>
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Liderazgo</span>
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Marca</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Estrategia</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Liderazgo</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Marca</span>
                 </div>
                 <h3 className="font-display text-4xl md:text-5xl text-ink">Dirección Creativa</h3>
                 <p className="font-body text-mid text-lg max-w-3xl">
@@ -193,9 +193,9 @@ export default function DirectorCreativoPage() {
 
               <div className="flex flex-col gap-4">
                 <div className="flex flex-wrap gap-2 mb-2">
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Motion</span>
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Spots</span>
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Animación</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Motion</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Spots</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Animación</span>
                 </div>
                 <h3 className="font-display text-4xl md:text-5xl text-ink">Motion Design & Producción Audiovisual</h3>
                 <p className="font-body text-mid text-lg max-w-3xl">
@@ -205,9 +205,9 @@ export default function DirectorCreativoPage() {
 
               <div className="flex flex-col gap-4">
                 <div className="flex flex-wrap gap-2 mb-2">
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">SEO</span>
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Contenido</span>
-                  <span className="font-mono text-[10px] tracking-widest text-[#99c010] border border-[#2a3800] bg-[#0d1200] px-3 py-1 uppercase">Orgánico</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">SEO</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Contenido</span>
+                  <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/20 bg-accent/5 px-3 py-1 uppercase">Orgánico</span>
                 </div>
                 <h3 className="font-display text-4xl md:text-5xl text-ink">SEO con Video</h3>
                 <p className="font-body text-mid text-lg max-w-3xl">

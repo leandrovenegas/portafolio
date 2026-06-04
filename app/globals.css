@@ -3,27 +3,28 @@
 
 @theme {
   /* ─── Colors ──────────────────────────────────────────────────── */
-  --color-bg:      #090909;
-  --color-s1:      #101010;
-  --color-s2:      #161616;
-  --color-s3:      #1e1e1e;
-  --color-border:  #1f1f1f;
-  --color-border2: #2c2c2c;
-  --color-ink:     #eeebe3;
-  --color-mid:     #7a7a72;
-  --color-muted:   #4a4a45;
-  --color-accent:  #c8f135;
-  --color-accent2: #99c010;
+  --color-bg:      #0B0F19; /* Azul medianoche */
+  --color-s1:      #111827; /* Gris azulado muy oscuro */
+  --color-s2:      #1F2937; /* Gris azulado medio-oscuro */
+  --color-s3:      #273444; /* Gris azulado intermedio */
+  --color-border:  #374151; /* Borde primario */
+  --color-border2: #4B5563; /* Borde secundario */
+  --color-ink:     #F8FAFC; /* Blanco hielo */
+  --color-mid:     #9CA3AF; /* Gris claro */
+  --color-muted:   #6B7280; /* Gris oscuro */
+  --color-accent:  #FF5722; /* Naranja fuego */
+  --color-accent2: #E64A19; /* Naranja oscuro */
+  --color-brand:   #2563EB; /* Azul rey */
 
   /* ─── Font Families ───────────────────────────────────────────── */
-  /* Bebas Neue: headlines, numbers, impact text */
-  --font-display: var(--font-bebas), 'Arial Narrow', sans-serif;
+  /* Outfit: display, engineering, results */
+  --font-display: var(--font-outfit), sans-serif;
 
-  /* DM Sans Variable: primary body (optical sizing via 'opsz' axis) */
-  --font-body: var(--font-dmsans), system-ui, sans-serif;
+  /* Inter: body font, clean and readable */
+  --font-body: var(--font-inter), system-ui, sans-serif;
 
-  /* Plus Jakarta Sans Variable: long-form prose, descriptions, alt body */
-  --font-prose: var(--font-jakarta), var(--font-dmsans), system-ui, sans-serif;
+  /* Inter: prose/long text */
+  --font-prose: var(--font-inter), system-ui, sans-serif;
 
   /* DM Mono: labels, codes, tags, badges */
   --font-mono: var(--font-dmmono), 'Courier New', monospace;
@@ -81,7 +82,7 @@
     font-family:      var(--font-body);
     font-size:        var(--text-body);
     line-height:      var(--text-body--line-height);
-    /* Optical sizing ON by default — DM Sans variable auto-adjusts */
+    /* Optical sizing ON by default */
     font-optical-sizing: auto;
     /* Better text rendering */
     -webkit-font-smoothing:  antialiased;
