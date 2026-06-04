@@ -3,15 +3,15 @@
 
 @theme {
   /* ─── Colors ──────────────────────────────────────────────────── */
-  --color-bg:      #000000; /* Negro puro */
-  --color-s1:      #0A0A0A;
-  --color-s2:      #121212;
-  --color-s3:      #1A1A1A;
-  --color-border:  #262626;
-  --color-border2: #333333;
-  --color-ink:     #FAFAFA;
-  --color-mid:     #A3A3A3;
-  --color-muted:   #525252;
+  --color-bg:      #F2F2F2; /* Soft off-white */
+  --color-s1:      #FFFFFF;
+  --color-s2:      #EBEBEB;
+  --color-s3:      #D4D4D4;
+  --color-border:  #E5E5E5;
+  --color-border2: #CCCCCC;
+  --color-ink:     #0F172A;
+  --color-mid:     #525252;
+  --color-muted:   #A3A3A3;
   --color-accent:  #FF2D20; /* Rojo vibrante / Carmesí */
   --color-accent2: #CC241A; /* Rojo oscuro */
 
