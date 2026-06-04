@@ -8,14 +8,24 @@ export async function POST(request) {
     const adminUser = process.env.ADMIN_USER;
     const adminPassword = process.env.ADMIN_PASSWORD;
 
+    if (!adminUser || !adminPassword) {
+      return NextResponse.json({ 
+        success: false, 
+        message: 'Variables de entorno ADMIN_USER o ADMIN_PASSWORD no configuradas en el servidor.' 
+      }, { status: 500 });
+    }
+
     if (username === adminUser && password === adminPassword) {
       const response = NextResponse.json({ success: true });
       
+      const proto = request.headers.get('x-forwarded-proto') || request.nextUrl.protocol || '';
+      const isSecure = process.env.NODE_ENV === 'production' && proto.startsWith('https');
+
       // Set a simple auth cookie. In a production app, this should be a JWT or similar session token.
       // For this local CMS, a simple flag is enough for basic protection.
       (await cookies()).set('admin_session', 'active', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: isSecure,
         sameSite: 'lax',
         maxAge: 60 * 60 * 24, // 1 day
         path: '/',
