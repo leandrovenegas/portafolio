@@ -74,7 +74,7 @@ export default function Nav({ className = '' }) {
         className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 border-b ${isOpen
           ? "bg-transparent border-transparent py-6"
           : scrolled
-            ? "bg-s1/90 backdrop-blur-xl border-border py-3 shadow-2xl shadow-black/10"
+            ? "bg-black/90 backdrop-blur-xl border-border py-3 shadow-2xl shadow-black/10"
             : "bg-transparent border-transparent py-6"
           } ${className}`}
       >
@@ -128,7 +128,7 @@ export default function Nav({ className = '' }) {
                 align-items: center;
                 justify-content: center;
                 border-radius: 50%;
-                background: rgba(24, 24, 27, 0.5);
+                background: rgba(0, 0, 0, 0.6);
                 border: 1px solid rgba(255, 255, 255, 0.05);
                 cursor: pointer;
                 transition: transform 0.2s ease;
@@ -199,7 +199,7 @@ export default function Nav({ className = '' }) {
 
       {/* Mobile Overlay Menu */}
       <div
-        className={`fixed inset-0 bg-s1/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
           }`}
       >
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
