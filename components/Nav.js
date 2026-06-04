@@ -56,6 +56,7 @@ export default function Nav({ className = '' }) {
 
   const navLinks = [
     { href: "/", label: "Sistema" },
+    { href: "/proceso", label: "Proceso" },
     { href: "/portafolio", label: "Portafolio" },
     { href: "/videos", label: "Videos" },
     { href: "/lab", label: "Lab" },
