@@ -3,17 +3,17 @@
 
 @theme {
   /* ─── Colors ──────────────────────────────────────────────────── */
-  --color-bg:      #090909; /* Negro puro */
-  --color-s1:      #101010;
-  --color-s2:      #161616;
-  --color-s3:      #1e1e1e;
-  --color-border:  #1f1f1f;
-  --color-border2: #2c2c2c;
-  --color-ink:     #eeebe3; /* Blanco roto/crema suave */
-  --color-mid:     #7a7a72; /* Gris cálido */
-  --color-muted:   #4a4a45; /* Gris apagado */
-  --color-accent:  #c8f135; /* Verde lima neón brillante */
-  --color-accent2: #99c010; /* Verde lima oscuro */
+  --color-bg:      #000000; /* Negro puro */
+  --color-s1:      #0A0A0A;
+  --color-s2:      #121212;
+  --color-s3:      #1A1A1A;
+  --color-border:  #262626;
+  --color-border2: #333333;
+  --color-ink:     #FAFAFA;
+  --color-mid:     #A3A3A3;
+  --color-muted:   #525252;
+  --color-accent:  #FF2D20; /* Rojo vibrante / Carmesí */
+  --color-accent2: #CC241A; /* Rojo oscuro */
 
   /* ─── Font Families ───────────────────────────────────────────── */
   /* Bebas Neue: display, headlines, impact */

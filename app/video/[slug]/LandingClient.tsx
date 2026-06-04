@@ -219,7 +219,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             margin: '0 auto 36px auto',
             borderRadius: '20px',
             overflow: 'hidden',
-            boxShadow: '0 32px 64px -12px rgba(200, 241, 53, 0.12), 0 0 0 1px var(--color-border)',
+            boxShadow: '0 32px 64px -12px rgba(255, 45, 32, 0.12), 0 0 0 1px var(--color-border)',
             backgroundColor: '#000',
           }}
         >
@@ -259,16 +259,16 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '10px',
-            boxShadow: '0 4px 24px rgba(200, 241, 53, 0.28)',
+            boxShadow: '0 4px 24px rgba(255, 45, 32, 0.28)',
             transition: 'transform 0.15s ease, box-shadow 0.15s ease',
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(200, 241, 53, 0.38)';
+            e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 45, 32, 0.38)';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 24px rgba(200, 241, 53, 0.28)';
+            e.currentTarget.style.boxShadow = '0 4px 24px rgba(255, 45, 32, 0.28)';
           }}
         >
           ⬇ Descargar mi video gratis
@@ -556,7 +556,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
                   width: '52px',
                   height: '52px',
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(200, 241, 53, 0.08)',
+                  backgroundColor: 'rgba(255, 45, 32, 0.08)',
                   color: 'var(--color-accent)',
                   fontSize: '22px',
                   marginBottom: '16px',
@@ -923,14 +923,14 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             style={{
               color: 'var(--color-accent)',
               textDecoration: 'none',
-              borderBottom: '1px solid rgba(200, 241, 53, 0.3)',
+              borderBottom: '1px solid rgba(255, 45, 32, 0.3)',
               transition: 'border-color 0.2s ease',
             }}
             onMouseOver={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'var(--color-accent)';
             }}
             onMouseOut={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'rgba(200, 241, 53, 0.3)';
+              (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = 'rgba(255, 45, 32, 0.3)';
             }}
           >
             Conoce el sistema →
