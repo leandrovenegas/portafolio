@@ -179,7 +179,7 @@ export default async function PreciosPage() {
   return (
     <main className="min-h-screen bg-bg text-ink">
       {/* ─── Header ───────────────────────────────────────────────── */}
-      <header className="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center">
+      <header className="max-w-5xl mx-auto px-6 pt-28 md:pt-32 pb-16 text-center">
         {/* Eyebrow */}
         <p className="font-mono text-body-xs text-accent uppercase tracking-[0.2em] mb-5">
           Servicios de video

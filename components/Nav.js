@@ -75,7 +75,7 @@ export default function Nav({ className = '' }) {
           ? "bg-transparent border-transparent py-6"
           : scrolled
             ? "bg-black/90 backdrop-blur-xl border-border py-3 shadow-2xl shadow-black/10"
-            : "bg-transparent border-transparent py-6"
+            : "bg-black/90 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-border md:border-transparent py-3 md:py-6"
           } ${className}`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">

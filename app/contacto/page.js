@@ -45,7 +45,7 @@ export default async function Contacto({ searchParams }) {
           </div>
         )}
 
-        <div className="relative z-10 px-6 pt-12 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
+        <div className="relative z-10 px-6 pt-24 md:pt-32 md:px-12 lg:px-24 mx-auto max-w-5xl flex flex-col gap-16 md:gap-24">
           
         </div>
       </main>
