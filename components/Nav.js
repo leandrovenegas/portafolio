@@ -74,7 +74,7 @@ export default function Nav({ className = '' }) {
         className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 border-b ${isOpen
           ? "bg-transparent border-transparent py-6"
           : scrolled
-            ? "bg-black/90 backdrop-blur-xl border-zinc-800/50 py-3 shadow-2xl shadow-black/50"
+            ? "bg-s1/90 backdrop-blur-xl border-border py-3 shadow-2xl shadow-black/10"
             : "bg-transparent border-transparent py-6"
           } ${className}`}
       >
@@ -82,10 +82,10 @@ export default function Nav({ className = '' }) {
           {/* Logo Section */}
           <div className="flex flex-col relative z-[110]">
             <Link href="/" className="group flex flex-col">
-              <span className="text-white text-sm tracking-[0.3em] uppercase group-hover:text-accent transition-colors duration-300 font-bold">
+              <span className="text-ink text-sm tracking-[0.3em] uppercase group-hover:text-accent transition-colors duration-300 font-bold">
                 Leandro Venegas
               </span>
-              <span className="text-[9px] text-zinc-500 uppercase tracking-[0.25em] leading-none mt-1.5 group-hover:text-zinc-400 transition-colors duration-300">
+              <span className="text-[9px] text-mid uppercase tracking-[0.25em] leading-none mt-1.5 group-hover:text-ink transition-colors duration-300">
                 Comunicador Audiovisual
               </span>
             </Link>
@@ -99,7 +99,7 @@ export default function Nav({ className = '' }) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-[11px] tracking-[0.2em] uppercase transition-all duration-300 relative group py-2 ${isActive ? "text-white font-bold" : "text-zinc-400 hover:text-white"
+                  className={`text-[11px] tracking-[0.2em] uppercase transition-all duration-300 relative group py-2 ${isActive ? "text-ink font-bold" : "text-mid hover:text-ink"
                     }`}
                 >
                   {link.label}
@@ -143,7 +143,7 @@ export default function Nav({ className = '' }) {
                 display: block;
                 width: 30px;
                 height: 3px;
-                background: #ffffff;
+                background: var(--color-ink);
                 transition: all .3s cubic-bezier(0.585,-0.6,0.43,1.65);
             }
 
@@ -152,7 +152,7 @@ export default function Nav({ className = '' }) {
                 position: absolute;
                 width: 100%;
                 height: 3px;
-                background: #ffffff;
+                background: var(--color-ink);
                 left: 0;
                 transform-origin: center center;
                 transition: all .3s cubic-bezier(0.585,-0.6,0.43,1.65);
@@ -199,7 +199,7 @@ export default function Nav({ className = '' }) {
 
       {/* Mobile Overlay Menu */}
       <div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+        className={`fixed inset-0 bg-s1/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
           }`}
       >
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
@@ -219,7 +219,7 @@ export default function Nav({ className = '' }) {
                   transform: isOpen ? 'translateY(0)' : 'translateY(40px)',
                   opacity: isOpen ? 1 : 0
                 }}
-                className={`text-3xl tracking-[0.15em] uppercase transition-all duration-700 font-display ${isActive ? "text-accent" : "text-white hover:text-accent"
+                className={`text-3xl tracking-[0.15em] uppercase transition-all duration-700 font-display ${isActive ? "text-accent" : "text-ink hover:text-accent"
                   }`}
               >
                 {link.label}

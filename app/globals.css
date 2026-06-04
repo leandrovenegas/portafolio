@@ -16,14 +16,10 @@
   --color-accent2: #CC241A; /* Rojo oscuro */
 
   /* ─── Font Families ───────────────────────────────────────────── */
-  /* Bebas Neue: display, headlines, impact */
-  --font-display: var(--font-bebas), 'Arial Narrow', sans-serif;
-
-  /* DM Sans Variable: body */
-  --font-body: var(--font-dmsans), system-ui, sans-serif;
-
-  /* Plus Jakarta Sans Variable: prose/long text */
-  --font-prose: var(--font-jakarta), var(--font-dmsans), system-ui, sans-serif;
+  /* Instrument Sans: display, body, prose */
+  --font-display: var(--font-sans), system-ui, sans-serif;
+  --font-body: var(--font-sans), system-ui, sans-serif;
+  --font-prose: var(--font-sans), system-ui, sans-serif;
 
   /* DM Mono: labels, codes, tags, badges */
   --font-mono: var(--font-dmmono), 'Courier New', monospace;
@@ -89,9 +85,36 @@
     text-rendering:          optimizeLegibility;
   }
 
-  /* Headings inherit display font, body keeps body font */
+  /* Headings inherit display font, normalized to bold uppercase style */
   h1, h2, h3, h4, h5, h6 {
-    font-optical-sizing: auto;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-ink);
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: var(--text-display-xl);
+    line-height: var(--text-display-xl--line-height);
+    letter-spacing: var(--text-display-xl--letter-spacing);
+  }
+
+  h2 {
+    font-size: var(--text-display-lg);
+    line-height: var(--text-display-lg--line-height);
+    letter-spacing: var(--text-display-lg--letter-spacing);
+  }
+
+  h3 {
+    font-size: var(--text-display-md);
+    line-height: var(--text-display-md--line-height);
+    letter-spacing: var(--text-display-md--letter-spacing);
+  }
+
+  h4 {
+    font-size: var(--text-display-sm);
+    line-height: var(--text-display-sm--line-height);
+    letter-spacing: var(--text-display-sm--letter-spacing);
   }
 
   /* Monospace: tighten line-height for labels/badges */

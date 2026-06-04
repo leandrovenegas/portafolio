@@ -5,35 +5,15 @@ import Nav from "@/components/Nav";
 import { CartProvider } from "@/components/carrito/CartContext";
 import CartButton from "@/components/carrito/CartButton";
 
-import { Bebas_Neue, DM_Sans, DM_Mono, Plus_Jakarta_Sans } from 'next/font/google';
+import { Instrument_Sans, DM_Mono } from 'next/font/google';
 
-// Display — Bebas Neue (condensed, impactful headlines)
-const bebasNeue = Bebas_Neue({
-  weight: '400',
+const instrumentSans = Instrument_Sans({
   subsets: ['latin'],
-  variable: '--font-bebas',
-  display: 'swap',
-  preload: true, // Critical for LCP text
-});
-
-// Body — DM Sans Variable (single file covers weight 100–900 + optical sizing)
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  axes: ['opsz'], // Optical Sizing: text sharpens at small/large sizes automatically
-  variable: '--font-dmsans',
+  variable: '--font-sans',
   display: 'swap',
   preload: true,
 });
 
-// Accent Body — Plus Jakarta Sans Variable (more humanist, better for long-form content)
-const jakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-jakarta',
-  display: 'swap',
-  preload: false, // Load after critical path
-});
-
-// Mono — DM Mono (labels, code, technical text)
 const dmMono = DM_Mono({
   weight: ['400', '500'],
   subsets: ['latin'],
@@ -76,7 +56,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className={`${bebasNeue.variable} ${dmSans.variable} ${jakartaSans.variable} ${dmMono.variable} font-body bg-black`}>
+      <body className={`${instrumentSans.variable} ${dmMono.variable} font-body bg-bg`}>
         <CartProvider>
           <Nav />
           {children}
