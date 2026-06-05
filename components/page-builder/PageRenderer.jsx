@@ -18,31 +18,32 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
         }
 
         const isSelected = comp.id === selectedId;
+        const isEditable = !!onSelectComponent;
 
         if (comp.type === 'HeroVideoSection' || comp.type === 'HeroEditorialSection') {
           return (
             <div
               key={comp.id}
-              onClick={(e) => {
+              onClick={isEditable ? (e) => {
                 e.stopPropagation();
-                if (onSelectComponent) {
-                  const target = e.target;
-                  const fieldElement = target.closest('[data-field]');
-                  const fieldKey = fieldElement ? fieldElement.getAttribute('data-field') : null;
-                  onSelectComponent(comp.id, fieldKey);
-                }
-              }}
-              className={`relative group cursor-pointer transition-all duration-200 block w-full
-                ${isSelected ? 'ring-4 ring-accent ring-inset z-30' : 'hover:ring-2 hover:ring-accent/40 hover:ring-inset z-20'}
+                const target = e.target;
+                const fieldElement = target.closest('[data-field]');
+                const fieldKey = fieldElement ? fieldElement.getAttribute('data-field') : null;
+                onSelectComponent(comp.id, fieldKey);
+              } : undefined}
+              className={`relative block w-full
+                ${isEditable ? (isSelected ? 'ring-4 ring-accent ring-inset z-30 cursor-pointer group' : 'hover:ring-2 hover:ring-accent/40 hover:ring-inset z-20 cursor-pointer group') : ''}
               `}
             >
               {/* Hover Badge */}
-              <div className="absolute top-3 right-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none uppercase tracking-wider">
-                Editar {comp.name || comp.type}
-              </div>
+              {isEditable && (
+                <div className="absolute top-3 right-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none uppercase tracking-wider">
+                  Editar {comp.name || comp.type}
+                </div>
+              )}
 
               {/* Selection Highlight Label */}
-              {isSelected && (
+              {isEditable && isSelected && (
                 <div className="absolute top-3 left-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg z-50 pointer-events-none uppercase tracking-wider">
                   Editando
                 </div>
@@ -56,26 +57,26 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
         return (
           <div
             key={comp.id}
-            onClick={(e) => {
+            onClick={isEditable ? (e) => {
               e.stopPropagation();
-              if (onSelectComponent) {
-                const target = e.target;
-                const fieldElement = target.closest('[data-field]');
-                const fieldKey = fieldElement ? fieldElement.getAttribute('data-field') : null;
-                onSelectComponent(comp.id, fieldKey);
-              }
-            }}
-            className={`relative group cursor-pointer transition-all duration-200 block w-full
-              ${isSelected ? 'ring-4 ring-accent ring-inset z-30' : 'hover:ring-2 hover:ring-accent/40 hover:ring-inset z-20'}
+              const target = e.target;
+              const fieldElement = target.closest('[data-field]');
+              const fieldKey = fieldElement ? fieldElement.getAttribute('data-field') : null;
+              onSelectComponent(comp.id, fieldKey);
+            } : undefined}
+            className={`relative block w-full
+              ${isEditable ? (isSelected ? 'ring-4 ring-accent ring-inset z-30 cursor-pointer group' : 'hover:ring-2 hover:ring-accent/40 hover:ring-inset z-20 cursor-pointer group') : ''}
             `}
           >
             {/* Hover Badge */}
-            <div className="absolute top-3 right-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none uppercase tracking-wider">
-              Editar {comp.name || comp.type}
-            </div>
+            {isEditable && (
+              <div className="absolute top-3 right-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none uppercase tracking-wider">
+                Editar {comp.name || comp.type}
+              </div>
+            )}
 
             {/* Selection Highlight Label */}
-            {isSelected && (
+            {isEditable && isSelected && (
               <div className="absolute top-3 left-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg z-50 pointer-events-none uppercase tracking-wider">
                 Editando
               </div>

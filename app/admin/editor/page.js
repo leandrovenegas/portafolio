@@ -270,13 +270,6 @@ function VisualEditorContent() {
     setSaving(true);
     setSaveSuccess('');
     setError('');
-    if (!isNew && currentVersionId) {
-      const currentName = versions.find(v => v.id === currentVersionId)?.version_name || 'v1';
-      if (!confirm(`¿Estás seguro de que quieres sobreescribir la versión "${currentName}"? Esto reemplazará los datos actuales en la base de datos.`)) {
-        setSaving(false);
-        return;
-      }
-    }
 
     try {
       const vName = isNew ? newVersionName || `v${versions.length + 1}` : versions.find(v=>v.id===currentVersionId)?.version_name || 'v1';
@@ -944,10 +937,14 @@ function VisualEditorContent() {
                 ))}
               </div>
               <div className="mt-3">
-                <select onChange={addComponent} className="w-full p-2 border border-border rounded-lg text-xs bg-s1 hover:bg-white transition-colors outline-none cursor-pointer font-medium" defaultValue="">
-                  <option value="" disabled>+ Añadir bloque</option>
+                <select 
+                  onChange={addComponent} 
+                  className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 hover:border-accent focus:bg-s2 focus:border-accent transition-colors outline-none cursor-pointer font-medium" 
+                  defaultValue=""
+                >
+                  <option value="" disabled className="bg-s1 text-ink">+ Añadir bloque</option>
                   {COMPONENT_DEFINITIONS.map(d => (
-                    <option key={d.type} value={d.type}>{d.name}</option>
+                    <option key={d.type} value={d.type} className="bg-s1 text-ink">{d.name}</option>
                   ))}
                 </select>
               </div>

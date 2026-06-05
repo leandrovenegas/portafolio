@@ -255,11 +255,11 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             <select
               value={props.backgroundType || 'video'}
               onChange={e => updateProp(comp.id, 'backgroundType', e.target.value)}
-              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
             >
-              <option value="video">🎞 Video o Imagen (Bunny.net)</option>
-              <option value="solid">🎨 Color Sólido</option>
-              <option value="gradient">🌈 Degradado CSS</option>
+              <option value="video" className="bg-s1 text-ink">🎞 Video o Imagen (Bunny.net)</option>
+              <option value="solid" className="bg-s1 text-ink">🎨 Color Sólido</option>
+              <option value="gradient" className="bg-s1 text-ink">🌈 Degradado CSS</option>
             </select>
             
             {props.backgroundType === 'solid' && (
@@ -416,12 +416,12 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
                 <select
                   value={props[`${prefix}Icon`] || 'none'}
                   onChange={e => updateProp(comp.id, `${prefix}Icon`, e.target.value)}
-                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all cursor-pointer font-medium"
+                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all cursor-pointer font-medium"
                 >
-                  <option value="none font-medium">Sin Icono</option>
-                  <option value="cart font-medium">🛒 Carrito</option>
-                  <option value="arrow-right font-medium">➔ Flecha Derecha</option>
-                  <option value="play font-medium">▶ Play</option>
+                  <option value="none font-medium" className="bg-s1 text-ink">Sin Icono</option>
+                  <option value="cart font-medium" className="bg-s1 text-ink">🛒 Carrito</option>
+                  <option value="arrow-right font-medium" className="bg-s1 text-ink">➔ Flecha Derecha</option>
+                  <option value="play font-medium" className="bg-s1 text-ink">▶ Play</option>
                 </select>
               </div>
               
@@ -561,11 +561,11 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             <select
               value={props.backgroundType || 'video'}
               onChange={e => updateProp(comp.id, 'backgroundType', e.target.value)}
-              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
             >
-              <option value="video">🎞 Video o Imagen (Bunny.net)</option>
-              <option value="solid">🎨 Color Sólido</option>
-              <option value="gradient">🌈 Degradado CSS</option>
+              <option value="video" className="bg-s1 text-ink">🎞 Video o Imagen (Bunny.net)</option>
+              <option value="solid" className="bg-s1 text-ink">🎨 Color Sólido</option>
+              <option value="gradient" className="bg-s1 text-ink">🌈 Degradado CSS</option>
             </select>
             
             {props.backgroundType === 'solid' && (

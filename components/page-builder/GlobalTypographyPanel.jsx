@@ -75,7 +75,7 @@ export default function GlobalTypographyPanel({ onClose, selectedComponent, onAp
                 className="w-full bg-[#333] border border-[#404040] text-white text-[11px] p-1.5 rounded outline-none focus:ring-1 focus:ring-accent cursor-pointer"
               >
                 {fields.map(f => (
-                  <option key={f} value={f}>{f.charAt(0).toUpperCase() + f.slice(1)}</option>
+                  <option key={f} value={f} className="bg-[#333] text-white">{f.charAt(0).toUpperCase() + f.slice(1)}</option>
                 ))}
               </select>
             </div>

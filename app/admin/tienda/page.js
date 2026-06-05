@@ -295,7 +295,7 @@ function OrdersTab() {
                       onChange={e => updateStatus(o.id, e.target.value)}
                       className={`text-xs font-mono px-2 py-1 rounded-lg border bg-s2 focus:outline-none ${STATUS_COLORS[o.status] || ''}`}>
                       {Object.entries(STATUS_LABELS).map(([v, l]) => (
-                        <option key={v} value={v}>{l}</option>
+                        <option key={v} value={v} className="bg-s2 text-ink">{l}</option>
                       ))}
                     </select>
                   </td>

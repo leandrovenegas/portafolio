@@ -75,12 +75,12 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
                 onChange={e => updateStyle('fontFamily', e.target.value)}
                 className="w-full text-[10px] bg-transparent text-white outline-none cursor-pointer"
               >
-                <option value="">Default Font</option>
-                <option value="var(--font-display)">Display (Heading)</option>
-                <option value="var(--font-body)">Body (Sans)</option>
-                <option value="sans-serif">System Sans-Serif</option>
-                <option value="serif">System Serif</option>
-                <option value="monospace">Monospace</option>
+                <option value="" className="bg-[#333] text-white">Default Font</option>
+                <option value="var(--font-display)" className="bg-[#333] text-white">Display (Heading)</option>
+                <option value="var(--font-body)" className="bg-[#333] text-white">Body (Sans)</option>
+                <option value="sans-serif" className="bg-[#333] text-white">System Sans-Serif</option>
+                <option value="serif" className="bg-[#333] text-white">System Serif</option>
+                <option value="monospace" className="bg-[#333] text-white">Monospace</option>
               </select>
             </div>
             <div className="w-24 border border-[#404040] rounded bg-[#333] px-2 py-1 focus-within:ring-1 focus-within:ring-accent">
@@ -89,13 +89,13 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
                 onChange={e => updateStyle('fontWeight', e.target.value)}
                 className="w-full text-[10px] bg-transparent text-white outline-none cursor-pointer"
               >
-                <option value="100">Thin</option>
-                <option value="300">Light</option>
-                <option value="400">Regular</option>
-                <option value="500">Medium</option>
-                <option value="600">SemiBold</option>
-                <option value="700">Bold</option>
-                <option value="900">Black</option>
+                <option value="100" className="bg-[#333] text-white">Thin</option>
+                <option value="300" className="bg-[#333] text-white">Light</option>
+                <option value="400" className="bg-[#333] text-white">Regular</option>
+                <option value="500" className="bg-[#333] text-white">Medium</option>
+                <option value="600" className="bg-[#333] text-white">SemiBold</option>
+                <option value="700" className="bg-[#333] text-white">Bold</option>
+                <option value="900" className="bg-[#333] text-white">Black</option>
               </select>
             </div>
           </div>
