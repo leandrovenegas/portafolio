@@ -51,6 +51,8 @@ export default function LogosSection({
     }
   };
 
+  const logoList = (logos || []).filter(logo => logo && typeof logo.src === 'string' && logo.src.trim() !== '');
+
   // If layout is marquee, we repeat list to ensure overflow and seamless looping
   let listToRender = logoList;
   if (layout === 'marquee' && listToRender.length > 0 && listToRender.length < 10) {
@@ -67,8 +69,6 @@ export default function LogosSection({
     backgroundColor: backgroundColor || 'transparent',
     '--bg-color': backgroundColor || '#000000'
   };
-
-  const logoList = logos || [];
 
   // Check if we have logos
   const hasLogos = logoList.length > 0;
@@ -92,14 +92,14 @@ export default function LogosSection({
       `}} />
 
       {/* Title & Subtitle - Hide if empty */}
-      {(title || subtitle) && (
+      {((title && title.trim() !== '') || (subtitle && subtitle.trim() !== '')) && (
         <div className="text-center mb-8 px-4 max-w-3xl mx-auto">
-          {title && (
+          {title && title.trim() !== '' && (
             <h2 className="text-sm font-bold text-ink uppercase tracking-widest mb-2 font-display">
               {title}
             </h2>
           )}
-          {subtitle && (
+          {subtitle && subtitle.trim() !== '' && (
             <p className="text-xs text-muted font-body">
               {subtitle}
             </p>
@@ -126,7 +126,7 @@ export default function LogosSection({
               style={{ animationDuration: speedDuration }}
             >
               {listToRender.map((logo, idx) => (
-                <div key={`logo-1-${logo.id || idx}`} className="flex items-center justify-center flex-shrink-0">
+                <div key={`logo-1-${logo.id || 'img'}-${idx}`} className="flex items-center justify-center flex-shrink-0">
                   {logo.link ? (
                     <a 
                       href={logo.link} 
@@ -160,7 +160,7 @@ export default function LogosSection({
               aria-hidden="true"
             >
               {listToRender.map((logo, idx) => (
-                <div key={`logo-2-${logo.id || idx}`} className="flex items-center justify-center flex-shrink-0">
+                <div key={`logo-2-${logo.id || 'img'}-${idx}`} className="flex items-center justify-center flex-shrink-0">
                   {logo.link ? (
                     <a 
                       href={logo.link} 
@@ -193,7 +193,7 @@ export default function LogosSection({
         <div className="w-full max-w-5xl mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8 py-4">
             {logoList.map((logo, idx) => (
-              <div key={`logo-grid-${logo.id || idx}`} className="flex items-center justify-center">
+              <div key={`logo-grid-${logo.id || 'img'}-${idx}`} className="flex items-center justify-center">
                 {logo.link ? (
                   <a 
                     href={logo.link} 
