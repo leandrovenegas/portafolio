@@ -230,15 +230,66 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
           <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
             <span className="w-2 h-2 rounded-full bg-accent" />
             <h3 className="text-xs font-bold text-ink">Hero Editorial — Propiedades</h3>
           </div>
-          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
 
         <div className="flex flex-col gap-3 p-3">
+
+          <SectionLabel>Fondo</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+            <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Tipo de Fondo</label>
+            <select
+              value={props.backgroundType || 'video'}
+              onChange={e => updateProp(comp.id, 'backgroundType', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+            >
+              <option value="video">🎞 Video o Imagen (Bunny.net)</option>
+              <option value="solid">🎨 Color Sólido</option>
+              <option value="gradient">🌈 Degradado CSS</option>
+            </select>
+            
+            {props.backgroundType === 'solid' && (
+              <div className="flex items-center gap-2 mt-1">
+                <input
+                  type="color"
+                  value={props.backgroundColor || '#121212'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="w-8 h-8 rounded cursor-pointer border-0 p-0"
+                />
+                <input
+                  type="text"
+                  value={props.backgroundColor || '#121212'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="flex-1 p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none uppercase font-mono"
+                />
+              </div>
+            )}
+
+            {props.backgroundType === 'gradient' && (
+              <div className="flex flex-col gap-1 mt-1">
+                <input
+                  type="text"
+                  placeholder="linear-gradient(135deg, #1e1b4b 0%, #311042 100%)"
+                  value={props.backgroundGradient || 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)'}
+                  onChange={e => updateProp(comp.id, 'backgroundGradient', e.target.value)}
+                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none font-mono"
+                />
+                <span className="text-[9px] text-muted/60 leading-tight">Usa una sintaxis CSS válida de gradient (ej: linear-gradient).</span>
+              </div>
+            )}
+          </div>
 
           <SectionLabel>Contenido de Texto</SectionLabel>
 
@@ -258,69 +309,73 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             />
           ))}
 
-          <SectionLabel>Imagen Poster</SectionLabel>
+          {(props.backgroundType === 'video' || !props.backgroundType) && (
+            <>
+              <SectionLabel>Imagen Poster</SectionLabel>
 
-          {/* posterSrc with upload */}
-          <PosterSrcField
-            value={props.posterSrc || ''}
-            onChange={val => updateProp(comp.id, 'posterSrc', val)}
-            thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
-          />
-          <div className="px-1 mt-1">
-            <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
-            <input
-              type="text"
-              placeholder="Descripción de la imagen"
-              value={props.posterAlt || ''}
-              onChange={e => updateProp(comp.id, 'posterAlt', e.target.value)}
-              className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
-            />
-          </div>
-
-          <SectionLabel>Video (Bunny Stream)</SectionLabel>
-
-          <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
-            {/* Device Tabs */}
-            <div className="flex bg-s1 p-1 gap-1 border-b border-border">
-              {[
-                { id: 'mobile', label: 'Móvil', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
-                { id: 'tablet', label: 'Tablet', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
-                { id: 'desktop', label: 'Desktop', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> }
-              ].map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => setVideoDeviceMode(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
-                    videoDeviceMode === tab.id 
-                      ? 'bg-accent text-bg shadow-sm' 
-                      : 'text-muted hover:text-ink hover:bg-s2'
-                  }`}
-                >
-                  {tab.icon}
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="p-3 flex flex-col gap-2">
-              <div className="flex items-center gap-2 mb-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-                <span className="text-[10px] font-bold text-muted uppercase tracking-wider">
-                  GUID {videoDeviceMode === 'mobile' ? 'Móvil' : videoDeviceMode === 'tablet' ? 'Tablet' : 'Desktop'}
-                </span>
-              </div>
-              <input
-                type="text"
-                placeholder="Ej: 6859587c-3f26-444e-a131-026852c00325"
-                value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid'] || ''}
-                onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid', e.target.value)}
-                className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+              {/* posterSrc with upload */}
+              <PosterSrcField
+                value={props.posterSrc || ''}
+                onChange={val => updateProp(comp.id, 'posterSrc', val)}
+                thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
               />
-              <p className="text-[9px] text-muted/60 px-1 leading-tight">
-                Usa un GUID diferente si quieres un encuadre distinto para {videoDeviceMode === 'mobile' ? 'celulares' : videoDeviceMode === 'tablet' ? 'tablets' : 'escritorio'}.
-              </p>
-            </div>
-          </div>
+              <div className="px-1 mt-1">
+                <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
+                <input
+                  type="text"
+                  placeholder="Descripción de la imagen"
+                  value={props.posterAlt || ''}
+                  onChange={e => updateProp(comp.id, 'posterAlt', e.target.value)}
+                  className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+                />
+              </div>
+
+              <SectionLabel>Video (Bunny Stream)</SectionLabel>
+
+              <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
+                {/* Device Tabs */}
+                <div className="flex bg-s1 p-1 gap-1 border-b border-border">
+                  {[
+                    { id: 'mobile', label: 'Móvil', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
+                    { id: 'tablet', label: 'Tablet', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
+                    { id: 'desktop', label: 'Desktop', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> }
+                  ].map(tab => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setVideoDeviceMode(tab.id)}
+                      className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
+                        videoDeviceMode === tab.id 
+                          ? 'bg-accent text-bg shadow-sm' 
+                          : 'text-muted hover:text-ink hover:bg-s2'
+                      }`}
+                    >
+                      {tab.icon}
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="p-3 flex flex-col gap-2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                    <span className="text-[10px] font-bold text-muted uppercase tracking-wider">
+                      GUID {videoDeviceMode === 'mobile' ? 'Móvil' : videoDeviceMode === 'tablet' ? 'Tablet' : 'Desktop'}
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Ej: 6859587c-3f26-444e-a131-026852c00325"
+                    value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid'] || ''}
+                    onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid', e.target.value)}
+                    className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+                  />
+                  <p className="text-[9px] text-muted/60 px-1 leading-tight">
+                    Usa un GUID diferente si quieres un encuadre distinto para {videoDeviceMode === 'mobile' ? 'celulares' : videoDeviceMode === 'tablet' ? 'tablets' : 'escritorio'}.
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
 
           <SectionLabel>Producto vinculado (Carrito)</SectionLabel>
           <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
@@ -357,12 +412,12 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
                 <select
                   value={props[`${prefix}Icon`] || 'none'}
                   onChange={e => updateProp(comp.id, `${prefix}Icon`, e.target.value)}
-                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all cursor-pointer"
+                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all cursor-pointer font-medium"
                 >
-                  <option value="none">Sin Icono</option>
-                  <option value="cart">🛒 Carrito</option>
-                  <option value="arrow-right">➔ Flecha Derecha</option>
-                  <option value="play">▶ Play</option>
+                  <option value="none font-medium">Sin Icono</option>
+                  <option value="cart font-medium">🛒 Carrito</option>
+                  <option value="arrow-right font-medium">➔ Flecha Derecha</option>
+                  <option value="play font-medium">▶ Play</option>
                 </select>
               </div>
               
@@ -386,10 +441,17 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
       <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
           <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
             <span className="w-2 h-2 rounded-full bg-accent" />
-            <h3 className="text-xs font-bold text-ink">Call to Action (Centrado) — Propiedades</h3>
+            <h3 className="text-xs font-bold text-ink">CTA Centrado — Propiedades</h3>
           </div>
-          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
@@ -470,14 +532,64 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
       <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
           <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
             <span className="w-2 h-2 rounded-full bg-accent" />
             <h3 className="text-xs font-bold text-ink">Hero Clásico — Propiedades</h3>
           </div>
-          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
         <div className="flex flex-col gap-3 p-3">
+          <SectionLabel>Fondo</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+            <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Tipo de Fondo</label>
+            <select
+              value={props.backgroundType || 'video'}
+              onChange={e => updateProp(comp.id, 'backgroundType', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+            >
+              <option value="video">🎞 Video o Imagen (Bunny.net)</option>
+              <option value="solid">🎨 Color Sólido</option>
+              <option value="gradient">🌈 Degradado CSS</option>
+            </select>
+            
+            {props.backgroundType === 'solid' && (
+              <div className="flex items-center gap-2 mt-1">
+                <input
+                  type="color"
+                  value={props.backgroundColor || '#121212'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="w-8 h-8 rounded cursor-pointer border-0 p-0"
+                />
+                <input
+                  type="text"
+                  value={props.backgroundColor || '#121212'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="flex-1 p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none uppercase font-mono"
+                />
+              </div>
+            )}
+
+            {props.backgroundType === 'gradient' && (
+              <div className="flex flex-col gap-1 mt-1">
+                <input
+                  type="text"
+                  placeholder="linear-gradient(135deg, #1e1b4b 0%, #311042 100%)"
+                  value={props.backgroundGradient || 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)'}
+                  onChange={e => updateProp(comp.id, 'backgroundGradient', e.target.value)}
+                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none font-mono"
+                />
+              </div>
+            )}
+          </div>
+
           <SectionLabel>Contenido</SectionLabel>
           <TextField
             fieldKey="title"
@@ -503,48 +615,52 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onFocusField={onFocusField}
           />
 
-          <SectionLabel>Video (Bunny Stream)</SectionLabel>
-          <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
-            <div className="flex bg-s1 p-1 gap-1 border-b border-border">
-              {BREAKPOINTS.map(tab => (
-                <button
-                  key={tab.key}
-                  onClick={() => setVideoDeviceMode(tab.key)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
-                    videoDeviceMode === tab.key ? 'bg-accent text-bg shadow-sm' : 'text-muted hover:text-ink hover:bg-s2'
-                  }`}
-                >
-                  {tab.label} {tab.key === 'mobile' ? 'Móvil' : tab.key === 'tablet' ? 'Tablet' : 'Desktop'}
-                </button>
-              ))}
-            </div>
-            <div className="p-3 flex flex-col gap-2">
-              <input
-                type="text"
-                placeholder="Pegar GUID de Bunny Stream"
-                value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid'] || ''}
-                onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid', e.target.value)}
-                className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
-              />
-            </div>
-          </div>
+          {(props.backgroundType === 'video' || !props.backgroundType) && (
+            <>
+              <SectionLabel>Video (Bunny Stream)</SectionLabel>
+              <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
+                <div className="flex bg-s1 p-1 gap-1 border-b border-border">
+                  {BREAKPOINTS.map(tab => (
+                    <button
+                      key={tab.key}
+                      onClick={() => setVideoDeviceMode(tab.key)}
+                      className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
+                        videoDeviceMode === tab.key ? 'bg-accent text-bg shadow-sm' : 'text-muted hover:text-ink hover:bg-s2'
+                      }`}
+                    >
+                      {tab.label} {tab.key === 'mobile' ? 'Móvil' : tab.key === 'tablet' ? 'Tablet' : 'Desktop'}
+                    </button>
+                  ))}
+                </div>
+                <div className="p-3 flex flex-col gap-2">
+                  <input
+                    type="text"
+                    placeholder="Pegar GUID de Bunny Stream"
+                    value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid'] || ''}
+                    onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid', e.target.value)}
+                    className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
+                  />
+                </div>
+              </div>
 
-          <SectionLabel>Imagen Poster</SectionLabel>
-          <PosterSrcField
-            value={props.posterSrc || ''}
-            onChange={val => updateProp(comp.id, 'posterSrc', val)}
-            thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
-          />
-          <div className="px-1 mt-1">
-            <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
-            <input
-              type="text"
-              placeholder="Descripción de la imagen"
-              value={props.posterAlt || ''}
-              onChange={e => updateProp(comp.id, 'posterAlt', e.target.value)}
-              className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
-            />
-          </div>
+              <SectionLabel>Imagen Poster</SectionLabel>
+              <PosterSrcField
+                value={props.posterSrc || ''}
+                onChange={val => updateProp(comp.id, 'posterSrc', val)}
+                thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
+              />
+              <div className="px-1 mt-1">
+                <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
+                <input
+                  type="text"
+                  placeholder="Descripción de la imagen"
+                  value={props.posterAlt || ''}
+                  onChange={e => updateProp(comp.id, 'posterAlt', e.target.value)}
+                  className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     );
@@ -556,10 +672,17 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
       <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
           <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
             <span className="w-2 h-2 rounded-full bg-yellow-400" />
             <h3 className="text-xs font-bold text-ink">Estrellas — Propiedades</h3>
           </div>
-          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
@@ -664,10 +787,17 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
       <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
           <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
             <span className="w-2 h-2 rounded-full bg-accent" />
             <h3 className="text-xs font-bold text-ink">Texto — Propiedades</h3>
           </div>
-          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
@@ -703,14 +833,21 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
     );
   }
 
-
-
   // ── Generic fallback for all other component types ──
   return (
     <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
-        <h3 className="text-xs font-bold text-ink">Propiedades</h3>
-        <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded">
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={onClose} 
+            className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+            title="Volver a la estructura"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          </button>
+          <h3 className="text-xs font-bold text-ink">Propiedades</h3>
+        </div>
+        <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>

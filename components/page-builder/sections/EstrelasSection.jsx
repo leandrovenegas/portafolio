@@ -15,7 +15,15 @@ function toInlineStyle(styleObj) {
   if (styleObj.textDecoration)s.textDecoration= styleObj.textDecoration;
   if (styleObj.textTransform && styleObj.textTransform !== 'none') s.textTransform = styleObj.textTransform;
   if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '') s.letterSpacing = `${styleObj.letterSpacing}em`;
-  if (styleObj.lineHeight)    s.lineHeight    = styleObj.lineHeight;
+  
+  if (styleObj.lineHeight !== undefined && styleObj.lineHeight !== '') {
+    s.lineHeight = styleObj.lineHeight;
+    if (Number(styleObj.lineHeight) < 0) {
+      s.marginTop = `${styleObj.lineHeight}em`;
+      s.lineHeight = 'normal';
+    }
+  }
+  
   return s;
 }
 
@@ -28,11 +36,16 @@ export default function EstrelasSection({
   alignment = 'center',
   backgroundColor = '',
   starSizes = { mobile: 28, tablet: 36, desktop: 48 },
-  _styles
+  _styles,
+  forceBp = null
 }) {
-  const [bp, setBp] = useState('mobile');
+  const [bp, setBp] = useState(forceBp || 'mobile');
 
   useEffect(() => {
+    if (forceBp) {
+      setBp(forceBp);
+      return;
+    }
     const check = () => {
       const w = window.innerWidth;
       setBp(w >= 1024 ? 'desktop' : w >= 768 ? 'tablet' : 'mobile');
@@ -40,7 +53,7 @@ export default function EstrelasSection({
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
-  }, []);
+  }, [forceBp]);
 
   const fieldStyle = (fieldName) => {
     if (!_styles || !_styles[fieldName]) return {};
@@ -117,6 +130,7 @@ export default function EstrelasSection({
             {/* Título si existe */}
             {title && (
               <h3 
+                data-field="title"
                 className="font-bold tracking-tight text-gray-900 font-display"
                 style={{ 
                   ...fieldStyle('title'),
@@ -130,6 +144,7 @@ export default function EstrelasSection({
             {/* Descripción si existe */}
             {description && (
               <p 
+                data-field="description"
                 className="text-gray-600 leading-relaxed font-body"
                 style={{ 
                   ...fieldStyle('description'),

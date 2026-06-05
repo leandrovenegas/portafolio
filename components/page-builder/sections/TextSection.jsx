@@ -13,17 +13,29 @@ function toInlineStyle(styleObj) {
   if (styleObj.textDecoration)s.textDecoration= styleObj.textDecoration;
   if (styleObj.textTransform && styleObj.textTransform !== 'none') s.textTransform = styleObj.textTransform;
   if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '') s.letterSpacing = `${styleObj.letterSpacing}em`;
-  if (styleObj.lineHeight)    s.lineHeight    = styleObj.lineHeight;
+  
+  if (styleObj.lineHeight !== undefined && styleObj.lineHeight !== '') {
+    s.lineHeight = styleObj.lineHeight;
+    if (Number(styleObj.lineHeight) < 0) {
+      s.marginTop = `${styleObj.lineHeight}em`;
+      s.lineHeight = 'normal';
+    }
+  }
+  
   if (styleObj.textIndent !== undefined && styleObj.textIndent !== '') s.textIndent = `${styleObj.textIndent}px`;
   if (styleObj.paddingTop !== undefined && styleObj.paddingTop !== '') s.paddingTop = `${styleObj.paddingTop}px`;
   if (styleObj.paddingBottom !== undefined && styleObj.paddingBottom !== '') s.paddingBottom = `${styleObj.paddingBottom}px`;
   return s;
 }
 
-export default function TextSection({ title, paragraphs, description, _styles }) {
-  const [bp, setBp] = useState('mobile');
+export default function TextSection({ title, paragraphs, description, _styles, forceBp = null }) {
+  const [bp, setBp] = useState(forceBp || 'mobile');
 
   useEffect(() => {
+    if (forceBp) {
+      setBp(forceBp);
+      return;
+    }
     const check = () => {
       const w = window.innerWidth;
       setBp(w >= 1024 ? 'desktop' : w >= 768 ? 'tablet' : 'mobile');
@@ -31,7 +43,7 @@ export default function TextSection({ title, paragraphs, description, _styles })
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
-  }, []);
+  }, [forceBp]);
 
   const fieldStyle = (fieldName) => {
     if (!_styles || !_styles[fieldName]) return {};
@@ -58,6 +70,7 @@ export default function TextSection({ title, paragraphs, description, _styles })
     <section>
       {title && (
         <h2 
+          data-field="title"
           className="font-display text-4xl md:text-5xl text-white max-w-3xl mb-8"
           style={fieldStyle('title')}
         >
@@ -68,6 +81,7 @@ export default function TextSection({ title, paragraphs, description, _styles })
         if (!p.trim()) return <br key={i} />;
         return (
           <p 
+            data-field="description"
             key={i} 
             className="font-body text-white/80 text-lg leading-relaxed mb-6 last:mb-0"
             style={fieldStyle('description')}

@@ -19,7 +19,15 @@ function toInlineStyle(styleObj) {
   if (styleObj.textDecoration)s.textDecoration= styleObj.textDecoration;
   if (styleObj.textTransform && styleObj.textTransform !== 'none') s.textTransform = styleObj.textTransform;
   if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '') s.letterSpacing = `${styleObj.letterSpacing}em`;
-  if (styleObj.lineHeight)    s.lineHeight    = styleObj.lineHeight;
+  
+  if (styleObj.lineHeight !== undefined && styleObj.lineHeight !== '') {
+    s.lineHeight = styleObj.lineHeight;
+    if (Number(styleObj.lineHeight) < 0) {
+      s.marginTop = `${styleObj.lineHeight}em`;
+      s.lineHeight = 'normal';
+    }
+  }
+  
   if (styleObj.textIndent !== undefined && styleObj.textIndent !== '') s.textIndent = `${styleObj.textIndent}px`;
   if (styleObj.paddingTop !== undefined && styleObj.paddingTop !== '') s.paddingTop = `${styleObj.paddingTop}px`;
   if (styleObj.paddingBottom !== undefined && styleObj.paddingBottom !== '') s.paddingBottom = `${styleObj.paddingBottom}px`;
@@ -44,9 +52,13 @@ export default function HeroEditorialSection({
   posterSrc,
   posterAlt,
   productSlug,
-  _styles
+  _styles,
+  forceBp = null,
+  backgroundType = 'video',
+  backgroundColor = '#121212',
+  backgroundGradient = 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)'
 }) {
-  const [bp, setBp] = useState('mobile');
+  const [bp, setBp] = useState(forceBp || 'mobile');
   const { addItem, items } = useCart();
   const router = useRouter();
   const [product, setProduct] = useState(null);
@@ -73,6 +85,10 @@ export default function HeroEditorialSection({
   };
 
   useEffect(() => {
+    if (forceBp) {
+      setBp(forceBp);
+      return;
+    }
     const check = () => {
       const w = window.innerWidth;
       setBp(w >= 1024 ? 'desktop' : w >= 768 ? 'tablet' : 'mobile');
@@ -80,7 +96,7 @@ export default function HeroEditorialSection({
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
-  }, []);
+  }, [forceBp]);
 
   // Helper: get inline style for a field at current breakpoint
   const fieldStyle = (fieldName) => {
@@ -136,12 +152,17 @@ export default function HeroEditorialSection({
       alt={posterAlt || headline || "Reel Audiovisual"}
       title={headline}
       description={bodyText}
+      forceBp={forceBp}
+      backgroundType={backgroundType}
+      backgroundColor={backgroundColor}
+      backgroundGradient={backgroundGradient}
     >
       <div className="flex flex-col items-start gap-6 w-full max-w-full md:max-w-3xl">
         
         {/* Pill Tag */}
         {pillText && (
           <div
+            data-field="pillText"
             className="px-3 py-1 rounded-full border border-accent/30 text-accent text-[10px] tracking-[0.2em] uppercase mb-2 bg-accent/5"
             style={fieldStyle('pillText')}
           >
@@ -152,9 +173,9 @@ export default function HeroEditorialSection({
         {/* Headline */}
         {(headline || headlineKeyword) && (
           <h2 className="font-display font-bold leading-[0.95] text-ink max-w-full">
-            <span style={fieldStyle('headline')}>{headline}</span>
+            <span data-field="headline" style={fieldStyle('headline')}>{headline}</span>
             {headlineKeyword && (
-              <span className="text-accent block md:inline" style={fieldStyle('headlineKeyword')}>
+              <span data-field="headlineKeyword" className="text-accent block md:inline" style={fieldStyle('headlineKeyword')}>
                 {' '}{headlineKeyword}
               </span>
             )}
@@ -164,6 +185,7 @@ export default function HeroEditorialSection({
         {/* Body Text */}
         {bodyText && (
           <p
+            data-field="bodyText"
             className="font-body leading-relaxed text-ink/80 max-w-2xl mt-4"
             style={fieldStyle('bodyText')}
           >
@@ -175,6 +197,7 @@ export default function HeroEditorialSection({
         {tagline && (
           <div className="border-l-4 border-accent pl-4 py-1 mt-2">
             <p
+              data-field="tagline"
               className="font-body font-medium text-ink"
               style={fieldStyle('tagline')}
             >
@@ -224,4 +247,3 @@ export default function HeroEditorialSection({
     </HeroVideo>
   );
 }
-
