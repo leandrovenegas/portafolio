@@ -21,15 +21,34 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
   };
 
   const updateStyle = (prop, value) => {
+    let updatedField = {
+      ...(styles?.[fieldKey] || {})
+    };
+
+    if (prop === 'color') {
+      // If color is updated, propagate to all breakpoints
+      BREAKPOINTS.forEach(bp => {
+        const bpStyle = updatedField[bp.key] || {
+          fontSize: 16, color: '#ffffff', fontWeight: '400', fontStyle: 'normal',
+          textTransform: 'none', letterSpacing: 0, lineHeight: 1.5,
+          paddingTop: 0, paddingBottom: 0, textAlign: 'left', textDecoration: 'none'
+        };
+        updatedField[bp.key] = {
+          ...bpStyle,
+          color: value
+        };
+      });
+    } else {
+      // For other properties, update only the active breakpoint
+      updatedField[resolvedActiveBp] = {
+        ...currentStyle,
+        [prop]: value,
+      };
+    }
+
     const updated = {
       ...(styles || {}),
-      [fieldKey]: {
-        ...(styles?.[fieldKey] || {}),
-        [resolvedActiveBp]: {
-          ...currentStyle,
-          [prop]: value,
-        }
-      }
+      [fieldKey]: updatedField
     };
     onStylesChange(updated);
   };
