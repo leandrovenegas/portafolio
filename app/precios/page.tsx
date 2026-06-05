@@ -13,28 +13,17 @@ interface Product {
   price_clp: number;
   price_usd: number;
   active: boolean;
-  sort_order: number;
+  category: string;
 }
 
 const WA_NUMBER = '56988804299';
 
-function calcIVA(net: number) {
-  const iva = Math.round(net * 0.19);
-  const total = net + iva;
-  return { iva, total };
-}
-
 function formatCLP(n: number) {
-  return new Intl.NumberFormat('es-CL', {
-    style: 'currency',
-    currency: 'CLP',
-    maximumFractionDigits: 0,
-  }).format(n);
+  return `$${n.toLocaleString('es-CL').replace(/\s/g, '')}`;
 }
 
 function waUrl(product: Product) {
-  const { total } = calcIVA(product.price_clp);
-  const msg = `Hola Leandro, me interesa: ${product.name} — ${formatCLP(total)}`;
+  const msg = `Hola Leandro, me interesa: ${product.name} — ${formatCLP(product.price_clp)}`;
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
@@ -48,7 +37,7 @@ async function getProducts(): Promise<Product[]> {
     .from('products')
     .select('*')
     .eq('active', true)
-    .order('created_at', { ascending: true });
+    .order('price_clp', { ascending: true });
 
   if (error) {
     console.error('[precios] Supabase error:', error.message);
@@ -73,76 +62,70 @@ function WhatsAppIcon() {
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
-  const { iva, total } = calcIVA(product.price_clp);
-
+function PricingTierCard({ product, tier }: { product: Product; tier: number }) {
   return (
-    <article className="flex flex-col bg-[#0f0f0f] border border-[#1c1c1c] rounded-2xl p-7 gap-5 hover:border-[#2c2c2c] transition-colors duration-200">
-      {/* Nombre */}
-      <h2 className="font-display text-display-sm uppercase text-ink leading-tight tracking-wide">
-        {product.name}
-      </h2>
+    <article
+      className={`flex flex-col h-full rounded-2xl p-7 gap-5 transition-all duration-300 ${
+        tier === 2
+          ? 'bg-[#131313] border-2 border-accent shadow-[0_0_24px_rgba(200,241,53,0.1)] scale-[1.02] md:scale-[1.03]'
+          : 'bg-[#0f0f0f] border border-border hover:border-border2'
+      }`}
+    >
+      {/* Header: Badge y Nombre */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between min-h-[24px]">
+          {tier === 2 ? (
+            <span className="bg-accent text-bg text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider animate-pulse">
+              Más popular
+            </span>
+          ) : tier === 3 ? (
+            <span className="bg-s3 text-ink text-[10px] font-mono px-2.5 py-0.5 rounded-full uppercase tracking-wider border border-border2">
+              Escala
+            </span>
+          ) : (
+            <span className="text-muted font-mono text-body-xs uppercase tracking-widest">
+              Básico
+            </span>
+          )}
+        </div>
+        <h2 className="font-display text-display-sm uppercase text-ink leading-tight tracking-wide">
+          {product.name}
+        </h2>
+      </div>
+
+      {/* Precio */}
+      <div className="flex flex-col">
+        <div className="flex items-baseline gap-1">
+          <span className="font-display text-display-md text-ink">
+            {formatCLP(product.price_clp)}
+          </span>
+          <span className="font-mono text-body-xs text-muted uppercase tracking-widest ml-1">
+            CLP
+          </span>
+        </div>
+        <span className="font-mono text-body-xs text-muted">
+          Referencia: USD {product.price_usd}
+        </span>
+      </div>
+
+      {/* Separador */}
+      <div className="h-px bg-[#1a1a1a]" />
 
       {/* Descripción */}
       <p className="font-prose text-body text-mid leading-relaxed flex-1">
         {product.description}
       </p>
 
-      {/* Separador */}
-      <div className="h-px bg-[#1a1a1a]" />
-
-      {/* Precios */}
-      <div className="flex flex-col gap-2">
-        {/* Neto */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-muted uppercase tracking-widest">
-            Neto
-          </span>
-          <span className="font-mono text-body text-mid">
-            {formatCLP(product.price_clp)}
-          </span>
-        </div>
-
-        {/* IVA */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-muted uppercase tracking-widest">
-            IVA 19%
-          </span>
-          <span className="font-mono text-body text-mid">
-            {formatCLP(iva)}
-          </span>
-        </div>
-
-        {/* Separador fino */}
-        <div className="h-px bg-[#1a1a1a] my-1" />
-
-        {/* Total */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-accent uppercase tracking-widest">
-            Total CLP
-          </span>
-          <span className="font-display text-display-sm text-ink">
-            {formatCLP(total)}
-          </span>
-        </div>
-
-        {/* USD */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-muted uppercase tracking-widest">
-            Ref. USD
-          </span>
-          <span className="font-mono text-body text-mid">
-            USD {product.price_usd}
-          </span>
-        </div>
-      </div>
-
-      {/* CTA WhatsApp */}
+      {/* Botón WhatsApp */}
       <a
         href={waUrl(product)}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-auto flex items-center justify-center gap-2.5 bg-accent text-bg font-display text-display-sm uppercase tracking-wider px-5 py-3.5 rounded-xl hover:bg-accent2 transition-colors duration-200"
+        className={`w-full flex items-center justify-center gap-2.5 font-display text-display-sm uppercase tracking-wider px-5 py-3.5 rounded-xl transition-all duration-200 ${
+          tier === 2
+            ? 'bg-accent text-bg hover:bg-accent2 shadow-[0_4px_12px_rgba(200,241,53,0.2)] cursor-pointer'
+            : 'bg-[#101010] border border-[#2c2c2c] text-ink hover:bg-[#161616] hover:border-accent/40 cursor-pointer'
+        }`}
       >
         <WhatsAppIcon />
         Me interesa
@@ -176,6 +159,13 @@ function EmptyState() {
 export default async function PreciosPage() {
   const products = await getProducts();
 
+  const tier1 = products.find((p) => p.category === 'resenas');
+  const tier2 = products.find((p) => p.category === 'sistema');
+  const tier3 = products.find((p) => p.category === 'sistema_crm');
+  const individual = products.find((p) => p.category === 'individual');
+
+  const hasTiers = tier1 || tier2 || tier3;
+
   return (
     <main className="min-h-screen bg-bg text-ink">
       {/* ─── Header ───────────────────────────────────────────────── */}
@@ -200,16 +190,36 @@ export default async function PreciosPage() {
 
       {/* ─── Grid de productos ────────────────────────────────────── */}
       <section className="max-w-5xl mx-auto px-6 pb-24">
-        {products.length === 0 ? (
+        {!hasTiers && !individual ? (
           <div className="grid">
             <EmptyState />
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+              {tier1 && <PricingTierCard product={tier1} tier={1} />}
+              {tier2 && <PricingTierCard product={tier2} tier={2} />}
+              {tier3 && <PricingTierCard product={tier3} tier={3} />}
+            </div>
+
+            {individual && (
+              <div className="mt-12 flex justify-center">
+                <a
+                  href={waUrl(individual)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#101010] border border-[#1f1f1f] hover:border-accent/50 hover:bg-[#161616] transition-all duration-300 group"
+                >
+                  <span className="font-prose text-body text-[#7a7a72]">
+                    ¿Solo necesitas un video? <strong className="text-[#eeebe3]">desde {formatCLP(individual.price_clp)}</strong>
+                  </span>
+                  <span className="text-accent group-hover:translate-x-1 transition-transform duration-200">
+                    →
+                  </span>
+                </a>
+              </div>
+            )}
+          </>
         )}
       </section>
 

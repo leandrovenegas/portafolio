@@ -1,3 +1,5 @@
+'use client';
+
 import { COMPONENT_REGISTRY } from './registry';
 
 export default function PageRenderer({ components, forceBp = null, onSelectComponent = null, selectedId = null }) {
