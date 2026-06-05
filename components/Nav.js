@@ -100,7 +100,7 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
                 Leandro Venegas
               </span>
               <span className="text-[9px] text-mid uppercase tracking-[0.25em] leading-none mt-1.5 group-hover:text-ink transition-colors duration-300">
-                Comunicador Audiovisual
+                Video Marketing Partner
               </span>
             </Link>
           </div>

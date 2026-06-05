@@ -36,7 +36,8 @@ export default function AvatarTextSection({
   description, 
   showAccentBar = true, 
   _styles, 
-  forceBp = null 
+  forceBp = null,
+  elementOrder
 }) {
   const [bp, setBp] = useState(forceBp || 'mobile');
 
@@ -74,48 +75,58 @@ export default function AvatarTextSection({
   };
 
   const bodyText = description !== undefined ? description : (paragraphs ? paragraphs.join('\n\n') : '');
+  const order = elementOrder || ['title', 'avatar', 'description'];
 
   return (
     <section className="w-full flex flex-col gap-6">
-      {title && (
-        <div className={showAccentBar ? "border-l-[5px] border-accent pl-5" : ""}>
-          <h2 
-            data-field="title"
-            className="font-display font-bold leading-[1.1] text-white max-w-3xl whitespace-pre-line"
-            style={fieldStyle('title')}
-          >
-            {title}
-          </h2>
-        </div>
-      )}
-      {avatarSrc && (
-        <div className="flex justify-center my-8">
-          <div className="relative w-48 h-48 rounded-full overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(255,204,0,0.15)] transition-all duration-300 hover:scale-105">
-            <img
-              src={avatarSrc}
-              alt={avatarAlt || 'Avatar'}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      )}
-      {bodyText && (
-        <div className="w-full max-w-3xl">
-          {bodyText.split('\n').map((p, i) => {
-            if (!p.trim()) return <br key={i} />;
-            return (
-              <p 
-                data-field="description"
-                key={i} 
-                className="font-body text-white/80 text-lg md:text-xl leading-relaxed mb-6 last:mb-0"
-                style={fieldStyle('description')}
+      {order.map((key) => {
+        if (key === 'title') {
+          return title && (
+            <div key="title" className={showAccentBar ? "border-l-[5px] border-accent pl-5" : ""}>
+              <h2 
+                data-field="title"
+                className="font-display font-bold leading-[1.1] text-white max-w-3xl whitespace-pre-line"
+                style={fieldStyle('title')}
               >
-                {renderText(p)}
-              </p>
-            );
-          })}
-        </div>
-      )}
+                {title}
+              </h2>
+            </div>
+          );
+        }
+        if (key === 'avatar') {
+          return avatarSrc && (
+            <div key="avatar" className="flex justify-center my-8">
+              <div className="relative w-48 h-48 rounded-full overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(255,204,0,0.15)] transition-all duration-300 hover:scale-105">
+                <img
+                  src={avatarSrc}
+                  alt={avatarAlt || 'Avatar'}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          );
+        }
+        if (key === 'description') {
+          return bodyText && (
+            <div key="description" className="w-full max-w-3xl">
+              {bodyText.split('\n').map((p, i) => {
+                if (!p.trim()) return <br key={i} />;
+                return (
+                  <p 
+                    data-field="description"
+                    key={i} 
+                    className="font-body text-white/80 text-lg md:text-xl leading-relaxed mb-6 last:mb-0"
+                    style={fieldStyle('description')}
+                  >
+                    {renderText(p)}
+                  </p>
+                );
+              })}
+            </div>
+          );
+        }
+        return null;
+      })}
     </section>
   );
 }

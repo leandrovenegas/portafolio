@@ -221,6 +221,41 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
   const { props, type } = comp;
   const [videoDeviceMode, setVideoDeviceMode] = useState('mobile'); // mobile | tablet | desktop
 
+  const [draggedItem, setDraggedItem] = useState(null);
+  const [dragOverItem, setDragOverItem] = useState(null);
+
+  const handleElementDragStart = (e, key) => {
+    setDraggedItem(key);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleElementDragOver = (e, key) => {
+    e.preventDefault();
+    if (key !== draggedItem) {
+      setDragOverItem(key);
+    }
+  };
+
+  const handleElementDrop = (e, targetKey) => {
+    e.preventDefault();
+    if (draggedItem === null || draggedItem === targetKey) {
+      setDraggedItem(null);
+      setDragOverItem(null);
+      return;
+    }
+    const currentOrder = [...(props.elementOrder || ['title', 'avatar', 'description'])];
+    const fromIndex = currentOrder.indexOf(draggedItem);
+    const toIndex = currentOrder.indexOf(targetKey);
+    
+    if (fromIndex !== -1 && toIndex !== -1) {
+      currentOrder.splice(fromIndex, 1);
+      currentOrder.splice(toIndex, 0, draggedItem);
+      updateProp(comp.id, 'elementOrder', currentOrder);
+    }
+    setDraggedItem(null);
+    setDragOverItem(null);
+  };
+
   const handleStylesChange = (newStyles) => {
     updateProp(comp.id, '_styles', newStyles);
   };
@@ -820,6 +855,42 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
           </button>
         </div>
         <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <SectionLabel>Orden de los Elementos</SectionLabel>
+          <div className="flex flex-col gap-1.5 p-1.5 bg-s1 rounded-xl border border-border">
+            {(props.elementOrder || ['title', 'avatar', 'description']).map((key, idx) => {
+              const label = key === 'title' ? 'Título de Sección' : key === 'avatar' ? 'Foto de Avatar / Perfil' : 'Descripción (Párrafos)';
+              return (
+                <div
+                  key={key}
+                  draggable
+                  onDragStart={(e) => handleElementDragStart(e, key)}
+                  onDragOver={(e) => handleElementDragOver(e, key)}
+                  onDrop={(e) => handleElementDrop(e, key)}
+                  className={`relative flex items-center gap-2 p-2 border rounded-lg cursor-grab active:cursor-grabbing select-none transition-all
+                    ${draggedItem === key ? 'opacity-40 bg-s2 border-dashed' : 'border-border bg-bg hover:border-accent/30'}
+                  `}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-muted/50 flex-shrink-0"
+                  >
+                    <circle cx="8" cy="6" r="1.5"/>
+                    <circle cx="16" cy="6" r="1.5"/>
+                    <circle cx="8" cy="12" r="1.5"/>
+                    <circle cx="16" cy="12" r="1.5"/>
+                    <circle cx="8" cy="18" r="1.5"/>
+                    <circle cx="16" cy="18" r="1.5"/>
+                  </svg>
+                  <span className="text-[11px] font-semibold text-ink">{label}</span>
+                </div>
+              );
+            })}
+          </div>
+
           <SectionLabel>Contenido</SectionLabel>
           <TextField
             fieldKey="title"
