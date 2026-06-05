@@ -881,6 +881,253 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
     );
   }
 
+  // ── LogosSection layout ──
+  if (type === 'LogosSection') {
+    const logos = props.logos || [];
+
+    const updateLogoItem = (index, field, value) => {
+      const newList = [...logos];
+      newList[index] = { ...newList[index], [field]: value };
+      updateProp(comp.id, 'logos', newList);
+    };
+
+    const addLogoItem = () => {
+      const newList = [...logos, { id: Date.now().toString(), src: '', alt: '', link: '' }];
+      updateProp(comp.id, 'logos', newList);
+    };
+
+    const removeLogoItem = (index) => {
+      const newList = logos.filter((_, i) => i !== index);
+      updateProp(comp.id, 'logos', newList);
+    };
+
+    const moveLogo = (index, direction) => {
+      if (direction === 'up' && index === 0) return;
+      if (direction === 'down' && index === logos.length - 1) return;
+      const targetIndex = direction === 'up' ? index - 1 : index + 1;
+      const newList = [...logos];
+      const temp = newList[index];
+      newList[index] = newList[targetIndex];
+      newList[targetIndex] = temp;
+      updateProp(comp.id, 'logos', newList);
+    };
+
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Logos de Empresas — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <SectionLabel>Contenido General</SectionLabel>
+          <TextField
+            fieldKey="title"
+            label="Título de la sección"
+            long={false}
+            value={props.title || ''}
+            onChange={val => updateProp(comp.id, 'title', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
+          />
+          <TextField
+            fieldKey="subtitle"
+            label="Subtítulo / Descripción"
+            long={true}
+            value={props.subtitle || ''}
+            onChange={val => updateProp(comp.id, 'subtitle', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
+          />
+
+          <SectionLabel>Ajustes de Diseño</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg p-3 flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
+              <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Modo de Visualización</label>
+              <select
+                value={props.layout || 'marquee'}
+                onChange={e => updateProp(comp.id, 'layout', e.target.value)}
+                className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink focus:ring-1 focus:ring-accent outline-none"
+              >
+                <option value="marquee">Carrusel Infinito (Marquee)</option>
+                <option value="grid">Grilla Estática Centrada</option>
+              </select>
+            </div>
+
+            {props.layout === 'marquee' && (
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider font-medium">Velocidad del Carrusel</label>
+                <select
+                  value={props.speed || 'medium'}
+                  onChange={e => updateProp(comp.id, 'speed', e.target.value)}
+                  className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink focus:ring-1 focus:ring-accent outline-none"
+                >
+                  <option value="slow">Lento</option>
+                  <option value="medium">Medio</option>
+                  <option value="fast">Rápido</option>
+                </select>
+              </div>
+            )}
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[10px] font-bold text-muted uppercase tracking-wider font-medium">Tema Visual de Logos</label>
+              <select
+                value={props.logoTheme || 'grayscale-dark'}
+                onChange={e => updateProp(comp.id, 'logoTheme', e.target.value)}
+                className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink focus:ring-1 focus:ring-accent outline-none"
+              >
+                <option value="grayscale-dark">Blanco Semitransparente (Hover: Blanco Sólido)</option>
+                <option value="grayscale-light">Negro Semitransparente (Hover: Negro Sólido)</option>
+                <option value="color">Escala de Grises (Hover: Color Original)</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[10px] font-bold text-muted uppercase tracking-wider font-medium">Color de Fondo del Bloque</label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="color"
+                  value={props.backgroundColor || '#000000'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="w-8 h-8 rounded cursor-pointer border-0 p-0"
+                />
+                <input
+                  type="text"
+                  value={props.backgroundColor || '#000000'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="flex-1 p-2 border border-border rounded-lg text-xs bg-s1 focus:ring-1 focus:ring-accent outline-none uppercase font-mono"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[10px] font-bold text-muted uppercase tracking-wider font-medium">Altura Máxima Logo (px)</label>
+              <input
+                type="number"
+                min="10"
+                max="100"
+                value={props.logoHeight || 35}
+                onChange={e => updateProp(comp.id, 'logoHeight', parseInt(e.target.value) || 35)}
+                className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:ring-1 focus:ring-accent outline-none"
+              />
+            </div>
+          </div>
+
+          <SectionLabel>Listado de Logos ({logos.length})</SectionLabel>
+          <div className="flex flex-col gap-3">
+            {logos.map((logo, index) => (
+              <div key={logo.id || index} className="rounded-xl border border-border bg-s1 p-3 flex flex-col gap-2 relative">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[9px] font-mono font-bold text-muted uppercase">Logo #{index + 1}</span>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => moveLogo(index, 'up')}
+                      disabled={index === 0}
+                      className="p-1 text-muted hover:text-ink disabled:opacity-30 transition-colors text-xs"
+                      title="Subir"
+                    >
+                      ▲
+                    </button>
+                    <button
+                      onClick={() => moveLogo(index, 'down')}
+                      disabled={index === logos.length - 1}
+                      className="p-1 text-muted hover:text-ink disabled:opacity-30 transition-colors text-xs"
+                      title="Bajar"
+                    >
+                      ▼
+                    </button>
+                    <button
+                      onClick={() => removeLogoItem(index)}
+                      className="p-1 text-red-500 hover:text-red-400 transition-colors ml-1 text-xs"
+                      title="Eliminar"
+                    >
+                      🗑
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[8px] font-bold text-muted uppercase mb-1">URL de Imagen (Cloudinary / CDN)</label>
+                  <input
+                    type="text"
+                    placeholder="https://res.cloudinary.com/... o /images/..."
+                    value={logo.src || ''}
+                    onChange={e => updateLogoItem(index, 'src', e.target.value)}
+                    className="w-full p-2 border border-border rounded-lg text-[11px] bg-bg focus:ring-1 focus:ring-accent outline-none font-mono"
+                  />
+                </div>
+
+                {logo.src && (
+                  <div className="flex justify-center p-2 rounded-lg bg-bg border border-border max-h-16 overflow-hidden">
+                    <img
+                      src={logo.src}
+                      alt="preview"
+                      className="object-contain h-8 opacity-75 grayscale invert"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-[8px] font-bold text-muted uppercase mb-1">Nombre Alt (SEO)</label>
+                    <input
+                      type="text"
+                      placeholder="Ej: Vercel"
+                      value={logo.alt || ''}
+                      onChange={e => updateLogoItem(index, 'alt', e.target.value)}
+                      className="w-full p-2 border border-border rounded-lg text-[11px] bg-bg focus:ring-1 focus:ring-accent outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[8px] font-bold text-muted uppercase mb-1">Enlace Web (Opcional)</label>
+                    <input
+                      type="text"
+                      placeholder="https://..."
+                      value={logo.link || ''}
+                      onChange={e => updateLogoItem(index, 'link', e.target.value)}
+                      className="w-full p-2 border border-border rounded-lg text-[11px] bg-bg focus:ring-1 focus:ring-accent outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <button
+              onClick={addLogoItem}
+              className="w-full flex items-center justify-center gap-2 py-2 rounded-lg border border-dashed border-accent/40 text-accent text-xs font-semibold hover:bg-accent/5 transition-colors mt-2"
+            >
+              + Agregar Logo
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // ── TextSection layout ──
   if (type === 'TextSection') {
     return (

@@ -968,7 +968,7 @@ function VisualEditorContent() {
             {/* Device Switcher */}
             <div className="flex items-center gap-0.5 bg-s2 p-0.5 rounded-lg border border-border">
               {[
-                { id: 'mobile', label: '📱', title: 'Vista Móvil (412px)' },
+                { id: 'mobile', label: '📱', title: 'Vista Móvil (390 x 844px)' },
                 { id: 'tablet', label: '💻', title: 'Vista Tablet (768px)' },
                 { id: 'desktop', label: '🖥', title: 'Vista Escritorio (100%)' }
               ].map(dev => (
@@ -1004,8 +1004,8 @@ function VisualEditorContent() {
                 }
               }}
               style={{
-                width: previewBp === 'mobile' ? '412px' : previewBp === 'tablet' ? '768px' : '100%',
-                height: previewBp === 'mobile' ? '914px' : previewBp === 'tablet' ? '1024px' : '100%',
+                width: previewBp === 'mobile' ? '390px' : previewBp === 'tablet' ? '768px' : '100%',
+                height: previewBp === 'mobile' ? '844px' : previewBp === 'tablet' ? '1024px' : '100%',
                 maxWidth: '100%',
                 transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}

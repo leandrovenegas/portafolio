@@ -127,7 +127,7 @@ export default function HeroVideo({
 
   const getHeroHeight = () => {
     if (forceBp) {
-      if (forceBp === 'mobile') return '914px';
+      if (forceBp === 'mobile') return '844px';
       if (forceBp === 'tablet') return '1024px';
     }
     return '100vh';
@@ -135,7 +135,7 @@ export default function HeroVideo({
 
   const getHeroMinHeight = () => {
     if (forceBp) {
-      if (forceBp === 'mobile') return '914px';
+      if (forceBp === 'mobile') return '844px';
       if (forceBp === 'tablet') return '1024px';
     }
     return '600px';

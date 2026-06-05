@@ -8,6 +8,7 @@ import SimpleCenteredCTA from './sections/SimpleCenteredCTA';
 import CTAWhatsapp from './sections/CTAWhatsapp';
 import EstrelasSection from './sections/EstrelasSection';
 import AvatarTextSection from './sections/AvatarTextSection';
+import LogosSection from './sections/LogosSection';
 
 
 export const COMPONENT_REGISTRY = {
@@ -20,7 +21,8 @@ export const COMPONENT_REGISTRY = {
   SimpleCenteredCTA,
   CTAWhatsapp,
   EstrelasSection,
-  AvatarTextSection
+  AvatarTextSection,
+  LogosSection
 };
 
 export const COMPONENT_DEFINITIONS = [
@@ -177,6 +179,26 @@ export const COMPONENT_DEFINITIONS = [
           desktop: { fontSize: 20, color: '#a3a3a3', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' }
         }
       }
+    }
+  },
+  {
+    type: 'LogosSection',
+    name: 'Logos de Empresas',
+    defaultProps: {
+      title: 'Empresas con las que he trabajado',
+      subtitle: 'Colaboraciones y proyectos con marcas líderes',
+      layout: 'marquee',
+      logoTheme: 'grayscale-dark',
+      logoHeight: 35,
+      speed: 'medium',
+      backgroundColor: '#000000',
+      logos: [
+        { id: '1', src: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', alt: 'Amazon', link: '' },
+        { id: '2', src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', alt: 'Google', link: '' },
+        { id: '3', src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg', alt: 'Netflix', link: '' },
+        { id: '4', src: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg', alt: 'Apple', link: '' },
+        { id: '5', src: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg', alt: 'Microsoft', link: '' }
+      ]
     }
   }
 ];
