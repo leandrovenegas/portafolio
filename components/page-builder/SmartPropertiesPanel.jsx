@@ -25,7 +25,7 @@ import TypographyPanel from './TypographyPanel';
 
 // ─── Text Field with optional Typography ───────────────────────────────────
 
-function TextField({ fieldKey, label, long, value, onChange, styles, onStylesChange, hasTypography, onFocusField }) {
+function TextField({ fieldKey, label, long, value, onChange, styles, onStylesChange, hasTypography, onFocusField, activeBp, onActiveBpChange }) {
   const [showTypo, setShowTypo] = useState(false);
 
   return (
@@ -72,6 +72,8 @@ function TextField({ fieldKey, label, long, value, onChange, styles, onStylesCha
             fieldKey={fieldKey}
             styles={styles}
             onStylesChange={onStylesChange}
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
         </div>
       )}
@@ -215,7 +217,7 @@ function SectionLabel({ children }) {
 
 // ─── Main Panel ───────────────────────────────────────────────────────────
 
-export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField }) {
+export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField, activeBp, onActiveBpChange }) {
   const { props, type } = comp;
   const [videoDeviceMode, setVideoDeviceMode] = useState('mobile'); // mobile | tablet | desktop
 
@@ -306,6 +308,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
               onStylesChange={handleStylesChange}
               onFocusField={onFocusField}
               hasTypography
+              activeBp={activeBp}
+              onActiveBpChange={onActiveBpChange}
             />
           ))}
 
@@ -486,6 +490,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
             hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
           <TextField
             fieldKey="description"
@@ -497,6 +503,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
             hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
 
           <SectionLabel>Botones</SectionLabel>
@@ -597,6 +605,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             value={props.title || ''}
             onChange={val => updateProp(comp.id, 'title', val)}
             onFocusField={onFocusField}
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
           <TextField
             fieldKey="description1"
@@ -605,6 +615,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             value={props.description1 || ''}
             onChange={val => updateProp(comp.id, 'description1', val)}
             onFocusField={onFocusField}
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
           <TextField
             fieldKey="description2"
@@ -613,6 +625,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             value={props.description2 || ''}
             onChange={val => updateProp(comp.id, 'description2', val)}
             onFocusField={onFocusField}
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
 
           {(props.backgroundType === 'video' || !props.backgroundType) && (
@@ -764,6 +778,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
             hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
           <TextField
             fieldKey="description"
@@ -775,6 +791,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
             hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
         </div>
       </div>
@@ -813,6 +831,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
             hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
           <TextField
             fieldKey="description"
@@ -827,6 +847,8 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
             hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
           />
         </div>
       </div>

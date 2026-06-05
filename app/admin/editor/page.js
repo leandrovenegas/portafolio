@@ -442,6 +442,8 @@ function VisualEditorContent() {
           selectedComponent={selectedComp}
           onApplyStyle={updateProp}
           focusedField={focusedField}
+          activeBp={previewBp}
+          onActiveBpChange={setPreviewBp}
         />
       )}
 
@@ -792,6 +794,8 @@ function VisualEditorContent() {
                 updateProp={updateProp}
                 onClose={() => setSelectedId(null)}
                 onFocusField={setFocusedField}
+                activeBp={previewBp}
+                onActiveBpChange={setPreviewBp}
               />
             </div>
           ) : (

@@ -8,10 +8,13 @@ const BREAKPOINTS = [
   { key: 'desktop', label: '🖥', title: 'Desktop' },
 ];
 
-export default function TypographyPanel({ fieldKey, styles, onStylesChange, embedded = false }) {
-  const [activeBp, setActiveBp] = useState('mobile');
+export default function TypographyPanel({ fieldKey, styles, onStylesChange, embedded = false, activeBp, onActiveBpChange }) {
+  const [localActiveBp, setLocalActiveBp] = useState('mobile');
 
-  const currentStyle = styles?.[fieldKey]?.[activeBp] || {
+  const resolvedActiveBp = activeBp !== undefined ? activeBp : localActiveBp;
+  const setActiveBp = onActiveBpChange !== undefined ? onActiveBpChange : setLocalActiveBp;
+
+  const currentStyle = styles?.[fieldKey]?.[resolvedActiveBp] || {
     fontSize: 16, color: '#ffffff', fontWeight: '400', fontStyle: 'normal',
     textTransform: 'none', letterSpacing: 0, lineHeight: 1.5,
     paddingTop: 0, paddingBottom: 0, textAlign: 'left', textDecoration: 'none'
@@ -22,7 +25,7 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
       ...(styles || {}),
       [fieldKey]: {
         ...(styles?.[fieldKey] || {}),
-        [activeBp]: {
+        [resolvedActiveBp]: {
           ...currentStyle,
           [prop]: value,
         }
@@ -49,7 +52,7 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
             onClick={() => setActiveBp(bp.key)}
             title={bp.title}
             className={`flex-1 py-1.5 text-[10px] uppercase font-bold transition-colors border-r border-[#404040] last:border-r-0 ${
-              activeBp === bp.key ? 'bg-[#2c2c2c] text-white' : 'text-[#888] hover:text-[#bbb] hover:bg-[#2a2a2a]'
+              resolvedActiveBp === bp.key ? 'bg-[#2c2c2c] text-white' : 'text-[#888] hover:text-[#bbb] hover:bg-[#2a2a2a]'
             }`}
           >
             {bp.label} {bp.key}
@@ -60,8 +63,8 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
       <div className="p-3 flex flex-col gap-4">
         
         {/* === CHARACTER PANEL SECTION === */}
-        <div className="flex flex-col gap-2">
-          {/* Section title (optional, like PS tabs) */}
+        <div className="flex flex-col gap-3">
+          {/* Section title */}
           <div className="text-[9px] font-bold uppercase tracking-widest text-[#666] mb-1">Character</div>
 
           {/* Row 1: Font Family & Font Weight */}
@@ -97,49 +100,90 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
             </div>
           </div>
 
-          {/* Row 2: Size & Leading (Line Height) */}
-          <div className="grid grid-cols-2 gap-2">
-            <div className="flex items-center border border-[#404040] rounded bg-[#333] px-2 py-1 focus-within:ring-1 focus-within:ring-accent">
-              {/* TT Icon */}
-              <svg className="w-3.5 h-3.5 text-[#888] mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          {/* Row 2: Font Size with Slider */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex justify-between items-center text-[10px]">
+              <span className="flex items-center gap-1 text-[#888] font-bold uppercase tracking-wider">
+                <svg className="w-3.5 h-3.5 text-[#888]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                Tamaño (px)
+              </span>
               <input
                 type="number"
                 value={currentStyle.fontSize ?? 16}
                 onChange={e => updateStyle('fontSize', Number(e.target.value))}
-                className="w-full bg-transparent text-[11px] text-white outline-none"
-                title="Font Size (px)"
-              />
-              <span className="text-[9px] text-[#666]">px</span>
-            </div>
-            
-            <div className="flex items-center border border-[#404040] rounded bg-[#333] px-2 py-1 focus-within:ring-1 focus-within:ring-accent">
-              {/* Leading Icon */}
-              <svg className="w-3.5 h-3.5 text-[#888] mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16"/><path d="m8 8 4-4 4 4"/><path d="m8 16 4 4 4-4"/></svg>
-              <input
-                type="number" step="0.1"
-                value={currentStyle.lineHeight ?? 1.5}
-                onChange={e => updateStyle('lineHeight', Number(e.target.value))}
-                className="w-full bg-transparent text-[11px] text-white outline-none"
-                title="Leading / Line Height"
+                className="w-16 bg-[#333] border border-[#404040] rounded text-[10px] text-white text-center py-0.5 outline-none font-mono"
               />
             </div>
+            <input
+              type="range"
+              min="8"
+              max="160"
+              step="1"
+              value={currentStyle.fontSize ?? 16}
+              onChange={e => updateStyle('fontSize', Number(e.target.value))}
+              style={{ accentColor: 'var(--color-accent, #FFCC00)' }}
+              className="w-full h-1 bg-[#444] rounded-lg appearance-none cursor-pointer"
+            />
           </div>
 
-          {/* Row 3: Tracking & Color */}
-          <div className="grid grid-cols-2 gap-2">
-            <div className="flex items-center border border-[#404040] rounded bg-[#333] px-2 py-1 focus-within:ring-1 focus-within:ring-accent">
-              {/* Tracking Icon VA */}
-              <svg className="w-3.5 h-3.5 text-[#888] mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h16"/><path d="m8 8-4 4 4 4"/><path d="m16 16 4-4-4-4"/></svg>
+          {/* Row 3: Line Height (Interlineado) with Slider supporting negative values */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex justify-between items-center text-[10px]">
+              <span className="flex items-center gap-1 text-[#888] font-bold uppercase tracking-wider">
+                <svg className="w-3.5 h-3.5 text-[#888]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16"/><path d="m8 8 4-4 4 4"/><path d="m8 16 4 4 4-4"/></svg>
+                Interlineado
+              </span>
               <input
-                type="number" step="0.01"
-                value={currentStyle.letterSpacing ?? 0}
-                onChange={e => updateStyle('letterSpacing', Number(e.target.value))}
-                className="w-full bg-transparent text-[11px] text-white outline-none"
-                title="Tracking / Letter Spacing (em)"
+                type="number"
+                step="0.05"
+                value={currentStyle.lineHeight ?? 1.5}
+                onChange={e => updateStyle('lineHeight', Number(e.target.value))}
+                className="w-16 bg-[#333] border border-[#404040] rounded text-[10px] text-white text-center py-0.5 outline-none font-mono"
               />
             </div>
-            
-            <div className="flex items-center gap-2 border border-[#404040] rounded bg-[#333] px-2 py-1">
+            <input
+              type="range"
+              min="-2"
+              max="3"
+              step="0.05"
+              value={currentStyle.lineHeight ?? 1.5}
+              onChange={e => updateStyle('lineHeight', Number(e.target.value))}
+              style={{ accentColor: 'var(--color-accent, #FFCC00)' }}
+              className="w-full h-1 bg-[#444] rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+
+          {/* Row 4: Tracking / Letter Spacing with Slider */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex justify-between items-center text-[10px]">
+              <span className="flex items-center gap-1 text-[#888] font-bold uppercase tracking-wider">
+                <svg className="w-3.5 h-3.5 text-[#888]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h16"/><path d="m8 8-4 4 4 4"/><path d="m16 16 4-4-4-4"/></svg>
+                Espaciado (em)
+              </span>
+              <input
+                type="number"
+                step="0.01"
+                value={currentStyle.letterSpacing ?? 0}
+                onChange={e => updateStyle('letterSpacing', Number(e.target.value))}
+                className="w-16 bg-[#333] border border-[#404040] rounded text-[10px] text-white text-center py-0.5 outline-none font-mono"
+              />
+            </div>
+            <input
+              type="range"
+              min="-0.2"
+              max="1"
+              step="0.01"
+              value={currentStyle.letterSpacing ?? 0}
+              onChange={e => updateStyle('letterSpacing', Number(e.target.value))}
+              style={{ accentColor: 'var(--color-accent, #FFCC00)' }}
+              className="w-full h-1 bg-[#444] rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+
+          {/* Row 5: Color Picker */}
+          <div className="flex gap-2 items-center">
+            <label className="text-[10px] text-[#888] font-bold uppercase tracking-wider">Color</label>
+            <div className="flex-1 flex items-center gap-2 border border-[#404040] rounded bg-[#333] px-2 py-1">
               <input
                 type="color"
                 value={currentStyle.color || '#ffffff'}
@@ -152,7 +196,7 @@ export default function TypographyPanel({ fieldKey, styles, onStylesChange, embe
                 value={currentStyle.color || ''}
                 onChange={e => updateStyle('color', e.target.value)}
                 placeholder="Auto"
-                className="w-full bg-transparent text-[11px] text-white outline-none"
+                className="w-full bg-transparent text-[11px] text-white outline-none font-mono"
               />
             </div>
           </div>

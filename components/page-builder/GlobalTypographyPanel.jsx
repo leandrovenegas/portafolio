@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDraggable } from './useDraggable';
 import TypographyPanel from './TypographyPanel';
 
-export default function GlobalTypographyPanel({ onClose, selectedComponent, onApplyStyle, focusedField }) {
+export default function GlobalTypographyPanel({ onClose, selectedComponent, onApplyStyle, focusedField, activeBp, onActiveBpChange }) {
   const { pos, dragProps } = useDraggable({ x: window.innerWidth - 300, y: 150 });
   const [selectedField, setSelectedField] = useState('');
 
@@ -87,6 +87,8 @@ export default function GlobalTypographyPanel({ onClose, selectedComponent, onAp
                   styles={selectedComponent.props._styles}
                   onStylesChange={(newStyles) => onApplyStyle(selectedComponent.id, '_styles', newStyles)}
                   embedded={true}
+                  activeBp={activeBp}
+                  onActiveBpChange={onActiveBpChange}
                 />
               </div>
             )}
