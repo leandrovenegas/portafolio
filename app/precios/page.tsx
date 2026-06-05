@@ -14,6 +14,7 @@ interface Product {
   price_usd: number;
   active: boolean;
   sort_order: number;
+  category: string;
 }
 
 const WA_NUMBER = '56988804299';
@@ -48,7 +49,7 @@ async function getProducts(): Promise<Product[]> {
     .from('products')
     .select('*')
     .eq('active', true)
-    .order('created_at', { ascending: true });
+    .order('price_clp', { ascending: true });
 
   if (error) {
     console.error('[precios] Supabase error:', error.message);
@@ -70,84 +71,6 @@ function WhatsAppIcon() {
     >
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
-  );
-}
-
-function ProductCard({ product }: { product: Product }) {
-  const { iva, total } = calcIVA(product.price_clp);
-
-  return (
-    <article className="flex flex-col bg-[#0f0f0f] border border-[#1c1c1c] rounded-2xl p-7 gap-5 hover:border-[#2c2c2c] transition-colors duration-200">
-      {/* Nombre */}
-      <h2 className="font-display text-display-sm uppercase text-ink leading-tight tracking-wide">
-        {product.name}
-      </h2>
-
-      {/* Descripción */}
-      <p className="font-prose text-body text-mid leading-relaxed flex-1">
-        {product.description}
-      </p>
-
-      {/* Separador */}
-      <div className="h-px bg-[#1a1a1a]" />
-
-      {/* Precios */}
-      <div className="flex flex-col gap-2">
-        {/* Neto */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-muted uppercase tracking-widest">
-            Neto
-          </span>
-          <span className="font-mono text-body text-mid">
-            {formatCLP(product.price_clp)}
-          </span>
-        </div>
-
-        {/* IVA */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-muted uppercase tracking-widest">
-            IVA 19%
-          </span>
-          <span className="font-mono text-body text-mid">
-            {formatCLP(iva)}
-          </span>
-        </div>
-
-        {/* Separador fino */}
-        <div className="h-px bg-[#1a1a1a] my-1" />
-
-        {/* Total */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-accent uppercase tracking-widest">
-            Total CLP
-          </span>
-          <span className="font-display text-display-sm text-ink">
-            {formatCLP(total)}
-          </span>
-        </div>
-
-        {/* USD */}
-        <div className="flex justify-between items-baseline">
-          <span className="font-mono text-body-xs text-muted uppercase tracking-widest">
-            Ref. USD
-          </span>
-          <span className="font-mono text-body text-mid">
-            USD {product.price_usd}
-          </span>
-        </div>
-      </div>
-
-      {/* CTA WhatsApp */}
-      <a
-        href={waUrl(product)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-auto flex items-center justify-center gap-2.5 bg-accent text-bg font-display text-display-sm uppercase tracking-wider px-5 py-3.5 rounded-xl hover:bg-accent2 transition-colors duration-200"
-      >
-        <WhatsAppIcon />
-        Me interesa
-      </a>
-    </article>
   );
 }
 
@@ -175,6 +98,8 @@ function EmptyState() {
 
 export default async function PreciosPage() {
   const products = await getProducts();
+  const tiers = products.filter((p) => p.category !== 'individual');
+  const individual = products.find((p) => p.category === 'individual');
 
   return (
     <main className="min-h-screen bg-bg text-ink">
@@ -201,14 +126,100 @@ export default async function PreciosPage() {
       {/* ─── Grid de productos ────────────────────────────────────── */}
       <section className="max-w-5xl mx-auto px-6 pb-24">
         {products.length === 0 ? (
-          <div className="grid">
-            <EmptyState />
-          </div>
+          <EmptyState />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="flex flex-col gap-12">
+            {/* Tiers Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+              {tiers.map((product) => {
+                const isPopular = product.category === 'sistema';
+                const isEscala = product.category === 'sistema_crm';
+
+                return (
+                  <article
+                    key={product.id}
+                    className={`relative flex flex-col bg-s1 border rounded-2xl p-8 gap-6 transition-all duration-300 hover:-translate-y-1 ${
+                      isPopular
+                        ? 'border-accent shadow-[0_0_30px_rgba(255,204,0,0.08)] md:-translate-y-2'
+                        : 'border-border hover:border-border2'
+                    }`}
+                  >
+                    {/* Badges */}
+                    {isPopular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-bg font-mono text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-[0.15em] whitespace-nowrap shadow-md">
+                        Más popular
+                      </div>
+                    )}
+                    {isEscala && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-s2 border border-border2 text-accent font-mono text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-[0.15em] whitespace-nowrap">
+                        Escala
+                      </div>
+                    )}
+
+                    {/* Nombre */}
+                    <div className="pt-2">
+                      <h2 className="font-display text-xl uppercase text-ink leading-tight tracking-wide">
+                        {product.name}
+                      </h2>
+                    </div>
+
+                    {/* Descripción */}
+                    <p className="font-body text-sm text-mid leading-relaxed flex-1">
+                      {product.description}
+                    </p>
+
+                    {/* Separador */}
+                    <div className="h-px bg-border/40" />
+
+                    {/* Precio */}
+                    <div className="flex flex-col gap-1">
+                      <span className="font-display text-3xl md:text-4xl text-ink leading-none">
+                        {formatCLP(product.price_clp)}
+                      </span>
+                      <span className="font-mono text-[10px] text-muted uppercase tracking-wider">
+                        + IVA / Pago Neto
+                      </span>
+                    </div>
+
+                    {/* CTA WhatsApp */}
+                    <a
+                      href={waUrl(product)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center justify-center gap-2.5 font-display text-xs uppercase tracking-wider px-5 py-4 rounded-xl transition-all duration-200 ${
+                        isPopular
+                          ? 'bg-accent text-bg font-bold hover:bg-accent2'
+                          : 'bg-[#121212] border border-border text-ink hover:bg-[#1a1a1a] hover:border-border2'
+                      }`}
+                    >
+                      <WhatsAppIcon />
+                      Me interesa
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+
+            {/* Individual Line */}
+            {individual && (
+              <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-center py-6 border-t border-border/20 max-w-2xl mx-auto w-full">
+                <span className="font-body text-mid text-sm">
+                  ¿Solo necesitas un video?{' '}
+                  <span className="text-ink font-bold">
+                    desde {formatCLP(individual.price_clp)}
+                  </span>
+                </span>
+                <a
+                  href={waUrl(individual)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-accent hover:text-accent2 transition-colors duration-200 font-mono text-[11px] uppercase tracking-wider border-b border-accent/30 hover:border-accent pb-0.5"
+                >
+                  <WhatsAppIcon />
+                  Cotizar individual
+                </a>
+              </div>
+            )}
           </div>
         )}
       </section>
