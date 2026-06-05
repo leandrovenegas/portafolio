@@ -1,10 +1,17 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import PageRenderer from './PageRenderer';
 
-export default function LivePreviewListener() {
+export default function LivePreviewListener({ initialComponents = [] }) {
   const router = useRouter();
+  const [components, setComponents] = useState(initialComponents);
+
+  // Sync state if initialComponents changes from server-side (e.g. page navigation)
+  useEffect(() => {
+    setComponents(initialComponents);
+  }, [initialComponents]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.BroadcastChannel) return;
@@ -12,8 +19,12 @@ export default function LivePreviewListener() {
     const bc = new BroadcastChannel('editor-updates');
     
     const handleMessage = (event) => {
-      if (event.data?.type === 'saved') {
-        // Refresh the page data seamlessly
+      if (event.data?.type === 'update' && event.data.components) {
+        setComponents(event.data.components);
+      } else if (event.data?.type === 'saved') {
+        if (event.data.components) {
+          setComponents(event.data.components);
+        }
         router.refresh();
       }
     };
@@ -26,5 +37,6 @@ export default function LivePreviewListener() {
     };
   }, [router]);
 
-  return null;
+  return <PageRenderer components={components} />;
 }
+

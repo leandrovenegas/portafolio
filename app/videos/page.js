@@ -4,7 +4,6 @@ import { readVideoConfig } from '@/lib/videoConfig';
 import { readPageConfig } from '@/lib/pageConfig';
 import MediaPreconnect from '@/components/MediaPreconnect';
 import HeroVideo from '@/components/HeroVideo';
-import PageRenderer from '@/components/page-builder/PageRenderer';
 import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
 import supabase from '@/lib/supabase';
 
@@ -67,7 +66,6 @@ export default async function VideosPage({ searchParams }) {
 
   return (
     <>
-      <LivePreviewListener />
       <MediaPreconnect bunny />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         {/* HERO DINÁMICO DE VIDEOS */}
@@ -93,7 +91,7 @@ export default async function VideosPage({ searchParams }) {
 
         {components && components.length > 0 && (
           <div className="w-full relative z-20 bg-bg">
-            <PageRenderer components={components} />
+            <LivePreviewListener initialComponents={components} />
           </div>
         )}
 

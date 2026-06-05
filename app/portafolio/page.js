@@ -4,7 +4,6 @@ import { readFile } from "fs/promises";
 import path from "path";
 import MediaPreconnect from "@/components/MediaPreconnect";
 import HeroVideo from "@/components/HeroVideo";
-import PageRenderer from '@/components/page-builder/PageRenderer';
 import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
 import HeroPortafolioTexto from "@/components/HeroPortafolioTexto";
 
@@ -69,13 +68,12 @@ export default async function Portafolio({ searchParams }) {
 
   return (
     <>
-      <LivePreviewListener />
       <MediaPreconnect bunny />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <HeroPortafolioTexto descriptionHtml={descripcionLocal} />
         {components && components.length > 0 && (
           <div className="w-full relative z-20 bg-bg">
-            <PageRenderer components={components} />
+            <LivePreviewListener initialComponents={components} />
           </div>
         )}
 

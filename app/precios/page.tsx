@@ -19,23 +19,12 @@ interface Product {
 
 const WA_NUMBER = '56988804299';
 
-function calcIVA(net: number) {
-  const iva = Math.round(net * 0.19);
-  const total = net + iva;
-  return { iva, total };
-}
-
 function formatCLP(n: number) {
-  return new Intl.NumberFormat('es-CL', {
-    style: 'currency',
-    currency: 'CLP',
-    maximumFractionDigits: 0,
-  }).format(n);
+  return `$${n.toLocaleString('es-CL').replace(/\s/g, '')}`;
 }
 
 function waUrl(product: Product) {
-  const { total } = calcIVA(product.price_clp);
-  const msg = `Hola Leandro, me interesa: ${product.name} — ${formatCLP(total)}`;
+  const msg = `Hola Leandro, me interesa: ${product.name} — ${formatCLP(product.price_clp)}`;
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 

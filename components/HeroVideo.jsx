@@ -13,15 +13,24 @@ export default function HeroVideo({
   alt = 'Reel Audiovisual',
   title = '',
   description = '',
-  children 
+  children,
+  forceBp = null,
+  backgroundType = 'video',
+  backgroundColor = '#121212',
+  backgroundGradient = 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)'
 }) {
   const [isMounted, setIsMounted] = useState(false);
-  const [device, setDevice] = useState('mobile'); // mobile | tablet | desktop
+  const [device, setDevice] = useState(forceBp || 'mobile'); // mobile | tablet | desktop
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
   useEffect(() => {
     setIsMounted(true);
+
+    if (forceBp) {
+      setDevice(forceBp);
+      return;
+    }
 
     const checkOrientation = () => {
       const w = window.innerWidth;
@@ -33,7 +42,7 @@ export default function HeroVideo({
     checkOrientation();
     window.addEventListener('resize', checkOrientation);
     return () => window.removeEventListener('resize', checkOrientation);
-  }, []);
+  }, [forceBp]);
 
   const activeGuid = 
     (device === 'mobile' ? mobileVideoGuid : 
@@ -41,7 +50,7 @@ export default function HeroVideo({
      desktopVideoGuid) || desktopVideoGuid || tabletVideoGuid || mobileVideoGuid;
 
   // Video Schema for SEO
-  const videoSchema = activeGuid ? {
+  const videoSchema = (activeGuid && backgroundType === 'video') ? {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": title || alt || "Video Portafolio",
@@ -54,7 +63,7 @@ export default function HeroVideo({
 
   // 1. Manejo de HLS (Carga y Configuración)
   useEffect(() => {
-    if (!isMounted || !activeGuid || !videoRef.current) return;
+    if (!isMounted || !activeGuid || !videoRef.current || backgroundType !== 'video') return;
 
     const video = videoRef.current;
     video.muted = true; 
@@ -78,11 +87,11 @@ export default function HeroVideo({
     return () => {
       if (hls) hls.destroy();
     };
-  }, [isMounted, activeGuid]);
+  }, [isMounted, activeGuid, backgroundType]);
 
   // 2. Optimización de Recursos (Smart Play/Pause al hacer scroll)
   useEffect(() => {
-    if (!isMounted || !videoRef.current || !containerRef.current) return;
+    if (!isMounted || !videoRef.current || !containerRef.current || backgroundType !== 'video') return;
 
     const video = videoRef.current;
     
@@ -99,12 +108,27 @@ export default function HeroVideo({
 
     observer.observe(containerRef.current);
     return () => observer.disconnect();
-  }, [isMounted]);
+  }, [isMounted, backgroundType]);
+
+  const getBackgroundStyle = () => {
+    if (backgroundType === 'solid') {
+      return backgroundColor || '#121212';
+    }
+    if (backgroundType === 'gradient') {
+      return backgroundGradient || 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)';
+    }
+    return 'var(--ps-bg-panel, #121212)';
+  };
+
+  const showVisualBackground = backgroundType === 'video';
 
   return (
     <section 
       ref={containerRef}
       className="relative w-full h-screen min-h-[600px] flex flex-col justify-center overflow-hidden"
+      style={{
+        background: getBackgroundStyle()
+      }}
     >
       {videoSchema && (
         <script
@@ -114,23 +138,25 @@ export default function HeroVideo({
       )}
       
       {/* 1. Prioridad Absoluta de Carga (Poster) */}
-      <div className="absolute inset-0 w-full h-full z-0 bg-bg">
-        <img 
-          src={
-            (posterSrc && posterSrc !== '/images/og-portafolio.jpg') 
-              ? posterSrc 
-              : activeGuid 
-                ? `https://${CDN_HOSTNAME}/${activeGuid}/thumbnail.jpg` 
-                : '/images/og-portafolio.jpg'
-          }
-          alt={alt}
-          className="w-full h-full object-cover opacity-60"
-          fetchPriority="high"
-        />
-      </div>
+      {showVisualBackground && (posterSrc || activeGuid) && (
+        <div className="absolute inset-0 w-full h-full z-0 bg-bg">
+          <img 
+            src={
+              posterSrc 
+                ? posterSrc 
+                : activeGuid 
+                  ? `https://${CDN_HOSTNAME}/${activeGuid}/thumbnail.jpg` 
+                  : ''
+            }
+            alt={alt}
+            className="w-full h-full object-cover opacity-60"
+            fetchPriority="high"
+          />
+        </div>
+      )}
 
       {/* 2. Video HLS Adaptive */}
-      {isMounted && activeGuid && (
+      {isMounted && activeGuid && showVisualBackground && (
         <video
           ref={videoRef}
           loop

@@ -49,6 +49,7 @@ function VisualEditorContent() {
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [editingNameId, setEditingNameId] = useState(null);
+  const [previewBp, setPreviewBp] = useState('desktop'); // mobile | tablet | desktop
 
   const handleDragStart = (e, index) => {
     setDraggedIndex(index);
@@ -145,6 +146,15 @@ function VisualEditorContent() {
       localStorage.setItem(`editor_backup_${slug}`, JSON.stringify(backup));
     }
   }, [components, slug, currentVersionId]);
+
+  // --- BROADCAST REAL-TIME UPDATES TO PREVIEW ---
+  useEffect(() => {
+    if (components.length > 0 && typeof window !== 'undefined' && window.BroadcastChannel) {
+      const bc = new BroadcastChannel('editor-updates');
+      bc.postMessage({ type: 'update', components });
+      bc.close();
+    }
+  }, [components]);
 
   const restoreLocalBackup = () => {
     const saved = localStorage.getItem(`editor_backup_${slug}`);
@@ -303,7 +313,7 @@ function VisualEditorContent() {
         // Broadcast update to any open preview tabs so they refresh without F5
         if (typeof window !== 'undefined' && window.BroadcastChannel) {
           const bc = new BroadcastChannel('editor-updates');
-          bc.postMessage({ type: 'saved' });
+          bc.postMessage({ type: 'saved', components });
           bc.close();
         }
       }
@@ -616,7 +626,7 @@ function VisualEditorContent() {
               fontSize: 'var(--font-size-sm)',
               outline: 'none'
             }}
-            className="focus:border-[var(--ps-border-focus)] transition-colors"
+            className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
             value={slug}
             onChange={(e) => {
               const url = new URL(window.location);
@@ -646,7 +656,7 @@ function VisualEditorContent() {
               outline: 'none',
               maxWidth: '140px'
             }}
-            className="focus:border-[var(--ps-border-focus)] transition-colors"
+            className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
             value={currentVersionId || ''}
             onChange={(e) => {
               if (e.target.value) {
@@ -679,7 +689,7 @@ function VisualEditorContent() {
               cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
               opacity: (saving || !currentVersionId) ? 0.5 : 1
             }}
-            className="hover:bg-[var(--ps-accent-hover)] transition-colors"
+            className="hover:bg-[var(--ps-accent-hover)] transition-colors font-semibold"
           >
             {saving ? 'Guardando...' : 'Guardar'}
           </button>
@@ -690,22 +700,22 @@ function VisualEditorContent() {
             rel="noopener noreferrer"
             style={{
               height: '24px',
-              padding: '0 var(--sp-sm)',
-              background: 'var(--ps-bg-toolbar)',
+              padding: '0 var(--sp-md)',
+              background: 'var(--ps-bg-panel)',
               border: 'var(--ps-border-width) solid var(--ps-border-light)',
               borderRadius: 'var(--ps-radius)',
               color: 'var(--ps-text)',
               fontSize: 'var(--font-size-sm)',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '6px',
               textDecoration: 'none'
             }}
-            className="hover:bg-[var(--ps-bg-hover)] transition-colors"
-            title="Ver Página en Vivo"
+            className="hover:bg-[var(--ps-bg-hover)] hover:text-white transition-colors font-medium"
+            title="Abrir Vista Previa Externa en tiempo real"
           >
-            <span>Live</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span>Vista Previa Externa ↗</span>
           </a>
 
           <button
@@ -763,7 +773,7 @@ function VisualEditorContent() {
             <button 
               onClick={() => saveVersion(true)}
               disabled={saving}
-              className="bg-accent text-bg px-3 py-1.5 rounded-md text-xs font-medium hover:opacity-90 transition-opacity"
+              className="bg-accent text-bg px-3 py-1.5 rounded-md text-xs font-semibold hover:opacity-90 transition-opacity"
             >
               Nueva Rama
             </button>
@@ -774,178 +784,173 @@ function VisualEditorContent() {
         {/* LEFT - Editor Tools */}
         <div className="lg:w-[400px] w-full flex-shrink-0 flex flex-col gap-6 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-2 scrollbar-thin">
           
-          {/* Structure Panel */}
-          <div className="bg-bg border border-border rounded-xl p-3 shadow-sm">
-            <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1">Estructura de la Página</h3>
-            <div className="flex flex-col gap-1">
-              {components.map((c, idx) => (
-                <div
-                  key={c.id}
-                  draggable={editingNameId !== c.id}
-                  onDragStart={(e) => handleDragStart(e, idx)}
-                  onDragOver={(e) => handleDragOver(e, idx)}
-                  onDrop={(e) => handleDrop(e, idx)}
-                  onDragEnd={handleDragEnd}
-                  className={`relative flex justify-between items-center p-2 border rounded-lg cursor-pointer transition-all select-none
-                    ${selectedId === c.id ? 'border-accent bg-accent/5 ring-1 ring-accent/20' : 'border-border hover:border-accent/30 hover:bg-s1'}
-                    ${draggedIndex === idx ? 'opacity-40 scale-[0.98]' : 'opacity-100'}
-                  `}
-                  onClick={() => setSelectedId(c.id)}
-                  onDoubleClick={(e) => {
-                    e.stopPropagation();
-                    setEditingNameId(c.id);
-                  }}
-                >
-                  {/* Drop indicator line - above */}
-                  {dragOverIndex === idx && draggedIndex !== idx && draggedIndex > idx && (
-                    <div className="absolute -top-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
-                  )}
-
-                  {/* Drag handle */}
-                  <div
-                    className="flex items-center gap-1.5 flex-1 min-w-0"
-                    title="Arrastrar para reordenar"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="text-muted/50 flex-shrink-0 cursor-grab active:cursor-grabbing"
-                    >
-                      <circle cx="8" cy="6" r="1.5"/>
-                      <circle cx="16" cy="6" r="1.5"/>
-                      <circle cx="8" cy="12" r="1.5"/>
-                      <circle cx="16" cy="12" r="1.5"/>
-                      <circle cx="8" cy="18" r="1.5"/>
-                      <circle cx="16" cy="18" r="1.5"/>
-                    </svg>
-                    {editingNameId === c.id ? (
-                      <input
-                        type="text"
-                        autoFocus
-                        defaultValue={c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
-                        onBlur={(e) => {
-                          const val = e.target.value.trim();
-                          if (val) {
-                            const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
-                            setComponents(updatedComps);
-                            saveComponentsSilently(updatedComps);
-                          }
-                          setEditingNameId(null);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            const val = e.currentTarget.value.trim();
-                            if (val) {
-                              const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
-                              setComponents(updatedComps);
-                              saveComponentsSilently(updatedComps);
-                            }
-                            setEditingNameId(null);
-                          } else if (e.key === 'Escape') {
-                            setEditingNameId(null);
-                          }
-                        }}
-                        className="font-medium text-xs text-ink bg-transparent border-b border-accent outline-none w-full"
-                        onClick={(e) => e.stopPropagation()}
-                      />
-                    ) : (
-                      <span 
-                        className="font-medium truncate text-xs text-ink cursor-text"
-                        onDoubleClick={(e) => {
-                          e.stopPropagation();
-                          setEditingNameId(c.id);
-                        }}
-                      >
-                        {c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Action buttons */}
-                  <div className="flex items-center gap-0.5 flex-shrink-0" onClick={e => e.stopPropagation()}>
-                    <button
-                      onClick={() => moveComponent(idx, 'up')}
-                      className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
-                      title="Mover arriba"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                    </button>
-                    <button
-                      onClick={() => moveComponent(idx, 'down')}
-                      className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
-                      title="Mover abajo"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    </button>
-                    <button
-                      onClick={() => cloneComponent(idx)}
-                      className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
-                      title="Duplicar componente"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    </button>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); handleCopyStyle(idx); }}
-                      className="p-1 hover:bg-border rounded text-muted hover:text-blue-500 transition-colors"
-                      title="Copiar Configuración"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                    </button>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); handlePasteStyle(idx); }}
-                      className="p-1 hover:bg-border rounded text-muted hover:text-green-500 transition-colors"
-                      title="Pegar Configuración"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line></svg>
-                    </button>
-                    <button
-                      onClick={() => removeComponent(idx)}
-                      className="p-1 hover:bg-red-50 text-muted hover:text-red-500 transition-colors rounded"
-                      title="Eliminar"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                    </button>
-                  </div>
-
-                  {/* Drop indicator line - below */}
-                  {dragOverIndex === idx && draggedIndex !== idx && draggedIndex < idx && (
-                    <div className="absolute -bottom-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="mt-3">
-              <select onChange={addComponent} className="w-full p-2 border border-border rounded-lg text-xs bg-s1 hover:bg-white transition-colors outline-none cursor-pointer font-medium" defaultValue="">
-                <option value="" disabled>+ Añadir bloque</option>
-                {COMPONENT_DEFINITIONS.map(d => (
-                  <option key={d.type} value={d.type}>{d.name}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* Properties Editor Panel */}
-          <div className="flex-1">
-            {selectedComp ? (
+          {selectedComp ? (
+            /* Properties Editor Panel (Focused Mode) */
+            <div className="flex-1">
               <SmartPropertiesPanel
                 comp={selectedComp}
                 updateProp={updateProp}
                 onClose={() => setSelectedId(null)}
                 onFocusField={setFocusedField}
               />
-            ) : (
-              <div className="bg-s1 border border-border rounded-xl p-8 flex flex-col items-center justify-center text-center text-muted">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-4 opacity-50"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-                <p className="text-xs">Selecciona un componente para editar sus propiedades.</p>
+            </div>
+          ) : (
+            /* Structure Panel (List view when nothing is selected) */
+            <div className="bg-bg border border-border rounded-xl p-3 shadow-sm">
+              <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1">Estructura de la Página</h3>
+              <div className="flex flex-col gap-1">
+                {components.map((c, idx) => (
+                  <div
+                    key={c.id}
+                    draggable={editingNameId !== c.id}
+                    onDragStart={(e) => handleDragStart(e, idx)}
+                    onDragOver={(e) => handleDragOver(e, idx)}
+                    onDrop={(e) => handleDrop(e, idx)}
+                    onDragEnd={handleDragEnd}
+                    className={`relative flex justify-between items-center p-2 border rounded-lg cursor-pointer transition-all select-none
+                      ${selectedId === c.id ? 'border-accent bg-accent/5 ring-1 ring-accent/20' : 'border-border hover:border-accent/30 hover:bg-s1'}
+                      ${draggedIndex === idx ? 'opacity-40 scale-[0.98]' : 'opacity-100'}
+                    `}
+                    onClick={() => setSelectedId(c.id)}
+                    onDoubleClick={(e) => {
+                      e.stopPropagation();
+                      setEditingNameId(c.id);
+                    }}
+                  >
+                    {/* Drop indicator line - above */}
+                    {dragOverIndex === idx && draggedIndex !== idx && draggedIndex > idx && (
+                      <div className="absolute -top-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
+                    )}
+
+                    {/* Drag handle */}
+                    <div
+                      className="flex items-center gap-1.5 flex-1 min-w-0"
+                      title="Arrastrar para reordenar"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="text-muted/50 flex-shrink-0 cursor-grab active:cursor-grabbing"
+                      >
+                        <circle cx="8" cy="6" r="1.5"/>
+                        <circle cx="16" cy="6" r="1.5"/>
+                        <circle cx="8" cy="12" r="1.5"/>
+                        <circle cx="16" cy="12" r="1.5"/>
+                        <circle cx="8" cy="18" r="1.5"/>
+                        <circle cx="16" cy="18" r="1.5"/>
+                      </svg>
+                      {editingNameId === c.id ? (
+                        <input
+                          type="text"
+                          autoFocus
+                          defaultValue={c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
+                          onBlur={(e) => {
+                            const val = e.target.value.trim();
+                            if (val) {
+                              const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
+                              setComponents(updatedComps);
+                              saveComponentsSilently(updatedComps);
+                            }
+                            setEditingNameId(null);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              const val = e.currentTarget.value.trim();
+                              if (val) {
+                                const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
+                                setComponents(updatedComps);
+                                saveComponentsSilently(updatedComps);
+                              }
+                              setEditingNameId(null);
+                            } else if (e.key === 'Escape') {
+                              setEditingNameId(null);
+                            }
+                          }}
+                          className="font-medium text-xs text-ink bg-transparent border-b border-accent outline-none w-full"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        <span 
+                          className="font-medium truncate text-xs text-ink cursor-text"
+                          onDoubleClick={(e) => {
+                            e.stopPropagation();
+                            setEditingNameId(c.id);
+                          }}
+                        >
+                          {c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Action buttons */}
+                    <div className="flex items-center gap-0.5 flex-shrink-0" onClick={e => e.stopPropagation()}>
+                      <button
+                        onClick={() => moveComponent(idx, 'up')}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
+                        title="Mover arriba"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                      </button>
+                      <button
+                        onClick={() => moveComponent(idx, 'down')}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
+                        title="Mover abajo"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                      </button>
+                      <button
+                        onClick={() => cloneComponent(idx)}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
+                        title="Duplicar componente"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleCopyStyle(idx); }}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-blue-500 transition-colors"
+                        title="Copiar Configuración"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handlePasteStyle(idx); }}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-green-500 transition-colors"
+                        title="Pegar Configuración"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                      </button>
+                      <button
+                        onClick={() => removeComponent(idx)}
+                        className="p-1 hover:bg-red-50 text-muted hover:text-red-500 transition-colors rounded"
+                        title="Eliminar"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                      </button>
+                    </div>
+
+                    {/* Drop indicator line - below */}
+                    {dragOverIndex === idx && draggedIndex !== idx && draggedIndex < idx && (
+                      <div className="absolute -bottom-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
+                    )}
+                  </div>
+                ))}
               </div>
-            )}
-          </div>
+              <div className="mt-3">
+                <select onChange={addComponent} className="w-full p-2 border border-border rounded-lg text-xs bg-s1 hover:bg-white transition-colors outline-none cursor-pointer font-medium" defaultValue="">
+                  <option value="" disabled>+ Añadir bloque</option>
+                  {COMPONENT_DEFINITIONS.map(d => (
+                    <option key={d.type} value={d.type}>{d.name}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* RIGHT - Live Content Preview */}
+        {/* RIGHT - Live Content Preview Frame */}
         <div className="lg:flex-1 w-full bg-bg border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col sticky top-[73px] h-[calc(100vh-100px)]">
           {/* Preview Toolbar */}
           <div className="bg-s1 border-b border-border px-4 py-2 flex items-center justify-between z-20">
@@ -957,15 +962,58 @@ function VisualEditorContent() {
               </div>
               <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Vista Previa en Vivo</span>
             </div>
+
+            {/* Device Switcher */}
+            <div className="flex items-center gap-0.5 bg-s2 p-0.5 rounded-lg border border-border">
+              {[
+                { id: 'mobile', label: '📱', title: 'Vista Móvil (375px)' },
+                { id: 'tablet', label: '💻', title: 'Vista Tablet (768px)' },
+                { id: 'desktop', label: '🖥', title: 'Vista Escritorio (100%)' }
+              ].map(dev => (
+                <button
+                  key={dev.id}
+                  onClick={() => setPreviewBp(dev.id)}
+                  title={dev.title}
+                  className={`w-7 h-7 flex items-center justify-center text-xs rounded transition-all ${
+                    previewBp === dev.id 
+                      ? 'bg-accent text-bg shadow-sm' 
+                      : 'text-muted hover:text-ink hover:bg-border'
+                  }`}
+                >
+                  {dev.label}
+                </button>
+              ))}
+            </div>
+
             <div className="flex items-center gap-2">
                <span className="text-[9px] text-muted bg-border px-2 py-0.5 rounded-full font-mono uppercase">{slug}.cl</span>
             </div>
           </div>
 
-          {/* Actual Content */}
-          <div className="flex-1 overflow-y-auto bg-bg custom-scrollbar">
-            <div className="origin-top">
-              <PageRenderer components={components} />
+          {/* Actual Content Mockup Wrapper */}
+          <div className="flex-1 overflow-y-auto bg-s2/20 custom-scrollbar p-4 flex justify-center items-start">
+            <div 
+              style={{
+                width: previewBp === 'mobile' ? '375px' : previewBp === 'tablet' ? '768px' : '100%',
+                maxWidth: '100%',
+                transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              className="bg-bg border border-border rounded-xl shadow-lg overflow-hidden min-h-full transition-all duration-300"
+            >
+              <div className="origin-top">
+                <PageRenderer 
+                  components={components} 
+                  forceBp={previewBp}
+                  onSelectComponent={(compId, fieldKey) => {
+                    setSelectedId(compId);
+                    if (fieldKey) {
+                      setFocusedField(fieldKey);
+                      setShowTypography(true);
+                    }
+                  }}
+                  selectedId={selectedId}
+                />
+              </div>
             </div>
           </div>
         </div>

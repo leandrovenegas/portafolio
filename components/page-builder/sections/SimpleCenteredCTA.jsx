@@ -16,7 +16,15 @@ function toInlineStyle(styleObj) {
   if (styleObj.textDecoration)s.textDecoration= styleObj.textDecoration;
   if (styleObj.textTransform && styleObj.textTransform !== 'none') s.textTransform = styleObj.textTransform;
   if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '') s.letterSpacing = `${styleObj.letterSpacing}em`;
-  if (styleObj.lineHeight)    s.lineHeight    = styleObj.lineHeight;
+  
+  if (styleObj.lineHeight !== undefined && styleObj.lineHeight !== '') {
+    s.lineHeight = styleObj.lineHeight;
+    if (Number(styleObj.lineHeight) < 0) {
+      s.marginTop = `${styleObj.lineHeight}em`;
+      s.lineHeight = 'normal';
+    }
+  }
+  
   if (styleObj.textIndent !== undefined && styleObj.textIndent !== '') s.textIndent = `${styleObj.textIndent}px`;
   if (styleObj.paddingTop !== undefined && styleObj.paddingTop !== '') s.paddingTop = `${styleObj.paddingTop}px`;
   if (styleObj.paddingBottom !== undefined && styleObj.paddingBottom !== '') s.paddingBottom = `${styleObj.paddingBottom}px`;
@@ -31,11 +39,16 @@ export default function SimpleCenteredCTA({
   secondaryButtonText,
   secondaryButtonLink,
   backgroundColor,
-  _styles
+  _styles,
+  forceBp = null
 }) {
-  const [bp, setBp] = useState('mobile');
+  const [bp, setBp] = useState(forceBp || 'mobile');
 
   useEffect(() => {
+    if (forceBp) {
+      setBp(forceBp);
+      return;
+    }
     const check = () => {
       const w = window.innerWidth;
       setBp(w >= 1024 ? 'desktop' : w >= 768 ? 'tablet' : 'mobile');
@@ -43,7 +56,7 @@ export default function SimpleCenteredCTA({
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
-  }, []);
+  }, [forceBp]);
 
   const fieldStyle = (fieldName) => {
     if (!_styles || !_styles[fieldName]) return {};
@@ -67,6 +80,7 @@ export default function SimpleCenteredCTA({
           
           {headline && (
             <h2 
+              data-field="headline"
               className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-display"
               style={fieldStyle('headline')}
             >
@@ -76,6 +90,7 @@ export default function SimpleCenteredCTA({
           
           {description && (
             <p 
+              data-field="description"
               className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white/80 font-body"
               style={fieldStyle('description')}
             >
