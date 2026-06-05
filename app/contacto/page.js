@@ -1,5 +1,4 @@
 import NewsletterSignup from "@/components/NewsletterSignup";
-import PageRenderer from '@/components/page-builder/PageRenderer';
 import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
 import supabase from '@/lib/supabase';
 
@@ -36,12 +35,11 @@ export default async function Contacto({ searchParams }) {
 
   return (
     <>
-      <LivePreviewListener />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         
         {components && components.length > 0 && (
           <div className="w-full relative z-20 bg-bg">
-            <PageRenderer components={components} />
+            <LivePreviewListener initialComponents={components} />
           </div>
         )}
 

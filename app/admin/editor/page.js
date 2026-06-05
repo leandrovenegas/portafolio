@@ -147,6 +147,15 @@ function VisualEditorContent() {
     }
   }, [components, slug, currentVersionId]);
 
+  // --- BROADCAST REAL-TIME UPDATES TO PREVIEW ---
+  useEffect(() => {
+    if (components.length > 0 && typeof window !== 'undefined' && window.BroadcastChannel) {
+      const bc = new BroadcastChannel('editor-updates');
+      bc.postMessage({ type: 'update', components });
+      bc.close();
+    }
+  }, [components]);
+
   const restoreLocalBackup = () => {
     const saved = localStorage.getItem(`editor_backup_${slug}`);
     if (saved) {
@@ -304,7 +313,7 @@ function VisualEditorContent() {
         // Broadcast update to any open preview tabs so they refresh without F5
         if (typeof window !== 'undefined' && window.BroadcastChannel) {
           const bc = new BroadcastChannel('editor-updates');
-          bc.postMessage({ type: 'saved' });
+          bc.postMessage({ type: 'saved', components });
           bc.close();
         }
       }
@@ -691,22 +700,22 @@ function VisualEditorContent() {
             rel="noopener noreferrer"
             style={{
               height: '24px',
-              padding: '0 var(--sp-sm)',
-              background: 'var(--ps-bg-toolbar)',
+              padding: '0 var(--sp-md)',
+              background: 'var(--ps-bg-panel)',
               border: 'var(--ps-border-width) solid var(--ps-border-light)',
               borderRadius: 'var(--ps-radius)',
               color: 'var(--ps-text)',
               fontSize: 'var(--font-size-sm)',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '6px',
               textDecoration: 'none'
             }}
-            className="hover:bg-[var(--ps-bg-hover)] transition-colors font-medium"
-            title="Ver Página en Vivo"
+            className="hover:bg-[var(--ps-bg-hover)] hover:text-white transition-colors font-medium"
+            title="Abrir Vista Previa Externa en tiempo real"
           >
-            <span>Live</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span>Vista Previa Externa ↗</span>
           </a>
 
           <button

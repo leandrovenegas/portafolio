@@ -1,6 +1,5 @@
 import Link from "next/link";
 import MediaPreconnect from "@/components/MediaPreconnect";
-import PageRenderer from "@/components/page-builder/PageRenderer";
 import { DEFAULT_HOME_COMPONENTS } from "@/components/page-builder/defaultConfig";
 import LivePreviewListener from "@/components/page-builder/LivePreviewListener";
 import supabase from "@/lib/supabase";
@@ -101,7 +100,6 @@ export default async function Home({ searchParams }) {
 
   return (
     <>
-      <LivePreviewListener />
       <MediaPreconnect bunny />
       <script
         type="application/ld+json"
@@ -110,7 +108,7 @@ export default async function Home({ searchParams }) {
         }}
       />
       <main className="min-h-screen bg-bg relative overflow-hidden">
-        <PageRenderer components={components} />
+        <LivePreviewListener initialComponents={components} />
       </main>
 
     </>
