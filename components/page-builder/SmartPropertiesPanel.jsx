@@ -799,6 +799,88 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
     );
   }
 
+  // ── AvatarTextSection layout ──
+  if (type === 'AvatarTextSection') {
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Avatar y Texto — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <SectionLabel>Contenido</SectionLabel>
+          <TextField
+            fieldKey="title"
+            label="Título de la sección"
+            long={false}
+            value={props.title || ''}
+            onChange={val => updateProp(comp.id, 'title', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
+          />
+          <TextField
+            fieldKey="description"
+            label="Párrafos"
+            long={true}
+            value={props.description !== undefined ? props.description : (props.paragraphs ? props.paragraphs.join('\n\n') : '')}
+            onChange={val => {
+              updateProp(comp.id, 'description', val);
+              if (props.paragraphs !== undefined) updateProp(comp.id, 'paragraphs', undefined);
+            }}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
+          />
+
+          <SectionLabel>Avatar / Perfil</SectionLabel>
+          <PosterSrcField
+            value={props.avatarSrc || ''}
+            onChange={val => updateProp(comp.id, 'avatarSrc', val)}
+          />
+          <div className="px-1 mt-1">
+            <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
+            <input
+              type="text"
+              placeholder="Ej: Leandro Venegas"
+              value={props.avatarAlt || ''}
+              onChange={e => updateProp(comp.id, 'avatarAlt', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+            />
+          </div>
+
+          <div className="flex items-center justify-between px-1 mt-2">
+            <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Mostrar Barra de Acento Izquierda</label>
+            <button
+              onClick={() => updateProp(comp.id, 'showAccentBar', !props.showAccentBar)}
+              className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors ${props.showAccentBar ? 'bg-accent' : 'bg-gray-700'}`}
+            >
+              <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${props.showAccentBar ? 'translate-x-6' : 'translate-x-1'}`} />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // ── TextSection layout ──
   if (type === 'TextSection') {
     return (

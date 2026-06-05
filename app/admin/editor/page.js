@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { COMPONENT_DEFINITIONS } from '@/components/page-builder/registry';
 import { DEFAULT_HOME_COMPONENTS } from '@/components/page-builder/defaultConfig';
 import PageRenderer from '@/components/page-builder/PageRenderer';
+import Nav from '@/components/Nav';
 import SmartPropertiesPanel from '@/components/page-builder/SmartPropertiesPanel';
 import SwatchesPanel from '@/components/page-builder/SwatchesPanel';
 import StylesPanel from '@/components/page-builder/StylesPanel';
@@ -970,7 +971,7 @@ function VisualEditorContent() {
             {/* Device Switcher */}
             <div className="flex items-center gap-0.5 bg-s2 p-0.5 rounded-lg border border-border">
               {[
-                { id: 'mobile', label: '📱', title: 'Vista Móvil (375px)' },
+                { id: 'mobile', label: '📱', title: 'Vista Móvil (412px)' },
                 { id: 'tablet', label: '💻', title: 'Vista Tablet (768px)' },
                 { id: 'desktop', label: '🖥', title: 'Vista Escritorio (100%)' }
               ].map(dev => (
@@ -997,14 +998,26 @@ function VisualEditorContent() {
           {/* Actual Content Mockup Wrapper */}
           <div className="flex-1 overflow-y-auto bg-s2/20 custom-scrollbar p-4 flex justify-center items-start">
             <div 
-              style={{
-                width: previewBp === 'mobile' ? '375px' : previewBp === 'tablet' ? '768px' : '100%',
-                maxWidth: '100%',
-                transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+              id="mockup-viewport"
+              onClick={(e) => {
+                // Prevent navigation for all links in the preview
+                const link = e.target.closest('a');
+                if (link) {
+                  e.preventDefault();
+                }
               }}
-              className="bg-bg border border-border rounded-xl shadow-lg overflow-hidden min-h-full transition-all duration-300"
+              style={{
+                width: previewBp === 'mobile' ? '412px' : previewBp === 'tablet' ? '768px' : '100%',
+                height: previewBp === 'mobile' ? '914px' : previewBp === 'tablet' ? '1024px' : '100%',
+                maxWidth: '100%',
+                transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              className="bg-bg border border-border rounded-xl shadow-lg overflow-y-auto min-h-full transition-all duration-300 relative flex flex-col"
             >
-              <div className="origin-top">
+              {/* Render the Nav component at the top of the mockup viewport */}
+              <Nav forceShow={true} forceAbsolute={true} />
+              
+              <div className="origin-top flex-1">
                 <PageRenderer 
                   components={components} 
                   forceBp={previewBp}

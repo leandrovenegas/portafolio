@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // Nav component with responsive mobile menu and glassmorphism effect.
-export default function Nav({ className = '' }) {
+export default function Nav({ className = '', forceShow = false, forceAbsolute = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -18,13 +18,26 @@ export default function Nav({ className = '' }) {
 
   // Handle scroll for glassmorphism effect
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+    const handleScroll = (e) => {
+      const scrollY = forceAbsolute 
+        ? (e.target?.scrollTop || 0)
+        : window.scrollY;
+      setScrolled(scrollY > 20);
     };
+    
+    if (forceAbsolute) {
+      const container = document.getElementById('mockup-viewport');
+      if (container) {
+        container.addEventListener("scroll", handleScroll);
+        setScrolled(container.scrollTop > 20);
+        return () => container.removeEventListener("scroll", handleScroll);
+      }
+    }
+    
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Check initial scroll position
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [forceAbsolute]);
 
   // Set year on mount to avoid hydration mismatch
   useEffect(() => {
@@ -33,6 +46,7 @@ export default function Nav({ className = '' }) {
 
   // Prevent scroll when mobile menu is open
   useEffect(() => {
+    if (forceAbsolute) return;
     if (isOpen) {
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
@@ -52,7 +66,7 @@ export default function Nav({ className = '' }) {
       document.body.style.top = '';
       document.body.style.width = '';
     };
-  }, [isOpen]);
+  }, [isOpen, forceAbsolute]);
 
   const navLinks = [
     { href: "/", label: "Sistema" },
@@ -64,14 +78,14 @@ export default function Nav({ className = '' }) {
   ];
 
   // Do not render Nav on admin pages to avoid layout clutter
-  if (pathname?.startsWith('/admin')) {
+  if (pathname?.startsWith('/admin') && !forceShow) {
     return null;
   }
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 border-b ${isOpen
+        className={`${forceAbsolute ? "absolute" : "fixed"} top-0 left-0 right-0 z-[110] transition-all duration-500 border-b ${isOpen
           ? "bg-transparent border-transparent py-6"
           : scrolled
             ? "bg-black/90 backdrop-blur-xl border-border py-3 shadow-2xl shadow-black/10"
@@ -199,7 +213,7 @@ export default function Nav({ className = '' }) {
 
       {/* Mobile Overlay Menu */}
       <div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+        className={`${forceAbsolute ? "absolute" : "fixed"} inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
           }`}
       >
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">

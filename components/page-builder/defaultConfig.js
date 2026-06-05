@@ -203,10 +203,26 @@ export const DEFAULT_HOME_COMPONENTS = [
   },
   {
     "id": "1778651831740-origen",
-    "type": "TextSection",
+    "name": "Sobre Mí (Avatar)",
+    "type": "AvatarTextSection",
     "props": {
-      "title": "Cómo descubrí el sistema",
-      "description": "Soy Leandro, el partner que te ayudará a implementar el sistema que ahorra tiempo y esfuerzo — a ti o a tu equipo de ventas. Olvídate de hacer videos esperando que la suerte esté de tu lado. Hay una fórmula y no es un secreto: es un sistema.\nPiensa inteligente. Cada video con un objetivo claro. Mi sistema usa 6 tipos diferentes de video para filtrar, educar y convencer a tu futuro cliente.\nEste sistema viene de reconocer el patrón de videos que usé trabajando para agencias, marcas y startups. Aquí te muestro los eslabones:"
+      "title": "prospectos las 24 horas del día\nusando el poder del video.",
+      "avatarSrc": "/images/leandro-avatar.png",
+      "avatarAlt": "Leandro Venegas",
+      "showAccentBar": true,
+      "description": "Soy Leandro, el partner que te ayudará a implementar el sistema que ahorra tiempo y esfuerzo — a ti o a tu equipo de ventas. Olvídate de hacer videos esperando que la suerte esté de tu lado. Hay una fórmula y no es un secreto: es un sistema.\n\nPiensa inteligente. Cada video con un objetivo claro. Mi sistema usa 6 tipos diferentes de video para filtrar, educar y convencer a tu futuro cliente.\n\nEste sistema viene de reconocer el patrón de videos que usé trabajando para agencias, marcas y startups. Aquí te muestro los eslabones:",
+      "_styles": {
+        "title": {
+          "mobile": { "fontSize": 28, "color": "#ffffff", "fontWeight": "700", "fontStyle": "normal", "textTransform": "none", "letterSpacing": "-0.02", "lineHeight": "1.1" },
+          "tablet": { "fontSize": 36, "color": "#ffffff", "fontWeight": "700", "fontStyle": "normal", "textTransform": "none", "letterSpacing": "-0.02", "lineHeight": "1.1" },
+          "desktop": { "fontSize": 40, "color": "#ffffff", "fontWeight": "700", "fontStyle": "normal", "textTransform": "none", "letterSpacing": "-0.02", "lineHeight": "1.1" }
+        },
+        "description": {
+          "mobile": { "fontSize": 18, "color": "#a3a3a3", "fontWeight": "400", "fontStyle": "normal", "textTransform": "none", "letterSpacing": "0", "lineHeight": "1.6" },
+          "tablet": { "fontSize": 18, "color": "#a3a3a3", "fontWeight": "400", "fontStyle": "normal", "textTransform": "none", "letterSpacing": "0", "lineHeight": "1.6" },
+          "desktop": { "fontSize": 20, "color": "#a3a3a3", "fontWeight": "400", "fontStyle": "normal", "textTransform": "none", "letterSpacing": "0", "lineHeight": "1.6" }
+        }
+      }
     }
   },
   {

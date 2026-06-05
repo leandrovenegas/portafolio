@@ -7,6 +7,7 @@ import FAQSection from './sections/FAQSection';
 import SimpleCenteredCTA from './sections/SimpleCenteredCTA';
 import CTAWhatsapp from './sections/CTAWhatsapp';
 import EstrelasSection from './sections/EstrelasSection';
+import AvatarTextSection from './sections/AvatarTextSection';
 
 
 export const COMPONENT_REGISTRY = {
@@ -18,7 +19,8 @@ export const COMPONENT_REGISTRY = {
   FAQSection,
   SimpleCenteredCTA,
   CTAWhatsapp,
-  EstrelasSection
+  EstrelasSection,
+  AvatarTextSection
 };
 
 export const COMPONENT_DEFINITIONS = [
@@ -151,6 +153,29 @@ export const COMPONENT_DEFINITIONS = [
       _styles: {
         title: { mobile: { fontSize: 20, color: '#111827', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, tablet: { fontSize: 24, color: '#111827', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' }, desktop: { fontSize: 28, color: '#111827', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.2' } },
         description: { mobile: { fontSize: 14, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, tablet: { fontSize: 16, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' }, desktop: { fontSize: 18, color: '#4B5563', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.5' } }
+      }
+    }
+  },
+  {
+    type: 'AvatarTextSection',
+    name: 'Avatar y Texto (Sobre Mí)',
+    defaultProps: {
+      title: 'prospectos las 24 horas del día\nusando el poder del video.',
+      avatarSrc: '/images/leandro-avatar.png',
+      avatarAlt: 'Leandro Venegas',
+      description: 'Soy Leandro, el partner que te ayudará a implementar el sistema que ahorra tiempo y esfuerzo — a ti o a tu equipo de ventas. Olvídate de hacer videos esperando que la suerte esté de tu lado. Hay una fórmula y no es un secreto: es un sistema.\n\nPiensa inteligente. Cada video con un objetivo claro. Mi sistema usa 6 tipos diferentes de video para filtrar, educar y convencer a tu futuro cliente.',
+      showAccentBar: true,
+      _styles: {
+        title: {
+          mobile: { fontSize: 28, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.1' },
+          tablet: { fontSize: 36, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.1' },
+          desktop: { fontSize: 40, color: '#ffffff', fontWeight: '700', fontStyle: 'normal', textTransform: 'none', letterSpacing: '-0.02', lineHeight: '1.1' }
+        },
+        description: {
+          mobile: { fontSize: 18, color: '#a3a3a3', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' },
+          tablet: { fontSize: 18, color: '#a3a3a3', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' },
+          desktop: { fontSize: 20, color: '#a3a3a3', fontWeight: '400', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.6' }
+        }
       }
     }
   }

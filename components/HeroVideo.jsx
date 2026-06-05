@@ -125,12 +125,30 @@ export default function HeroVideo({
 
   const showVisualBackground = backgroundType === 'video';
 
+  const getHeroHeight = () => {
+    if (forceBp) {
+      if (forceBp === 'mobile') return '914px';
+      if (forceBp === 'tablet') return '1024px';
+    }
+    return '100vh';
+  };
+
+  const getHeroMinHeight = () => {
+    if (forceBp) {
+      if (forceBp === 'mobile') return '914px';
+      if (forceBp === 'tablet') return '1024px';
+    }
+    return '600px';
+  };
+
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-screen min-h-[600px] flex flex-col justify-center overflow-hidden"
+      className="relative w-full flex flex-col justify-center overflow-hidden"
       style={{
-        background: getBackgroundStyle()
+        background: getBackgroundStyle(),
+        height: getHeroHeight(),
+        minHeight: getHeroMinHeight()
       }}
     >
       {videoSchema && (
