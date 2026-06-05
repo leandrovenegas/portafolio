@@ -5,7 +5,7 @@ import LivePreviewListener from "@/components/page-builder/LivePreviewListener";
 import supabase from "@/lib/supabase";
 export const metadata = {
   title: 'Video Marketing Partner | Leandro Venegas',
-  description: 'Sistema de ventas con video para negocios en Chile. Filtra, educa y convierte prospectos las 24 horas.',
+  description: 'Sistema de ventas con video para negocios en Chile. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas.',
   keywords: [
     'Leandro Venegas',
     'director creativo Chile',
@@ -20,11 +20,11 @@ export const metadata = {
   ],
   openGraph: {
     title: 'Video Marketing Partner | Leandro Venegas',
-    description: 'Sistema de ventas con video para negocios en Chile. Filtra, educa y convierte prospectos las 24 horas.',
+    description: 'Sistema de ventas con video para negocios en Chile. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas.',
     url: 'https://www.leandrovenegas.cl/',
   },
   twitter: {
-    description: '6 tipos de video que filtran, educan y convierten prospectos las 24 horas del día.',
+    description: 'Sistema de ventas con video para negocios en Chile. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas del día.',
   },
   alternates: {
     canonical: 'https://www.leandrovenegas.cl/',
