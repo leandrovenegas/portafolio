@@ -111,13 +111,16 @@ export default function HeroVideo({
   }, [isMounted, backgroundType]);
 
   const getBackgroundStyle = () => {
+    let styleVal = 'var(--ps-bg-panel, #121212)';
     if (backgroundType === 'solid') {
-      return backgroundColor || '#121212';
+      styleVal = backgroundColor || '#121212';
+    } else if (backgroundType === 'gradient') {
+      styleVal = backgroundGradient || 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)';
     }
-    if (backgroundType === 'gradient') {
-      return backgroundGradient || 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)';
+    if (typeof styleVal === 'string') {
+      return styleVal.trim().replace(/;+$/, '');
     }
-    return 'var(--ps-bg-panel, #121212)';
+    return styleVal;
   };
 
   const showVisualBackground = backgroundType === 'video';
