@@ -1018,6 +1018,7 @@ function VisualEditorContent() {
                 <PageRenderer 
                   components={components} 
                   forceBp={previewBp}
+                  onUpdateProp={updateProp}
                   onSelectComponent={(compId, fieldKey) => {
                     setSelectedId(compId);
                     if (fieldKey) {

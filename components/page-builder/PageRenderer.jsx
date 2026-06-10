@@ -2,7 +2,7 @@
 
 import { COMPONENT_REGISTRY } from './registry';
 
-export default function PageRenderer({ components, forceBp = null, onSelectComponent = null, selectedId = null }) {
+export default function PageRenderer({ components, forceBp = null, onSelectComponent = null, selectedId = null, onUpdateProp = null }) {
   if (!components || !components.length) {
     return null;
   }
@@ -49,7 +49,13 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
                 </div>
               )}
 
-              <ComponentToRender {...comp.props} forceBp={forceBp} />
+              <ComponentToRender
+                {...comp.props}
+                forceBp={forceBp}
+                {...(onUpdateProp && comp.type === 'AvatarTextSection' ? {
+                  onPropChange: (field, value) => onUpdateProp(comp.id, field, value)
+                } : {})}
+              />
             </div>
           );
         }
@@ -89,7 +95,13 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
                   ? 'px-12 py-12'
                   : 'px-6 md:px-12 lg:px-24 py-12 md:py-16'
             }`}>
-              <ComponentToRender {...comp.props} forceBp={forceBp} />
+              <ComponentToRender
+                {...comp.props}
+                forceBp={forceBp}
+                {...(onUpdateProp && comp.type === 'AvatarTextSection' ? {
+                  onPropChange: (field, value) => onUpdateProp(comp.id, field, value)
+                } : {})}
+              />
             </div>
           </div>
         );
