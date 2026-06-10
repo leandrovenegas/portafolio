@@ -106,6 +106,26 @@ margin: var(--sp-sm) 0;
 
 ---
 
+## Fondo Global del Proyecto (Cuadrícula Fija)
+El sitio público utiliza un fondo global (cuadrícula/grid) que debe ser siempre visible. Cualquier bloque de contenido público debe tener fondos transparentes para que el grid sea visible:
+
+```css
+body {
+  background-color: #0D0D0D !important;
+  background-image: 
+    linear-gradient(#1a1a1a 1px, transparent 1px), 
+    linear-gradient(90deg, #1a1a1a 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+  background-attachment: fixed !important;
+}
+```
+
+### Reglas para Componentes Públicos:
+- Todo nuevo componente o sección agregada para la parte pública (ej. `TituloAnimado`, `TextosAnimados`, `HeroEditorialSection`, etc.) DEBE llevar la clase `.page-builder-block` en su contenedor raíz más externo o ser configurado con fondo transparente en `app/globals.css`.
+- El panel de administración (`.admin-main` o páginas dentro de `/admin`) debe mantener sus fondos sólidos intactos para garantizar la legibilidad y operatividad de la interfaz Photoshop UI.
+
+---
+
 ## Referencias
 - `references/design-tokens.css` — todas las variables CSS (fuente de verdad)
 - `references/PROHIBICIONES.md` — casos edge y ejemplos de lo que NO hacer

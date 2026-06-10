@@ -5,11 +5,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // Nav component with responsive mobile menu and glassmorphism effect.
-export default function Nav({ className = '', forceShow = false, forceAbsolute = false }) {
+export default function Nav({ className = '', forceShow = false, forceAbsolute = false, forceBp = null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const pathname = usePathname();
+  const [bp, setBp] = useState(forceBp || 'mobile');
+
+  useEffect(() => {
+    if (forceBp) {
+      setBp(forceBp);
+      return;
+    }
+    const check = () => {
+      const w = window.innerWidth;
+      setBp(w >= 1024 ? 'desktop' : w >= 768 ? 'tablet' : 'mobile');
+    };
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, [forceBp]);
 
   // Close menu when route changes
   useEffect(() => {
@@ -72,8 +87,6 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
     { href: "/", label: "Sistema" },
     { href: "/proceso", label: "Proceso" },
     { href: "/portafolio", label: "Portafolio" },
-    { href: "/videos", label: "Videos" },
-    { href: "/lab", label: "Lab" },
     { href: "/contacto", label: "Contacto" },
   ];
 
@@ -89,10 +102,14 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
           ? "bg-transparent border-transparent py-6"
           : scrolled
             ? "bg-black/90 backdrop-blur-xl border-border py-3 shadow-2xl shadow-black/10"
-            : "bg-black/90 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-border md:border-transparent py-3 md:py-6"
+            : bp === 'desktop'
+              ? "bg-transparent backdrop-blur-none border-transparent py-6"
+              : "bg-black/90 backdrop-blur-xl border-border py-3"
           } ${className}`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
+        <div className={`max-w-7xl mx-auto flex items-center justify-between ${
+          bp === 'desktop' ? 'px-10' : 'px-6'
+        }`}>
           {/* Logo Section */}
           <div className="flex flex-col relative z-[110]">
             <Link href="/" className="group flex flex-col">
@@ -106,7 +123,7 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className={`${bp === 'desktop' ? 'flex' : 'hidden'} items-center gap-10`}>
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -126,7 +143,7 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`flex md:hidden menu-toggle-wrapper ${isOpen ? 'active' : ''}`}
+            className={`${bp !== 'desktop' ? 'flex' : 'hidden'} menu-toggle-wrapper ${isOpen ? 'active' : ''}`}
             aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           >
             <span className="menu-toggle-icon" />
@@ -213,8 +230,9 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
 
       {/* Mobile Overlay Menu */}
       <div
-        className={`${forceAbsolute ? "absolute" : "fixed"} inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] md:hidden z-[105] ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
-          }`}
+        className={`${forceAbsolute ? "absolute" : "fixed"} inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23, 1, 0.32, 1)] z-[105] ${
+          bp !== 'desktop' ? '' : 'hidden'
+        } ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"}`}
       >
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
           <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent/20 blur-[120px] rounded-full animate-pulse" />

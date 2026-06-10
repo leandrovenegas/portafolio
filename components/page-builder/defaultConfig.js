@@ -1852,5 +1852,28 @@ export const DEFAULT_HOME_COMPONENTS = [
       "text": "Hablar con Leandro",
       "variant": "secondary"
     }
+  },
+  {
+    "id": "titulo-animado-default",
+    "type": "TituloAnimado",
+    "props": {
+      "text": "Diseño y **Video Marketing** de alto impacto",
+      "animationType": "metalic_sheen_sweep",
+      "config": {
+        "durationSeconds": 4.5,
+        "wordDelay": 4,
+        "stiffness": 100,
+        "damping": 15,
+        "mass": 1,
+        "backgroundColor": "#120924"
+      },
+      "_styles": {
+        "text": {
+          "mobile": { "fontSize": 36, "fontWeight": "900", "fontStyle": "normal", "textTransform": "uppercase", "letterSpacing": "0", "lineHeight": "1" },
+          "tablet": { "fontSize": 60, "fontWeight": "900", "fontStyle": "normal", "textTransform": "uppercase", "letterSpacing": "0", "lineHeight": "1" },
+          "desktop": { "fontSize": 72, "fontWeight": "900", "fontStyle": "normal", "textTransform": "uppercase", "letterSpacing": "0", "lineHeight": "1" }
+        }
+      }
+    }
   }
 ];

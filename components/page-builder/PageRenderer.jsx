@@ -82,7 +82,13 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
               </div>
             )}
 
-            <div className="relative z-10 px-6 md:px-12 lg:px-24 mx-auto max-w-7xl w-full py-12 md:py-16">
+            <div className={`relative z-10 mx-auto max-w-7xl w-full ${
+              forceBp === 'mobile'
+                ? 'px-6 py-12'
+                : forceBp === 'tablet'
+                  ? 'px-12 py-12'
+                  : 'px-6 md:px-12 lg:px-24 py-12 md:py-16'
+            }`}>
               <ComponentToRender {...comp.props} forceBp={forceBp} />
             </div>
           </div>

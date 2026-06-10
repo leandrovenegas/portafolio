@@ -23,7 +23,7 @@ export default function AdminLayout({ children }) {
   // La barra admin también es invariable — siempre está en el DOM.
   return (
     <>
-      <main className="min-h-screen bg-bg relative overflow-hidden flex flex-col pb-24 pt-24">
+      <main className="admin-main min-h-screen bg-bg relative overflow-hidden flex flex-col pb-24 pt-24">
 
         {/* Admin topbar — siempre presente en el DOM, solo invisible en el editor */}
         <header

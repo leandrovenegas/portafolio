@@ -175,7 +175,7 @@ export default function HeroEditorialSection({
           <h2 className="font-display font-bold leading-[0.95] text-ink max-w-full">
             <span data-field="headline" style={fieldStyle('headline')}>{headline}</span>
             {headlineKeyword && (
-              <span data-field="headlineKeyword" className="text-accent block md:inline" style={fieldStyle('headlineKeyword')}>
+              <span data-field="headlineKeyword" className={`text-accent ${bp === 'desktop' ? 'inline' : 'block'}`} style={fieldStyle('headlineKeyword')}>
                 {' '}{headlineKeyword}
               </span>
             )}

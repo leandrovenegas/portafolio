@@ -203,7 +203,13 @@ export default function HeroVideo({
       <div className="absolute inset-x-0 bottom-0 h-48 z-10 bg-gradient-to-t from-bg via-bg/80 to-transparent"></div>
 
       {/* 4. Contenido Principal */}
-      <div className="relative z-20 px-4 pt-20 md:px-12 lg:px-24 mx-auto max-w-7xl w-full">
+      <div className={`relative z-20 mx-auto max-w-7xl w-full ${
+        device === 'mobile'
+          ? 'px-6 pt-20 pb-12'
+          : device === 'tablet'
+            ? 'px-12 pt-20 pb-12'
+            : 'px-4 pt-20 md:px-12 lg:px-24'
+      }`}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
         {children}
       </div>

@@ -86,21 +86,18 @@ export default function LogosSection({
         .animate-marquee-scroll {
           animation: marquee-scroll linear infinite;
         }
-        .marquee-container:hover .animate-marquee-scroll {
-          animation-play-state: paused;
-        }
       `}} />
 
       {/* Title & Subtitle - Hide if empty */}
       {((title && title.trim() !== '') || (subtitle && subtitle.trim() !== '')) && (
         <div className="text-center mb-8 px-4 max-w-3xl mx-auto">
           {title && title.trim() !== '' && (
-            <h2 className="text-sm font-bold text-ink uppercase tracking-widest mb-2 font-display">
+            <h2 data-field="title" className="text-sm font-bold text-ink uppercase tracking-widest mb-2 font-display">
               {title}
             </h2>
           )}
           {subtitle && subtitle.trim() !== '' && (
-            <p className="text-xs text-muted font-body">
+            <p data-field="subtitle" className="text-xs text-muted font-body">
               {subtitle}
             </p>
           )}

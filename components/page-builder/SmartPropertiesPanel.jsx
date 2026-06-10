@@ -53,7 +53,7 @@ function TextField({ fieldKey, label, long, value, onChange, styles, onStylesCha
             value={value}
             onChange={e => onChange(e.target.value)}
             onFocus={() => onFocusField && onFocusField(fieldKey)}
-            className="w-full p-2.5 border border-border rounded-lg text-sm min-h-[100px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all resize-y"
+            className="w-full p-2.5 border border-border rounded-lg text-sm min-h-[100px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all resize-y text-white"
           />
         ) : (
           <input
@@ -61,7 +61,7 @@ function TextField({ fieldKey, label, long, value, onChange, styles, onStylesCha
             value={value}
             onChange={e => onChange(e.target.value)}
             onFocus={() => onFocusField && onFocusField(fieldKey)}
-            className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+            className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all text-white"
           />
         )}
       </div>
@@ -172,7 +172,7 @@ function GenericField({ propKey, val, onChange, onFocusField }) {
             value={val}
             onChange={e => onChange(e.target.value)}
             onFocus={() => onFocusField && onFocusField(propKey)}
-            className="w-full p-2.5 border border-border rounded-lg text-sm min-h-[100px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all resize-y"
+            className="w-full p-2.5 border border-border rounded-lg text-sm min-h-[100px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all resize-y text-white"
           />
         ) : (
           <input
@@ -180,7 +180,7 @@ function GenericField({ propKey, val, onChange, onFocusField }) {
             value={val}
             onChange={e => onChange(e.target.value)}
             onFocus={() => onFocusField && onFocusField(propKey)}
-            className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+            className="w-full p-2.5 border border-border rounded-lg text-sm bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all text-white"
           />
         )}
       </div>
@@ -220,6 +220,8 @@ function SectionLabel({ children }) {
 export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocusField, activeBp, onActiveBpChange }) {
   const { props, type } = comp;
   const [videoDeviceMode, setVideoDeviceMode] = useState('mobile'); // mobile | tablet | desktop
+  const [showTitleTypo, setShowTitleTypo] = useState(false);
+  const [showSubtitleTypo, setShowSubtitleTypo] = useState(false);
 
   const [draggedItem, setDraggedItem] = useState(null);
   const [dragOverItem, setDragOverItem] = useState(null);
@@ -1010,12 +1012,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             long={false}
             value={props.title || ''}
             onChange={val => updateProp(comp.id, 'title', val)}
-            styles={props._styles}
-            onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
-            hasTypography
-            activeBp={activeBp}
-            onActiveBpChange={onActiveBpChange}
           />
           <TextField
             fieldKey="subtitle"
@@ -1023,12 +1020,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
             long={true}
             value={props.subtitle || ''}
             onChange={val => updateProp(comp.id, 'subtitle', val)}
-            styles={props._styles}
-            onStylesChange={handleStylesChange}
             onFocusField={onFocusField}
-            hasTypography
-            activeBp={activeBp}
-            onActiveBpChange={onActiveBpChange}
           />
 
           <SectionLabel>Ajustes de Diseño</SectionLabel>
@@ -1194,6 +1186,718 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
               + Agregar Logo
             </button>
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── TituloAnimado layout ──
+  if (type === 'TituloAnimado') {
+    const currentConfig = props.config || {};
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Título Animado — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <SectionLabel>Texto</SectionLabel>
+          <TextField
+            fieldKey="text"
+            label="Texto a animar"
+            long={true}
+            value={props.text || ''}
+            onChange={val => updateProp(comp.id, 'text', val)}
+            styles={props._styles}
+            onStylesChange={handleStylesChange}
+            onFocusField={onFocusField}
+            hasTypography
+            activeBp={activeBp}
+            onActiveBpChange={onActiveBpChange}
+          />
+          <p className="text-[10px] text-muted -mt-2 px-1">
+            Usa <code className="text-accent">**texto**</code> para resaltar palabras en amarillo.
+          </p>
+
+          <SectionLabel>Animación</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2">
+            <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Tipo de Animación</label>
+            <select
+              value={props.animationType || 'cascade_elegant_fade_up'}
+              onChange={e => updateProp(comp.id, 'animationType', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+            >
+              <option value="cascade_elegant_fade_up" className="bg-s1 text-ink">Cascade Elegant Fade Up</option>
+              <option value="soft_focus_in" className="bg-s1 text-ink">Soft Focus In</option>
+              <option value="metalic_sheen_sweep" className="bg-s1 text-ink">Metalic Sheen Sweep</option>
+            </select>
+          </div>
+
+          <SectionLabel>Configuración de Animación</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-3">
+            {/* Duration */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Duración (segundos)</label>
+                <span className="text-xs font-mono text-accent">{(currentConfig.durationSeconds) ?? 3.5}s</span>
+              </div>
+              <input
+                type="range"
+                min="1.5"
+                max="8"
+                step="0.5"
+                value={(currentConfig.durationSeconds) ?? 3.5}
+                onChange={e => updateProp(comp.id, 'config', { ...currentConfig, durationSeconds: parseFloat(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Word Delay */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Retraso entre palabras (frames)</label>
+                <span className="text-xs font-mono text-accent">{(currentConfig.wordDelay) ?? 5}f</span>
+              </div>
+              <input
+                type="range"
+                min="1"
+                max="15"
+                step="1"
+                value={(currentConfig.wordDelay) ?? 5}
+                onChange={e => updateProp(comp.id, 'config', { ...currentConfig, wordDelay: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Spring Stiffness */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Stiffness (Rigidez)</label>
+                <span className="text-xs font-mono text-accent">{(currentConfig.stiffness) ?? 100}</span>
+              </div>
+              <input
+                type="range"
+                min="20"
+                max="300"
+                step="5"
+                value={(currentConfig.stiffness) ?? 100}
+                onChange={e => updateProp(comp.id, 'config', { ...currentConfig, stiffness: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Spring Damping */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Damping (Amortiguación)</label>
+                <span className="text-xs font-mono text-accent">{(currentConfig.damping) ?? 15}</span>
+              </div>
+              <input
+                type="range"
+                min="5"
+                max="50"
+                step="1"
+                value={(currentConfig.damping) ?? 15}
+                onChange={e => updateProp(comp.id, 'config', { ...currentConfig, damping: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Loop Count */}
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Loop Infinito</label>
+                <button
+                  onClick={() => {
+                    const isInfinite = currentConfig.loopCount === 'infinite' || currentConfig.loopCount === undefined;
+                    updateProp(comp.id, 'config', { ...currentConfig, loopCount: isInfinite ? 3 : 'infinite' });
+                  }}
+                  className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors ${(currentConfig.loopCount === 'infinite' || currentConfig.loopCount === undefined) ? 'bg-accent' : 'bg-gray-700'}`}
+                >
+                  <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${(currentConfig.loopCount === 'infinite' || currentConfig.loopCount === undefined) ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
+              </div>
+              
+              {currentConfig.loopCount !== 'infinite' && currentConfig.loopCount !== undefined && (
+                <div className="mt-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="flex justify-between items-center mb-1">
+                    <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Repetir animación (veces)</label>
+                    <span className="text-xs font-mono text-accent">{currentConfig.loopCount ?? 3} veces</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="99"
+                    step="1"
+                    value={currentConfig.loopCount ?? 3}
+                    onChange={e => updateProp(comp.id, 'config', { ...currentConfig, loopCount: parseInt(e.target.value) })}
+                    className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Iteraciones */}
+            <div>
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1.5">Iteraciones</label>
+              <div className="flex bg-s1 p-1 gap-1 border border-border rounded-lg">
+                {[1, 2, 3, 'Infinito'].map((opt) => {
+                  const isSelected = (currentConfig.iterations ?? 'Infinito') === opt;
+                  return (
+                    <button
+                      key={opt}
+                      onClick={() => updateProp(comp.id, 'config', { ...currentConfig, iterations: opt })}
+                      className={`flex-1 py-1 rounded-md text-[11px] font-semibold transition-all ${
+                        isSelected ? 'bg-accent text-bg shadow-sm' : 'text-muted hover:text-ink hover:bg-s2'
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Background Color */}
+            <div>
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Color de Fondo (Opcional)</label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="color"
+                  value={currentConfig.backgroundColor || '#120924'}
+                  onChange={e => updateProp(comp.id, 'config', { ...currentConfig, backgroundColor: e.target.value })}
+                  className="w-8 h-8 rounded cursor-pointer border-0 p-0"
+                />
+                <input
+                  type="text"
+                  value={currentConfig.backgroundColor || '#120924'}
+                  onChange={e => updateProp(comp.id, 'config', { ...currentConfig, backgroundColor: e.target.value })}
+                  className="flex-1 p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none uppercase font-mono"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── TextosAnimados layout ──
+  if (type === 'TextosAnimados') {
+    const currentTitleConfig = props.titleConfig || {};
+    const currentSubtitleConfig = props.subtitleConfig || {};
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Textos Animados — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          
+          <SectionLabel>Título</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg p-3">
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Texto del Título</label>
+              <button
+                type="button"
+                onClick={() => setShowTitleTypo(v => !v)}
+                className={`flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border transition-colors ${
+                  showTitleTypo
+                    ? 'bg-accent text-bg border-accent'
+                    : 'border-border text-muted hover:text-ink'
+                }`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                Tipografía
+              </button>
+            </div>
+            <textarea
+              value={props.titulo !== undefined && props.titulo !== null ? props.titulo : (props.title !== undefined && props.title !== null ? props.title : '')}
+              onChange={e => updateProp(comp.id, 'titulo', e.target.value)}
+              onFocus={() => {
+                setShowTitleTypo(true);
+                onFocusField && onFocusField('titulo');
+              }}
+              style={{ minHeight: '140px', height: '140px', color: '#ffffff', backgroundColor: '#0a0a0a', display: 'block' }}
+              className="w-full p-3 border border-border rounded-lg text-base outline-none transition-all resize-y font-medium leading-relaxed focus:ring-1 focus:ring-accent"
+              placeholder="Usa **texto** para resaltar palabras en amarillo"
+            />
+            {showTitleTypo && (
+              <div className="pt-2 border-t border-border mt-2">
+                <TypographyPanel
+                  fieldKey="titulo"
+                  styles={props._styles}
+                  onStylesChange={handleStylesChange}
+                  activeBp={activeBp}
+                  onActiveBpChange={onActiveBpChange}
+                />
+              </div>
+            )}
+          </div>
+          <p className="text-[10px] text-muted -mt-2 px-1">
+            Usa <code className="text-accent">**texto**</code> para resaltar palabras en amarillo.
+          </p>
+
+          <SectionLabel>Subtítulo</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg p-3">
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Texto del Subtítulo</label>
+              <button
+                type="button"
+                onClick={() => setShowSubtitleTypo(v => !v)}
+                className={`flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full border transition-colors ${
+                  showSubtitleTypo
+                    ? 'bg-accent text-bg border-accent'
+                    : 'border-border text-muted hover:text-ink'
+                }`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                Tipografía
+              </button>
+            </div>
+            <textarea
+              value={props.subtitulo !== undefined && props.subtitulo !== null ? props.subtitulo : (props.subtitle !== undefined && props.subtitle !== null ? props.subtitle : '')}
+              onChange={e => updateProp(comp.id, 'subtitulo', e.target.value)}
+              onFocus={() => {
+                setShowSubtitleTypo(true);
+                onFocusField && onFocusField('subtitulo');
+              }}
+              style={{ minHeight: '140px', height: '140px', color: '#ffffff', backgroundColor: '#0a0a0a', display: 'block' }}
+              className="w-full p-3 border border-border rounded-lg text-base outline-none transition-all resize-y font-medium leading-relaxed focus:ring-1 focus:ring-accent"
+              placeholder="Usa **texto** para resaltar palabras en amarillo"
+            />
+            {showSubtitleTypo && (
+              <div className="pt-2 border-t border-border mt-2">
+                <TypographyPanel
+                  fieldKey="subtitulo"
+                  styles={props._styles}
+                  onStylesChange={handleStylesChange}
+                  activeBp={activeBp}
+                  onActiveBpChange={onActiveBpChange}
+                />
+              </div>
+            )}
+          </div>
+          <p className="text-[10px] text-muted -mt-2 px-1">
+            Usa <code className="text-accent">**texto**</code> para resaltar palabras en amarillo.
+          </p>
+
+          <SectionLabel>Animación del Título</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-3">
+            <div>
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Tipo de Animación</label>
+              <select
+                value={props.titleAnimationType || 'cascade_elegant_fade_up'}
+                onChange={e => updateProp(comp.id, 'titleAnimationType', e.target.value)}
+                className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+              >
+                <option value="cascade_elegant_fade_up" className="bg-s1 text-ink">Cascade Elegant Fade Up</option>
+                <option value="soft_focus_in" className="bg-s1 text-ink">Soft Focus In</option>
+                <option value="metalic_sheen_sweep" className="bg-s1 text-ink">Metalic Sheen Sweep</option>
+              </select>
+            </div>
+
+            {/* Title Duration */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Duración (segundos)</label>
+                <span className="text-xs font-mono text-accent">{(currentTitleConfig.durationSeconds) ?? 3.5}s</span>
+              </div>
+              <input
+                type="range"
+                min="1.5"
+                max="8"
+                step="0.5"
+                value={(currentTitleConfig.durationSeconds) ?? 3.5}
+                onChange={e => updateProp(comp.id, 'titleConfig', { ...currentTitleConfig, durationSeconds: parseFloat(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Title Word Delay */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Retraso entre palabras (frames)</label>
+                <span className="text-xs font-mono text-accent">{(currentTitleConfig.wordDelay) ?? 5}f</span>
+              </div>
+              <input
+                type="range"
+                min="1"
+                max="15"
+                step="1"
+                value={(currentTitleConfig.wordDelay) ?? 5}
+                onChange={e => updateProp(comp.id, 'titleConfig', { ...currentTitleConfig, wordDelay: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Title Spring Stiffness */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Stiffness (Rigidez)</label>
+                <span className="text-xs font-mono text-accent">{(currentTitleConfig.stiffness) ?? 100}</span>
+              </div>
+              <input
+                type="range"
+                min="20"
+                max="300"
+                step="5"
+                value={(currentTitleConfig.stiffness) ?? 100}
+                onChange={e => updateProp(comp.id, 'titleConfig', { ...currentTitleConfig, stiffness: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Title Spring Damping */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Damping (Amortiguación)</label>
+                <span className="text-xs font-mono text-accent">{(currentTitleConfig.damping) ?? 15}</span>
+              </div>
+              <input
+                type="range"
+                min="5"
+                max="50"
+                step="1"
+                value={(currentTitleConfig.damping) ?? 15}
+                onChange={e => updateProp(comp.id, 'titleConfig', { ...currentTitleConfig, damping: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Title Loop Count */}
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Loop Infinito</label>
+                <button
+                  onClick={() => {
+                    const isInfinite = currentTitleConfig.loopCount === 'infinite' || currentTitleConfig.loopCount === undefined;
+                    updateProp(comp.id, 'titleConfig', { ...currentTitleConfig, loopCount: isInfinite ? 3 : 'infinite' });
+                  }}
+                  className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors ${(currentTitleConfig.loopCount === 'infinite' || currentTitleConfig.loopCount === undefined) ? 'bg-accent' : 'bg-gray-700'}`}
+                >
+                  <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${(currentTitleConfig.loopCount === 'infinite' || currentTitleConfig.loopCount === undefined) ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
+              </div>
+              
+              {currentTitleConfig.loopCount !== 'infinite' && currentTitleConfig.loopCount !== undefined && (
+                <div className="mt-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="flex justify-between items-center mb-1">
+                    <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Repetir animación (veces)</label>
+                    <span className="text-xs font-mono text-accent">{currentTitleConfig.loopCount ?? 3} veces</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="99"
+                    step="1"
+                    value={currentTitleConfig.loopCount ?? 3}
+                    onChange={e => updateProp(comp.id, 'titleConfig', { ...currentTitleConfig, loopCount: parseInt(e.target.value) })}
+                    className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          <SectionLabel>Animación del Subtítulo</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-3">
+            <div>
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Tipo de Animación</label>
+              <select
+                value={props.subtitleAnimationType || 'cascade_elegant_fade_up'}
+                onChange={e => updateProp(comp.id, 'subtitleAnimationType', e.target.value)}
+                className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+              >
+                <option value="cascade_elegant_fade_up" className="bg-s1 text-ink">Cascade Elegant Fade Up</option>
+                <option value="soft_focus_in" className="bg-s1 text-ink">Soft Focus In</option>
+                <option value="metalic_sheen_sweep" className="bg-s1 text-ink">Metalic Sheen Sweep</option>
+              </select>
+            </div>
+
+            {/* Subtitle Start Delay */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Retraso de Inicio (segundos)</label>
+                <span className="text-xs font-mono text-accent">{((currentSubtitleConfig.startDelayMs) ?? 1000) / 1000}s</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="5"
+                step="0.1"
+                value={((currentSubtitleConfig.startDelayMs) ?? 1000) / 1000}
+                onChange={e => updateProp(comp.id, 'subtitleConfig', { ...currentSubtitleConfig, startDelayMs: Math.round(parseFloat(e.target.value) * 1000) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Subtitle Duration */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Duración (segundos)</label>
+                <span className="text-xs font-mono text-accent">{(currentSubtitleConfig.durationSeconds) ?? 3.5}s</span>
+              </div>
+              <input
+                type="range"
+                min="1.5"
+                max="8"
+                step="0.5"
+                value={(currentSubtitleConfig.durationSeconds) ?? 3.5}
+                onChange={e => updateProp(comp.id, 'subtitleConfig', { ...currentSubtitleConfig, durationSeconds: parseFloat(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Subtitle Word Delay */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Retraso entre palabras (frames)</label>
+                <span className="text-xs font-mono text-accent">{(currentSubtitleConfig.wordDelay) ?? 4}f</span>
+              </div>
+              <input
+                type="range"
+                min="1"
+                max="15"
+                step="1"
+                value={(currentSubtitleConfig.wordDelay) ?? 4}
+                onChange={e => updateProp(comp.id, 'subtitleConfig', { ...currentSubtitleConfig, wordDelay: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Subtitle Spring Stiffness */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Stiffness (Rigidez)</label>
+                <span className="text-xs font-mono text-accent">{(currentSubtitleConfig.stiffness) ?? 100}</span>
+              </div>
+              <input
+                type="range"
+                min="20"
+                max="300"
+                step="5"
+                value={(currentSubtitleConfig.stiffness) ?? 100}
+                onChange={e => updateProp(comp.id, 'subtitleConfig', { ...currentSubtitleConfig, stiffness: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Subtitle Spring Damping */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Damping (Amortiguación)</label>
+                <span className="text-xs font-mono text-accent">{(currentSubtitleConfig.damping) ?? 15}</span>
+              </div>
+              <input
+                type="range"
+                min="5"
+                max="50"
+                step="1"
+                value={(currentSubtitleConfig.damping) ?? 15}
+                onChange={e => updateProp(comp.id, 'subtitleConfig', { ...currentSubtitleConfig, damping: parseInt(e.target.value) })}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            {/* Subtitle Loop Count */}
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Loop Infinito</label>
+                <button
+                  onClick={() => {
+                    const isInfinite = currentSubtitleConfig.loopCount === 'infinite' || currentSubtitleConfig.loopCount === undefined;
+                    updateProp(comp.id, 'subtitleConfig', { ...currentSubtitleConfig, loopCount: isInfinite ? 3 : 'infinite' });
+                  }}
+                  className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors ${(currentSubtitleConfig.loopCount === 'infinite' || currentSubtitleConfig.loopCount === undefined) ? 'bg-accent' : 'bg-gray-700'}`}
+                >
+                  <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${(currentSubtitleConfig.loopCount === 'infinite' || currentSubtitleConfig.loopCount === undefined) ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
+              </div>
+              
+              {currentSubtitleConfig.loopCount !== 'infinite' && currentSubtitleConfig.loopCount !== undefined && (
+                <div className="mt-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="flex justify-between items-center mb-1">
+                    <label className="text-[10px] font-bold text-muted uppercase tracking-wider">Repetir animación (veces)</label>
+                    <span className="text-xs font-mono text-accent">{currentSubtitleConfig.loopCount ?? 3} veces</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="99"
+                    step="1"
+                    value={currentSubtitleConfig.loopCount ?? 3}
+                    onChange={e => updateProp(comp.id, 'subtitleConfig', { ...currentSubtitleConfig, loopCount: parseInt(e.target.value) })}
+                    className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          <SectionLabel>Fondo</SectionLabel>
+          <div className="rounded-xl border border-border bg-bg px-3 py-3 flex flex-col gap-2 animate-in fade-in duration-200">
+            <label className="block text-[10px] font-bold text-muted uppercase tracking-wider mb-1">Tipo de Fondo</label>
+            <select
+              value={props.backgroundType || 'video'}
+              onChange={e => updateProp(comp.id, 'backgroundType', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none cursor-pointer font-medium"
+            >
+              <option value="video" className="bg-s1 text-ink">🎞 Video o Imagen (Bunny.net)</option>
+              <option value="solid" className="bg-s1 text-ink">🎨 Color Sólido</option>
+              <option value="gradient" className="bg-s1 text-ink">🌈 Degradado CSS</option>
+            </select>
+            
+            {props.backgroundType === 'solid' && (
+              <div className="flex items-center gap-2 mt-1">
+                <input
+                  type="color"
+                  value={props.backgroundColor || '#120924'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="w-8 h-8 rounded cursor-pointer border-0 p-0"
+                />
+                <input
+                  type="text"
+                  value={props.backgroundColor || '#120924'}
+                  onChange={e => updateProp(comp.id, 'backgroundColor', e.target.value)}
+                  className="flex-1 p-2 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none uppercase font-mono text-white"
+                />
+              </div>
+            )}
+
+            {props.backgroundType === 'gradient' && (
+              <div className="flex flex-col gap-2 mt-1">
+                {/* Preset gradients */}
+                <label className="block text-[9px] font-bold text-muted uppercase tracking-wider">Presets de Degradados</label>
+                <div className="grid grid-cols-3 gap-1.5 mb-1">
+                  {[
+                    { name: 'Púrpura Cósmico', value: 'linear-gradient(135deg, #1c0e35 0%, #0a0416 100%)' },
+                    { name: 'Aurora Azul', value: 'linear-gradient(135deg, #09203f 0%, #537895 100%)' },
+                    { name: 'Atardecer Cyber', value: 'linear-gradient(135deg, #2b1055 0%, #7597de 100%)' },
+                    { name: 'Abismo Marino', value: 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)' },
+                    { name: 'Magma Eléctrico', value: 'linear-gradient(135deg, #0f0c20 0%, #15102a 50%, #300808 100%)' },
+                    { name: 'Gris Carbón', value: 'linear-gradient(135deg, #141414 0%, #282828 100%)' },
+                  ].map((preset, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => updateProp(comp.id, 'backgroundGradient', preset.value)}
+                      style={{ background: preset.value }}
+                      className={`h-7 rounded-md border text-[8px] font-semibold text-white/85 flex items-center justify-center shadow-sm hover:scale-[1.03] transition-transform active:scale-[0.98] cursor-pointer ${
+                        props.backgroundGradient === preset.value ? 'border-accent ring-1 ring-accent' : 'border-border'
+                      }`}
+                      title={preset.name}
+                    >
+                      {preset.name.split(' ')[0]}
+                    </button>
+                  ))}
+                </div>
+
+                <label className="block text-[9px] font-bold text-muted uppercase tracking-wider">Código de Degradado Personalizado</label>
+                <input
+                  type="text"
+                  placeholder="linear-gradient(135deg, #1c0e35 0%, #0a0416 100%)"
+                  value={props.backgroundGradient || 'linear-gradient(135deg, #1c0e35 0%, #0a0416 100%)'}
+                  onChange={e => updateProp(comp.id, 'backgroundGradient', e.target.value)}
+                  className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none font-mono text-white"
+                />
+                <span className="text-[9px] text-muted/60 leading-tight">Usa una sintaxis CSS válida de gradient (ej: linear-gradient).</span>
+              </div>
+            )}
+          </div>
+
+          {(props.backgroundType === 'video' || !props.backgroundType) && (
+            <>
+              <SectionLabel>Imagen Poster</SectionLabel>
+              <PosterSrcField
+                value={props.posterSrc || ''}
+                onChange={val => updateProp(comp.id, 'posterSrc', val)}
+                thumbnail={props[`${videoDeviceMode}VideoGuid`] ? `https://${CDN_HOSTNAME}/${props[`${videoDeviceMode}VideoGuid`]}/thumbnail.jpg` : null}
+              />
+              <div className="px-1 mt-1">
+                <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
+                <input
+                  type="text"
+                  placeholder="Descripción de la imagen"
+                  value={props.posterAlt || ''}
+                  onChange={e => updateProp(comp.id, 'posterAlt', e.target.value)}
+                  className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all text-white"
+                />
+              </div>
+
+              <SectionLabel>Video (Bunny Stream)</SectionLabel>
+              <div className="rounded-xl border border-border bg-bg overflow-hidden shadow-sm">
+                <div className="flex bg-s1 p-1 gap-1 border-b border-border">
+                  {[
+                    { id: 'mobile', label: 'Móvil', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
+                    { id: 'tablet', label: 'Tablet', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
+                    { id: 'desktop', label: 'Desktop', icon: <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> }
+                  ].map(tab => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setVideoDeviceMode(tab.id)}
+                      className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium transition-all ${
+                        videoDeviceMode === tab.id 
+                          ? 'bg-accent text-bg shadow-sm' 
+                          : 'text-muted hover:text-ink hover:bg-s2'
+                      }`}
+                    >
+                      {tab.icon}
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="p-3 flex flex-col gap-2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                    <span className="text-[10px] font-bold text-muted uppercase tracking-wider">
+                      GUID {videoDeviceMode === 'mobile' ? 'Móvil' : videoDeviceMode === 'tablet' ? 'Tablet' : 'Desktop'}
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Ej: 6859587c-3f26-444e-a131-026852c00325"
+                    value={props[videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid'] || ''}
+                    onChange={e => updateProp(comp.id, videoDeviceMode === 'mobile' ? 'mobileVideoGuid' : videoDeviceMode === 'tablet' ? 'tabletVideoGuid' : 'desktopVideoGuid', e.target.value)}
+                    className="w-full p-2.5 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono text-white"
+                  />
+                  <p className="text-[9px] text-muted/60 px-1 leading-tight">
+                    Usa un GUID diferente si quieres un encuadre distinto para {videoDeviceMode === 'mobile' ? 'celulares' : videoDeviceMode === 'tablet' ? 'tablets' : 'escritorio'}.
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
+
         </div>
       </div>
     );

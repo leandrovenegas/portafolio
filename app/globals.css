@@ -122,3 +122,41 @@
     font-variant-ligatures: none;
   }
 }
+
+/* ==========================================================================
+   Fondo Global Master (Cuadrícula fija)
+   ========================================================================== */
+body,
+#mockup-viewport {
+  background-color: #0D0D0D !important;
+  background-image: 
+    linear-gradient(#1a1a1a 1px, transparent 1px), 
+    linear-gradient(90deg, #1a1a1a 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+}
+
+body {
+  background-attachment: fixed !important;
+}
+
+/* Quitar fondos de los contenedores superiores en la parte pública y en el editor */
+main:not(.admin-main),
+#mockup-viewport,
+footer {
+  --color-bg: transparent;
+  --color-s1: transparent;
+  --color-s2: transparent;
+  --color-s3: transparent;
+}
+
+main:not(.admin-main) section,
+main:not(.admin-main) .bg-black,
+main:not(.admin-main) .page-builder-block,
+#mockup-viewport section,
+#mockup-viewport .bg-black,
+#mockup-viewport .page-builder-block,
+footer .bg-black {
+  background-color: transparent !important;
+  background-image: none !important;
+  background: transparent !important;
+}

@@ -9,6 +9,9 @@ import CTAWhatsapp from './sections/CTAWhatsapp';
 import EstrelasSection from './sections/EstrelasSection';
 import AvatarTextSection from './sections/AvatarTextSection';
 import LogosSection from './sections/LogosSection';
+import TituloAnimado from './sections/TituloAnimado';
+import TextosAnimados from './sections/TextosAnimados';
+
 
 
 export const COMPONENT_REGISTRY = {
@@ -22,7 +25,9 @@ export const COMPONENT_REGISTRY = {
   CTAWhatsapp,
   EstrelasSection,
   AvatarTextSection,
-  LogosSection
+  LogosSection,
+  TituloAnimado,
+  TextosAnimados
 };
 
 export const COMPONENT_DEFINITIONS = [
@@ -199,6 +204,78 @@ export const COMPONENT_DEFINITIONS = [
         { id: '4', src: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg', alt: 'Apple', link: '' },
         { id: '5', src: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg', alt: 'Microsoft', link: '' }
       ]
+    }
+  },
+  {
+    type: 'TituloAnimado',
+    name: 'Título Animado (Remotion)',
+    defaultProps: {
+      text: 'Creamos **Resultados** de alto impacto para tu negocio',
+      animationType: 'cascade_elegant_fade_up',
+      config: {
+        durationSeconds: 3.5,
+        wordDelay: 5,
+        stiffness: 100,
+        damping: 15,
+        mass: 1,
+        backgroundColor: '#120924'
+      },
+      _styles: {
+        text: {
+          mobile: { fontSize: 36, fontWeight: '900', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0', lineHeight: '1' },
+          tablet: { fontSize: 60, fontWeight: '900', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0', lineHeight: '1' },
+          desktop: { fontSize: 72, fontWeight: '900', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0', lineHeight: '1' }
+        }
+      }
+    }
+  },
+  {
+    type: 'TextosAnimados',
+    name: 'Textos Animados (Título y Subtítulo)',
+    defaultProps: {
+      title: 'Título Animado **Impactante**',
+      subtitle: 'Subtítulo animado por **separado** para mayor dinamismo.',
+      titulo: 'Título Animado **Impactante**',
+      subtitulo: 'Subtítulo animado por **separado** para mayor dinamismo.',
+      titleAnimationType: 'cascade_elegant_fade_up',
+      subtitleAnimationType: 'soft_focus_in',
+      titleConfig: {
+        durationSeconds: 3.5,
+        wordDelay: 5,
+        stiffness: 100,
+        damping: 15,
+        mass: 1,
+        loopCount: 'infinite'
+      },
+      subtitleConfig: {
+        durationSeconds: 3.5,
+        wordDelay: 4,
+        stiffness: 100,
+        damping: 15,
+        mass: 1,
+        loopCount: 'infinite',
+        startDelayMs: 1200
+      },
+      backgroundColor: '#120924',
+      backgroundType: 'solid',
+      backgroundGradient: 'linear-gradient(135deg, #1c0e35 0%, #0a0416 100%)',
+      mobileVideoGuid: '',
+      tabletVideoGuid: '',
+      desktopVideoGuid: '',
+      posterSrc: '',
+      posterAlt: 'Fondo animado',
+      _styles: {
+        title: {
+          mobile: { fontSize: 36, fontWeight: '900', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0', lineHeight: '1', color: '#FFFFFF' },
+          tablet: { fontSize: 60, fontWeight: '900', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0', lineHeight: '1', color: '#FFFFFF' },
+          desktop: { fontSize: 72, fontWeight: '900', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0', lineHeight: '1', color: '#FFFFFF' }
+        },
+        subtitle: {
+          mobile: { fontSize: 18, fontWeight: '500', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.4', color: '#A3A3A3' },
+          tablet: { fontSize: 24, fontWeight: '500', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.4', color: '#A3A3A3' },
+          desktop: { fontSize: 28, fontWeight: '500', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.4', color: '#A3A3A3' }
+        }
+      }
     }
   }
 ];
