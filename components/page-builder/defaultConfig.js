@@ -1644,8 +1644,8 @@ export const DEFAULT_HOME_COMPONENTS = [
     }
   },
   {
-    "id": "retencion-sec",
-    "name": "Retención",
+    "id": "post-venta-sec",
+    "name": "Post-Venta",
     "type": "HeroEditorialSection",
     "props": {
       "_styles": {
@@ -1801,18 +1801,18 @@ export const DEFAULT_HOME_COMPONENTS = [
       "tagline": "Confirma que tomó la decisión correcta.",
       "bodyText": "Entra exactamente después de la compra. Baja la ansiedad del cliente nuevo, confirma que tomó la decisión correcta y lo convierte en embajador.",
       "headline": "Video de",
-      "pillText": "Retención",
+      "pillText": "Post-Venta",
       "mobileAV1": "https://vz-a158839f-ce6.b-cdn.net/38e28ea0-9008-421c-90c3-39c6052072a2/play_720p.mp4",
       "mobileVP9": "https://vz-a158839f-ce6.b-cdn.net/0638d8ac-5bf6-4529-a5f0-b03e6c61f496/play_480p.mp4",
       "posterSrc": "/images/og-portafolio.jpg",
       "mobileH264": "https://vz-a158839f-ce6.b-cdn.net/38e28ea0-9008-421c-90c3-39c6052072a2/play_720p.mp4",
-      "productSlug": "retencion",
-      "headlineKeyword": "Retención",
+      "productSlug": "post-venta",
+      "headlineKeyword": "Post-Venta",
       "mobileVideoGuid": "",
       "tabletVideoGuid": "",
       "desktopVideoGuid": "",
       "primaryButtonIcon": "none",
-      "primaryButtonLink": "/videos/retencion",
+      "primaryButtonLink": "/videos/post-venta",
       "primaryButtonText": "Saber más",
       "secondaryButtonIcon": "none",
       "secondaryButtonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema",

@@ -143,10 +143,7 @@ body {
 main:not(.admin-main),
 #mockup-viewport,
 footer {
-  --color-bg: transparent;
-  --color-s1: transparent;
-  --color-s2: transparent;
-  --color-s3: transparent;
+  background-color: transparent !important;
 }
 
 main:not(.admin-main) section,

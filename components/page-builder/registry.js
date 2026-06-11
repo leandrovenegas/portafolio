@@ -53,7 +53,7 @@ export const COMPONENT_DEFINITIONS = [
       headline: 'Creamos',
       headlineKeyword: 'Resultados',
       bodyText: 'Llevamos tu marca al siguiente nivel con contenido de alto impacto. "El video es el rey del SEO".',
-      tagline: 'Garantizamos retención de audiencia.',
+      tagline: 'Post-Venta: Convierte clientes en embajadores',
       primaryButtonText: 'Agendar Llamada',
       primaryButtonLink: '/contacto',
       secondaryButtonText: 'Ver Portafolio',

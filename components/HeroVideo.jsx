@@ -147,8 +147,7 @@ export default function HeroVideo({
       className="relative w-full flex flex-col justify-center overflow-hidden"
       style={{
         background: getBackgroundStyle(),
-        height: getHeroHeight(),
-        minHeight: getHeroMinHeight()
+        minHeight: getHeroHeight()
       }}
     >
       {videoSchema && (
@@ -175,7 +174,7 @@ export default function HeroVideo({
           />
         </div>
       )}
-
+  
       {/* 2. Video HLS Adaptive */}
       {isMounted && activeGuid && showVisualBackground && (
         <video
@@ -188,7 +187,7 @@ export default function HeroVideo({
           onError={() => console.warn('HeroVideo: Failed to load HLS manifest.')}
         />
       )}
-
+  
       {/* 3. Optimización Estética Invisible (Overlays) */}
       <div className="absolute inset-0 w-full h-full z-10 bg-black/50"></div>
       
@@ -199,16 +198,16 @@ export default function HeroVideo({
           backgroundSize: '4px 4px'
         }}
       ></div>
-
+  
       <div className="absolute inset-x-0 bottom-0 h-48 z-10 bg-gradient-to-t from-bg via-bg/80 to-transparent"></div>
-
+  
       {/* 4. Contenido Principal */}
       <div className={`relative z-20 mx-auto max-w-7xl w-full ${
         device === 'mobile'
-          ? 'px-6 pt-20 pb-12'
+          ? 'px-6 pt-24 pb-16'
           : device === 'tablet'
-            ? 'px-12 pt-20 pb-12'
-            : 'px-4 pt-20 md:px-12 lg:px-24'
+            ? 'px-12 pt-24 pb-16'
+            : 'px-4 pt-28 pb-28 md:px-12 lg:px-24'
       }`}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
         {children}

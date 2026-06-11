@@ -428,7 +428,7 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
               onChange={e => updateProp(comp.id, 'productSlug', e.target.value)}
               className="w-full p-2.5 border border-border rounded-lg text-xs bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all font-mono"
             />
-            <p className="text-[9px] text-muted">Slugs disponibles: video-autoridad, video-confianza, video-conversion, video-retencion, pack-sistema</p>
+            <p className="text-[9px] text-muted">Slugs disponibles: video-autoridad, video-confianza, video-conversion, video-post-venta, pack-sistema</p>
           </div>
 
           <SectionLabel>Botones</SectionLabel>
