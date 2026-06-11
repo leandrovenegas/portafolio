@@ -229,12 +229,13 @@ export default function VslPage() {
             </div>
           </section>
 
-          {/* ── CTA FINAL ──────────────────────────────────── */}
+          {/* ── TRANSICION / CTA FINAL ─────────────────────── */}
           <section className="bg-s1 border border-border p-8 md:p-16 flex flex-col gap-8 relative overflow-hidden">
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent opacity-[0.04] rounded-full blur-[80px]" />
             <h2 className="font-display text-display-sm md:text-display-md text-ink max-w-xl leading-[0.95]">
               Activa tu vendedor más rentable
             </h2>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href={WA_LINK}
@@ -252,6 +253,28 @@ export default function VslPage() {
               >
                 Ver precios →
               </Link>
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-border flex flex-col gap-4">
+              <p className="font-body text-mid text-sm">
+                ¿Listo para dar el siguiente paso?
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href={WA_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
+                >
+                  Agendar llamada con Leandro →
+                </a>
+                <Link
+                  href="/sistema"
+                  className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
+                >
+                  Ver el sistema completo →
+                </Link>
+              </div>
             </div>
           </section>
 

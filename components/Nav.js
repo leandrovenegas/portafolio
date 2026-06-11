@@ -84,7 +84,7 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
   }, [isOpen, forceAbsolute]);
 
   const navLinks = [
-    { href: "/", label: "Sistema" },
+    { href: "/sistema", label: "Sistema" },
     { href: "/proceso", label: "Proceso" },
     { href: "/portafolio", label: "Portafolio" },
     { href: "/contacto", label: "Contacto" },

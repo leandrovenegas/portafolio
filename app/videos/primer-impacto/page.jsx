@@ -137,6 +137,7 @@ export default function PrimerImpactoPage() {
             <h2 className="font-display text-display-sm md:text-display-md text-ink max-w-xl leading-[0.95]">
               Ya te conocen. Ahora detén su scroll.
             </h2>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/videos/stop-scrolling"
@@ -145,26 +146,26 @@ export default function PrimerImpactoPage() {
                 Ver Video Stop-Scrolling →
               </Link>
             </div>
-            
+
             <div className="mt-8 pt-8 border-t border-border flex flex-col gap-4">
               <p className="font-body text-mid text-sm">
-                ¿Quieres saber cómo encaja este video en tu sistema completo?
+                ¿Listo para dar el siguiente paso?
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/proceso"
-                  className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
-                >
-                  Ver el proceso completo →
-                </Link>
                 <a
                   href={WA_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
                 >
-                  Hablar con Leandro →
+                  Agendar llamada con Leandro →
                 </a>
+                <Link
+                  href="/sistema"
+                  className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
+                >
+                  Ver el sistema completo →
+                </Link>
               </div>
             </div>
           </section>
