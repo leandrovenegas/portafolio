@@ -191,7 +191,7 @@ export const COMPONENT_DEFINITIONS = [
     name: 'Logos de Empresas',
     defaultProps: {
       title: 'Empresas con las que he trabajado',
-      subtitle: 'Colaboraciones y proyectos con marcas líderes',
+      subtitle: '',
       layout: 'marquee',
       logoTheme: 'grayscale-dark',
       logoHeight: 35,

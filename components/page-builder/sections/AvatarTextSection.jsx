@@ -238,7 +238,7 @@ export default function AvatarTextSection({
                 ref={titleRef}
                 data-field="title"
                 className="font-display font-bold leading-[1.1] text-white max-w-3xl whitespace-pre-line"
-                style={{ ...fieldStyle('title'), ...editableOutline }}
+                style={{ textTransform: 'none', ...fieldStyle('title'), ...editableOutline }}
                 contentEditable={isEditable}
                 suppressContentEditableWarning
                 onFocus={isEditable ? () => handleFocus('title') : undefined}
