@@ -24,7 +24,7 @@ export default function ContactPage() {
         </h1>
         <p className="font-body text-mid text-lg md:text-xl leading-relaxed">
           15 minutos. Solo un diagnóstico honesto de dónde está tu negocio<br />
-          y qué video lo mueve primero.
+          y qué video necesti primero.
         </p>
       </section>
 
@@ -40,7 +40,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-2 max-w-2xl">
               <h3 className="font-display text-xl text-ink">Dónde estás</h3>
               <p className="font-body text-mid text-base leading-relaxed">
-                Qué vendes, a quién llegas y esta tu cuello de botella.
+                Qué vendes, donde esta tu cuello de botella que el video puede solucionar.
               </p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-2 max-w-2xl">
               <h3 className="font-display text-xl text-ink">Qué mueve la aguja primero</h3>
               <p className="font-body text-mid text-base leading-relaxed">
-                Te digo qué tipo de video resuelve ese quiebre específico — y por qué ese y no otro.
+                Qué tipo de video resuelve ese quiebre específico — y por qué ese y no otro.
               </p>
             </div>
           </div>
