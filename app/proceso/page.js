@@ -3,7 +3,7 @@ import ProcesoTimeline from "@/components/ProcesoTimeline";
 
 export const metadata = {
   title: 'Nuestro Proceso de Trabajo | Leandro Venegas',
-  description: 'Sin sorpresas. Sin ambigüedad. Conoce paso a paso cómo trabajamos en tu estrategia, guiones, producción, post-producción y activación de video.',
+  description: 'Conoce paso a paso cómo trabajamos en tu estrategia, guiones, producción, post-producción y activación de video.',
   alternates: {
     canonical: 'https://www.leandrovenegas.cl/proceso',
   },
@@ -33,7 +33,7 @@ export default function ProcesoPage() {
         </h1>
         
         <p className="font-prose text-mid text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-          Sin sorpresas. Sin ambigüedad. Así es como trabajamos juntos para construir tu sistema de video.
+          Así es como trabajamos juntos para construir tu sistema de video marketing.
         </p>
       </section>
 
@@ -49,7 +49,7 @@ export default function ProcesoPage() {
             ¿Listo para dar el primer paso?
           </h2>
           <p className="font-body text-zinc-400 text-base md:text-lg max-w-xl leading-relaxed">
-            Comenzamos con una llamada de diagnóstico de 60 minutos sin costo para trazar el mapa estratégico inicial de tu negocio.
+            Comenzamos con un diagnóstico sin costo. Llena el formulario, yo investigo tu negocio, y coordinamos una llamada de 15 a 20 minutos para afinar la estrategia.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto items-center justify-center">
