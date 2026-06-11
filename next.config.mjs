@@ -22,7 +22,11 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  experimental: {},
+  experimental: {
+    outputFileTracingIncludes: {
+      '/api/**/*': ['!./.next/cache/**/*']
+    }
+  },
   images: {
     remotePatterns: [
       {
