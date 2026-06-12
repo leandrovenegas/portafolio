@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { createClient } from '@supabase/supabase-js';
 
 export const metadata: Metadata = {
-  title: 'Precios - Leandro Venegas',
-  description: 'Productos y servicios de video',
+  title: 'Inversión | Leandro Venegas',
+  description: 'Sistema de video marketing para negocios en Chile. Precios transparentes, sin IVA.',
 };
 
 interface Product {
@@ -87,8 +87,6 @@ function EmptyState() {
 
 export default async function PreciosPage() {
   const products = await getProducts();
-  const tiers = products.filter((p) => p.category !== 'individual');
-  const individual = products.find((p) => p.category === 'individual');
 
   return (
     <main className="min-h-screen bg-bg text-ink">
@@ -107,7 +105,7 @@ export default async function PreciosPage() {
 
         {/* Bajada */}
         <p className="font-prose text-body-lg text-mid max-w-xl mx-auto leading-relaxed">
-          Todos los precios en CLP incluyen IVA (19%). Precios en USD de referencia.
+          Precios en CLP. Sin IVA — emito boleta de honorarios.<br />
           Cada video es producido a medida para tu negocio.
         </p>
       </header>
@@ -120,9 +118,8 @@ export default async function PreciosPage() {
           <div className="flex flex-col gap-12">
             {/* Tiers Layout */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-              {tiers.map((product) => {
+              {products.map((product) => {
                 const isPopular = product.category === 'sistema';
-                const isEscala = product.category === 'sistema_crm';
 
                 return (
                   <article
@@ -137,11 +134,6 @@ export default async function PreciosPage() {
                     {isPopular && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-bg font-mono text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-[0.15em] whitespace-nowrap shadow-md">
                         Más popular
-                      </div>
-                    )}
-                    {isEscala && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-s2 border border-border2 text-accent font-mono text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-[0.15em] whitespace-nowrap">
-                        Escala
                       </div>
                     )}
 
@@ -166,7 +158,7 @@ export default async function PreciosPage() {
                         {formatCLP(product.price_clp)}
                       </span>
                       <span className="font-mono text-[10px] text-muted uppercase tracking-wider">
-                        + IVA / Pago Neto
+                        Pago neto · Boleta de honorarios
                       </span>
                     </div>
 
@@ -189,26 +181,7 @@ export default async function PreciosPage() {
               })}
             </div>
 
-            {/* Individual Line */}
-            {individual && (
-              <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-center py-6 border-t border-border/20 max-w-2xl mx-auto w-full">
-                <span className="font-body text-mid text-sm">
-                  ¿Solo necesitas un video?{' '}
-                  <span className="text-ink font-bold">
-                    desde {formatCLP(individual.price_clp)}
-                  </span>
-                </span>
-                <a
-                  href={waUrl(individual)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-accent hover:text-accent2 transition-colors duration-200 font-mono text-[11px] uppercase tracking-wider border-b border-accent/30 hover:border-accent pb-0.5"
-                >
-                  <WhatsAppIcon />
-                  Cotizar individual
-                </a>
-              </div>
-            )}
+
           </div>
         )}
       </section>
