@@ -76,7 +76,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
     setEmailLoading(true);
     setEmailError('');
     try {
-      const res = await submitEmailLead(leadId, email.trim());
+      const res = await submitEmailLead(leadId, email.trim(), business_name);
       if (res.success) {
         setEmailSent(true);
         trackEvent('email_submitted', { business_name, email });

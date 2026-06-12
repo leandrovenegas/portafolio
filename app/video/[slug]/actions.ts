@@ -39,7 +39,8 @@ export async function registerPageVisit(leadId: string): Promise<void> {
  */
 export async function submitEmailLead(
   leadId: string,
-  email: string
+  email: string,
+  businessName: string
 ): Promise<{ success: boolean; error?: string }> {
 
 
@@ -47,7 +48,9 @@ export async function submitEmailLead(
     lead_id: leadId,
     canal: 'email',
     estado: 'respondió',
-    notas: `Solicitó video extendido (Email: ${email})`,
+    notas: 'Solicitó video extendido',
+    email: email,
+    business_name: businessName,
   });
 
   if (error) {
