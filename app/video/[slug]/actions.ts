@@ -1,11 +1,14 @@
 'use server';
 
 import { createClient } from '@supabase/supabase-js';
+import { Resend } from 'resend';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SPR_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SPR_SUPABASE_ANON_KEY!
 );
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 
 /**
@@ -53,6 +56,31 @@ export async function submitEmailLead(
     console.error('Error submitting email lead:', error.message);
     return { success: false, error: error.message };
   }
+
+  // Envío del email sin bloquear el flujo principal si falla
+  try {
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'leandrovengasoficial@gmail.com',
+      subject: 'Nuevo lead: video extendido',
+      html: `
+        <p><strong>Nuevo lead registrado:</strong></p>
+        <ul>
+          <li><strong>Email:</strong> ${email}</li>
+          <li><strong>Nombre del negocio:</strong> ${businessName}</li>
+          <li><strong>Lead ID:</strong> ${leadId}</li>
+        </ul>
+      `,
+    });
+    if (emailError) {
+      console.error('Error sending email notification via Resend:', emailError);
+    } else {
+      console.log('Email notification sent successfully:', emailData);
+    }
+  } catch (resendError) {
+    console.error('Unexpected error sending email notification via Resend:', resendError);
+  }
+
   return { success: true };
 }
 
