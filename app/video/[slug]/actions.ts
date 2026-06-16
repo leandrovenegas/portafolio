@@ -43,11 +43,10 @@ export async function submitEmailLead(
   businessName: string
 ): Promise<{ success: boolean; error?: string }> {
 
-  const { error } = await supabase.from('outreach').insert({
+  const { error } = await supabase.from('email_leads').insert({
     lead_id: leadId,
-    canal: 'email',
-    estado: 'respondió',
-    notas: `Solicitó video extendido. Email: ${email} | Negocio: ${businessName}`,
+    email: email,
+    business_name: businessName,
   });
 
   if (error) {
