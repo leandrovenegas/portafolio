@@ -61,7 +61,7 @@ export async function submitEmailLead(
   try {
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'leandrovengasoficial@gmail.com',
+      to: 'leandrovenegasoficial@gmail.com',
       subject: 'Nuevo lead: video extendido',
       html: `
         <p><strong>Nuevo lead registrado:</strong></p>

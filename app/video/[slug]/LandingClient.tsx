@@ -417,7 +417,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           }}
         >
           <VideoPlayer
-            src="https://vz-a158839f-ce6.b-cdn.net/ad0da156-3ad3-4b19-978e-263bfc90be2e/playlist.m3u8"
+            src="https://vz-a158839f-ce6.b-cdn.net/fb5650f9-6e9b-419d-b14d-1c01f97222cd/playlist.m3u8"
             title="Por qué hice este video para tu negocio"
             muted={true}
             autoplay={false}
