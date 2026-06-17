@@ -43,6 +43,18 @@ export async function generateMetadata({
     return {
       title: 'Café del Puerto — Tu video de reseñas',
       description: 'Café del Puerto, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.',
+      openGraph: {
+        title: "Tu video ya está listo 🎬",
+        description: "Descárgalo y úsalo en tus redes cuando quieras.",
+        images: ['/avatar-leandro.jpg'],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary',
+        title: "Tu video ya está listo 🎬",
+        description: "Descárgalo y úsalo en tus redes cuando quieras.",
+        images: ['/avatar-leandro.jpg'],
+      },
       robots: {
         index: false,
         follow: false,
@@ -71,14 +83,16 @@ export async function generateMetadata({
     title,
     description,
     openGraph: {
-      title,
-      description,
+      title: "Tu video ya está listo 🎬",
+      description: "Descárgalo y úsalo en tus redes cuando quieras.",
+      images: ['/avatar-leandro.jpg'],
       type: 'website',
     },
     twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
+      card: 'summary',
+      title: "Tu video ya está listo 🎬",
+      description: "Descárgalo y úsalo en tus redes cuando quieras.",
+      images: ['/avatar-leandro.jpg'],
     },
     robots: {
       index: false, // Página privada por slug, no indexar
