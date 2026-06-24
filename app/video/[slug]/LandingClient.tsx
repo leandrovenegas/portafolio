@@ -123,23 +123,13 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
         style={{
           padding: '20px 24px',
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-end',
           alignItems: 'center',
           maxWidth: '960px',
           margin: '0 auto',
           borderBottom: '1px solid var(--color-border)',
         }}
       >
-        <span
-          style={{
-            fontFamily: bebasFont,
-            fontSize: '22px',
-            letterSpacing: '0.06em',
-            color: 'var(--color-accent)',
-          }}
-        >
-          SOCIALPROOF<span style={{ color: 'var(--color-ink)' }}>REEL</span>
-        </span>
         <span
           style={{
             fontSize: '11px',
