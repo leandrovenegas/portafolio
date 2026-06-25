@@ -48,7 +48,7 @@ const VIDEOS = [
 ];
 
 export default function SistemaPage() {
-  const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20vi%20el%20sistema%20completo";
+  const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema";
 
   return (
     <main className="min-h-screen bg-bg relative overflow-hidden pb-32 pt-24">
@@ -107,9 +107,9 @@ export default function SistemaPage() {
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex justify-center items-center font-mono text-xs tracking-wide border border-border2 text-mid px-6 py-4 hover:border-mid hover:text-ink transition-colors"
+              className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-10 py-5 hover:bg-accent2 transition-colors w-full sm:w-auto"
             >
-              Agendar llamada con Leandro →
+              Hablar con Leandro
             </a>
           </div>
         </section>

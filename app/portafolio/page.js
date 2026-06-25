@@ -6,6 +6,8 @@ import MediaPreconnect from "@/components/MediaPreconnect";
 import HeroVideo from "@/components/HeroVideo";
 import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
 import HeroPortafolioTexto from "@/components/HeroPortafolioTexto";
+import CTASection from "@/components/page-builder/sections/CTASection";
+
 
 export const metadata = {
   title: "Portafolio — Dirección Creativa y Producción Audiovisual | Leandro Venegas",
@@ -76,8 +78,12 @@ export default async function Portafolio({ searchParams }) {
             <LivePreviewListener initialComponents={components} />
           </div>
         )}
-
-
+        <div className="relative z-20 bg-bg mx-auto max-w-7xl w-full px-6 md:px-12 lg:px-24 py-12 md:py-16">
+          <CTASection 
+            href="https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema" 
+            text="Hablar con Leandro" 
+          />
+        </div>
       </main>
     </>
   );

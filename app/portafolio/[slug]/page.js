@@ -19,8 +19,7 @@ const getOrganization = cache(async (slug) => {
   if (!org) return null;
 
   // Ejecutamos consultas secundarias en paralelo
-  const [hijasRes, proyectosRes] = await Promise.all([
-    supabase.from("organizations").select("*").eq("parent_organization_id", org.id),
+  const [proyectosRes] = await Promise.all([
     supabase.from("projects").select("*").eq("owner_organization_id", org.id).eq("status", "published")
   ]);
 
@@ -46,7 +45,6 @@ const getOrganization = cache(async (slug) => {
 
   return {
     org,
-    hijas: hijasRes.data || [],
     proyectos: proyectosRes.data || [],
     content
   };
@@ -87,7 +85,7 @@ export default async function OrganizacionPage({ params }) {
 
   if (!data) return notFound(); // Usa el componente not-found.js de Next.js
 
-  const { org, hijas, proyectos, content } = data;
+  const { org, proyectos, content } = data;
 
   return (
     <>
@@ -118,27 +116,7 @@ export default async function OrganizacionPage({ params }) {
             )}
           </header>
 
-          {/* Sub organizaciones */}
-          {hijas.length > 0 && (
-            <SectionWrapper title="Áreas de Operación">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
-                {hijas.map((hija) => (
-                  <Link
-                    key={hija.id}
-                    href={`/portafolio/${hija.slug}`}
-                    className="bg-bg p-8 flex flex-col gap-4 hover:bg-s1 transition-colors duration-200 group"
-                  >
-                    <span className="font-mono text-[10px] text-accent tracking-widest uppercase border border-accent/30 bg-accent/5 px-2 py-1 self-start">
-                      {hija.type}
-                    </span>
-                    <h3 className="font-display text-3xl text-ink mt-2 group-hover:text-accent transition-colors duration-200">
-                      {hija.name}
-                    </h3>
-                  </Link>
-                ))}
-              </div>
-            </SectionWrapper>
-          )}
+
 
           {/* Proyectos */}
           {proyectos.length > 0 && (
