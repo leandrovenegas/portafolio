@@ -6,7 +6,6 @@ import MediaPreconnect from "@/components/MediaPreconnect";
 import HeroVideo from "@/components/HeroVideo";
 import LivePreviewListener from '@/components/page-builder/LivePreviewListener';
 import HeroPortafolioTexto from "@/components/HeroPortafolioTexto";
-import CTASection from "@/components/page-builder/sections/CTASection";
 
 
 export const metadata = {
@@ -78,11 +77,15 @@ export default async function Portafolio({ searchParams }) {
             <LivePreviewListener initialComponents={components} />
           </div>
         )}
-        <div className="relative z-20 bg-bg mx-auto max-w-7xl w-full px-6 md:px-12 lg:px-24 py-12 md:py-16">
-          <CTASection 
-            href="https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema" 
-            text="Hablar con Leandro" 
-          />
+        <div className="relative z-20 bg-bg mx-auto max-w-7xl w-full px-6 md:px-12 lg:px-24 py-12 md:py-16 flex justify-center">
+          <a
+            href="https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex justify-center items-center font-display text-xl tracking-wide bg-accent text-bg px-10 py-5 hover:bg-accent2 transition-colors w-full sm:w-auto"
+          >
+            Hablar con Leandro
+          </a>
         </div>
       </main>
     </>
