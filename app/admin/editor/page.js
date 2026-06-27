@@ -633,6 +633,7 @@ function VisualEditorContent() {
             title="Seleccionar página para editar"
           >
             <option value="home">home</option>
+            <option value="sistema">sistema</option>
             <option value="videos">videos</option>
             <option value="portafolio">portafolio</option>
             <option value="contacto">contacto</option>

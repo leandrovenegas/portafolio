@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { DEFAULT_HOME_COMPONENTS } from "@/components/page-builder/defaultConfig";
+import LivePreviewListener from "@/components/page-builder/LivePreviewListener";
+import supabase from "@/lib/supabase";
 
 export const metadata = {
   title: "Sistema de Video Marketing | Leandro Venegas",
@@ -47,11 +50,35 @@ const VIDEOS = [
   },
 ];
 
-export default function SistemaPage() {
+async function getHomeComponents() {
+  try {
+    const { data, error } = await supabase
+      .from("page_versions")
+      .select("components")
+      .eq("slug", "home")
+      .eq("is_active", true)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
+
+    if (error || !data) {
+      return DEFAULT_HOME_COMPONENTS;
+    }
+    return data.components;
+  } catch (e) {
+    return DEFAULT_HOME_COMPONENTS;
+  }
+}
+
+export default async function SistemaPage() {
+  const homeComponents = await getHomeComponents();
   const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema";
 
   return (
-    <main className="min-h-screen bg-bg relative overflow-hidden pb-32 pt-24">
+    <main className="min-h-screen bg-bg relative overflow-hidden pb-32">
+      {/* Contenido dinámico del home */}
+      <LivePreviewListener initialComponents={homeComponents} />
+
       {/* Subtle Background Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-accent/3 blur-[180px] rounded-full pointer-events-none" />
