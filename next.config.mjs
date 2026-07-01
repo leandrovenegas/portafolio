@@ -24,7 +24,8 @@ const nextConfig = {
   },
   experimental: {},
   outputFileTracingIncludes: {
-    '/api/**/*': ['!./.next/cache/**/*']
+    '/api/**/*': ['!./.next/cache/**/*'],
+    '/portafolio/[slug]': ['./app/content/**/*']
   },
   images: {
     remotePatterns: [
