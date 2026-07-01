@@ -1,0 +1,135 @@
+[
+  {
+    "id": "1778651831740-origen",
+    "name": "Sobre Mí (Avatar)",
+    "type": "AvatarTextSection",
+    "props": {
+      "title": "El video es la herramienta más poderosa que hemos creado ",
+      "_styles": {
+        "title": {
+          "mobile": {
+            "color": "#ffffff",
+            "fontSize": 26,
+            "fontStyle": "normal",
+            "fontFamily": "",
+            "fontWeight": "500",
+            "lineHeight": 1.3,
+            "letterSpacing": "-0.02",
+            "textTransform": "none"
+          },
+          "tablet": {
+            "color": "#ffffff",
+            "fontSize": 36,
+            "fontStyle": "normal",
+            "fontWeight": "700",
+            "lineHeight": "1.1",
+            "letterSpacing": "-0.02",
+            "textTransform": "none"
+          },
+          "desktop": {
+            "color": "#ffffff",
+            "fontSize": 40,
+            "fontStyle": "normal",
+            "fontFamily": "",
+            "fontWeight": "700",
+            "lineHeight": "1.1",
+            "letterSpacing": "-0.02",
+            "textTransform": "none"
+          }
+        },
+        "description": {
+          "mobile": {
+            "color": "#a3a3a3",
+            "fontSize": 18,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "lineHeight": "1.6",
+            "letterSpacing": "0",
+            "textTransform": "none"
+          },
+          "tablet": {
+            "color": "#a3a3a3",
+            "fontSize": 18,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "lineHeight": "1.6",
+            "letterSpacing": "0",
+            "textTransform": "none"
+          },
+          "desktop": {
+            "color": "#a3a3a3",
+            "fontSize": 20,
+            "fontStyle": "normal",
+            "fontWeight": "400",
+            "lineHeight": "1.6",
+            "letterSpacing": "0",
+            "textTransform": "none"
+          }
+        }
+      },
+      "avatarAlt": "Leandro Venegas",
+      "avatarSrc": "/images/leandro-avatar.png",
+      "description": "Puedes desarmar o crear un imperio o simplemente vender cualquier cosa. Aprendí esto trabajando años con marcas y agencias.",
+      "elementOrder": [
+        "avatar",
+        "title",
+        "description"
+      ],
+      "showAccentBar": true
+    }
+  },
+  {
+    "id": "1780687646644",
+    "type": "LogosSection",
+    "props": {
+      "logos": [
+        {
+          "id": "1",
+          "alt": "Dando la hora",
+          "src": "https://res.cloudinary.com/dx2rvpvwr/image/upload/v1780689465/Logo-Mastter_0001_Layer-2_tvglz5.png",
+          "link": ""
+        },
+        {
+          "id": "2",
+          "alt": "Valook",
+          "src": "https://res.cloudinary.com/dx2rvpvwr/image/upload/v1780687599/Valook_tf6wdj.png",
+          "link": ""
+        },
+        {
+          "id": "3",
+          "alt": "Incoludido",
+          "src": "https://res.cloudinary.com/dx2rvpvwr/image/upload/v1780690872/Logo-Mastter_0000s_0000_Layer-6_gr0bdb.png",
+          "link": ""
+        },
+        {
+          "id": "4",
+          "alt": "Ac2",
+          "src": "https://res.cloudinary.com/dx2rvpvwr/image/upload/v1780692234/AC2_qlso6o.png",
+          "link": ""
+        },
+        {
+          "id": "5",
+          "alt": "Dragonlab",
+          "src": "https://res.cloudinary.com/dx2rvpvwr/image/upload/v1780692712/Logo-Mastter_0000s_0001_Background-copy_jph6n3.png",
+          "link": ""
+        }
+      ],
+      "speed": "medium",
+      "title": "Empresas con las que he trabajado",
+      "layout": "marquee",
+      "subtitle": "Colaboraciones y proyectos con marcas líderes",
+      "logoTheme": "grayscale-dark",
+      "logoHeight": 28,
+      "backgroundColor": "#000000"
+    }
+  },
+  {
+    "id": "cta-hablar-leandro",
+    "type": "CTASection",
+    "props": {
+      "href": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema",
+      "text": "Hablar con Leandro",
+      "variant": "secondary"
+    }
+  }
+]

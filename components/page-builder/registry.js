@@ -8,9 +8,11 @@ import SimpleCenteredCTA from './sections/SimpleCenteredCTA';
 import CTAWhatsapp from './sections/CTAWhatsapp';
 import EstrelasSection from './sections/EstrelasSection';
 import AvatarTextSection from './sections/AvatarTextSection';
+import AvatarSection from './sections/AvatarSection';
 import LogosSection from './sections/LogosSection';
 import TituloAnimado from './sections/TituloAnimado';
 import TextosAnimados from './sections/TextosAnimados';
+import ServiceButtonsSection from './sections/ServiceButtonsSection';
 
 
 
@@ -25,10 +27,13 @@ export const COMPONENT_REGISTRY = {
   CTAWhatsapp,
   EstrelasSection,
   AvatarTextSection,
+  AvatarSection,
   LogosSection,
   TituloAnimado,
-  TextosAnimados
+  TextosAnimados,
+  ServiceButtonsSection
 };
+
 
 export const COMPONENT_DEFINITIONS = [
   {
@@ -187,16 +192,24 @@ export const COMPONENT_DEFINITIONS = [
     }
   },
   {
+    type: 'AvatarSection',
+    name: 'Avatar (Solo Imagen)',
+    defaultProps: {
+      avatarSrc: '/images/leandro-avatar.png',
+      avatarAlt: 'Leandro Venegas'
+    }
+  },
+  {
     type: 'LogosSection',
     name: 'Logos de Empresas',
     defaultProps: {
-      title: 'Empresas con las que he trabajado',
-      subtitle: '',
       layout: 'marquee',
       logoTheme: 'grayscale-dark',
       logoHeight: 35,
       speed: 'medium',
       backgroundColor: '#000000',
+      paddingTop: 32,
+      paddingBottom: 32,
       logos: [
         { id: '1', src: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', alt: 'Amazon', link: '' },
         { id: '2', src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', alt: 'Google', link: '' },
@@ -276,6 +289,19 @@ export const COMPONENT_DEFINITIONS = [
           desktop: { fontSize: 28, fontWeight: '500', fontStyle: 'normal', textTransform: 'none', letterSpacing: '0', lineHeight: '1.4', color: '#A3A3A3' }
         }
       }
+    }
+  },
+  {
+    type: 'ServiceButtonsSection',
+    name: 'Botones de Servicio',
+    defaultProps: {
+      title: 'Elige tu camino',
+      description: 'Selecciona la opción que mejor se adapte a tus necesidades actuales.',
+      items: [
+        { buttonText: 'Quiero edición', subtitle: 'Envíame tu material, en 48h está listo.', link: 'https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20servicio%20de%20Edici%C3%B3n' },
+        { buttonText: 'Quiero un video', subtitle: 'Lo producimos juntos desde cero.', link: 'https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20servicio%20de%20producir%20un%20video' },
+        { buttonText: 'Quiero vender con video', subtitle: 'Construimos un sistema que trabaja por ti.', link: '/sistema' }
+      ]
     }
   }
 ];

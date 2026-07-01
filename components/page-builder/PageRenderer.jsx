@@ -20,7 +20,7 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
         const isSelected = comp.id === selectedId;
         const isEditable = !!onSelectComponent;
 
-        if (comp.type === 'HeroVideoSection' || comp.type === 'HeroEditorialSection') {
+        if (comp.type === 'HeroVideoSection' || comp.type === 'HeroEditorialSection' || comp.type === 'LogosSection') {
           return (
             <div
               key={comp.id}

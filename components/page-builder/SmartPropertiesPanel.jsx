@@ -954,6 +954,47 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
     );
   }
 
+  // ── AvatarSection layout ──
+  if (type === 'AvatarSection') {
+    return (
+      <div className="bg-bg border border-border rounded-xl shadow-sm animate-in fade-in slide-in-from-bottom-2 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-s1">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={onClose} 
+              className="mr-1 p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors flex items-center justify-center"
+              title="Volver a la estructura"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            <h3 className="text-xs font-bold text-ink">Avatar (Solo Imagen) — Propiedades</h3>
+          </div>
+          <button onClick={onClose} className="p-1 hover:text-red-400 text-muted transition-colors rounded" title="Volver a la estructura">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <SectionLabel>Avatar / Perfil</SectionLabel>
+          <PosterSrcField
+            value={props.avatarSrc || ''}
+            onChange={val => updateProp(comp.id, 'avatarSrc', val)}
+          />
+          <div className="px-1 mt-1">
+            <label className="block text-[9px] font-bold text-muted uppercase tracking-wider mb-1">Texto Alternativo (SEO)</label>
+            <input
+              type="text"
+              placeholder="Ej: Leandro Venegas"
+              value={props.avatarAlt || ''}
+              onChange={e => updateProp(comp.id, 'avatarAlt', e.target.value)}
+              className="w-full p-2 border border-border rounded-lg text-[11px] bg-s1 focus:bg-s2 focus:ring-1 focus:ring-accent outline-none transition-all"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // ── LogosSection layout ──
   if (type === 'LogosSection') {
     const logos = props.logos || [];
@@ -1005,24 +1046,6 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
         </div>
 
         <div className="flex flex-col gap-3 p-3 overflow-y-auto max-h-[70vh] custom-scrollbar">
-          <SectionLabel>Contenido General</SectionLabel>
-          <TextField
-            fieldKey="title"
-            label="Título de la sección"
-            long={false}
-            value={props.title || ''}
-            onChange={val => updateProp(comp.id, 'title', val)}
-            onFocusField={onFocusField}
-          />
-          <TextField
-            fieldKey="subtitle"
-            label="Subtítulo / Descripción"
-            long={true}
-            value={props.subtitle || ''}
-            onChange={val => updateProp(comp.id, 'subtitle', val)}
-            onFocusField={onFocusField}
-          />
-
           <SectionLabel>Ajustes de Diseño</SectionLabel>
           <div className="rounded-xl border border-border bg-bg p-3 flex flex-col gap-3">
             <div className="flex flex-col gap-1">
@@ -1092,6 +1115,38 @@ export default function SmartPropertiesPanel({ comp, updateProp, onClose, onFocu
                 value={props.logoHeight || 35}
                 onChange={e => updateProp(comp.id, 'logoHeight', parseInt(e.target.value) || 35)}
                 className="w-full p-2 border border-border rounded-lg text-xs bg-s1 focus:ring-1 focus:ring-accent outline-none"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-between items-center">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider font-medium">Espaciado Superior (Padding Top)</label>
+                <span className="text-xs font-mono text-accent">{props.paddingTop !== undefined ? props.paddingTop : 32}px</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="200"
+                step="4"
+                value={props.paddingTop !== undefined ? props.paddingTop : 32}
+                onChange={e => updateProp(comp.id, 'paddingTop', parseInt(e.target.value))}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-between items-center">
+                <label className="text-[10px] font-bold text-muted uppercase tracking-wider font-medium">Espaciado Inferior (Padding Bottom)</label>
+                <span className="text-xs font-mono text-accent">{props.paddingBottom !== undefined ? props.paddingBottom : 32}px</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="200"
+                step="4"
+                value={props.paddingBottom !== undefined ? props.paddingBottom : 32}
+                onChange={e => updateProp(comp.id, 'paddingBottom', parseInt(e.target.value))}
+                className="w-full h-1.5 bg-s2 rounded-lg appearance-none cursor-pointer accent-accent"
               />
             </div>
           </div>

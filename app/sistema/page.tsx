@@ -50,12 +50,12 @@ const VIDEOS = [
   },
 ];
 
-async function getHomeComponents() {
+async function getSistemaComponents() {
   try {
     const { data, error } = await supabase
       .from("page_versions")
       .select("components")
-      .eq("slug", "home")
+      .eq("slug", "sistema")
       .eq("is_active", true)
       .order("created_at", { ascending: false })
       .limit(1)
@@ -71,13 +71,13 @@ async function getHomeComponents() {
 }
 
 export default async function SistemaPage() {
-  const homeComponents = await getHomeComponents();
+  const sistemaComponents = await getSistemaComponents();
   const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20hablar%20sobre%20el%20sistema";
 
   return (
     <main className="min-h-screen bg-bg relative overflow-hidden pb-32">
-      {/* Contenido dinámico del home */}
-      <LivePreviewListener initialComponents={homeComponents} />
+      {/* Contenido dinámico del sistema */}
+      <LivePreviewListener initialComponents={sistemaComponents} />
 
       {/* Subtle Background Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />

@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react';
 
 export default function LogosSection({
-  title = '',
-  subtitle = '',
   logos = [],
   layout = 'marquee', // 'marquee' | 'grid'
   logoTheme = 'grayscale-dark', // 'grayscale-dark' | 'grayscale-light' | 'color'
   logoHeight = 35,
   speed = 'medium', // 'slow' | 'medium' | 'fast'
   backgroundColor = '',
+  paddingTop = 32,
+  paddingBottom = 32,
   forceBp = null
 }) {
   const [bp, setBp] = useState(forceBp || 'mobile');
@@ -67,7 +67,9 @@ export default function LogosSection({
   // Section style
   const sectionStyle = {
     backgroundColor: backgroundColor || 'transparent',
-    '--bg-color': backgroundColor || '#000000'
+    '--bg-color': backgroundColor || '#000000',
+    paddingTop: `${paddingTop}px`,
+    paddingBottom: `${paddingBottom}px`
   };
 
   // Check if we have logos
@@ -75,7 +77,7 @@ export default function LogosSection({
 
   return (
     <section 
-      className="w-full py-8 transition-colors duration-300"
+      className="w-full transition-colors duration-300"
       style={sectionStyle}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -87,22 +89,6 @@ export default function LogosSection({
           animation: marquee-scroll linear infinite;
         }
       `}} />
-
-      {/* Title & Subtitle - Hide if empty */}
-      {((title && title.trim() !== '') || (subtitle && subtitle.trim() !== '')) && (
-        <div className="text-center mb-8 px-4 max-w-3xl mx-auto">
-          {title && title.trim() !== '' && (
-            <h2 data-field="title" className="text-sm font-bold text-ink uppercase tracking-widest mb-2 font-display">
-              {title}
-            </h2>
-          )}
-          {subtitle && subtitle.trim() !== '' && (
-            <p data-field="subtitle" className="text-xs text-muted font-body">
-              {subtitle}
-            </p>
-          )}
-        </div>
-      )}
 
       {/* Logo Display Container */}
       {!hasLogos ? (
