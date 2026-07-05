@@ -3,10 +3,20 @@
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SPR_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SPR_SUPABASE_ANON_KEY!
-);
+let supabaseClient: ReturnType<typeof createClient> | null = null;
+
+function getSupabase() {
+  if (!supabaseClient) {
+    const url = process.env.NEXT_PUBLIC_SPR_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SPR_SUPABASE_ANON_KEY;
+    if (!url || !key) {
+      console.error('Supabase env vars NEXT_PUBLIC_SPR_SUPABASE_URL or NEXT_PUBLIC_SPR_SUPABASE_ANON_KEY are missing');
+      return null;
+    }
+    supabaseClient = createClient(url, key);
+  }
+  return supabaseClient;
+}
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -16,7 +26,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  * Inserta en outreach solo si no existe un registro previo canal='web' para ese lead.
  */
 export async function registerPageVisit(leadId: string): Promise<void> {
-
+  const supabase = getSupabase();
+  if (!supabase) return;
 
   const { data: existing, error } = await supabase
     .from('outreach')
@@ -46,42 +57,57 @@ export async function submitEmailLead(
   businessName: string
 ): Promise<{ success: boolean; error?: string }> {
 
-  const { error } = await supabase.from('email_leads').insert({
-    lead_id: leadId,
-    email: email,
-    business_name: businessName,
-  });
+  const supabase = getSupabase();
+  let dbErrorMsg: string | null = null;
 
-  if (error) {
-    console.error('Error submitting email lead:', error.message);
-    return { success: false, error: error.message };
+  if (supabase) {
+    const { error } = await supabase.from('email_leads').insert({
+      lead_id: leadId,
+      email: email,
+      business_name: businessName,
+    });
+    if (error) {
+      console.error('Error submitting email lead to database:', error.message);
+      dbErrorMsg = error.message;
+    }
+  } else {
+    dbErrorMsg = 'Supabase environment variables are missing or client failed to initialize';
+    console.error(dbErrorMsg);
   }
 
-  // Envío del email sin bloquear el flujo principal si falla
+  // Envío del email sin bloquear el flujo principal si falla, garantizando el envío a leandrovenegasoficial@gmail.com
+  let emailSent = false;
   try {
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: 'leandrovenegasoficial@gmail.com',
-      subject: 'Nuevo lead: video extendido',
+      subject: `Nuevo lead: video extendido - ${businessName}`,
       html: `
-        <p><strong>Nuevo lead registrado:</strong></p>
+        <p><strong>Nuevo lead registrado para el video extendido:</strong></p>
         <ul>
-          <li><strong>Email:</strong> ${email}</li>
+          <li><strong>Email del cliente:</strong> ${email}</li>
           <li><strong>Nombre del negocio:</strong> ${businessName}</li>
           <li><strong>Lead ID:</strong> ${leadId}</li>
         </ul>
+        ${dbErrorMsg ? `<p style="color: red; font-size: 12px;"><strong>Nota del sistema:</strong> No se pudo guardar en la base de datos (${dbErrorMsg}). El email se envió correctamente de todas formas.</p>` : ''}
       `,
     });
     if (emailError) {
       console.error('Error sending email notification via Resend:', emailError);
     } else {
       console.log('Email notification sent successfully:', emailData);
+      emailSent = true;
     }
   } catch (resendError) {
     console.error('Unexpected error sending email notification via Resend:', resendError);
   }
 
-  return { success: true };
+  // Consideramos que la operación fue exitosa si se envió el email, o si al menos se guardó en la base de datos
+  if (emailSent || !dbErrorMsg) {
+    return { success: true };
+  }
+
+  return { success: false, error: dbErrorMsg || 'Error al procesar la solicitud' };
 }
 
 /**
@@ -93,7 +119,8 @@ export async function logCtaClick(
   leadId: string,
   section: 'personalized' | 'system' | 'cierre'
 ): Promise<void> {
-
+  const supabase = getSupabase();
+  if (!supabase) return;
 
   const notasMap = {
     personalized: 'Clic oferta video personalizado',
