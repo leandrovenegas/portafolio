@@ -3,7 +3,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 
-let supabaseClient: ReturnType<typeof createClient> | null = null;
+let supabaseClient: any = null;
 
 function getSupabase() {
   if (!supabaseClient) {
