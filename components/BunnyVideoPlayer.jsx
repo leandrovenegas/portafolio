@@ -36,6 +36,7 @@ export default function BunnyVideoPlayer({
   unstyled = false,
 }) {
   const libraryId = process.env.NEXT_PUBLIC_BUNNY_LIBRARY_ID;
+  const validLibraryId = Boolean(libraryId && libraryId !== 'your-bunny-library-id');
 
   // Resolve the real slug from Bunny API (videoId is the source of truth)
   const [resolvedSlug, setResolvedSlug] = useState(slug || null);
@@ -63,15 +64,12 @@ export default function BunnyVideoPlayer({
   const effectiveSlug = resolvedSlug || slugify(title || videoId);
   const viewingPageHref = `/videos/${effectiveSlug}`;
 
-  if (!libraryId || libraryId === 'your-bunny-library-id') {
-    console.warn('BunnyVideoPlayer: NEXT_PUBLIC_BUNNY_LIBRARY_ID not configured');
-    return null;
-  }
-
   const thumbnailUrl = thumbnail || `https://${CDN_HOSTNAME}/${videoId}/thumbnail.jpg`;
   const contentUrl   = `https://${CDN_HOSTNAME}/${videoId}/playlist.m3u8`;
-  const embedUrl     = `${EMBED_BASE}/${libraryId}/${videoId}`;
-  const iframeSrc    = `${embedUrl}?autoplay=${autoplay}&muted=${muted}&preload=false&title=false&logo=false`;
+  const embedUrl = validLibraryId ? `${EMBED_BASE}/${libraryId}/${videoId}` : '';
+  const iframeSrc = validLibraryId
+    ? `${embedUrl}?autoplay=${autoplay}&muted=${muted}&preload=false&title=false&logo=false`
+    : '';
 
   // uploadDate: must be full ISO-8601 with timezone (Google requirement)
   const safeUploadDate = uploadDate
@@ -102,15 +100,17 @@ export default function BunnyVideoPlayer({
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(videoObject) }}
         />
-        <iframe
-          src={iframeSrc}
-          title={title}
-          loading="lazy"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          className={className}
-          style={{ border: 0, ...style }}
-        />
+        {validLibraryId && (
+          <iframe
+            src={iframeSrc}
+            title={title}
+            loading="lazy"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className={className}
+            style={{ border: 0, ...style }}
+          />
+        )}
       </>
     );
   }
@@ -125,14 +125,16 @@ export default function BunnyVideoPlayer({
 
       {/* Video player */}
       <div className="relative w-full bg-black rounded-lg shadow-lg aspect-video overflow-hidden">
-        <iframe
-          src={iframeSrc}
-          title={title}
-          loading="lazy"
-          allow="autoplay; fullscreen"
-          allowFullScreen
-          className="absolute inset-0 w-full h-full border-0"
-        />
+        {validLibraryId && (
+          <iframe
+            src={iframeSrc}
+            title={title}
+            loading="lazy"
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full border-0"
+          />
+        )}
       </div>
 
       {/* Link to the dedicated viewing page — required for Google Video Indexing */}
