@@ -52,6 +52,9 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
   const [emailLoading, setEmailLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
 
+  // Estado del video de reel
+  const [showReel, setShowReel] = useState(false);
+
   // ─── GA4 Page View al montar ──────────────────────────────────────────────
   useEffect(() => {
     gtag('event', 'video_landing_view', { slug, business_name: businessName });
@@ -336,14 +339,14 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
       <div style={{ height: '1px', backgroundColor: 'var(--color-border)', maxWidth: '560px', margin: '0 auto' }} />
 
       {/* ═══════════════════════════════════════════════════════════════
-          BLOQUE 1 —  Oportunidad
+          BLOQUE 1 — Oportunidad
           ═══════════════════════════════════════════════════════════════ */}
       <section
-        id=" Oportunidad"
+        id="oportunidad"
         style={{
           maxWidth: '560px',
           margin: '0 auto',
-          padding: '80px 24px 64px',
+          padding: '64px 24px',
           textAlign: 'center',
         }}
       >
@@ -366,16 +369,37 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             textTransform: 'uppercase',
             color: 'var(--color-ink)',
             lineHeight: '1.05',
-            marginBottom: '0',
+            marginBottom: '24px',
           }}
         >
-          Esto que viste es gratis, {' '}
-          <span style={{ color: 'var(--color-muted)' }}>El mismo formato pero personalizado</span>
+          El siguiente paso: crear una versión comercial para multiplicar la confianza en tu marca.
         </h2>
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'var(--color-muted)',
+            lineHeight: '1.6',
+            marginBottom: '16px',
+            textAlign: 'center',
+          }}
+        >
+          92% de los consumidores confía más en el contenido generado por otros usuarios que en la publicidad tradicional. No es solo un video, es tu activo de ventas más predecible.
+        </p>
+        <small
+          style={{
+            fontSize: '12px',
+            color: 'var(--color-muted)',
+            display: 'block',
+            textAlign: 'center',
+            opacity: 0.8,
+          }}
+        >
+          Fuente: Informe Global Trust in Advertising, Nielsen.
+        </small>
       </section>
 
-
-
+      {/* Divisor */}
+      <div style={{ height: '1px', backgroundColor: 'var(--color-border)', maxWidth: '560px', margin: '0 auto' }} />
       {/* ═══════════════════════════════════════════════════════════════
           SECCIÓN 4 — CTA WHATSAPP
           ═══════════════════════════════════════════════════════════════ */}
@@ -444,42 +468,44 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             }}
           >
             <p style={{ fontFamily: monoFont, fontSize: '10px', color: 'var(--color-muted)', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '12px' }}>
-              Inicial
+              Combo x2
             </p>
             <h3 style={{ fontFamily: bebasFont, fontSize: '34px', color: 'var(--color-ink)', lineHeight: '1', marginBottom: '14px', letterSpacing: '0.03em' }}>
-              $20.000 CLP
+              $60.000 CLP
             </h3>
             <ul style={{
-  listStyle: 'none',
-  padding: 0,
-  margin: 0,
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px'
-}}>
-  {[
-    '4 reseñas, 20 segundos',
-    'Tu logo integrado e información de contacto',
-    'Formato listo para Instagram, TikTok y Estados de WhatsApp'
-  ].map((item, i) => (
-    <li key={i} style={{
-      display: 'flex',
-      alignItems: 'flex-start',
-      gap: '8px',
-      color: 'var(--color-muted)',
-      fontSize: '14px',
-      lineHeight: '1.55'
-    }}>
-      <span style={{ color: '#facc15', flexShrink: 0 }}>✓</span>
-      <span>{item}</span>
-    </li>
-  ))}
-</ul>
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px'
+            }}>
+              {[
+                '2 videos de 30s, 5 reseñas cada uno (10 total)',
+                'Voz en off generada con IA (profesional, tipo comercial)',
+                'Incluye video o imágenes del negocio (proporcionadas por el cliente)',
+                'Brand logo + paleta de color integrada e información de contacto',
+                'Formato listo para Instagram, TikTok y Estados de WhatsApp'
+              ].map((item, i) => (
+                <li key={i} style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '8px',
+                  color: 'var(--color-muted)',
+                  fontSize: '14px',
+                  lineHeight: '1.55'
+                }}>
+                  <span style={{ color: '#facc15', flexShrink: 0 }}>✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
             <button
               onClick={() =>
                 handleWspClick(
                   'personalized',
-                  `Hola Leandro, vi el video de ${business_name} y quiero el plan Inicial ($20.000, 4 reseñas 20s).`
+                  `Hola Leandro, vi el video de ${business_name} y quiero el Combo x2 ($60.000, 10 reseñas en 2 videos + voz off).`
                 )
               }
               style={{
@@ -514,8 +540,6 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               </svg>
               Hablar con Leandro
             </button>
-
-
           </div>
 
           <div
@@ -632,10 +656,10 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             }}
           >
             <p style={{ fontFamily: monoFont, fontSize: '10px', color: 'var(--color-muted)', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '12px' }}>
-              Combo x2
+              Inicial
             </p>
             <h3 style={{ fontFamily: bebasFont, fontSize: '34px', color: 'var(--color-ink)', lineHeight: '1', marginBottom: '14px', letterSpacing: '0.03em' }}>
-              $60.000 CLP
+              $20.000 CLP
             </h3>
             <ul style={{
               listStyle: 'none',
@@ -646,10 +670,8 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               gap: '8px'
             }}>
               {[
-                '2 videos de 30s, 5 reseñas cada uno (10 total)',
-                'Voz en off generada con IA (profesional, tipo comercial)',
-                'Incluye video o imágenes del negocio (proporcionadas por el cliente)',
-                'Brand logo + paleta de color integrada e información de contacto',
+                '4 reseñas, 20 segundos',
+                'Tu logo integrado e información de contacto',
                 'Formato listo para Instagram, TikTok y Estados de WhatsApp'
               ].map((item, i) => (
                 <li key={i} style={{
@@ -669,7 +691,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
               onClick={() =>
                 handleWspClick(
                   'personalized',
-                  `Hola Leandro, vi el video de ${business_name} y quiero el Combo x2 ($60.000, 10 reseñas en 2 videos + voz off).`
+                  `Hola Leandro, vi el video de ${business_name} y quiero el plan Inicial ($20.000, 4 reseñas 20s).`
                 )
               }
               style={{
@@ -707,6 +729,179 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           </div>
         </div>
 
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          SECCIÓN 4.5 — Oportunidad
+          ═══════════════════════════════════════════════════════════════ */}
+      <section
+        id="oportunidad-extra"
+        style={{
+          maxWidth: '560px',
+          margin: '0 auto',
+          padding: '64px 24px',
+          textAlign: 'center',
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: bebasFont,
+            fontSize: 'clamp(32px, 6vw, 52px)',
+            textTransform: 'uppercase',
+            color: 'var(--color-ink)',
+            marginBottom: '12px',
+            lineHeight: '1',
+          }}
+        >
+          Espera, un momento.
+        </h2>
+        
+        <h3
+          style={{
+            fontFamily: bebasFont,
+            fontSize: 'clamp(24px, 5vw, 36px)',
+            textTransform: 'uppercase',
+            color: 'var(--color-accent)',
+            marginBottom: '32px',
+            lineHeight: '1',
+          }}
+        >
+          Tengo una idea para ti.
+        </h3>
+
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'var(--color-muted)',
+            lineHeight: '1.6',
+            marginBottom: '16px',
+            textAlign: 'left',
+          }}
+        >
+          Si tus mejores videos siguen guardados en tu celular porque no tienes tiempo para editar, soy la persona que necesitas. Además, ya nos conocemos un poco, ya te hice un video.
+        </p>
+
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'var(--color-muted)',
+            lineHeight: '1.6',
+            marginBottom: '16px',
+            textAlign: 'left',
+          }}
+        >
+          No pierdas tiempo grabando desde cero, pongamos esos videos a trabajar en tu estrategia de contenidos. En 48 horas estarán listos.
+        </p>
+
+        <p
+          style={{
+            fontSize: '14px',
+            color: 'var(--color-muted)',
+            marginBottom: '20px',
+            textAlign: 'center',
+          }}
+        >
+          Este es el nivel de impacto que le daremos a tu material:
+        </p>
+
+        <button
+          onClick={() => setShowReel(!showReel)}
+          style={{
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: 'var(--color-muted)',
+            fontFamily: monoFont,
+            fontSize: '12px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            cursor: 'pointer',
+            padding: '8px 16px',
+            marginBottom: '24px',
+            textDecoration: 'underline',
+            transition: 'color 0.2s',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.color = 'var(--color-accent)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.color = 'var(--color-muted)';
+          }}
+        >
+          {showReel ? 'Ocultar Reel' : '🎬 Ver Reel de Ejemplo'}
+        </button>
+
+        {showReel && (
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '320px',
+              aspectRatio: '9/16',
+              margin: '0 auto 32px',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              border: '1px solid var(--color-border)',
+              backgroundColor: 'var(--color-s1)',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.6)',
+            }}
+          >
+            <VideoPlayer
+              src="https://vz-a158839f-ce6.b-cdn.net/ed51b3e8-90a5-484d-bed1-8c8070d6eca8/playlist.m3u8"
+              title="Video de impacto"
+              muted={true}
+              autoplay={false}
+              hideLink={true}
+              unstyled={true}
+              className=""
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            />
+          </div>
+        )}
+
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'var(--color-ink)',
+            fontWeight: 500,
+            lineHeight: '1.6',
+            marginBottom: '36px',
+            textAlign: 'left',
+          }}
+        >
+          Envíame por WhatsApp tu mejor video sin editar y te digo exactamente cómo lo convertimos en ventas.
+        </p>
+
+        <button
+          onClick={() => handleWspClick('cierre', 'Hola Leandro, tengo videos grabados que no estoy usando. Quiero que los revises y me digas cómo transformarlos en contenido que atraiga ventas.')}
+          style={{
+            backgroundColor: 'var(--color-accent)',
+            color: 'var(--color-bg)',
+            fontFamily: bebasFont,
+            fontSize: '20px',
+            letterSpacing: '0.05em',
+            padding: '16px 36px',
+            borderRadius: '12px',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            gap: '10px',
+            boxShadow: '0 4px 24px rgba(255, 204, 0, 0.28)',
+            transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 204, 0, 0.38)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 24px rgba(255, 204, 0, 0.28)';
+          }}
+        >
+          📲 Enviar video para revisión
+        </button>
       </section>
 
       {/* Divisor */}
