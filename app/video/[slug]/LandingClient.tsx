@@ -280,10 +280,10 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          BLOQUE 1 — PROBLEMA
+          BLOQUE 1 —  Oportunidad
           ═══════════════════════════════════════════════════════════════ */}
       <section
-        id="problema"
+        id=" Oportunidad"
         style={{
           maxWidth: '560px',
           margin: '0 auto',
@@ -362,7 +362,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
           }}
         >
           <VideoPlayer
-            src="https://vz-a158839f-ce6.b-cdn.net/fb5650f9-6e9b-419d-b14d-1c01f97222cd/playlist.m3u8"
+            src="https://vz-a158839f-ce6.b-cdn.net/7a20d187-b7d9-41b5-8929-fe2c4270a12b/playlist.m3u8"
             title="Por qué hice este video para tu negocio"
             muted={true}
             autoplay={false}
@@ -449,9 +449,34 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             <h3 style={{ fontFamily: bebasFont, fontSize: '34px', color: 'var(--color-ink)', lineHeight: '1', marginBottom: '14px', letterSpacing: '0.03em' }}>
               $20.000 CLP
             </h3>
-            <p style={{ color: 'var(--color-muted)', fontSize: '14px', lineHeight: '1.55' }}>
-              4 reseñas, 20 segundos.
-            </p>
+            <ul style={{
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px'
+}}>
+  {[
+    '4 reseñas, 20 segundos',
+    'Tu logo integrado e información de contacto',
+    'Formato listo para Instagram, TikTok y Estados de WhatsApp'
+  ].map((item, i) => (
+    <li key={i} style={{
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: '8px',
+      color: 'var(--color-muted)',
+      fontSize: '14px',
+      lineHeight: '1.55'
+    }}>
+      <span style={{ color: '#facc15', flexShrink: 0 }}>✓</span>
+      <span>{item}</span>
+    </li>
+  ))}
+</ul>
+
+
           </div>
 
           <div
