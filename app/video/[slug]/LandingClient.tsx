@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { submitEmailLead, logCtaClick } from './actions';
 import VideoPlayer from '@/components/VideoPlayer';
 
@@ -126,24 +127,23 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
         style={{
           padding: '20px 24px',
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
           alignItems: 'center',
           maxWidth: '960px',
           margin: '0 auto',
           borderBottom: '1px solid var(--color-border)',
         }}
       >
-        <span
-          style={{
-            fontSize: '11px',
-            fontFamily: monoFont,
-            color: 'var(--color-muted)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-          }}
-        >
-          {business_name}
-        </span>
+        <div className="flex flex-col relative z-[110] text-center">
+          <Link href="/" className="group flex flex-col items-center">
+            <span className="text-ink text-sm tracking-[0.3em] uppercase group-hover:text-accent transition-colors duration-300 font-bold">
+              Leandro Venegas
+            </span>
+            <span className="text-[9px] text-mid uppercase tracking-[0.25em] leading-none mt-1.5 group-hover:text-ink transition-colors duration-300">
+              Video Marketing Partner
+            </span>
+          </Link>
+        </div>
       </header>
 
       {/* ═══════════════════════════════════════════════════════════════
@@ -372,7 +372,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             marginBottom: '24px',
           }}
         >
-          El siguiente paso: crear una versión comercial para multiplicar la confianza en tu marca.
+          Crear una versión comercial para multiplicar la confianza en tu marca.
         </h2>
         <p
           style={{
@@ -383,7 +383,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             textAlign: 'center',
           }}
         >
-          92% de los consumidores confía más en el contenido generado por otros usuarios que en la publicidad tradicional. No es solo un video, es tu activo de ventas más predecible.
+          92% de los consumidores confía más en el contenido generado por otros usuarios que en la publicidad tradicional.
         </p>
         <small
           style={{
@@ -778,7 +778,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             textAlign: 'left',
           }}
         >
-          Si tus mejores videos siguen guardados en tu celular porque no tienes tiempo para editar, soy la persona que necesitas. Además, ya nos conocemos un poco, ya te hice un video.
+          Si tus videos siguen guardados en tu celular porque no tienes tiempo para editar, soy la persona que necesitas. Además, ya nos conocemos un poco, ya te hice un video.
         </p>
 
         <p
@@ -801,7 +801,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             textAlign: 'center',
           }}
         >
-          Este es el nivel de impacto que le daremos a tu material:
+          Puedes ver mi estilo de trabajo en el video del link:
         </p>
 
         <button
@@ -846,7 +846,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
             }}
           >
             <VideoPlayer
-              src="https://vz-a158839f-ce6.b-cdn.net/ed51b3e8-90a5-484d-bed1-8c8070d6eca8/playlist.m3u8"
+              src="https://vz-a158839f-ce6.b-cdn.net/f8a865ba-05c8-4a1d-8ebc-958f0c944f58/playlist.m3u8"
               title="Video de impacto"
               muted={true}
               autoplay={false}
@@ -929,7 +929,7 @@ export default function LandingClient({ lead, video }: LandingClientProps) {
         >
           ¿Necesitas más de un video para tu proyecto?{' '}
           <a
-            href="https://leandrovenegas.cl"
+            href="https://leandrovenegas.cl/sistema"
             target="_blank"
             rel="noopener noreferrer"
             style={{

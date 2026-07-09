@@ -1,16 +1,10 @@
 import { notFound } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
+import supabase from '@/lib/supabase';
 import type { Metadata } from 'next';
 import LandingClient from './LandingClient';
 import { registerPageVisit } from './actions';
 
 export const dynamic = 'force-dynamic';
-
-// ─── Supabase client initialized with specific SocialProofREEL environment variables ───
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SPR_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SPR_SUPABASE_ANON_KEY!
-);
 
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
@@ -39,6 +33,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
+  // Fallback (metadatos por defecto) por si la consulta falla o no hay miniatura generada
+  const fallbackMetadata: Metadata = {
+    title: 'Tu video de reseñas',
+    description: 'Tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.',
+    openGraph: {
+      title: 'Tu video ya está listo 🎬',
+      description: 'Descárgalo y úsalo en tus redes cuando quieras.',
+      images: ['/avatar-leandro.jpg'],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: 'Tu video ya está listo 🎬',
+      description: 'Descárgalo y úsalo en tus redes cuando quieras.',
+      images: ['/avatar-leandro.jpg'],
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+
   if (slug === 'demo' || slug === 'prueba') {
     return {
       title: 'Café del Puerto — Tu video de reseñas',
@@ -62,43 +78,54 @@ export async function generateMetadata({
     };
   }
 
-  const { data: lead } = await supabase
+  try {
+    // Consulta a Supabase la tabla raw_leads buscando el registro donde slug coincida.
+    // Traemos la columna raw_data y el nombre del negocio (si está disponible)
+    const { data: lead, error } = await supabase
+      .from('raw_leads')
+      .select('raw_data')
+      .eq('slug', slug)
+      .maybeSingle();
 
-    .from('raw_leads')
-    .select('raw_data')
-    .eq('slug', slug)
-    .maybeSingle();
+    if (error || !lead || !lead.raw_data) {
+      return fallbackMetadata;
+    }
 
-  if (!lead) {
+    const rawData = lead.raw_data as any;
+    const businessName = rawData.name || rawData.business_name || 'Tu negocio';
+    const imageUrl = rawData.thumbnail_url;
+
+    if (!imageUrl) {
+      return fallbackMetadata;
+    }
+
+    const title = `${businessName} — Tu video de reseñas`;
+    const description = `${businessName}, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.`;
+
     return {
-      title: 'Video no disponible',
-      description: 'Este video no está disponible aún.',
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        images: [imageUrl],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: [imageUrl],
+      },
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
+  } catch (err) {
+    console.error('Error generating metadata:', err);
+    return fallbackMetadata;
   }
-
-  const title = `${lead.raw_data?.name} — Tu video de reseñas`;
-  const description = `${lead.raw_data?.name}, tus clientes ya están hablando de ti. Mira el video creado con tus reseñas reales de Google.`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title: "Tu video ya está listo 🎬",
-      description: "Descárgalo y úsalo en tus redes cuando quieras.",
-      images: ['/avatar-leandro.jpg'],
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary',
-      title: "Tu video ya está listo 🎬",
-      description: "Descárgalo y úsalo en tus redes cuando quieras.",
-      images: ['/avatar-leandro.jpg'],
-    },
-    robots: {
-      index: false, // Página privada por slug, no indexar
-      follow: false,
-    },
-  };
 }
 
 // ─── Page Component (Server) ──────────────────────────────────────────────────

@@ -90,8 +90,8 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
     { href: "/contacto", label: "Contacto" },
   ];
 
-  // Do not render Nav on admin pages to avoid layout clutter
-  if (pathname?.startsWith('/admin') && !forceShow) {
+  // Do not render Nav on admin and video pages to avoid layout clutter
+  if ((pathname?.startsWith('/admin') || pathname?.startsWith('/video')) && !forceShow) {
     return null;
   }
 
