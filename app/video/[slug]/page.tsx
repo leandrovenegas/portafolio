@@ -40,14 +40,14 @@ export async function generateMetadata({
     openGraph: {
       title: 'Tu video ya está listo 🎬',
       description: 'Descárgalo y úsalo en tus redes cuando quieras.',
-      images: ['/avatar-leandro.jpg'],
+      images: ['/thumbnail-first.png'],
       type: 'website',
     },
     twitter: {
       card: 'summary',
       title: 'Tu video ya está listo 🎬',
       description: 'Descárgalo y úsalo en tus redes cuando quieras.',
-      images: ['/avatar-leandro.jpg'],
+      images: ['/thumbnail-first.png'],
     },
     robots: {
       index: false,
@@ -62,14 +62,14 @@ export async function generateMetadata({
       openGraph: {
         title: "Tu video ya está listo 🎬",
         description: "Descárgalo y úsalo en tus redes cuando quieras.",
-        images: ['/avatar-leandro.jpg'],
+        images: ['/thumbnail-first.png'],
         type: 'website',
       },
       twitter: {
         card: 'summary',
         title: "Tu video ya está listo 🎬",
         description: "Descárgalo y úsalo en tus redes cuando quieras.",
-        images: ['/avatar-leandro.jpg'],
+        images: ['/thumbnail-first.png'],
       },
       robots: {
         index: false,
