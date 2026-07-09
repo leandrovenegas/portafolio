@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import supabase from '@/lib/supabase';
+import supabaseSpr from '@/lib/supabase-spr';
 import type { Metadata } from 'next';
 import LandingClient from './LandingClient';
 import { registerPageVisit } from './actions';
@@ -81,7 +81,7 @@ export async function generateMetadata({
   try {
     // Consulta a Supabase la tabla raw_leads buscando el registro donde slug coincida.
     // Traemos la columna raw_data y el nombre del negocio (si está disponible)
-    const { data: lead, error } = await supabase
+    const { data: lead, error } = await supabaseSpr
       .from('raw_leads')
       .select('raw_data')
       .eq('slug', slug)
@@ -162,7 +162,7 @@ export default async function VideoLandingPage({
   const bunnyUrl = process.env.NEXT_PUBLIC_BUNNY_CDN_URL ?? '';
 
   // 1. Buscar el lead por slug
-  const { data: lead, error: leadError } = await supabase
+  const { data: lead, error: leadError } = await supabaseSpr
     .from('raw_leads')
     .select('id, slug, raw_data')
     .eq('slug', slug)
@@ -173,7 +173,7 @@ export default async function VideoLandingPage({
   }
 
   // 2. Buscar el video completado más reciente para este lead
-  const { data: videoRow, error: videoError } = await supabase
+  const { data: videoRow, error: videoError } = await supabaseSpr
     .from('video_queue')
     .select('id, raw_lead_id, status, defectuoso, bunny_url, created_at')
     .eq('raw_lead_id', lead.id)
