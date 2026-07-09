@@ -67,7 +67,7 @@ export default function LogosSection({
   // Section style
   const sectionStyle = {
     backgroundColor: backgroundColor || 'transparent',
-    '--bg-color': false|| '#000000',
+    '--bg-color': backgroundColor || '#000000',
     paddingTop: `${paddingTop}px`,
     paddingBottom: `${paddingBottom}px`
   };

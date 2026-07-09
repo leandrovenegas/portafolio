@@ -13,8 +13,11 @@ import LogosSection from './sections/LogosSection';
 import TituloAnimado from './sections/TituloAnimado';
 import TextosAnimados from './sections/TextosAnimados';
 import ServiceButtonsSection from './sections/ServiceButtonsSection';
-
-
+import VideoReelSection from './sections/VideoReelSection';
+import ServicesSection from './sections/ServicesSection';
+import CellPhoneCTASection from './sections/CellPhoneCTASection';
+import FormatsSection from './sections/FormatsSection';
+import FinalCTASection from './sections/FinalCTASection';
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -31,7 +34,12 @@ export const COMPONENT_REGISTRY = {
   LogosSection,
   TituloAnimado,
   TextosAnimados,
-  ServiceButtonsSection
+  ServiceButtonsSection,
+  VideoReelSection,
+  ServicesSection,
+  CellPhoneCTASection,
+  FormatsSection,
+  FinalCTASection
 };
 
 
@@ -302,6 +310,79 @@ export const COMPONENT_DEFINITIONS = [
         { buttonText: 'Quiero un video', subtitle: 'Lo producimos juntos desde cero.', link: 'https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20servicio%20de%20producir%20un%20video' },
         { buttonText: 'Quiero vender con video', subtitle: 'Construimos un sistema que trabaja por ti.', link: '/sistema' }
       ]
+    }
+  },
+  {
+    type: 'VideoReelSection',
+    name: 'Video Reel',
+    defaultProps: {
+      title: "Mira mi estilo de creación de videos",
+      videoGuid: "f8a865ba-05c8-4a1d-8ebc-958f0c944f58"
+    }
+  },
+  {
+    type: 'ServicesSection',
+    name: 'Servicios de Leandro',
+    defaultProps: {
+      title: "Servicios",
+      subtitle: "Disponibles de fácil contratación. En menos de 24-48 horas tu video está listo.",
+      services: [
+        {
+          id: "1",
+          title: "Edición de video",
+          description: "¿Necesitas un editor rápido y con experiencia? Valparaíso, Viña del Mar, Santiago, todo Chile y el mundo. Con fibra óptica y listo para editar.",
+          buttonText: "Contactar",
+          buttonLink: "https://wa.me/56988804299?text=Hola%20Leandro%2C%20necesito%20un%20editor%20de%20video%20r%C3%A1pido%20y%20con%20experiencia."
+        },
+        {
+          id: "2",
+          title: "Grabación de video",
+          description: "Tienes una idea o un producto ganador, pero te falta equipo para grabar. No te preocupes, estás en manos expertas y creativas listas para ayudarte.",
+          buttonText: "Contactar",
+          buttonLink: "https://wa.me/56988804299?text=Hola%20Leandro%2C%20tengo%20una%20idea%2Fproducto%20pero%20necesito%20ayuda%20para%20grabar%20el%20video."
+        }
+      ]
+    }
+  },
+  {
+    type: 'CellPhoneCTASection',
+    name: 'CTA Video Celular',
+    defaultProps: {
+      text: "Apuesto a que tienes videos grabados en el celular que nunca llegaste a editar. No necesitas ser el mejor grabando, la edición hace magia. Vamos a hacer ese video realidad.",
+      buttonText: "Contratar por videos en el celular",
+      buttonLink: "https://wa.me/56988804299?text=Hola%20Leandro%2C%20tengo%20videos%20grabados%20en%20el%20celular%20que%20quiero%20que%20me%20edites."
+    }
+  },
+  {
+    type: 'FormatsSection',
+    name: 'Formatos Interesantes',
+    defaultProps: {
+      title: "Algunos de estos formatos te pueden interesar",
+      items: [
+        {
+          id: "1",
+          title: "Prueba social real",
+          description: "Reseñas en video de tus propios clientes, convertidas en el contenido que más vende: gente real hablando bien de ti."
+        },
+        {
+          id: "2",
+          title: "Un video, múltiples formatos",
+          description: "De una sola grabación armo reels, historias y piezas para cada plataforma. Publicas más sin grabar más."
+        },
+        {
+          id: "3",
+          title: "Sistema de video marketing",
+          description: "¿Sabes que con un video no basta? Te presento mi estrategia de contenidos mensual, con métricas de rendimiento."
+        }
+      ]
+    }
+  },
+  {
+    type: 'FinalCTASection',
+    name: 'CTA Final WhatsApp',
+    defaultProps: {
+      buttonText: "Hablar con Leandro",
+      buttonLink: "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20sistema%20de%20video%20marketing."
     }
   }
 ];

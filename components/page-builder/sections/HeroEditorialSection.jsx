@@ -56,7 +56,9 @@ export default function HeroEditorialSection({
   forceBp = null,
   backgroundType = 'video',
   backgroundColor = '#121212',
-  backgroundGradient = 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)'
+  backgroundGradient = 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)',
+  avatarSrc,
+  avatarAlt
 }) {
   const [bp, setBp] = useState(forceBp || 'mobile');
   const { addItem, items } = useCart();
@@ -180,6 +182,19 @@ export default function HeroEditorialSection({
               </span>
             )}
           </h2>
+        )}
+
+        {/* Avatar Inline (between Headline and Body Text) */}
+        {avatarSrc && (
+          <div className="my-6">
+            <div className="relative w-28 h-28 rounded-full overflow-hidden border border-white/10 shadow-[0_0_20px_rgba(255,204,0,0.15)] transition-all duration-300 hover:scale-105">
+              <img
+                src={avatarSrc}
+                alt={avatarAlt || 'Avatar'}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         )}
 
         {/* Body Text */}

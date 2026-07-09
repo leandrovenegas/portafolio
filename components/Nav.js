@@ -85,13 +85,12 @@ export default function Nav({ className = '', forceShow = false, forceAbsolute =
 
   const navLinks = [
     { href: "/sistema", label: "Sistema" },
-    { href: "/proceso", label: "Proceso" },
     { href: "/portafolio", label: "Portafolio" },
     { href: "/contacto", label: "Contacto" },
   ];
 
-  // Do not render Nav on admin and video pages to avoid layout clutter
-  if ((pathname?.startsWith('/admin') || pathname?.startsWith('/video')) && !forceShow) {
+  // Do not render Nav on admin, landing (home), and video pages to avoid layout clutter
+  if ((pathname === '/' || pathname?.startsWith('/admin') || pathname?.startsWith('/video')) && !forceShow) {
     return null;
   }
 
