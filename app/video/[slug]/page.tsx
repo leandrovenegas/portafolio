@@ -40,14 +40,14 @@ export async function generateMetadata({
     openGraph: {
       title: 'Tu video ya está listo 🎬',
       description: 'Descárgalo y úsalo en tus redes cuando quieras.',
-      images: ['/thumbnail-first.png'],
+      images: ['https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto/v1783613151/thumbnails/thumbnail-first.png'],
       type: 'website',
     },
     twitter: {
       card: 'summary',
       title: 'Tu video ya está listo 🎬',
       description: 'Descárgalo y úsalo en tus redes cuando quieras.',
-      images: ['/thumbnail-first.png'],
+      images: ['https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto/v1783613151/thumbnails/thumbnail-first.png'],
     },
     robots: {
       index: false,
@@ -62,14 +62,14 @@ export async function generateMetadata({
       openGraph: {
         title: "Tu video ya está listo 🎬",
         description: "Descárgalo y úsalo en tus redes cuando quieras.",
-        images: ['/thumbnail-first.png'],
+        images: ['https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto/v1783613151/thumbnails/thumbnail-first.png'],
         type: 'website',
       },
       twitter: {
         card: 'summary',
         title: "Tu video ya está listo 🎬",
         description: "Descárgalo y úsalo en tus redes cuando quieras.",
-        images: ['/thumbnail-first.png'],
+        images: ['https://res.cloudinary.com/dx2rvpvwr/image/upload/f_auto,q_auto/v1783613151/thumbnails/thumbnail-first.png'],
       },
       robots: {
         index: false,
