@@ -41,6 +41,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/servicios/motion-desing',
+        destination: '/servicios/motion-design',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

@@ -8,6 +8,7 @@ export const DEFAULT_HOME_COMPONENTS = [
       "avatarAlt": "Leandro Venegas",
       "headline": "Leandro Venegas — ",
       "headlineKeyword": "Producción Audiovisual y Edición de Video para Redes Sociales",
+      "subtitle": "Editor de Video Freelance y Producción Audiovisual en Valparaíso",
       "bodyText": "Estás a pocos segundos de tener un partner de video que te ayude a solucionarlo. Mi nombre es Leandro Venegas, productor de videos. Cuéntame lo que tienes en mente.",
       "primaryButtonText": "Contactar",
       "primaryButtonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20tengo%20un%20proyecto%20de%20video%20en%20mente%20y%20quiero%20contarte%20de%20qu%C3%A9%20se%20trata.",
@@ -61,7 +62,7 @@ export const DEFAULT_HOME_COMPONENTS = [
         {
           "id": "1",
           "title": "Edición de video",
-          "description": "¿Necesitas un editor rápido y con experiencia? Valparaíso, Viña del Mar, Santiago, todo Chile y el mundo. Con fibra óptica y listo para editar.",
+          "description": "¿Necesitas un <a href=\"/editor-de-video-para-redes-sociales\" class=\"underline text-ink hover:text-accent\">editor de video para redes sociales</a>, rápido y con experiencia? Trabajo con clientes en Valparaíso, Viña del Mar, Santiago, todo Chile y el mundo, con fibra óptica y listo para editar.",
           "buttonText": "Contactar",
           "buttonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20necesito%20un%20editor%20de%20video%20r%C3%A1pido%20y%20con%20experiencia."
         },
@@ -105,9 +106,28 @@ export const DEFAULT_HOME_COMPONENTS = [
         {
           "id": "3",
           "title": "Sistema de video marketing",
-          "description": "¿Sabes que con un video no basta? Te presento mi estrategia de contenidos mensual, con métricas de rendimiento."
+          "description": "¿Sabes que con un video no basta? Te presento mi estrategia de contenidos mensual, con métricas de rendimiento. Como <a href=\"/creador-de-contenido-ia\" class=\"underline text-ink hover:text-accent\">creador de contenido con IA</a>, integro herramientas de inteligencia artificial en el proceso para producir más contenido sin perder calidad."
         }
       ]
+    }
+  },
+  {
+    "id": "home-sobre-mi",
+    "name": "Sobre Mi",
+    "type": "TextSection",
+    "props": {
+      "title": "Sobre mi experiencia",
+      "description": "Con 10 años como productor audiovisual en Chile, he dirigido campañas para marcas como LAN y Valook (815K visualizaciones orgánicas), además de liderar la producción de Incoludido, una campaña de crowdfunding que superó su meta con cobertura en TV nacional.",
+      "_styles": {
+        "title": {
+          "mobile": { "color": "#ffffff", "textAlign": "center" },
+          "desktop": { "color": "#ffffff", "textAlign": "center" }
+        },
+        "description": {
+          "mobile": { "color": "#ffffff", "textAlign": "center" },
+          "desktop": { "color": "#ffffff", "textAlign": "center" }
+        }
+      }
     }
   },
   {
@@ -116,7 +136,8 @@ export const DEFAULT_HOME_COMPONENTS = [
     "type": "FinalCTASection",
     "props": {
       "buttonText": "Hablar con Leandro",
-      "buttonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20sistema%20de%20video%20marketing."
+      "buttonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20sistema%20de%20video%20marketing.",
+      "subtitle": "<a href=\"/contratar-editor-de-video\" class=\"underline text-ink hover:text-accent\">¿Buscas contratar un editor de video?</a>"
     }
   }
 ];

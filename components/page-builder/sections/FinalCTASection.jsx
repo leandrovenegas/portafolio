@@ -3,6 +3,7 @@
 export default function FinalCTASection({
   buttonText = "Hablar con Leandro",
   buttonLink = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20sistema%20de%20video%20marketing.",
+  subtitle = "",
   forceBp = null
 }) {
   return (
@@ -20,6 +21,12 @@ export default function FinalCTASection({
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </a>
+      )}
+      {subtitle && (
+        <div 
+          className="font-body text-mid text-sm md:text-base mt-2"
+          dangerouslySetInnerHTML={{ __html: subtitle }}
+        />
       )}
     </section>
   );

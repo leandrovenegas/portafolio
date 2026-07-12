@@ -144,7 +144,7 @@ export default function DirectorCreativoPage() {
                   <tr className="border-b border-border bg-s1 hover:bg-s2 transition-colors">
                     <td className="p-6 font-body text-ink">Experiencia</td>
                     <td className="p-6 font-body text-muted border-l border-border">Variable, a descubrir</td>
-                    <td className="p-6 font-body text-accent border-l border-border">15+ años, casos reales</td>
+                    <td className="p-6 font-body text-accent border-l border-border">10 años, casos reales</td>
                   </tr>
                   <tr className="border-b border-border bg-s1 hover:bg-s2 transition-colors">
                     <td className="p-6 font-body text-ink">Flexibilidad</td>
@@ -226,7 +226,7 @@ export default function DirectorCreativoPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border mb-8">
 
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
-                <h4 className="font-display text-6xl md:text-7xl text-accent mb-2">15+</h4>
+                <h4 className="font-display text-6xl md:text-7xl text-accent mb-2">10</h4>
                 <p className="font-body text-ink font-semibold mb-1 relative z-10">Años de práctica</p>
                 <p className="font-body text-mid text-sm relative z-10">Dirección creativa, producción y estrategia digital en Chile</p>
               </div>
@@ -238,8 +238,8 @@ export default function DirectorCreativoPage() {
               </div>
 
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
-                <h4 className="font-display text-6xl md:text-7xl text-accent mb-2 tracking-tighter">15M CLP</h4>
-                <p className="font-body text-ink font-semibold mb-1 relative z-10">Recaudados</p>
+                <h4 className="font-display text-6xl md:text-7xl text-accent mb-2 tracking-tighter">23M CLP</h4>
+                <p className="font-body text-ink font-semibold mb-1 relative z-10">Recaudados (contra meta de 15M CLP)</p>
                 <p className="font-body text-mid text-sm relative z-10">Campaña de crowdfunding con plataforma y desarrollo tecnológico propios</p>
               </div>
 

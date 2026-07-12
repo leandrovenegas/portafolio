@@ -21,8 +21,28 @@ export const metadata = {
 export default function ProduccionAudiovisualPage() {
   const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20necesito%20producci%C3%B3n%20audiovisual%20para%20mi%20empresa";
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Producción Audiovisual para Empresas",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Leandro Venegas - Productor Audiovisual"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Valparaíso" },
+      { "@type": "City", "name": "Viña del Mar" },
+      { "@type": "City", "name": "Santiago" }
+    ],
+    "serviceType": "Producción Audiovisual"
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
 
@@ -89,7 +109,7 @@ export default function ProduccionAudiovisualPage() {
                   <li className="flex gap-3"><span className="text-accent">✓</span> Pagas por proyecto o paquete mensual</li>
                   <li className="flex gap-3"><span className="text-accent">✓</span> Sin costos laborales adicionales</li>
                   <li className="flex gap-3"><span className="text-accent">✓</span> Disponible esta semana</li>
-                  <li className="flex gap-3"><span className="text-accent">✓</span> 15+ años de práctica desde el primer día</li>
+                  <li className="flex gap-3"><span className="text-accent">✓</span> 10 años de práctica desde el primer día</li>
                   <li className="flex gap-3"><span className="text-accent">✓</span> Sin finiquito ni trámites</li>
                 </ul>
               </div>
@@ -164,7 +184,7 @@ export default function ProduccionAudiovisualPage() {
                 { d1: "LAN → LATAM", d2: "Spot publicitario", d3: "Producción audiovisual para aerolínea nacional" },
                 { d1: "Dr. Patricio Andrade", d2: "Video corporativo", d3: "Producción para cliente del área salud" },
                 { d1: "Incoludido", d2: "Campaña completa", d3: "Spot + campaña digital que superó meta de recaudación" },
-                { d1: "15M CLP", d2: "Recaudados", d3: "Campaña audiovisual con plataforma tecnológica propia" }
+                { d1: "23M CLP", d2: "Recaudados", d3: "Campaña audiovisual con plataforma propia (contra meta de 15M CLP)" }
               ].map((item, i) => (
                 <div key={i} className="bg-bg p-8 hover:bg-s1 transition-colors flex flex-col justify-between gap-6">
                   <h4 className="font-display text-4xl text-ink">{item.d1}</h4>

@@ -28,8 +28,28 @@ export const metadata = {
 export default function MotionDesignPage() {
   const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20necesito%20motion%20design%20para%20mi%20marca";
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Motion Design y Animación",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Leandro Venegas - Productor Audiovisual"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Valparaíso" },
+      { "@type": "City", "name": "Viña del Mar" },
+      { "@type": "City", "name": "Santiago" }
+    ],
+    "serviceType": "Motion Design"
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
           
@@ -69,7 +89,7 @@ export default function MotionDesignPage() {
                 Las empresas publican avisos de trabajo. Deberían estar llamando a alguien como yo.
               </h2>
               <p className="font-body text-mid text-lg leading-relaxed mb-8 max-w-3xl">
-                Cada semana, empresas en Chile publican cargos de &quot;motion designer&quot; o &quot;animador digital&quot;. Contratan a alguien, lo onboardean, y tres meses después descubren que no era lo que necesitaban. Existe una forma mejor: externalizar el motion design a alguien con 15 años de práctica, que entrega sin fricción y no aparece en tu planilla.
+                Cada semana, empresas en Chile publican cargos de &quot;motion designer&quot; o &quot;animador digital&quot;. Contratan a alguien, lo onboardean, y tres meses después descubren que no era lo que necesitaban. Existe una forma mejor: externalizar el motion design a alguien con 10 años de práctica, que entrega sin fricción y no aparece en tu planilla.
               </p>
               <div className="inline-block border border-accent/20 bg-accent/5 px-4 py-2 mt-2">
                 <p className="font-mono text-xs md:text-sm text-accent tracking-widest uppercase">
@@ -152,7 +172,7 @@ export default function MotionDesignPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
               
               <div className="bg-s1 p-8 hover:bg-s2 transition-colors flex flex-col gap-2">
-                <h4 className="font-display text-5xl md:text-6xl text-accent mb-2">15+</h4>
+                <h4 className="font-display text-5xl md:text-6xl text-accent mb-2">10</h4>
                 <p className="font-body text-mid text-sm">Años produciendo piezas audiovisuales y motion para marcas en Chile</p>
               </div>
 

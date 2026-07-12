@@ -12,8 +12,11 @@ export default async function sitemap() {
         "/casos-de-exito",
         "/servicios/director-creativo-externo",
         "/servicios/produccion-audiovisual-empresas",
-        "/servicios/motion-desing",
+        "/servicios/motion-design",
         "/servicios/seo-video",
+        "/editor-de-video-para-redes-sociales",
+        "/creador-de-contenido-ia",
+        "/contratar-editor-de-video",
     ].map(route => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date().toISOString(),

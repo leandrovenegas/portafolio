@@ -52,9 +52,10 @@ export default function ServicesSection({
               <h3 className="font-display text-2xl md:text-3xl text-ink tracking-tight uppercase group-hover:text-accent transition-colors duration-300">
                 {svc.title}
               </h3>
-              <p className="font-body text-mid text-sm md:text-base leading-relaxed">
-                {svc.description}
-              </p>
+              <div 
+                className="font-body text-mid text-sm md:text-base leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: svc.description }}
+              />
             </div>
 
             {svc.buttonText && svc.buttonLink && (

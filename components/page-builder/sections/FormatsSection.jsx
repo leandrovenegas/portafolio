@@ -48,9 +48,10 @@ export default function FormatsSection({
               <h3 className="font-display text-xl md:text-2xl text-ink tracking-tight uppercase">
                 {fmt.title}
               </h3>
-              <p className="font-body text-mid text-sm md:text-base leading-relaxed">
-                {fmt.description}
-              </p>
+              <div 
+                className="font-body text-mid text-sm md:text-base leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: fmt.description }}
+              />
             </div>
           </div>
         ))}

@@ -28,8 +28,28 @@ export const metadata = {
 export default function SeoVideoPage() {
   const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20SEO%20con%20video";
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "SEO con Video",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Leandro Venegas - Productor Audiovisual"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Valparaíso" },
+      { "@type": "City", "name": "Viña del Mar" },
+      { "@type": "City", "name": "Santiago" }
+    ],
+    "serviceType": "SEO Audiovisual"
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
           

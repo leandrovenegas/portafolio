@@ -38,6 +38,7 @@ export default function HeroEditorialSection({
   pillText,
   headline,
   headlineKeyword,
+  subtitle,
   bodyText,
   tagline,
   primaryButtonText,
@@ -174,13 +175,20 @@ export default function HeroEditorialSection({
 
         {/* Headline */}
         {(headline || headlineKeyword) && (
-          <h2 className="font-display font-bold leading-[0.95] text-ink max-w-full">
+          <h1 className="font-display font-bold leading-[0.95] text-ink max-w-full">
             <span data-field="headline" style={fieldStyle('headline')}>{headline}</span>
             {headlineKeyword && (
               <span data-field="headlineKeyword" className={`text-accent ${bp === 'desktop' ? 'inline' : 'block'}`} style={fieldStyle('headlineKeyword')}>
                 {' '}{headlineKeyword}
               </span>
             )}
+          </h1>
+        )}
+
+        {/* H2 Keyword Pilar (New Subtitle) */}
+        {subtitle && (
+          <h2 data-field="subtitle" className="font-display font-medium text-ink/80 text-xl md:text-2xl mt-4 max-w-2xl" style={fieldStyle('subtitle')}>
+            {subtitle}
           </h2>
         )}
 

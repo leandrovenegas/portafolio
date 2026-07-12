@@ -7,16 +7,12 @@ export const metadata = {
   title: 'Productor Audiovisual en Valparaíso | Leandro Venegas',
   description: 'Servicios de producción audiovisual y edición de video para empresas y creadores en Valparaíso, Viña del Mar y Santiago. 10 años de experiencia.',
   keywords: [
-    'Leandro Venegas',
-    'director creativo Chile',
-    'productor audiovisual Chile',
-    'estudio creativo Valparaíso',
-    'motion design Chile',
-    'SEO video Chile',
-    'freelance creativo Chile',
-    'sistema de video marketing',
-    'funnel de video',
-    'video marketing Chile',
+    'productor audiovisual',
+    'editor de video freelance',
+    'editor de video para redes sociales',
+    'agencia audiovisual chile',
+    'contratar editor de video',
+    'creador de contenido con ia',
   ],
   openGraph: {
     title: 'Productor Audiovisual en Valparaíso | Leandro Venegas',
@@ -99,6 +95,24 @@ async function getPageComponents(versionId) {
   }
 }
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Leandro Venegas - Productor Audiovisual",
+  "url": "https://www.leandrovenegas.cl",
+  "telephone": "+56988804299",
+  "areaServed": [
+    { "@type": "City", "name": "Valparaíso" },
+    { "@type": "City", "name": "Viña del Mar" },
+    { "@type": "City", "name": "Santiago" }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Valparaíso",
+    "addressCountry": "CL"
+  }
+};
+
 export default async function Home({ searchParams }) {
   const params = await searchParams;
   const versionId = params?.versionId;
@@ -110,7 +124,7 @@ export default async function Home({ searchParams }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
+          __html: JSON.stringify([faqSchema, localBusinessSchema]),
         }}
       />
       <main className="min-h-screen bg-bg relative overflow-hidden">

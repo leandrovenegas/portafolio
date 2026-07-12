@@ -28,8 +28,28 @@ export const metadata = {
 export default function DirectorCreativoExternoPage() {
   const WA_LINK = "https://wa.me/56988804299?text=Hola%20Leandro%2C%20necesito%20direcci%C3%B3n%20creativa%20para%20mi%20empresa";
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Dirección Creativa por Proyecto",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Leandro Venegas - Productor Audiovisual"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Valparaíso" },
+      { "@type": "City", "name": "Viña del Mar" },
+      { "@type": "City", "name": "Santiago" }
+    ],
+    "serviceType": "Dirección Creativa"
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
         <div className="relative z-10 px-6 pt-24 md:px-12 lg:px-24 mx-auto max-w-7xl flex flex-col gap-24 md:gap-32">
           
@@ -41,9 +61,14 @@ export default function DirectorCreativoExternoPage() {
             <h1 className="font-display text-display-md md:text-display-lg lg:text-display-xl text-ink leading-[0.9] mb-8 max-w-5xl">
               Director Creativo por proyecto — sin cargo en planilla
             </h1>
-            <p className="font-body text-mid text-lg md:text-xl max-w-3xl leading-relaxed mb-12">
+            <p className="font-body text-mid text-lg md:text-xl max-w-3xl leading-relaxed mb-6">
               Muchas empresas saben que necesitan un director creativo. Pocas pueden pagar el sueldo. Esta página existe para esas empresas: dirección creativa estratégica, activada por proyecto o en modalidad retainer, sin los costos de un cargo fijo.
             </p>
+            <div className="bg-s1 border border-border p-6 mb-12 max-w-3xl">
+              <p className="font-body text-mid text-base">
+                <span className="font-semibold text-ink">Nota:</span> Esta página se enfoca en el modelo de contratación. Si buscas conocer mi trayectoria completa, portafolio y todos los servicios, visita el <Link href="/director-creativo-chile" className="text-accent hover:underline">hub de Director Creativo en Chile</Link>.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <a 
                 href={WA_LINK} 
@@ -126,31 +151,7 @@ export default function DirectorCreativoExternoPage() {
             </div>
           </section>
 
-          {/* Por qué yo */}
-          <section>
-            <div className="mb-12">
-              <h2 className="font-display text-4xl md:text-5xl text-ink mb-6">
-                15 años tomando decisiones creativas reales
-              </h2>
-              <p className="font-body text-mid text-lg max-w-3xl leading-relaxed">
-                No tengo teoría sin práctica. Fundé Dragon Lab, dirigí campañas para LAN y clínicas, construí la identidad audiovisual de Incoludido desde cero — incluyendo la plataforma de crowdfunding que superó 15 millones de pesos. He operado como director creativo en proyectos de todos los tamaños, con presupuestos reales y fechas que no se negocian.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {[
-                "4 organizaciones fundadas y dirigidas creativamente",
-                "15+ años de práctica en Chile",
-                "LAN · Canal 13 · marcas culturales y empresas regionales",
-                "Valparaíso como base, proyectos en todo Chile"
-              ].map((item, i) => (
-                <div key={i} className="flex gap-4 items-center bg-s1 border border-border p-6">
-                  <div className="w-2 h-2 rounded-full bg-accent shrink-0"></div>
-                  <p className="font-body text-ink">{item}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* Por qué yo (Eliminado por canibalización) */}
 
           {/* CTA FINAL */}
           <section id="contacto">
