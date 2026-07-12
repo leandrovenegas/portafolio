@@ -4,8 +4,8 @@ import { DEFAULT_HOME_COMPONENTS } from "@/components/page-builder/defaultConfig
 import LivePreviewListener from "@/components/page-builder/LivePreviewListener";
 import supabase from "@/lib/supabase";
 export const metadata = {
-  title: 'Video Marketing Partner | Leandro Venegas',
-  description: 'Sistema de ventas con video para negocios en Chile. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas.',
+  title: 'Productor Audiovisual en Valparaíso | Leandro Venegas',
+  description: 'Servicios de producción audiovisual y edición de video para empresas y creadores en Valparaíso, Viña del Mar y Santiago. 10 años de experiencia.',
   keywords: [
     'Leandro Venegas',
     'director creativo Chile',
@@ -19,12 +19,12 @@ export const metadata = {
     'video marketing Chile',
   ],
   openGraph: {
-    title: 'Video Marketing Partner | Leandro Venegas',
-    description: 'Sistema de ventas con video para negocios en Chile. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas.',
+    title: 'Productor Audiovisual en Valparaíso | Leandro Venegas',
+    description: 'Servicios de producción audiovisual y edición de video para empresas y creadores en Valparaíso, Viña del Mar y Santiago. 10 años de experiencia.',
     url: 'https://www.leandrovenegas.cl/',
   },
   twitter: {
-    description: 'Sistema de ventas con video para negocios en Chile. 6 tipos de video que filtran, educan y convierten prospectos las 24 horas del día.',
+    description: 'Servicios de producción audiovisual y edición de video para empresas y creadores en Valparaíso, Viña del Mar y Santiago. 10 años de experiencia.',
   },
   alternates: {
     canonical: 'https://www.leandrovenegas.cl/',

@@ -6,8 +6,8 @@ export const DEFAULT_HOME_COMPONENTS = [
     "props": {
       "avatarSrc": "/images/leandro-avatar.png",
       "avatarAlt": "Leandro Venegas",
-      "headline": "No tienes el tiempo ni la habilidad para hacer videos,",
-      "headlineKeyword": "pero sabes lo importante que es hoy.",
+      "headline": "Leandro Venegas — ",
+      "headlineKeyword": "Producción Audiovisual y Edición de Video para Redes Sociales",
       "bodyText": "Estás a pocos segundos de tener un partner de video que te ayude a solucionarlo. Mi nombre es Leandro Venegas, productor de videos. Cuéntame lo que tienes en mente.",
       "primaryButtonText": "Contactar",
       "primaryButtonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20tengo%20un%20proyecto%20de%20video%20en%20mente%20y%20quiero%20contarte%20de%20qu%C3%A9%20se%20trata.",
