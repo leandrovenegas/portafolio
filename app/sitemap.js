@@ -9,7 +9,6 @@ export default async function sitemap() {
     // 1. Páginas de Servicios y Marca (Estáticas)
     const landingPages = [
         "/director-creativo-chile",
-        "/casos-de-exito",
         "/servicios/director-creativo-externo",
         "/servicios/produccion-audiovisual-empresas",
         "/servicios/motion-design",
@@ -24,19 +23,8 @@ export default async function sitemap() {
         priority: 0.9,
     }));
 
-    // 2. Proyectos (Solo indexados en DB)
-    const { data: projects } = await supabase
-        .from("projects")
-        .select("slug")
-        .eq("is_indexed", true)
-        .not("markdown_url", "is", null);
-
-    const projectUrls = (projects || []).map((p) => ({
-        url: `${baseUrl}/proyectos/${p.slug}`,
-        lastModified: new Date().toISOString(),
-        changeFrequency: 'monthly',
-        priority: 0.7,
-    }));
+    // 2. Proyectos (Eliminado de la versión estática, mantenemos array vacío por compatibilidad en el return si es necesario, o lo quitamos del return)
+    const projectUrls = [];
 
     // 3. Portafolio (Organizaciones indexadas en DB)
     const { data: organizations } = await supabase
@@ -54,7 +42,6 @@ export default async function sitemap() {
     // 4. Páginas Raíz
     const coreUrls = [
         "",
-        "/proyectos",
         "/portafolio",
         "/lab",
         "/videos",

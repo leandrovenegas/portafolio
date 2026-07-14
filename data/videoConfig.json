@@ -9,31 +9,34 @@
       "videoId": "50f1ecf0-ad6a-4125-9a1e-1e732f141541",
       "enabled": true,
       "indexable": true,
-      "title": "LEX_LEX_REEL-02_1_au6f3d_cllg7c.mp4",
-      "description": "LEX_LEX_REEL-02_1_au6f3d_cllg7c.mp4 — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
+      "title": "lex-reel-produccion-audiovisual-02",
+      "description": "Lex Lex Reel Producción Audiovisual — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
       "position": 21
     },
     {
       "videoId": "35a2072c-b2cb-4a27-96a7-39ec9b8e8d36",
       "enabled": true,
-      "indexable": true
+      "indexable": true,
+      "title": "lan-reel-produccion-audiovisual"
     },
     {
       "videoId": "7e6e31d9-2307-4f35-816c-c781f127b5a9",
       "enabled": true,
-      "indexable": true
+      "indexable": true,
+      "title": "entrevista-master"
     },
     {
       "videoId": "80d55a35-b441-4626-9d75-6ac61ef9f659",
       "enabled": true,
-      "indexable": true
+      "indexable": true,
+      "title": "reel-produccion-audiovisual-v1"
     },
     {
       "videoId": "6410cdb2-91e4-4518-9687-7966ad9787a3",
       "enabled": true,
       "indexable": true,
-      "title": "Hight-Lights-MANOJO-CRAZYROOM-01_fqvxpc_ixk3to.mp4",
-      "description": "Hight-Lights-MANOJO-CRAZYROOM-01_fqvxpc_ixk3to.mp4 — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
+      "title": "highlights-manojo-crazyroom",
+      "description": "Highlights Manojo Crazyroom — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
       "position": 20
     },
     {
@@ -87,8 +90,8 @@
       "videoId": "1ed1b8c2-9a1f-43f2-94a8-35a61b958a8f",
       "enabled": true,
       "indexable": true,
-      "title": "Dígalo_Bien_vuwn5j.mp4",
-      "description": "Dígalo_Bien_vuwn5j.mp4 — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
+      "title": "digalo-bien",
+      "description": "Dígalo Bien — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
       "position": 10
     },
     {
@@ -110,14 +113,15 @@
     {
       "videoId": "ef14d9d7-2ac2-4ba7-9b5b-541d7edca017",
       "enabled": true,
-      "indexable": true
+      "indexable": true,
+      "title": "crazypapa-studios-fanzine-glise-gray-alien"
     },
     {
       "videoId": "0e2c25a0-a6da-4dd2-b3f4-16885a346cde",
       "enabled": true,
       "indexable": true,
-      "title": "Enciende-tu-tele-Crazypapa-Studio-Stop-motion-video-contenido-creativo_p5pfzo.mp4",
-      "description": "Enciende-tu-tele-Crazypapa-Studio-Stop-motion-video-contenido-creativo_p5pfzo.mp4 — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
+      "title": "enciende-tu-tele-crazypapa-studio-stop-motion-video",
+      "description": "Enciende tu tele CrazyPapa Studio Stop Motion Video — video producido por Leandro Venegas, director creativo audiovisual en Chile.",
       "position": 9
     },
     {
@@ -139,7 +143,8 @@
     {
       "videoId": "a7c67351-a430-46bf-a629-b2ed81696873",
       "enabled": true,
-      "indexable": true
+      "indexable": true,
+      "title": "cabeza-movil-acme-xp-5r-beam-configuracion"
     },
     {
       "videoId": "ea8b7493-9f70-4b33-991e-ad83f9192c9d",
@@ -152,7 +157,8 @@
     {
       "videoId": "5ef4bfff-fddc-47a3-a424-484aa3fcd444",
       "enabled": true,
-      "indexable": true
+      "indexable": true,
+      "title": "nueva-coleccion-kali-yuga-ropa"
     },
     {
       "videoId": "95b4be7a-e76d-4b5f-8751-11cb13bf7a19",

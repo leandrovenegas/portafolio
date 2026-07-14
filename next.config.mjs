@@ -48,6 +48,71 @@ const nextConfig = {
         destination: '/servicios/motion-design',
         permanent: true,
       },
+      {
+        source: '/proyectos',
+        destination: '/portafolio',
+        permanent: true,
+      },
+      {
+        source: '/proyectos/:slug*',
+        destination: '/portafolio/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/casos-de-exito',
+        destination: '/portafolio',
+        permanent: true,
+      },
+      {
+        source: '/videos/mastermasterzvpdgipktcoy',
+        destination: '/videos/lan-reel-produccion-audiovisual',
+        permanent: true,
+      },
+      {
+        source: '/videos/cabezamvilacmexp5rbeamconfiguracinlhvv12ugs9qn',
+        destination: '/videos/cabeza-movil-acme-xp-5r-beam-configuracion',
+        permanent: true,
+      },
+      {
+        source: '/videos/dgalobienvuwn5j',
+        destination: '/videos/digalo-bien',
+        permanent: true,
+      },
+      {
+        source: '/videos/lexlexreel-021au6f3dcllg7c',
+        destination: '/videos/lex-reel-produccion-audiovisual-02',
+        permanent: true,
+      },
+      {
+        source: '/videos/reel-version1wde9xzlvv49t',
+        destination: '/videos/reel-produccion-audiovisual-v1',
+        permanent: true,
+      },
+      {
+        source: '/videos/interview-master1uowugjpcphgr',
+        destination: '/videos/entrevista-master',
+        permanent: true,
+      },
+      {
+        source: '/videos/hight-lights-manojo-crazyroom-01fqvxpcixk3to',
+        destination: '/videos/highlights-manojo-crazyroom',
+        permanent: true,
+      },
+      {
+        source: '/videos/nueva-coleccion-kali-yuga',
+        destination: '/videos/nueva-coleccion-kali-yuga-ropa',
+        permanent: true,
+      },
+      {
+        source: '/videos/crazypapa-studios-fanzine-glise-gray-alien-collection-chile-visualizacionrlh9h8',
+        destination: '/videos/crazypapa-studios-fanzine-glise-gray-alien',
+        permanent: true,
+      },
+      {
+        source: '/videos/contact-ce5-guia-de-contacto-extraterrestre-vela-minilibrito',
+        destination: '/videos/contact-ce5-guia-contacto-extraterrestre',
+        permanent: true,
+      },
     ];
   },
   async headers() {

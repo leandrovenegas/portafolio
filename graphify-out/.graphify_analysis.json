@@ -1,6 +1,51 @@
 {
   "communities": {
     "0": [
+      "app_admin_editor_page",
+      "app_admin_editor_page_visualeditor",
+      "app_admin_editor_page_visualeditorcontent",
+      "app_page",
+      "app_page_faqschema",
+      "app_page_getpagecomponents",
+      "app_page_home",
+      "app_page_localbusinessschema",
+      "app_page_metadata",
+      "app_sistema_page",
+      "app_sistema_page_getsistemacomponents",
+      "app_sistema_page_metadata",
+      "app_sistema_page_sistemapage",
+      "app_sistema_page_videos",
+      "components_page_builder_defaultconfig",
+      "components_page_builder_defaultconfig_default_home_components",
+      "components_page_builder_globaltypographypanel",
+      "components_page_builder_globaltypographypanel_globaltypographypanel",
+      "components_page_builder_historypanel",
+      "components_page_builder_historypanel_historypanel",
+      "components_page_builder_livepreviewlistener",
+      "components_page_builder_livepreviewlistener_livepreviewlistener",
+      "components_page_builder_pagerenderer",
+      "components_page_builder_pagerenderer_pagerenderer",
+      "components_page_builder_registry_component_definitions",
+      "components_page_builder_registry_component_registry",
+      "components_page_builder_smartpropertiespanel",
+      "components_page_builder_smartpropertiespanel_breakpoints",
+      "components_page_builder_smartpropertiespanel_genericfield",
+      "components_page_builder_smartpropertiespanel_hero_editorial_text_fields",
+      "components_page_builder_smartpropertiespanel_postersrcfield",
+      "components_page_builder_smartpropertiespanel_sectionlabel",
+      "components_page_builder_smartpropertiespanel_smartpropertiespanel",
+      "components_page_builder_smartpropertiespanel_textfield",
+      "components_page_builder_stylespanel",
+      "components_page_builder_stylespanel_stylespanel",
+      "components_page_builder_swatchespanel",
+      "components_page_builder_swatchespanel_swatchespanel",
+      "components_page_builder_typographypanel",
+      "components_page_builder_typographypanel_breakpoints",
+      "components_page_builder_typographypanel_typographypanel",
+      "components_page_builder_usedraggable",
+      "components_page_builder_usedraggable_usedraggable"
+    ],
+    "1": [
       "app_api_bunny_video_slug_route",
       "app_api_bunny_video_slug_route_get",
       "app_api_bunny_videos_route",
@@ -12,8 +57,6 @@
       "app_api_video_config_route_get",
       "app_api_video_config_route_patch",
       "app_api_video_config_route_put",
-      "app_sitemap",
-      "app_sitemap_sitemap",
       "app_videos_page",
       "app_videos_page_getpagecomponents",
       "app_videos_page_metadata",
@@ -25,8 +68,6 @@
       "components_mediapreconnect_mediapreconnect",
       "components_videopageviewer",
       "components_videopageviewer_videopageviewer",
-      "data_videos",
-      "data_videos_videos",
       "lib_bunny",
       "lib_bunny_fetchbunnyvideos",
       "lib_bunny_formatduration",
@@ -47,7 +88,7 @@
       "lib_videoconfig_readvideoconfig",
       "lib_videoconfig_writevideoconfig"
     ],
-    "1": [
+    "2": [
       "components_page_builder_registry",
       "components_page_builder_sections_avatarsection",
       "components_page_builder_sections_avatarsection_avatarsection",
@@ -66,6 +107,9 @@
       "components_page_builder_sections_finalctasection_finalctasection",
       "components_page_builder_sections_formatssection",
       "components_page_builder_sections_formatssection_formatssection",
+      "components_page_builder_sections_heroeditorialsection",
+      "components_page_builder_sections_heroeditorialsection_heroeditorialsection",
+      "components_page_builder_sections_heroeditorialsection_toinlinestyle",
       "components_page_builder_sections_listsection",
       "components_page_builder_sections_listsection_listsection",
       "components_page_builder_sections_logossection",
@@ -84,14 +128,9 @@
       "components_page_builder_sections_textosanimados_toinlinestyle",
       "components_page_builder_sections_textsection",
       "components_page_builder_sections_textsection_textsection",
-      "components_page_builder_sections_textsection_toinlinestyle",
-      "components_page_builder_sections_tituloanimado",
-      "components_page_builder_sections_tituloanimado_animationtoken",
-      "components_page_builder_sections_tituloanimado_tituloanimado",
-      "components_page_builder_sections_tituloanimado_tituloanimadoprops",
-      "components_page_builder_sections_tituloanimado_toinlinestyle"
+      "components_page_builder_sections_textsection_toinlinestyle"
     ],
-    "2": [
+    "3": [
       "anthropic_ai_sdk",
       "google_generative_ai",
       "hls_js",
@@ -132,7 +171,7 @@
       "tailwindcss_postcss",
       "tailwindcss_typography"
     ],
-    "3": [
+    "4": [
       "app_blog_page",
       "app_blog_page_labpage",
       "app_blog_page_metadata",
@@ -167,41 +206,6 @@
       "lib_markdown",
       "lib_markdown_configuremarkedrenderer",
       "lib_markdown_parsemarkdown"
-    ],
-    "4": [
-      "app_api_admin_portafolio_route",
-      "app_api_admin_portafolio_route_get",
-      "app_api_admin_portafolio_route_patch",
-      "app_api_newsletter_route",
-      "app_api_newsletter_route_post",
-      "app_api_orders_route",
-      "app_api_orders_route_get",
-      "app_api_orders_route_post",
-      "app_api_orders_route_put",
-      "app_api_pages_route",
-      "app_api_pages_route_get",
-      "app_api_pages_route_post",
-      "app_api_pages_route_put",
-      "app_api_products_route",
-      "app_api_products_route_get",
-      "app_api_products_route_put",
-      "app_api_webhooks_whatsapp_route",
-      "app_api_webhooks_whatsapp_route_get",
-      "app_api_webhooks_whatsapp_route_post",
-      "app_contenidos_page",
-      "app_contenidos_page_contenidos",
-      "app_organizaciones_page",
-      "app_organizaciones_page_organizaciones",
-      "app_playground_page",
-      "app_playground_page_playground",
-      "app_proyectos_page",
-      "app_proyectos_page_metadata",
-      "app_proyectos_page_proyectos",
-      "components_page_builder_sections_avatartextsection",
-      "components_page_builder_sections_avatartextsection_avatartextsection",
-      "components_page_builder_sections_avatartextsection_toinlinestyle",
-      "lib_supabase",
-      "lib_supabase_supabase"
     ],
     "5": [
       "ref_dom",
@@ -239,35 +243,36 @@
       "tsconfig_paths"
     ],
     "6": [
-      "app_carrito_page",
-      "app_carrito_page_carritopage",
-      "app_carrito_page_cartcontent",
-      "app_carrito_page_confirmscreen",
-      "app_carrito_page_emptyscreen",
-      "app_carrito_page_field",
-      "app_carrito_page_formatclp",
-      "app_layout",
-      "app_layout_dmmono",
-      "app_layout_instrumentsans",
-      "app_layout_metadata",
-      "app_layout_rootlayout",
-      "components_carrito_addtocartbutton",
-      "components_carrito_addtocartbutton_addtocartbutton",
-      "components_carrito_cartbutton",
-      "components_carrito_cartbutton_cartbutton",
-      "components_carrito_cartcontext",
-      "components_carrito_cartcontext_cartcontext",
-      "components_carrito_cartcontext_cartprovider",
-      "components_carrito_cartcontext_usecart",
-      "components_cookiebanner",
-      "components_cookiebanner_cookiebanner",
-      "components_footer",
-      "components_footer_footer",
-      "components_nav",
-      "components_nav_nav",
-      "components_page_builder_sections_heroeditorialsection",
-      "components_page_builder_sections_heroeditorialsection_heroeditorialsection",
-      "components_page_builder_sections_heroeditorialsection_toinlinestyle"
+      "app_api_admin_portafolio_route",
+      "app_api_admin_portafolio_route_get",
+      "app_api_admin_portafolio_route_patch",
+      "app_api_newsletter_route",
+      "app_api_newsletter_route_post",
+      "app_api_orders_route",
+      "app_api_orders_route_get",
+      "app_api_orders_route_post",
+      "app_api_orders_route_put",
+      "app_api_pages_route",
+      "app_api_pages_route_get",
+      "app_api_pages_route_post",
+      "app_api_pages_route_put",
+      "app_api_products_route",
+      "app_api_products_route_get",
+      "app_api_products_route_put",
+      "app_api_webhooks_whatsapp_route",
+      "app_api_webhooks_whatsapp_route_get",
+      "app_api_webhooks_whatsapp_route_post",
+      "app_contenidos_page",
+      "app_contenidos_page_contenidos",
+      "app_organizaciones_page",
+      "app_organizaciones_page_organizaciones",
+      "app_playground_page",
+      "app_playground_page_playground",
+      "components_page_builder_sections_avatartextsection",
+      "components_page_builder_sections_avatartextsection_avatartextsection",
+      "components_page_builder_sections_avatartextsection_toinlinestyle",
+      "lib_supabase",
+      "lib_supabase_supabase"
     ],
     "7": [
       "package",
@@ -300,31 +305,32 @@
       "typescript"
     ],
     "8": [
-      "app_admin_editor_page",
-      "app_admin_editor_page_visualeditor",
-      "app_admin_editor_page_visualeditorcontent",
-      "components_page_builder_globaltypographypanel",
-      "components_page_builder_globaltypographypanel_globaltypographypanel",
-      "components_page_builder_historypanel",
-      "components_page_builder_historypanel_historypanel",
-      "components_page_builder_registry_component_definitions",
-      "components_page_builder_smartpropertiespanel",
-      "components_page_builder_smartpropertiespanel_breakpoints",
-      "components_page_builder_smartpropertiespanel_genericfield",
-      "components_page_builder_smartpropertiespanel_hero_editorial_text_fields",
-      "components_page_builder_smartpropertiespanel_postersrcfield",
-      "components_page_builder_smartpropertiespanel_sectionlabel",
-      "components_page_builder_smartpropertiespanel_smartpropertiespanel",
-      "components_page_builder_smartpropertiespanel_textfield",
-      "components_page_builder_stylespanel",
-      "components_page_builder_stylespanel_stylespanel",
-      "components_page_builder_swatchespanel",
-      "components_page_builder_swatchespanel_swatchespanel",
-      "components_page_builder_typographypanel",
-      "components_page_builder_typographypanel_breakpoints",
-      "components_page_builder_typographypanel_typographypanel",
-      "components_page_builder_usedraggable",
-      "components_page_builder_usedraggable_usedraggable"
+      "app_carrito_page",
+      "app_carrito_page_carritopage",
+      "app_carrito_page_cartcontent",
+      "app_carrito_page_confirmscreen",
+      "app_carrito_page_emptyscreen",
+      "app_carrito_page_field",
+      "app_carrito_page_formatclp",
+      "app_layout",
+      "app_layout_dmmono",
+      "app_layout_instrumentsans",
+      "app_layout_metadata",
+      "app_layout_rootlayout",
+      "components_carrito_addtocartbutton",
+      "components_carrito_addtocartbutton_addtocartbutton",
+      "components_carrito_cartbutton",
+      "components_carrito_cartbutton_cartbutton",
+      "components_carrito_cartcontext",
+      "components_carrito_cartcontext_cartcontext",
+      "components_carrito_cartcontext_cartprovider",
+      "components_carrito_cartcontext_usecart",
+      "components_cookiebanner",
+      "components_cookiebanner_cookiebanner",
+      "components_footer",
+      "components_footer_footer",
+      "components_nav",
+      "components_nav_nav"
     ],
     "9": [
       "app_video_slug_actions",
@@ -351,33 +357,11 @@
       "lib_supabase_spr_supabasespr"
     ],
     "10": [
-      "app_page",
-      "app_page_faqschema",
-      "app_page_getpagecomponents",
-      "app_page_home",
-      "app_page_metadata",
-      "app_sistema_page",
-      "app_sistema_page_getsistemacomponents",
-      "app_sistema_page_metadata",
-      "app_sistema_page_sistemapage",
-      "app_sistema_page_videos",
-      "components_page_builder_defaultconfig",
-      "components_page_builder_defaultconfig_default_home_components",
-      "components_page_builder_livepreviewlistener",
-      "components_page_builder_livepreviewlistener_livepreviewlistener",
-      "components_page_builder_pagerenderer",
-      "components_page_builder_pagerenderer_pagerenderer",
-      "components_page_builder_registry_component_registry"
-    ],
-    "11": [
       "app_portafolio_slug_page",
       "app_portafolio_slug_page_generatemetadata",
       "app_portafolio_slug_page_getorganization",
       "app_portafolio_slug_page_organizacionpage",
       "app_portafolio_slug_page_sectionwrapper",
-      "app_proyectos_slug_page",
-      "app_proyectos_slug_page_generatemetadata",
-      "app_proyectos_slug_page_proyecto",
       "components_bunnyvideoplayer",
       "components_bunnyvideoplayer_bunnyvideoplayer",
       "components_bunnyvideoplayer_slugify",
@@ -386,7 +370,7 @@
       "components_videoplayer",
       "components_videoplayer_videoplayer"
     ],
-    "12": [
+    "11": [
       "app_admin_tienda_page",
       "app_admin_tienda_page_fmtdate",
       "app_admin_tienda_page_formatclp",
@@ -397,7 +381,7 @@
       "app_admin_tienda_page_status_labels",
       "app_admin_tienda_page_tiendaadminpage"
     ],
-    "13": [
+    "12": [
       "app_precios_page",
       "app_precios_page_emptystate",
       "app_precios_page_formatclp",
@@ -408,7 +392,7 @@
       "app_precios_page_waurl",
       "app_precios_page_whatsappicon"
     ],
-    "14": [
+    "13": [
       "scripts_publish_version",
       "scripts_publish_version_args",
       "scripts_publish_version_createclient",
@@ -418,7 +402,7 @@
       "scripts_publish_version_publish",
       "scripts_publish_version_supabase"
     ],
-    "15": [
+    "14": [
       "app_proceso_page",
       "app_proceso_page_metadata",
       "app_proceso_page_procesopage",
@@ -427,7 +411,7 @@
       "components_procesotimeline_procesotimeline",
       "components_procesotimeline_revealonscroll"
     ],
-    "16": [
+    "15": [
       "scratch_diagnostic",
       "scratch_diagnostic_checkimage",
       "scratch_diagnostic_createclient",
@@ -436,7 +420,7 @@
       "scratch_diagnostic_supabase",
       "scratch_diagnostic_testsupabase"
     ],
-    "17": [
+    "16": [
       "scripts_check_bunny",
       "scripts_check_bunny_checks",
       "scripts_check_bunny_envcontent",
@@ -445,12 +429,19 @@
       "scripts_check_bunny_fs",
       "scripts_check_bunny_path"
     ],
-    "18": [
+    "17": [
       "app_admin_portafolio_page",
       "app_admin_portafolio_page_adminportafoliopage",
       "app_admin_portafolio_page_field",
       "app_admin_portafolio_page_mdxeditor",
       "app_admin_portafolio_page_orgcard"
+    ],
+    "18": [
+      "components_page_builder_sections_tituloanimado",
+      "components_page_builder_sections_tituloanimado_animationtoken",
+      "components_page_builder_sections_tituloanimado_tituloanimado",
+      "components_page_builder_sections_tituloanimado_tituloanimadoprops",
+      "components_page_builder_sections_tituloanimado_toinlinestyle"
     ],
     "19": [
       "jsconfig",
@@ -542,141 +533,167 @@
       "app_api_auth_login_route_post"
     ],
     "34": [
-      "app_casos_de_exito_valook_seo_video_page",
-      "app_casos_de_exito_valook_seo_video_page_metadata",
-      "app_casos_de_exito_valook_seo_video_page_valookseovideopage"
-    ],
-    "35": [
       "app_contacto_page",
       "app_contacto_page_contactpage",
       "app_contacto_page_metadata"
     ],
+    "35": [
+      "app_contratar_editor_de_video_page",
+      "app_contratar_editor_de_video_page_contratareditorpage",
+      "app_contratar_editor_de_video_page_metadata"
+    ],
     "36": [
+      "app_creador_de_contenido_ia_page",
+      "app_creador_de_contenido_ia_page_creadorcontenidoiapage",
+      "app_creador_de_contenido_ia_page_metadata"
+    ],
+    "37": [
       "app_director_creativo_chile_page",
       "app_director_creativo_chile_page_directorcreativopage",
       "app_director_creativo_chile_page_metadata"
     ],
-    "37": [
+    "38": [
+      "app_editor_de_video_para_redes_sociales_page",
+      "app_editor_de_video_para_redes_sociales_page_editorvideoredespage",
+      "app_editor_de_video_para_redes_sociales_page_metadata"
+    ],
+    "39": [
       "app_servicios_director_creativo_externo_page",
       "app_servicios_director_creativo_externo_page_directorcreativoexternopage",
       "app_servicios_director_creativo_externo_page_metadata"
     ],
-    "38": [
+    "40": [
       "app_servicios_motion_design_page",
       "app_servicios_motion_design_page_metadata",
       "app_servicios_motion_design_page_motiondesignpage"
     ],
-    "39": [
+    "41": [
       "app_servicios_produccion_audiovisual_empresas_page",
       "app_servicios_produccion_audiovisual_empresas_page_metadata",
       "app_servicios_produccion_audiovisual_empresas_page_produccionaudiovisualpage"
     ],
-    "40": [
+    "42": [
       "app_servicios_seo_video_page",
       "app_servicios_seo_video_page_metadata",
       "app_servicios_seo_video_page_seovideopage"
     ],
-    "41": [
+    "43": [
       "app_sobre_mi_page",
       "app_sobre_mi_page_metadata",
       "app_sobre_mi_page_sobremi"
     ],
-    "42": [
+    "44": [
       "app_videos_post_venta_page",
       "app_videos_post_venta_page_metadata",
       "app_videos_post_venta_page_postventapage"
     ],
-    "43": [
+    "45": [
       "app_videos_primer_impacto_page",
       "app_videos_primer_impacto_page_metadata",
       "app_videos_primer_impacto_page_primerimpactopage"
     ],
-    "44": [
+    "46": [
       "middleware",
       "middleware_config",
       "middleware_middleware"
     ],
-    "45": [
+    "47": [
       "scratch_fetch_live",
       "scratch_fetch_live_fetchpage",
       "scratch_fetch_live_https"
     ],
-    "46": [
+    "48": [
       "scripts_get_org_data",
       "scripts_get_org_data_getorgdata",
       "scripts_get_org_data_parseenv"
     ],
-    "47": [
+    "49": [
       "test_products",
       "test_products_main",
       "test_products_supabase"
     ],
-    "48": [
+    "50": [
       "test_resend_script",
       "test_resend_script_resend",
       "test_resend_script_test"
     ],
-    "49": [
+    "51": [
       "app_admin_layout",
       "app_admin_layout_adminlayout"
     ],
-    "50": [
+    "52": [
       "app_admin_login_page",
       "app_admin_login_page_loginpage"
     ],
-    "51": [
+    "53": [
       "app_api_bunny_status_route",
       "app_api_bunny_status_route_get"
     ],
-    "52": [
+    "54": [
       "app_api_download_route",
       "app_api_download_route_get"
     ],
-    "53": [
+    "55": [
       "app_api_thumbnail_videoid_route",
       "app_api_thumbnail_videoid_route_get"
     ],
-    "54": [
+    "56": [
       "app_api_upload_image_route",
       "app_api_upload_image_route_post"
     ],
-    "55": [
+    "57": [
+      "app_sitemap",
+      "app_sitemap_sitemap"
+    ],
+    "58": [
       "components_estrellas",
       "components_estrellas_estrellas"
     ],
-    "56": [
+    "59": [
       "components_newslettersignup",
       "components_newslettersignup_newslettersignup"
     ],
-    "57": [
+    "60": [
       "data_portfolio",
       "data_portfolio_portfolio"
     ],
-    "58": [
+    "61": [
+      "data_videos",
+      "data_videos_videos"
+    ],
+    "62": [
       "postcss_config",
       "postcss_config_config"
+    ],
+    "63": [
+      "scratch_fetch_bunny",
+      "scratch_fetch_bunny_main"
+    ],
+    "64": [
+      "scratch_find_contact",
+      "scratch_find_contact_main"
     ]
   },
   "cohesion": {
-    "0": 0.09696969696969697,
-    "1": 0.06968641114982578,
-    "2": 0.05128205128205128,
-    "3": 0.1140819964349376,
-    "4": 0.08333333333333333,
+    "0": 0.07862679955703211,
+    "1": 0.10609756097560975,
+    "2": 0.07564102564102564,
+    "3": 0.05128205128205128,
+    "4": 0.1140819964349376,
     "5": 0.06060606060606061,
-    "6": 0.10837438423645321,
+    "6": 0.09195402298850575,
     "7": 0.07407407407407407,
-    "8": 0.14666666666666667,
+    "8": 0.11692307692307692,
     "9": 0.15151515151515152,
-    "10": 0.17647058823529413,
-    "11": 0.22857142857142856,
-    "12": 0.3055555555555556,
-    "13": 0.3333333333333333,
-    "14": 0.25,
-    "15": 0.3333333333333333,
-    "16": 0.38095238095238093,
-    "17": 0.2857142857142857,
-    "18": 0.4,
+    "10": 0.25757575757575757,
+    "11": 0.3055555555555556,
+    "12": 0.3333333333333333,
+    "13": 0.25,
+    "14": 0.3333333333333333,
+    "15": 0.38095238095238093,
+    "16": 0.2857142857142857,
+    "17": 0.4,
+    "18": 0.5,
     "19": 0.4,
     "20": 0.4,
     "21": 0.6666666666666666,
@@ -704,11 +721,11 @@
     "43": 0.6666666666666666,
     "44": 0.6666666666666666,
     "45": 0.6666666666666666,
-    "46": 1.0,
+    "46": 0.6666666666666666,
     "47": 0.6666666666666666,
-    "48": 0.6666666666666666,
-    "49": 1.0,
-    "50": 1.0,
+    "48": 1.0,
+    "49": 0.6666666666666666,
+    "50": 0.6666666666666666,
     "51": 1.0,
     "52": 1.0,
     "53": 1.0,
@@ -716,42 +733,43 @@
     "55": 1.0,
     "56": 1.0,
     "57": 1.0,
-    "58": 1.0
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0
   },
   "gods": [
-    {
-      "id": "lib_supabase_supabase",
-      "label": "supabase",
-      "degree": 19
-    },
     {
       "id": "tsconfig_compileroptions",
       "label": "compilerOptions",
       "degree": 18
     },
     {
+      "id": "lib_supabase_supabase",
+      "label": "supabase",
+      "degree": 15
+    },
+    {
       "id": "lib_videoconfig_readvideoconfig",
       "label": "readVideoConfig()",
-      "degree": 15
+      "degree": 13
     },
     {
       "id": "lib_bunny_fetchbunnyvideos",
       "label": "fetchBunnyVideos()",
-      "degree": 14
-    },
-    {
-      "id": "lib_lab_getlabposts",
-      "label": "getLabPosts()",
-      "degree": 11
-    },
-    {
-      "id": "components_carrito_cartcontext_usecart",
-      "label": "useCart()",
-      "degree": 9
+      "degree": 13
     },
     {
       "id": "components_page_builder_usedraggable_usedraggable",
       "label": "useDraggable()",
+      "degree": 9
+    },
+    {
+      "id": "lib_lab_getlabposts",
+      "label": "getLabPosts()",
       "degree": 9
     },
     {
@@ -760,28 +778,22 @@
       "degree": 8
     },
     {
-      "id": "components_herovideo_herovideo",
-      "label": "HeroVideo()",
+      "id": "components_carrito_cartcontext_usecart",
+      "label": "useCart()",
       "degree": 7
     },
     {
       "id": "lib_lab_getlabpostbyslug",
       "label": "getLabPostBySlug()",
       "degree": 7
+    },
+    {
+      "id": "lib_pageconfig_readpageconfig",
+      "label": "readPageConfig()",
+      "degree": 7
     }
   ],
   "surprises": [
-    {
-      "source": "Proyecto()",
-      "target": "BunnyVideoPlayer()",
-      "source_files": [
-        "app/proyectos/[slug]/page.js",
-        "components/BunnyVideoPlayer.jsx"
-      ],
-      "confidence": "INFERRED",
-      "relation": "indirect_call",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Proyecto()` unexpectedly reaches hub `BunnyVideoPlayer()`"
-    },
     {
       "source": "GET()",
       "target": "fetchBunnyVideos()",
@@ -825,43 +837,54 @@
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "connects across different repos/directories; peripheral node `generateStaticParams()` unexpectedly reaches hub `getLabPosts()`"
+    },
+    {
+      "source": "generateMetadata()",
+      "target": "getLabPostBySlug()",
+      "source_files": [
+        "app/blog/[slug]/page.js",
+        "lib/lab.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `generateMetadata()` unexpectedly reaches hub `getLabPostBySlug()`"
     }
   ],
   "questions": [
     {
       "type": "bridge_node",
       "question": "Why does `supabase` connect `supabase.js` to `page.js`, `page.js`, `page.js`, `page.js`?",
-      "why": "High betweenness centrality (0.044) - this node is a cross-community bridge."
+      "why": "High betweenness centrality (0.032) - this node is a cross-community bridge."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `HeroVideo()` connect `page.js` to `page.js`, `layout.js`?",
+      "question": "Why does `Nav()` connect `layout.js` to `page.js`?",
       "why": "High betweenness centrality (0.019) - this node is a cross-community bridge."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `VideoPlayer()` connect `page.js` to `LandingClient.tsx`?",
-      "why": "High betweenness centrality (0.018) - this node is a cross-community bridge."
+      "question": "Why does `HeroVideo()` connect `page.js` to `page.js`?",
+      "why": "High betweenness centrality (0.013) - this node is a cross-community bridge."
     },
     {
       "type": "isolated_nodes",
       "question": "What connects `metadata`, `STATUS_LABELS`, `STATUS_COLORS` to the rest of the system?",
-      "why": "154 weakly-connected nodes found - possible documentation gaps or missing edges."
+      "why": "157 weakly-connected nodes found - possible documentation gaps or missing edges."
     },
     {
       "type": "low_cohesion",
       "question": "Should `page.js` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.09696969696969697 - nodes in this community are weakly interconnected."
+      "why": "Cohesion score 0.07862679955703211 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `page.js` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10609756097560975 - nodes in this community are weakly interconnected."
     },
     {
       "type": "low_cohesion",
       "question": "Should `registry.js` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.06968641114982578 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `dependencies` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected."
+      "why": "Cohesion score 0.07564102564102564 - nodes in this community are weakly interconnected."
     }
   ]
 }
