@@ -1,15 +1,15 @@
-# Graph Report - Z:\proyects\portafolio  (2026-07-13)
+# Graph Report - Z:\proyects\portafolio  (2026-07-14)
 
 ## Corpus Check
 - cluster-only mode — file stats not available
 
 ## Summary
-- 543 nodes · 698 edges · 65 communities (34 shown, 31 thin omitted)
+- 559 nodes · 703 edges · 69 communities (37 shown, 32 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2ad951de`
+- Built from commit: `93be0c93`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -18,19 +18,20 @@
 - page.js
 - registry.js
 - dependencies
-- page.js
 - compilerOptions
+- LandingClient.tsx
 - supabase.js
 - package.json
+- fetchBunnyVideos
 - layout.js
-- LandingClient.tsx
-- page.js
+- merge_mdx.js
 - page.js
 - page.tsx
 - publish-version.js
 - page.js
 - diagnostic.js
 - check-bunny.js
+- page.js
 - TituloAnimado.tsx
 - compilerOptions
 - update_videos.js
@@ -42,6 +43,7 @@
 - page.jsx
 - next.config.mjs
 - check_active_home.js
+- update_links.js
 - view_active_home_components.js
 - test-supabase-script.js
 - page.js
@@ -69,7 +71,7 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 18 edges
-2. `supabase` - 15 edges
+2. `supabase` - 13 edges
 3. `readVideoConfig()` - 13 edges
 4. `fetchBunnyVideos()` - 13 edges
 5. `useDraggable()` - 9 edges
@@ -94,15 +96,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (65 total, 31 thin omitted)
+## Communities (69 total, 32 thin omitted)
 
 ### Community 0 - "page.js"
 Cohesion: 0.08
-Nodes (25): VisualEditorContent(), faqSchema, getPageComponents(), Home(), localBusinessSchema, metadata, getSistemaComponents(), metadata (+17 more)
+Nodes (33): GET(), PATCH(), LabPage(), metadata, generateMetadata(), generateStaticParams(), LabPostPage(), LabPage() (+25 more)
 
 ### Community 1 - "page.js"
-Cohesion: 0.11
-Nodes (30): GET(), GET(), GET(), PATCH(), GET(), PATCH(), PUT(), getPageComponents() (+22 more)
+Cohesion: 0.08
+Nodes (25): VisualEditorContent(), faqSchema, getPageComponents(), Home(), localBusinessSchema, metadata, getSistemaComponents(), metadata (+17 more)
 
 ### Community 2 - "registry.js"
 Cohesion: 0.08
@@ -112,33 +114,33 @@ Nodes (23): AvatarSection(), CellPhoneCTASection(), CTASection(), CTAWhatsapp(),
 Cohesion: 0.05
 Nodes (39): @anthropic-ai/sdk, @google/generative-ai, hls.js, lucide-react, marked, @mdx-js/loader, @mdx-js/react, next (+31 more)
 
-### Community 4 - "page.js"
-Cohesion: 0.11
-Nodes (23): LabPage(), metadata, generateMetadata(), generateStaticParams(), LabPostPage(), LabPage(), metadata, generateMetadata() (+15 more)
-
-### Community 5 - "compilerOptions"
+### Community 4 - "compilerOptions"
 Cohesion: 0.06
 Nodes (32): dom, dom.iterable, esnext, **/*.mts, .next/dev/types/**/*.ts, next-env.d.ts, .next/types/**/*.ts, node_modules (+24 more)
 
+### Community 5 - "LandingClient.tsx"
+Cohesion: 0.11
+Nodes (20): getSupabase(), logCtaClick(), registerPageVisit(), resend, submitEmailLead(), gtag(), LandingClient(), LandingClientProps (+12 more)
+
 ### Community 6 - "supabase.js"
-Cohesion: 0.09
+Cohesion: 0.10
 Nodes (3): AvatarTextSection(), toInlineStyle(), supabase
 
 ### Community 7 - "package.json"
 Cohesion: 0.07
 Nodes (27): browserslist, devDependencies, @types/node, typescript, name, packageManager, pnpm, supportedArchitectures (+19 more)
 
-### Community 8 - "layout.js"
+### Community 8 - "fetchBunnyVideos"
+Cohesion: 0.16
+Nodes (20): GET(), GET(), GET(), PATCH(), PUT(), generateMetadata(), VideoPage(), VideoPageViewer() (+12 more)
+
+### Community 9 - "layout.js"
 Cohesion: 0.12
 Nodes (13): CartContent(), formatCLP(), dmMono, instrumentSans, metadata, AddToCartButton(), CartButton(), CartContext (+5 more)
 
-### Community 9 - "LandingClient.tsx"
-Cohesion: 0.15
-Nodes (16): getSupabase(), logCtaClick(), registerPageVisit(), resend, submitEmailLead(), gtag(), LandingClient(), LandingClientProps (+8 more)
-
-### Community 10 - "page.js"
-Cohesion: 0.26
-Nodes (7): generateMetadata(), getOrganization, OrganizacionPage(), BunnyVideoPlayer(), slugify(), VideoReelSection(), VideoPlayer()
+### Community 10 - "merge_mdx.js"
+Cohesion: 0.20
+Nodes (9): contentDir, crazyAudio, crazyMain, crazyProd, fs, incoAudio, incoMain, incoTv (+1 more)
 
 ### Community 11 - "page.js"
 Cohesion: 0.31
@@ -164,41 +166,45 @@ Nodes (6): checkImage(), { createClient }, https, run(), supabase, testSupabase(
 Cohesion: 0.29
 Nodes (6): checks, envContent, envPath, envVars, fs, path
 
-### Community 18 - "TituloAnimado.tsx"
+### Community 18 - "page.js"
+Cohesion: 0.60
+Nodes (3): generateMetadata(), getEntityData, PortafolioSlugPage()
+
+### Community 19 - "TituloAnimado.tsx"
 Cohesion: 0.50
 Nodes (4): AnimationToken, TituloAnimado(), TituloAnimadoProps, toInlineStyle()
 
-### Community 19 - "compilerOptions"
+### Community 20 - "compilerOptions"
 Cohesion: 0.40
 Nodes (4): compilerOptions, paths, ./*, @/*
 
-### Community 20 - "update_videos.js"
+### Community 21 - "update_videos.js"
 Cohesion: 0.40
 Nodes (4): contentDir, files, fs, path
 
-### Community 27 - "next.config.mjs"
+### Community 28 - "next.config.mjs"
 Cohesion: 0.50
 Nodes (3): cspHeader, nextConfig, withMDX
 
 ## Knowledge Gaps
-- **157 isolated node(s):** `metadata`, `STATUS_LABELS`, `STATUS_COLORS`, `CONTENT_DIR`, `metadata` (+152 more)
+- **168 isolated node(s):** `metadata`, `STATUS_LABELS`, `STATUS_COLORS`, `CONTENT_DIR`, `metadata` (+163 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.js` to `page.js`, `page.js`, `page.js`, `page.js`?**
-  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+- **Why does `supabase` connect `supabase.js` to `page.js`, `page.js`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
 - **Why does `Nav()` connect `layout.js` to `page.js`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Why does `HeroVideo()` connect `page.js` to `page.js`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+  _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **What connects `metadata`, `STATUS_LABELS`, `STATUS_COLORS` to the rest of the system?**
-  _157 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _168 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `page.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.08067375886524823 - nodes in this community are weakly interconnected._
 - **Should `page.js` be split into smaller, more focused modules?**
   _Cohesion score 0.07862679955703211 - nodes in this community are weakly interconnected._
-- **Should `page.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.10609756097560975 - nodes in this community are weakly interconnected._
 - **Should `registry.js` be split into smaller, more focused modules?**
   _Cohesion score 0.07564102564102564 - nodes in this community are weakly interconnected._
+- **Should `dependencies` be split into smaller, more focused modules?**
+  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._

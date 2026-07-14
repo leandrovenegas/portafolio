@@ -4,34 +4,35 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 543 nodes · 698 edges · 65 communities (34 shown, 31 thin omitted)
+- 550 nodes · 696 edges · 69 communities (38 shown, 31 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2ad951de`
+- Built from commit: `93be0c93`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- page.js
-- page.js
 - registry.js
 - dependencies
 - page.js
 - compilerOptions
+- page.js
 - supabase.js
+- LandingClient.tsx
 - package.json
 - layout.js
-- LandingClient.tsx
-- page.js
 - page.js
 - page.tsx
+- page.js
+- page.tsx
+- readPageConfig
 - publish-version.js
 - page.js
 - diagnostic.js
 - check-bunny.js
-- TituloAnimado.tsx
+- page.js
 - compilerOptions
 - update_videos.js
 - page.js
@@ -69,7 +70,7 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 18 edges
-2. `supabase` - 15 edges
+2. `supabase` - 14 edges
 3. `readVideoConfig()` - 13 edges
 4. `fetchBunnyVideos()` - 13 edges
 5. `useDraggable()` - 9 edges
@@ -94,35 +95,35 @@
 ## Import Cycles
 - None detected.
 
-## Communities (65 total, 31 thin omitted)
+## Communities (69 total, 31 thin omitted)
 
-### Community 0 - "page.js"
-Cohesion: 0.08
-Nodes (25): VisualEditorContent(), faqSchema, getPageComponents(), Home(), localBusinessSchema, metadata, getSistemaComponents(), metadata (+17 more)
+### Community 0 - "registry.js"
+Cohesion: 0.07
+Nodes (27): AvatarSection(), CellPhoneCTASection(), CTASection(), CTAWhatsapp(), EstrelasSection(), toInlineStyle(), FAQSection(), FinalCTASection() (+19 more)
 
-### Community 1 - "page.js"
-Cohesion: 0.11
-Nodes (30): GET(), GET(), GET(), PATCH(), GET(), PATCH(), PUT(), getPageComponents() (+22 more)
-
-### Community 2 - "registry.js"
-Cohesion: 0.08
-Nodes (23): AvatarSection(), CellPhoneCTASection(), CTASection(), CTAWhatsapp(), EstrelasSection(), toInlineStyle(), FAQSection(), FinalCTASection() (+15 more)
-
-### Community 3 - "dependencies"
+### Community 1 - "dependencies"
 Cohesion: 0.05
 Nodes (39): @anthropic-ai/sdk, @google/generative-ai, hls.js, lucide-react, marked, @mdx-js/loader, @mdx-js/react, next (+31 more)
 
-### Community 4 - "page.js"
+### Community 2 - "page.js"
 Cohesion: 0.11
-Nodes (23): LabPage(), metadata, generateMetadata(), generateStaticParams(), LabPostPage(), LabPage(), metadata, generateMetadata() (+15 more)
+Nodes (24): LabPage(), metadata, generateMetadata(), generateStaticParams(), LabPostPage(), LabPage(), metadata, generateMetadata() (+16 more)
 
-### Community 5 - "compilerOptions"
+### Community 3 - "compilerOptions"
 Cohesion: 0.06
 Nodes (32): dom, dom.iterable, esnext, **/*.mts, .next/dev/types/**/*.ts, next-env.d.ts, .next/types/**/*.ts, node_modules (+24 more)
 
-### Community 6 - "supabase.js"
+### Community 4 - "page.js"
+Cohesion: 0.14
+Nodes (23): GET(), GET(), GET(), PATCH(), PUT(), getPageComponents(), metadata, VideosPage() (+15 more)
+
+### Community 5 - "supabase.js"
 Cohesion: 0.09
 Nodes (3): AvatarTextSection(), toInlineStyle(), supabase
+
+### Community 6 - "LandingClient.tsx"
+Cohesion: 0.11
+Nodes (20): getSupabase(), logCtaClick(), registerPageVisit(), resend, submitEmailLead(), gtag(), LandingClient(), LandingClientProps (+12 more)
 
 ### Community 7 - "package.json"
 Cohesion: 0.07
@@ -132,13 +133,13 @@ Nodes (27): browserslist, devDependencies, @types/node, typescript, name, packag
 Cohesion: 0.12
 Nodes (13): CartContent(), formatCLP(), dmMono, instrumentSans, metadata, AddToCartButton(), CartButton(), CartContext (+5 more)
 
-### Community 9 - "LandingClient.tsx"
+### Community 9 - "page.js"
 Cohesion: 0.15
-Nodes (16): getSupabase(), logCtaClick(), registerPageVisit(), resend, submitEmailLead(), gtag(), LandingClient(), LandingClientProps (+8 more)
+Nodes (12): VisualEditorContent(), GlobalTypographyPanel(), HistoryPanel(), COMPONENT_DEFINITIONS, BREAKPOINTS, HERO_EDITORIAL_TEXT_FIELDS, SmartPropertiesPanel(), StylesPanel() (+4 more)
 
-### Community 10 - "page.js"
-Cohesion: 0.26
-Nodes (7): generateMetadata(), getOrganization, OrganizacionPage(), BunnyVideoPlayer(), slugify(), VideoReelSection(), VideoPlayer()
+### Community 10 - "page.tsx"
+Cohesion: 0.15
+Nodes (13): faqSchema, getPageComponents(), Home(), localBusinessSchema, metadata, getSistemaComponents(), metadata, SistemaPage() (+5 more)
 
 ### Community 11 - "page.js"
 Cohesion: 0.31
@@ -148,35 +149,39 @@ Nodes (6): fmtDate(), formatCLP(), OrdersTab(), ProductsTab(), STATUS_COLORS, ST
 Cohesion: 0.33
 Nodes (6): formatCLP(), getProducts(), metadata, PreciosPage(), Product, waUrl()
 
-### Community 13 - "publish-version.js"
+### Community 13 - "readPageConfig"
+Cohesion: 0.46
+Nodes (6): GET(), PATCH(), configPath, getPageText(), readPageConfig(), writePageConfig()
+
+### Community 14 - "publish-version.js"
 Cohesion: 0.25
 Nodes (6): args, { createClient }, envPath, fs, path, supabase
 
-### Community 14 - "page.js"
+### Community 15 - "page.js"
 Cohesion: 0.33
 Nodes (3): metadata, PHASES, ProcesoTimeline()
 
-### Community 15 - "diagnostic.js"
+### Community 16 - "diagnostic.js"
 Cohesion: 0.38
 Nodes (6): checkImage(), { createClient }, https, run(), supabase, testSupabase()
 
-### Community 16 - "check-bunny.js"
+### Community 17 - "check-bunny.js"
 Cohesion: 0.29
 Nodes (6): checks, envContent, envPath, envVars, fs, path
 
-### Community 18 - "TituloAnimado.tsx"
-Cohesion: 0.50
-Nodes (4): AnimationToken, TituloAnimado(), TituloAnimadoProps, toInlineStyle()
+### Community 19 - "page.js"
+Cohesion: 0.60
+Nodes (3): generateMetadata(), getOrganization, OrganizacionPage()
 
-### Community 19 - "compilerOptions"
+### Community 20 - "compilerOptions"
 Cohesion: 0.40
 Nodes (4): compilerOptions, paths, ./*, @/*
 
-### Community 20 - "update_videos.js"
+### Community 21 - "update_videos.js"
 Cohesion: 0.40
 Nodes (4): contentDir, files, fs, path
 
-### Community 27 - "next.config.mjs"
+### Community 28 - "next.config.mjs"
 Cohesion: 0.50
 Nodes (3): cspHeader, nextConfig, withMDX
 
@@ -188,17 +193,17 @@ Nodes (3): cspHeader, nextConfig, withMDX
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.js` to `page.js`, `page.js`, `page.js`, `page.js`?**
-  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+- **Why does `supabase` connect `supabase.js` to `page.js`, `page.tsx`, `page.js`?**
+  _High betweenness centrality (0.028) - this node is a cross-community bridge._
 - **Why does `Nav()` connect `layout.js` to `page.js`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Why does `HeroVideo()` connect `page.js` to `page.js`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **What connects `metadata`, `STATUS_LABELS`, `STATUS_COLORS` to the rest of the system?**
   _157 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `page.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.07862679955703211 - nodes in this community are weakly interconnected._
-- **Should `page.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.10609756097560975 - nodes in this community are weakly interconnected._
 - **Should `registry.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.07564102564102564 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06565656565656566 - nodes in this community are weakly interconnected._
+- **Should `dependencies` be split into smaller, more focused modules?**
+  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+- **Should `page.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.10634920634920635 - nodes in this community are weakly interconnected._
+- **Should `compilerOptions` be split into smaller, more focused modules?**
+  _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._

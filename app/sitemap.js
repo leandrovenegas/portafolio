@@ -23,10 +23,21 @@ export default async function sitemap() {
         priority: 0.9,
     }));
 
-    // 2. Proyectos (Eliminado de la versión estática, mantenemos array vacío por compatibilidad en el return si es necesario, o lo quitamos del return)
-    const projectUrls = [];
+    // 2. Proyectos (Individuales en /portafolio)
+    const { data: projects } = await supabase
+        .from("projects")
+        .select("slug")
+        .eq("is_indexed", true)
+        .eq("status", "published");
 
-    // 3. Portafolio (Organizaciones indexadas en DB)
+    const projectUrls = (projects || []).map((p) => ({
+        url: `${baseUrl}/portafolio/${p.slug}`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+    }));
+
+    // 3. Organizaciones (ahora en /portafolio)
     const { data: organizations } = await supabase
         .from("organizations")
         .select("slug")

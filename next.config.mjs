@@ -59,6 +59,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/organizaciones/:slug*',
+        destination: '/portafolio/:slug*',
+        permanent: true,
+      },
+      {
         source: '/casos-de-exito',
         destination: '/portafolio',
         permanent: true,

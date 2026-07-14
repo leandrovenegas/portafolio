@@ -20,7 +20,7 @@
     "semantic_hash": "af1813262582bf5709bb3aa9579f02d5"
   },
   "app/admin/portafolio/page.js": {
-    "mtime": 1780644695.8162787,
+    "mtime": 1784017286.1883838,
     "ast_hash": "d8f566d8f3d22eaea7d681a093dfa755",
     "semantic_hash": "d8f566d8f3d22eaea7d681a093dfa755"
   },
@@ -164,11 +164,6 @@
     "ast_hash": "5212bfb316a674b6379dcc797ce70031",
     "semantic_hash": "5212bfb316a674b6379dcc797ce70031"
   },
-  "app/organizaciones/page.js": {
-    "mtime": 1780644696.0062778,
-    "ast_hash": "3dd06cd622179ce3dda9cc032c7ab002",
-    "semantic_hash": "3dd06cd622179ce3dda9cc032c7ab002"
-  },
   "app/page.js": {
     "mtime": 1783886054.6899867,
     "ast_hash": "1d85ad828633a010d3c83efced598d2b",
@@ -180,9 +175,9 @@
     "semantic_hash": "9e4d7f2ce4b3976ae2a0379e1f0b3f2e"
   },
   "app/portafolio/[slug]/page.js": {
-    "mtime": 1782419598.2070608,
-    "ast_hash": "1b04c6c2d8791c39527e69681815f003",
-    "semantic_hash": "1b04c6c2d8791c39527e69681815f003"
+    "mtime": 1784017248.6004937,
+    "ast_hash": "5b3cc63de9b8b779bb986c1c436c1903",
+    "semantic_hash": "5b3cc63de9b8b779bb986c1c436c1903"
   },
   "app/portafolio/page.js": {
     "mtime": 1782513167.9121294,
@@ -225,9 +220,9 @@
     "semantic_hash": "170bc837dadc13138086879bf03fba44"
   },
   "app/sitemap.js": {
-    "mtime": 1783992711.811848,
-    "ast_hash": "08ce82b2ab44deef6a0e219c911d5773",
-    "semantic_hash": "08ce82b2ab44deef6a0e219c911d5773"
+    "mtime": 1784017260.12646,
+    "ast_hash": "5e480b39e64ce45ce2656db938d023c9",
+    "semantic_hash": "5e480b39e64ce45ce2656db938d023c9"
   },
   "app/sobre-mi/page.js": {
     "mtime": 1780644696.0732777,
@@ -595,9 +590,9 @@
     "semantic_hash": "cac72ab057afeffe138bf7a3bdae4cd8"
   },
   "next.config.mjs": {
-    "mtime": 1783992829.3484693,
-    "ast_hash": "3cf50ef298f885332fd2f14588765136",
-    "semantic_hash": "3cf50ef298f885332fd2f14588765136"
+    "mtime": 1784017268.8514345,
+    "ast_hash": "1401803c3ab67953f58c22dc770b929e",
+    "semantic_hash": "1401803c3ab67953f58c22dc770b929e"
   },
   "package.json": {
     "mtime": 1781646988.4296296,
@@ -718,5 +713,25 @@
     "mtime": 1783992803.5585523,
     "ast_hash": "d9452303a48df038a85af6ec235150ce",
     "semantic_hash": "d9452303a48df038a85af6ec235150ce"
+  },
+  "scratch/fix_db_links.js": {
+    "mtime": 1784000049.3939817,
+    "ast_hash": "e22697f02a2603bf2844fd929b00dab5",
+    "semantic_hash": "e22697f02a2603bf2844fd929b00dab5"
+  },
+  "scratch/list_orgs.js": {
+    "mtime": 1784000876.1563249,
+    "ast_hash": "440d91bd9a20a08444cdff591b21dc6e",
+    "semantic_hash": "440d91bd9a20a08444cdff591b21dc6e"
+  },
+  "scratch/update_links.js": {
+    "mtime": 1784017284.7003882,
+    "ast_hash": "305f5866db6aa8bcd497267fa6b96d04",
+    "semantic_hash": "305f5866db6aa8bcd497267fa6b96d04"
+  },
+  "scratch/merge_mdx.js": {
+    "mtime": 1784017330.1802552,
+    "ast_hash": "efdaa3a346291abd7ccfc3f59f722c81",
+    "semantic_hash": "efdaa3a346291abd7ccfc3f59f722c81"
   }
 }
