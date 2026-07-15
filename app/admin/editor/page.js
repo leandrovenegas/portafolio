@@ -32,7 +32,6 @@ function VisualEditorContent() {
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState('');
   const [newVersionName, setNewVersionName] = useState('');
-  const [publishLock, setPublishLock] = useState(false); // false = cerrado/draft, true = abierto/publicar
   
   const [focusedField, setFocusedField] = useState(null);
 
@@ -280,10 +279,9 @@ function VisualEditorContent() {
       // Auto-cloning logic:
       // If we are NOT creating a new version explicitly (isNew = false)
       // and we are editing a version that is currently published (isCurrentPublished = true)
-      // and the publish lock is closed (publishLock === false)
       // then we must clone this version instead of overwriting it.
       let shouldClone = false;
-      if (!isNew && currentVersionId && isCurrentPublished && !publishLock) {
+      if (!isNew && currentVersionId && isCurrentPublished) {
         shouldClone = true;
       }
 
@@ -299,8 +297,7 @@ function VisualEditorContent() {
       const payload = {
         slug,
         version_name: vName,
-        components,
-        is_active: true
+        components
       };
 
       let url = '/api/pages';
@@ -309,14 +306,6 @@ function VisualEditorContent() {
       if (!shouldClone && !isNew && currentVersionId) {
         payload.id = currentVersionId;
         method = 'PUT';
-        // If publishLock is true (open), we publish this version directly on PUT
-        if (publishLock) {
-          payload.is_published = true;
-        }
-      } else {
-        // If shouldClone is true, it is a draft, so is_published = false.
-        // If isNew is true, it depends on publishLock.
-        payload.is_published = shouldClone ? false : publishLock;
       }
 
       const res = await fetch(url, {
@@ -380,6 +369,12 @@ function VisualEditorContent() {
       setError("Error al publicar: " + err.message);
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handlePublish = async () => {
+    if (window.confirm("Esto se verá en vivo en el sitio público (Vercel). ¿Continuar?")) {
+      await publishVersion();
     }
   };
 
@@ -725,50 +720,17 @@ function VisualEditorContent() {
               ))}
             </select>
 
-            {/* Candado + Guardar */}
-            <div className="flex items-center gap-0.5 bg-[var(--ps-bg-panel)] p-0.5 rounded-lg border border-[var(--ps-border-light)]">
-              <button 
-                onClick={() => setPublishLock(!publishLock)}
-                disabled={saving || !currentVersionId}
-                style={{
-                  height: '20px',
-                  width: '24px',
-                  padding: '0',
-                  background: publishLock ? 'var(--ps-accent)' : 'transparent',
-                  border: 'none',
-                  borderRadius: 'calc(var(--ps-radius) - 2px)',
-                  color: publishLock ? '#fff' : 'var(--ps-text-dim)',
-                  cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
-                  opacity: (saving || !currentVersionId) ? 0.5 : 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-                className="hover:text-white transition-colors"
-                title={publishLock ? "Candado ABIERTO: Se guardará PUBLICADO EN VIVO. Haz clic para cambiar a modo borrador." : "Candado CERRADO: Se guardará como BORRADOR (seguro). Haz clic para cambiar a modo publicar en vivo."}
-              >
-                {publishLock ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                )}
-              </button>
-              
+            {/* Guardar y Publicar */}
+            <div className="flex items-center gap-2">
               <button 
                 onClick={() => saveVersion(false)} 
                 disabled={saving || !currentVersionId}
                 style={{
-                  height: '20px',
-                  padding: '0 var(--sp-sm)',
-                  background: 'transparent',
-                  border: 'none',
-                  borderRadius: 'calc(var(--ps-radius) - 2px)',
+                  height: '24px',
+                  padding: '0 var(--sp-md)',
+                  background: 'var(--ps-bg-panel)',
+                  border: 'var(--ps-border-width) solid var(--ps-border-light)',
+                  borderRadius: 'var(--ps-radius)',
                   color: 'var(--ps-text)',
                   fontSize: 'var(--font-size-sm)',
                   cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
@@ -776,7 +738,26 @@ function VisualEditorContent() {
                 }}
                 className="hover:bg-[var(--ps-bg-hover)] transition-colors font-medium"
               >
-                {saving ? 'Guardando...' : (publishLock ? 'Publicar' : 'Guardar')}
+                {saving ? 'Guardando...' : 'Guardar'}
+              </button>
+              
+              <button 
+                onClick={handlePublish} 
+                disabled={saving || !currentVersionId}
+                style={{
+                  height: '24px',
+                  padding: '0 var(--sp-md)',
+                  background: 'var(--ps-accent)',
+                  border: 'none',
+                  borderRadius: 'var(--ps-radius)',
+                  color: '#fff',
+                  fontSize: 'var(--font-size-sm)',
+                  cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
+                  opacity: (saving || !currentVersionId) ? 0.5 : 1
+                }}
+                className="hover:opacity-90 transition-opacity font-bold"
+              >
+                Publicar versión
               </button>
             </div>
 
