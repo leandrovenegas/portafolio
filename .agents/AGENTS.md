@@ -25,3 +25,4 @@ Reglas globales: ver proyectos/_global/AGENTS.md — aplican siempre junto a las
 |-------|--------|
 | 2026-07-14 | Se agrega regla append-only y aclaración de alcance global/permanente. |
 | 2026-07-15 | Se agrega referencia a la regla global de delegación a Hermes. |
+| 2026-07-15 | Audit ESLint no-undef en app/admin/editor/page.js: único error fue `idx` no definido en `moveComponent` (L395-400). Fix: `const idx = prev.findIndex(c => c.id === id)`. ToolboxPanel, toggleComponentVisibility, recalculateZIndices ya estaban correctamente importados. |
