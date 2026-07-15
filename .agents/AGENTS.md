@@ -1,4 +1,7 @@
+Reglas globales: ver proyectos/_global/AGENTS.md — aplican siempre junto a las reglas específicas de este proyecto.
+
 # Project Rules
+
 
 > REGLA DE EDICIÓN - APPEND-ONLY
 > Este archivo nunca se borra ni se reescribe completo. Solo se agrega contenido nuevo.
@@ -11,7 +14,8 @@
 > git add .agents/ && git commit -m "chore: update AGENTS.md"
 
 - When building or editing a page that is of type "landing" (landing page), always remove the navigation bar (`nav`). Landing pages should not have a navigation bar.
-- El badge o botón amarillo de "EDITANDO" en la interfaz del page-builder no debe renderizarse dentro del componente ni empujar su contenido; siempre debe flotar estrictamente por fuera (usando utilidades como `absolute bottom-full mb-1 z-[100]`) para no utilizar espacio real de la grilla ni deformar la caja.
+- El badge o botón amarillo de "EDITANDO" en la interfaz del page-builder no debe renderizarse dentro del componente ni empujar su contenido; siempre debe flotar estrictamente por fuera (usando utilidades como `absolute bottom-full mb-1 z-[100]`) para no utilizar space real de la grilla ni deformar la caja.
+- Regla global de delegación a Hermes: ver D:\Lab\Boveda\Leandro Venegas Proyects\AgentBridge\REGLA-GLOBAL.md
 
 ---
 
@@ -20,3 +24,4 @@
 | Fecha | Cambio |
 |-------|--------|
 | 2026-07-14 | Se agrega regla append-only y aclaración de alcance global/permanente. |
+| 2026-07-15 | Se agrega referencia a la regla global de delegación a Hermes. |
