@@ -492,12 +492,12 @@ function VisualEditorContent() {
 
       {/* Integrated Admin Header */}
       <header 
-        className="hidden w-full z-50 items-center justify-between sticky top-0"
+        className="w-full z-50 flex items-center justify-between sticky top-0"
         style={{
-          height: 'var(--toolbar-height)',
+          minHeight: '40px',
           background: 'var(--ps-bg-toolbar)',
           borderBottom: 'var(--ps-border-width) solid var(--ps-border-dark)',
-          padding: '0 var(--sp-md)',
+          padding: '4px var(--sp-md)',
           color: 'var(--ps-text)',
           fontFamily: 'var(--font-ui)',
           fontSize: 'var(--font-size-sm)'
@@ -657,71 +657,179 @@ function VisualEditorContent() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          
-          <select
-            style={{
-              height: '24px',
-              padding: '0 var(--sp-sm)',
-              background: 'var(--ps-bg-input)',
-              border: 'var(--ps-border-width) solid var(--ps-border-light)',
-              borderRadius: 'var(--ps-radius)',
-              color: 'var(--ps-text)',
-              fontSize: 'var(--font-size-sm)',
-              outline: 'none'
-            }}
-            className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
-            value={slug}
-            onChange={(e) => {
-              const url = new URL(window.location);
-              url.searchParams.set('slug', e.target.value);
-              url.searchParams.delete('versionId');
-              window.location.href = url.toString();
-            }}
-            title="Seleccionar página para editar"
-          >
-            <option value="home">home</option>
-            <option value="sistema">sistema</option>
-            <option value="videos">videos</option>
-            <option value="portafolio">portafolio</option>
-            <option value="contacto">contacto</option>
-          </select>
-
-          <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
-
-          <select 
-            style={{
-              height: '24px',
-              padding: '0 var(--sp-sm)',
-              background: 'var(--ps-bg-input)',
-              border: 'var(--ps-border-width) solid var(--ps-border-light)',
-              borderRadius: 'var(--ps-radius)',
-              color: 'var(--ps-text)',
-              fontSize: 'var(--font-size-sm)',
-              outline: 'none',
-              maxWidth: '140px'
-            }}
-            className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
-            value={currentVersionId || ''}
-            onChange={(e) => {
-              if (e.target.value) {
+        <div className="flex flex-col items-end gap-1.5 py-1">
+          <div className="flex items-center gap-2">
+            
+            {/* Página */}
+            <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Página:</span>
+            <select
+              style={{
+                height: '24px',
+                padding: '0 var(--sp-sm)',
+                background: 'var(--ps-bg-input)',
+                border: 'var(--ps-border-width) solid var(--ps-border-light)',
+                borderRadius: 'var(--ps-radius)',
+                color: 'var(--ps-text)',
+                fontSize: 'var(--font-size-sm)',
+                outline: 'none'
+              }}
+              className="focus:border-[var(--ps-border-focus)] transition-colors font-medium cursor-pointer"
+              value={slug}
+              onChange={(e) => {
                 const url = new URL(window.location);
-                url.searchParams.set('versionId', e.target.value);
-                window.history.pushState({}, '', url);
-                setCurrentVersionId(e.target.value);
-                fetchData();
-              }
-            }}
-          >
-            {versions.map(v => (
-              <option key={v.id} value={v.id}>
-                {v.version_name} {v.is_active ? '(Activa)' : ''} {v.is_published ? '(EN VIVO)' : ''}
-              </option>
-            ))}
-          </select>
+                url.searchParams.set('slug', e.target.value);
+                url.searchParams.delete('versionId');
+                window.location.href = url.toString();
+              }}
+              title="Seleccionar página para editar"
+            >
+              <option value="home">home</option>
+              <option value="sistema">sistema</option>
+              <option value="videos">videos</option>
+              <option value="portafolio">portafolio</option>
+              <option value="contacto">contacto</option>
+            </select>
 
-          <div className="flex items-center gap-1">
+            <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
+
+            {/* Versión */}
+            <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Versión:</span>
+            <select 
+              style={{
+                height: '24px',
+                padding: '0 var(--sp-sm)',
+                background: 'var(--ps-bg-input)',
+                border: 'var(--ps-border-width) solid var(--ps-border-light)',
+                borderRadius: 'var(--ps-radius)',
+                color: 'var(--ps-text)',
+                fontSize: 'var(--font-size-sm)',
+                outline: 'none',
+                maxWidth: '140px'
+              }}
+              className="focus:border-[var(--ps-border-focus)] transition-colors font-medium cursor-pointer"
+              value={currentVersionId || ''}
+              onChange={(e) => {
+                if (e.target.value) {
+                  const url = new URL(window.location);
+                  url.searchParams.set('versionId', e.target.value);
+                  window.history.pushState({}, '', url);
+                  setCurrentVersionId(e.target.value);
+                  fetchData();
+                }
+              }}
+            >
+              {versions.map(v => (
+                <option key={v.id} value={v.id}>
+                  {v.version_name} {v.is_active ? '(Activa)' : ''} {v.is_published ? '(EN VIVO)' : ''}
+                </option>
+              ))}
+            </select>
+
+            {/* Candado + Guardar */}
+            <div className="flex items-center gap-0.5 bg-[var(--ps-bg-panel)] p-0.5 rounded-lg border border-[var(--ps-border-light)]">
+              <button 
+                onClick={() => setPublishLock(!publishLock)}
+                disabled={saving || !currentVersionId}
+                style={{
+                  height: '20px',
+                  width: '24px',
+                  padding: '0',
+                  background: publishLock ? 'var(--ps-accent)' : 'transparent',
+                  border: 'none',
+                  borderRadius: 'calc(var(--ps-radius) - 2px)',
+                  color: publishLock ? '#fff' : 'var(--ps-text-dim)',
+                  cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
+                  opacity: (saving || !currentVersionId) ? 0.5 : 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                className="hover:text-white transition-colors"
+                title={publishLock ? "Candado ABIERTO: Se guardará PUBLICADO EN VIVO. Haz clic para cambiar a modo borrador." : "Candado CERRADO: Se guardará como BORRADOR (seguro). Haz clic para cambiar a modo publicar en vivo."}
+              >
+                {publishLock ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                )}
+              </button>
+              
+              <button 
+                onClick={() => saveVersion(false)} 
+                disabled={saving || !currentVersionId}
+                style={{
+                  height: '20px',
+                  padding: '0 var(--sp-sm)',
+                  background: 'transparent',
+                  border: 'none',
+                  borderRadius: 'calc(var(--ps-radius) - 2px)',
+                  color: 'var(--ps-text)',
+                  fontSize: 'var(--font-size-sm)',
+                  cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
+                  opacity: (saving || !currentVersionId) ? 0.5 : 1
+                }}
+                className="hover:bg-[var(--ps-bg-hover)] transition-colors font-medium"
+              >
+                {saving ? 'Guardando...' : (publishLock ? 'Publicar' : 'Guardar')}
+              </button>
+            </div>
+
+            <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
+
+            {/* Vista Previa Externa */}
+            <a 
+              href={currentVersionId ? `/${slug === 'home' ? '' : slug}?versionId=${currentVersionId}` : `/${slug === 'home' ? '' : slug}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{
+                height: '24px',
+                padding: '0 var(--sp-md)',
+                background: 'var(--ps-bg-panel)',
+                border: 'var(--ps-border-width) solid var(--ps-border-light)',
+                borderRadius: 'var(--ps-radius)',
+                color: 'var(--ps-text)',
+                fontSize: 'var(--font-size-sm)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}
+              className="hover:bg-[var(--ps-bg-hover)] hover:text-white transition-colors font-medium"
+              title="Abrir Vista Previa Externa en tiempo real"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span>Vista Previa Externa ↗</span>
+            </a>
+
+            <button
+              onClick={async () => {
+                await fetch('/api/auth/login', { method: 'DELETE' });
+                window.location.href = '/';
+              }}
+              style={{
+                color: 'var(--ps-text-dim)',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '0 var(--sp-xs)'
+              }}
+              className="hover:text-[var(--ps-danger)] transition-colors"
+              title="Cerrar Sesión"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </button>
+          </div>
+
+          {/* Row 2: Crear Rama */}
+          <div className="flex items-center gap-1.5 self-stretch justify-end">
+            <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Crear Rama:</span>
             <input 
               type="text"
               placeholder="Nueva versión..."
@@ -729,7 +837,7 @@ function VisualEditorContent() {
               onChange={(e) => setNewVersionName(e.target.value)}
               style={{
                 height: '24px',
-                width: '100px',
+                width: '140px',
                 padding: '0 var(--sp-xs)',
                 background: 'var(--ps-bg-input)',
                 border: 'var(--ps-border-width) solid var(--ps-border-light)',
@@ -745,121 +853,21 @@ function VisualEditorContent() {
               disabled={saving || !newVersionName.trim()}
               style={{
                 height: '24px',
-                padding: '0 var(--sp-xs)',
-                background: 'var(--ps-bg-panel)',
-                border: '1px solid var(--ps-border-light)',
+                padding: '0 var(--sp-md)',
+                background: 'var(--ps-accent)',
+                border: 'none',
                 borderRadius: 'var(--ps-radius)',
-                color: 'var(--ps-text)',
+                color: '#fff',
                 fontSize: '11px',
                 cursor: (saving || !newVersionName.trim()) ? 'not-allowed' : 'pointer',
                 opacity: (saving || !newVersionName.trim()) ? 0.5 : 1
               }}
-              className="hover:bg-[var(--ps-bg-hover)] transition-colors font-medium"
+              className="hover:bg-[var(--ps-accent-hover)] transition-colors font-semibold"
               title="Crear nueva rama de versión como borrador"
             >
-              + Rama
+              Crear Rama
             </button>
           </div>
-
-          <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
-
-          <div className="flex items-center gap-0.5 bg-[var(--ps-bg-panel)] p-0.5 rounded-lg border border-[var(--ps-border-light)]">
-            <button 
-              onClick={() => setPublishLock(!publishLock)}
-              disabled={saving || !currentVersionId}
-              style={{
-                height: '20px',
-                width: '24px',
-                padding: '0',
-                background: publishLock ? 'var(--ps-accent)' : 'transparent',
-                border: 'none',
-                borderRadius: 'calc(var(--ps-radius) - 2px)',
-                color: publishLock ? '#fff' : 'var(--ps-text-dim)',
-                cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
-                opacity: (saving || !currentVersionId) ? 0.5 : 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-              className="hover:text-white transition-colors"
-              title={publishLock ? "Candado ABIERTO: Se guardará PUBLICADO EN VIVO. Haz clic para cambiar a modo borrador." : "Candado CERRADO: Se guardará como BORRADOR (seguro). Haz clic para cambiar a modo publicar en vivo."}
-            >
-              {publishLock ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
-                </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-              )}
-            </button>
-            
-            <button 
-              onClick={() => saveVersion(false)} 
-              disabled={saving || !currentVersionId}
-              style={{
-                height: '20px',
-                padding: '0 var(--sp-sm)',
-                background: 'transparent',
-                border: 'none',
-                borderRadius: 'calc(var(--ps-radius) - 2px)',
-                color: 'var(--ps-text)',
-                fontSize: 'var(--font-size-sm)',
-                cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
-                opacity: (saving || !currentVersionId) ? 0.5 : 1
-              }}
-              className="hover:bg-[var(--ps-bg-hover)] transition-colors font-medium"
-            >
-              {saving ? 'Guardando...' : (publishLock ? 'Publicar' : 'Guardar')}
-            </button>
-          </div>
-
-          <a 
-            href={currentVersionId ? `/${slug === 'home' ? '' : slug}?versionId=${currentVersionId}` : `/${slug === 'home' ? '' : slug}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            style={{
-              height: '24px',
-              padding: '0 var(--sp-md)',
-              background: 'var(--ps-bg-panel)',
-              border: 'var(--ps-border-width) solid var(--ps-border-light)',
-              borderRadius: 'var(--ps-radius)',
-              color: 'var(--ps-text)',
-              fontSize: 'var(--font-size-sm)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-            className="hover:bg-[var(--ps-bg-hover)] hover:text-white transition-colors font-medium"
-            title="Abrir Vista Previa Externa en tiempo real"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span>Vista Previa Externa ↗</span>
-          </a>
-
-          <button
-            onClick={async () => {
-              await fetch('/api/auth/login', { method: 'DELETE' });
-              window.location.href = '/';
-            }}
-            style={{
-              color: 'var(--ps-text-dim)',
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              padding: '0 var(--sp-xs)'
-            }}
-            className="hover:text-[var(--ps-danger)] transition-colors"
-            title="Cerrar Sesión"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-          </button>
-        </div>
         </div>
       </header>
 
