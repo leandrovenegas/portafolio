@@ -652,8 +652,7 @@ function VisualEditorContent() {
           </nav>
         </div>
 
-        <div className="flex flex-col items-end gap-1.5 py-1">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 py-1">
             
             {/* Página */}
             <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Página:</span>
@@ -806,51 +805,50 @@ function VisualEditorContent() {
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
             </button>
-          </div>
-
-          {/* Row 2: Crear Rama */}
-          <div className="flex items-center gap-1.5 self-stretch justify-end">
-            <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Crear Rama:</span>
-            <input 
-              type="text"
-              placeholder="Nueva versión..."
-              value={newVersionName}
-              onChange={(e) => setNewVersionName(e.target.value)}
-              style={{
-                height: '24px',
-                width: '140px',
-                padding: '0 var(--sp-xs)',
-                background: 'var(--ps-bg-input)',
-                border: 'var(--ps-border-width) solid var(--ps-border-light)',
-                borderRadius: 'var(--ps-radius)',
-                color: 'var(--ps-text)',
-                fontSize: 'var(--font-size-sm)',
-                outline: 'none'
-              }}
-              className="focus:border-[var(--ps-border-focus)] transition-colors placeholder:text-muted/50"
-            />
-            <button
-              onClick={() => saveVersion(true)}
-              disabled={saving || !newVersionName.trim()}
-              style={{
-                height: '24px',
-                padding: '0 var(--sp-md)',
-                background: 'var(--ps-accent)',
-                border: 'none',
-                borderRadius: 'var(--ps-radius)',
-                color: '#fff',
-                fontSize: '11px',
-                cursor: (saving || !newVersionName.trim()) ? 'not-allowed' : 'pointer',
-                opacity: (saving || !newVersionName.trim()) ? 0.5 : 1
-              }}
-              className="hover:bg-[var(--ps-accent-hover)] transition-colors font-semibold"
-              title="Crear nueva rama de versión como borrador"
-            >
-              Crear Rama
-            </button>
-          </div>
         </div>
       </header>
+
+      {/* Secondary Toolbar (Non-sticky) */}
+      <div className="w-full border-b border-[var(--ps-border-dark)] px-4 py-1.5 flex justify-end items-center gap-1.5" style={{ background: 'var(--ps-bg-panel)' }}>
+        <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Crear Rama:</span>
+        <input 
+          type="text"
+          placeholder="Nueva versión..."
+          value={newVersionName}
+          onChange={(e) => setNewVersionName(e.target.value)}
+          style={{
+            height: '24px',
+            width: '140px',
+            padding: '0 var(--sp-xs)',
+            background: 'var(--ps-bg-input)',
+            border: 'var(--ps-border-width) solid var(--ps-border-light)',
+            borderRadius: 'var(--ps-radius)',
+            color: 'var(--ps-text)',
+            fontSize: 'var(--font-size-sm)',
+            outline: 'none'
+          }}
+          className="focus:border-[var(--ps-border-focus)] transition-colors placeholder:text-muted/50"
+        />
+        <button
+          onClick={() => saveVersion(true)}
+          disabled={saving || !newVersionName.trim()}
+          style={{
+            height: '24px',
+            padding: '0 var(--sp-md)',
+            background: 'var(--ps-accent)',
+            border: 'none',
+            borderRadius: 'var(--ps-radius)',
+            color: '#fff',
+            fontSize: '11px',
+            cursor: (saving || !newVersionName.trim()) ? 'not-allowed' : 'pointer',
+            opacity: (saving || !newVersionName.trim()) ? 0.5 : 1
+          }}
+          className="hover:bg-[var(--ps-accent-hover)] transition-colors font-semibold"
+          title="Crear nueva rama de versión como borrador"
+        >
+          Crear Rama
+        </button>
+      </div>
 
       <div className="flex-1 p-6 flex flex-col gap-6">
         {error && (
