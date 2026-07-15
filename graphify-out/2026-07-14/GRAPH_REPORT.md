@@ -4,207 +4,180 @@
 - cluster-only mode — file stats not available
 
 ## Summary
-- 559 nodes · 703 edges · 69 communities (37 shown, 32 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
+- 339 nodes · 307 edges · 83 communities (69 shown, 14 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `93be0c93`
+- Built from commit: `c6e8181a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
+- route.ts
+- route.ts
+- polyfills.js
+- page.ts
+- layout.ts
+- layout.ts
+- treeHelpers.js
+- edge-runtime-webpack.js
+- webpack.js
+- routes.d.ts
+- routes.d.ts
+- restore.js
 - page.js
-- page.js
+- process_diff2.js
 - registry.js
-- dependencies
-- compilerOptions
-- LandingClient.tsx
-- supabase.js
+- AvatarTextSection.jsx
+- validator.ts
+- validator.ts
+- AvatarTextSection.js
+- process_diff.js
+- restore_lines_2.js
+- do_recover.js
+- do_recover2.js
+- recover.js
+- recover2.js
+- recover3.js
+- refactor_ui.js
+- fix_syntax.js
+- reconstruct.js
+- refactor_activeGridId.js
+- stitch.js
 - package.json
-- fetchBunnyVideos
-- layout.js
-- merge_mdx.js
-- page.js
-- page.tsx
-- publish-version.js
-- page.js
-- diagnostic.js
-- check-bunny.js
-- page.js
-- TituloAnimado.tsx
-- compilerOptions
-- update_videos.js
-- page.js
-- route.js
-- page.jsx
-- page.jsx
-- page.jsx
-- page.jsx
-- next.config.mjs
-- check_active_home.js
-- update_links.js
-- view_active_home_components.js
-- test-supabase-script.js
-- page.js
-- route.js
-- page.tsx
-- page.jsx
-- page.jsx
-- page.jsx
-- page.jsx
-- page.jsx
-- page.jsx
-- page.jsx
-- page.jsx
-- page.js
-- page.jsx
-- page.jsx
-- middleware.js
-- fetch_live.js
-- get-org-data.mjs
-- test_products.mjs
-- test-resend-script.js
-- portfolio.js
-- videos.js
-- postcss.config.mjs
+- cache-life.d.ts
+- package.json
+- package.json
+- supabase_pages_schema.sql
 
 ## God Nodes (most connected - your core abstractions)
-1. `compilerOptions` - 18 edges
-2. `supabase` - 13 edges
-3. `readVideoConfig()` - 13 edges
-4. `fetchBunnyVideos()` - 13 edges
-5. `useDraggable()` - 9 edges
-6. `getLabPosts()` - 9 edges
-7. `parseMarkdown()` - 8 edges
-8. `useCart()` - 7 edges
-9. `getLabPostBySlug()` - 7 edges
-10. `readPageConfig()` - 7 edges
+1. `ib()` - 8 edges
+2. `setStatus()` - 6 edges
+3. `hotCheck()` - 6 edges
+4. `setStatus()` - 6 edges
+5. `hotCheck()` - 6 edges
+6. `createModuleHotObject()` - 5 edges
+7. `internalApply()` - 5 edges
+8. `e()` - 5 edges
+9. `createModuleHotObject()` - 5 edges
+10. `internalApply()` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `GET()` --calls--> `fetchBunnyVideos()`  [EXTRACTED]
-  app/api/bunny-video-slug/route.js → lib/bunny.js
-- `GET()` --calls--> `readPageConfig()`  [EXTRACTED]
-  app/api/page-config/route.js → lib/pageConfig.js
-- `GET()` --calls--> `readVideoConfig()`  [EXTRACTED]
-  app/api/video-config/route.js → lib/videoConfig.js
-- `generateStaticParams()` --calls--> `getLabPosts()`  [EXTRACTED]
-  app/blog/[slug]/page.js → lib/lab.js
-- `generateMetadata()` --calls--> `getLabPostBySlug()`  [EXTRACTED]
-  app/blog/[slug]/page.js → lib/lab.js
+- None detected - all connections are within the same source files.
 
 ## Import Cycles
 - None detected.
 
-## Communities (69 total, 32 thin omitted)
+## Communities (83 total, 14 thin omitted)
 
-### Community 0 - "page.js"
-Cohesion: 0.08
-Nodes (33): GET(), PATCH(), LabPage(), metadata, generateMetadata(), generateStaticParams(), LabPostPage(), LabPage() (+25 more)
-
-### Community 1 - "page.js"
-Cohesion: 0.08
-Nodes (25): VisualEditorContent(), faqSchema, getPageComponents(), Home(), localBusinessSchema, metadata, getSistemaComponents(), metadata (+17 more)
-
-### Community 2 - "registry.js"
-Cohesion: 0.08
-Nodes (23): AvatarSection(), CellPhoneCTASection(), CTASection(), CTAWhatsapp(), EstrelasSection(), toInlineStyle(), FAQSection(), FinalCTASection() (+15 more)
-
-### Community 3 - "dependencies"
-Cohesion: 0.05
-Nodes (39): @anthropic-ai/sdk, @google/generative-ai, hls.js, lucide-react, marked, @mdx-js/loader, @mdx-js/react, next (+31 more)
-
-### Community 4 - "compilerOptions"
-Cohesion: 0.06
-Nodes (32): dom, dom.iterable, esnext, **/*.mts, .next/dev/types/**/*.ts, next-env.d.ts, .next/types/**/*.ts, node_modules (+24 more)
-
-### Community 5 - "LandingClient.tsx"
+### Community 0 - "route.ts"
 Cohesion: 0.11
-Nodes (20): getSupabase(), logCtaClick(), registerPageVisit(), resend, submitEmailLead(), gtag(), LandingClient(), LandingClientProps (+12 more)
+Nodes (16): Diff, FirstArg, LayoutProps, MaybeField, Negative, NonNegative, Numeric, OmitWithTag (+8 more)
 
-### Community 6 - "supabase.js"
-Cohesion: 0.10
-Nodes (3): AvatarTextSection(), toInlineStyle(), supabase
+### Community 1 - "route.ts"
+Cohesion: 0.11
+Nodes (16): Diff, FirstArg, LayoutProps, MaybeField, Negative, NonNegative, Numeric, OmitWithTag (+8 more)
 
-### Community 7 - "package.json"
-Cohesion: 0.07
-Nodes (27): browserslist, devDependencies, @types/node, typescript, name, packageManager, pnpm, supportedArchitectures (+19 more)
+### Community 2 - "polyfills.js"
+Cohesion: 0.22
+Nodes (9): e(), eb(), ib(), nb(), ob(), rb(), sb(), t() (+1 more)
 
-### Community 8 - "fetchBunnyVideos"
-Cohesion: 0.16
-Nodes (20): GET(), GET(), GET(), PATCH(), PUT(), generateMetadata(), VideoPage(), VideoPageViewer() (+12 more)
-
-### Community 9 - "layout.js"
+### Community 3 - "page.ts"
 Cohesion: 0.12
-Nodes (13): CartContent(), formatCLP(), dmMono, instrumentSans, metadata, AddToCartButton(), CartButton(), CartContext (+5 more)
+Nodes (14): Diff, FirstArg, LayoutProps, MaybeField, Negative, NonNegative, Numeric, OmitWithTag (+6 more)
 
-### Community 10 - "merge_mdx.js"
-Cohesion: 0.20
-Nodes (9): contentDir, crazyAudio, crazyMain, crazyProd, fs, incoAudio, incoMain, incoTv (+1 more)
+### Community 4 - "layout.ts"
+Cohesion: 0.12
+Nodes (14): Diff, FirstArg, LayoutProps, MaybeField, Negative, NonNegative, Numeric, OmitWithTag (+6 more)
 
-### Community 11 - "page.js"
-Cohesion: 0.31
-Nodes (6): fmtDate(), formatCLP(), OrdersTab(), ProductsTab(), STATUS_COLORS, STATUS_LABELS
+### Community 5 - "layout.ts"
+Cohesion: 0.12
+Nodes (14): Diff, FirstArg, LayoutProps, MaybeField, Negative, NonNegative, Numeric, OmitWithTag (+6 more)
 
-### Community 12 - "page.tsx"
-Cohesion: 0.33
-Nodes (6): formatCLP(), getProducts(), metadata, PreciosPage(), Product, waUrl()
+### Community 6 - "treeHelpers.js"
+Cohesion: 0.16
+Nodes (4): extractComponent(), insertComponentIntoParent(), moveComponentInTree(), performMove()
 
-### Community 13 - "publish-version.js"
+### Community 7 - "edge-runtime-webpack.js"
+Cohesion: 0.32
+Nodes (12): applyHandler(), applyInvalidatedModules(), createModuleHotObject(), createRequire(), hotApply(), hotCheck(), internalApply(), setStatus() (+4 more)
+
+### Community 8 - "webpack.js"
+Cohesion: 0.32
+Nodes (12): applyHandler(), applyInvalidatedModules(), createModuleHotObject(), createRequire(), hotApply(), hotCheck(), internalApply(), setStatus() (+4 more)
+
+### Community 9 - "routes.d.ts"
+Cohesion: 0.14
+Nodes (13): AppRouteHandlerRoutes, AppRoutes, LayoutProps, LayoutRoutes, LayoutSlotMap, PageProps, PageRoutes, ParamMap (+5 more)
+
+### Community 10 - "routes.d.ts"
+Cohesion: 0.14
+Nodes (13): AppRouteHandlerRoutes, AppRoutes, LayoutProps, LayoutRoutes, LayoutSlotMap, PageProps, PageRoutes, ParamMap (+5 more)
+
+### Community 11 - "restore.js"
 Cohesion: 0.25
-Nodes (6): args, { createClient }, envPath, fs, path, supabase
+Nodes (7): code, fs, lines, code, fs, menuOpenIndex, recoveredLines
 
-### Community 14 - "page.js"
+### Community 12 - "page.js"
+Cohesion: 0.40
+Nodes (5): faqSchema, getPageComponents(), Home(), localBusinessSchema, metadata
+
+### Community 13 - "process_diff2.js"
 Cohesion: 0.33
-Nodes (3): metadata, PHASES, ProcesoTimeline()
+Nodes (5): data, fs, line, lines, recoveredLines
 
-### Community 15 - "diagnostic.js"
-Cohesion: 0.38
-Nodes (6): checkImage(), { createClient }, https, run(), supabase, testSupabase()
+### Community 15 - "registry.js"
+Cohesion: 0.50
+Nodes (3): COMPONENT_DEFINITIONS, COMPONENT_REGISTRY, ContainerSection()
 
-### Community 16 - "check-bunny.js"
-Cohesion: 0.29
-Nodes (6): checks, envContent, envPath, envVars, fs, path
+### Community 16 - "AvatarTextSection.jsx"
+Cohesion: 0.50
+Nodes (3): AvatarTextSection(), DEFAULT_INNER_LAYOUT, toInlineStyle()
 
-### Community 18 - "page.js"
+### Community 18 - "validator.ts"
+Cohesion: 0.40
+Nodes (4): AppPageConfig, __Check, __IsExpected, __Unused
+
+### Community 19 - "validator.ts"
+Cohesion: 0.40
+Nodes (4): AppPageConfig, __Check, __IsExpected, __Unused
+
+### Community 20 - "AvatarTextSection.js"
 Cohesion: 0.60
-Nodes (3): generateMetadata(), getEntityData, PortafolioSlugPage()
+Nodes (4): AvatarTextSection(), DEFAULT_INNER_LAYOUT, InnerCanvas(), toInlineStyle()
 
-### Community 19 - "TituloAnimado.tsx"
-Cohesion: 0.50
-Nodes (4): AnimationToken, TituloAnimado(), TituloAnimadoProps, toInlineStyle()
-
-### Community 20 - "compilerOptions"
+### Community 21 - "process_diff.js"
 Cohesion: 0.40
-Nodes (4): compilerOptions, paths, ./*, @/*
+Nodes (4): diffText, fs, lines, recoveredLines
 
-### Community 21 - "update_videos.js"
+### Community 22 - "restore_lines_2.js"
 Cohesion: 0.40
-Nodes (4): contentDir, files, fs, path
+Nodes (4): code, fs, lines, saveSuccessIndex
 
-### Community 28 - "next.config.mjs"
+### Community 28 - "refactor_ui.js"
 Cohesion: 0.50
-Nodes (3): cspHeader, nextConfig, withMDX
+Nodes (3): code, fs, startIndex
 
 ## Knowledge Gaps
-- **168 isolated node(s):** `metadata`, `STATUS_LABELS`, `STATUS_COLORS`, `CONTENT_DIR`, `metadata` (+163 more)
+- **158 isolated node(s):** `COMPONENT_REGISTRY`, `COMPONENT_DEFINITIONS`, `fs`, `diffText`, `lines` (+153 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.js` to `page.js`, `page.js`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Why does `Nav()` connect `layout.js` to `page.js`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **What connects `metadata`, `STATUS_LABELS`, `STATUS_COLORS` to the rest of the system?**
-  _168 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `page.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.08067375886524823 - nodes in this community are weakly interconnected._
-- **Should `page.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.07862679955703211 - nodes in this community are weakly interconnected._
-- **Should `registry.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.07564102564102564 - nodes in this community are weakly interconnected._
-- **Should `dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+- **Are the 4 inferred relationships involving `ib()` (e.g. with `e()` and `nb()`) actually correct?**
+  _`ib()` has 4 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `COMPONENT_REGISTRY`, `COMPONENT_DEFINITIONS`, `fs` to the rest of the system?**
+  _158 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `route.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._
+- **Should `route.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._
+- **Should `page.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.125 - nodes in this community are weakly interconnected._
+- **Should `layout.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.125 - nodes in this community are weakly interconnected._
+- **Should `layout.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.125 - nodes in this community are weakly interconnected._

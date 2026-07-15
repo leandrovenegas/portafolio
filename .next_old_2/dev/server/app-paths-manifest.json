@@ -1,0 +1,5 @@
+{
+  "/api/pages/route": "app/api/pages/route.js",
+  "/api/bunny-video-slug/route": "app/api/bunny-video-slug/route.js",
+  "/admin/editor/page": "app/admin/editor/page.js"
+}

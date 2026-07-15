@@ -3,13 +3,14 @@ CREATE TABLE public.page_versions (
   id uuid default gen_random_uuid() primary key,
   slug text not null, -- e.g., 'home', 'about', etc.
   version_name text not null, -- e.g., 'v1', 'A/B Test 1'
-  is_active boolean default false,
+  is_active boolean default false, -- Versión activa en el editor
+  is_published boolean default false, -- Versión pública en vivo
   components jsonb default '[]'::jsonb,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- Opcional: Índice para buscar rápidamente la versión activa de una página
-CREATE INDEX active_page_version_idx ON public.page_versions (slug) WHERE is_active = true;
+-- Opcional: Índice para buscar rápidamente la versión publicada de una página
+CREATE INDEX published_page_version_idx ON public.page_versions (slug) WHERE is_published = true;
 
 -- Políticas de Seguridad (RLS) - Opcional pero recomendado
 ALTER TABLE public.page_versions ENABLE ROW LEVEL SECURITY;

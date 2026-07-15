@@ -18,6 +18,7 @@ import ServicesSection from './sections/ServicesSection';
 import CellPhoneCTASection from './sections/CellPhoneCTASection';
 import FormatsSection from './sections/FormatsSection';
 import FinalCTASection from './sections/FinalCTASection';
+import ContainerSection from './sections/ContainerSection';
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -39,11 +40,27 @@ export const COMPONENT_REGISTRY = {
   ServicesSection,
   CellPhoneCTASection,
   FormatsSection,
-  FinalCTASection
+  FinalCTASection,
+  ContainerSection
 };
 
 
 export const COMPONENT_DEFINITIONS = [
+  {
+    type: 'ContainerSection',
+    name: 'Contenedor',
+    defaultProps: {
+      bg: 'var(--ps-bg-panel)',
+      borderColor: 'var(--ps-border)',
+      borderRadius: 'var(--ps-radius)'
+    },
+    defaultLayout: { desktop: { w: 24, h: 6 }, tablet: { w: 24, h: 6 }, mobile: { w: 12, h: 6 } },
+    propsConfig: {
+      bg: { type: 'color', label: 'Color de Fondo' },
+      borderColor: { type: 'color', label: 'Color de Borde' },
+      borderRadius: { type: 'text', label: 'Radio de Borde (ej. 8px, var(--ps-radius))' }
+    }
+  },
   {
     type: 'HeroVideoSection',
     name: 'Hero Clásico',

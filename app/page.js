@@ -81,7 +81,7 @@ async function getPageComponents(versionId) {
     if (versionId) {
       query = query.eq('id', versionId);
     } else {
-      query = query.eq('is_active', true).order('created_at', { ascending: false }).limit(1);
+      query = query.eq('is_published', true).order('created_at', { ascending: false }).limit(1);
     }
 
     const { data, error } = await query.single();

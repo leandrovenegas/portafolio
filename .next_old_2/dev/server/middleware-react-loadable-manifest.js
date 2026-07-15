@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"components/page-builder/sections/TextosAnimados.tsx -> hls.js\":{\"id\":\"components/page-builder/sections/TextosAnimados.tsx -> hls.js\",\"files\":[]}}"

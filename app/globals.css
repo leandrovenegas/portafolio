@@ -157,3 +157,13 @@ footer .bg-black {
   background-image: none !important;
   background: transparent !important;
 }
+
+/* ==========================================================================
+   React Grid Layout Placeholder Override
+   ========================================================================== */
+.react-grid-placeholder {
+  background-color: var(--ps-accent-dim) !important;
+  opacity: 1 !important;
+  border: 1px dashed var(--ps-border-focus) !important;
+  border-radius: 8px;
+}
