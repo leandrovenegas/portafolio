@@ -149,3 +149,4 @@ body {
 |-------|--------|
 | 2026-07-14 | Se agrega regla append-only y aclaración de alcance global/permanente. Sin cambios de contenido técnico (no se detectaron incoherencias). |
 | 2026-07-15 | Se agrega import de ToolboxPanel en page.js para solucionar ReferenceError. |
+| 2026-07-15 | Se convierte el panel izquierdo en una barra flotante auto-hide con pestañas internas (Página, Estructura, Propiedades) estilo Photoshop con z-index 150 y variables --ps-*. |
