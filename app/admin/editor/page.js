@@ -57,6 +57,17 @@ function VisualEditorContent() {
   const [editingNameId, setEditingNameId] = useState(null);
   const [previewBp, setPreviewBp] = useState('desktop'); // mobile | tablet | desktop
 
+  const [activeTab, setActiveTab] = useState('page'); // page | structure | properties
+  const [isPanelExpanded, setIsPanelExpanded] = useState(false);
+
+  useEffect(() => {
+    if (selectedId) {
+      setActiveTab('properties');
+    } else {
+      setActiveTab('structure');
+    }
+  }, [selectedId]);
+
   const handleDragStart = (e, index) => {
     setDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
@@ -654,139 +665,6 @@ function VisualEditorContent() {
         </div>
 
         <div className="flex items-center gap-2 py-1">
-            
-            {/* Página */}
-            <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Página:</span>
-            <select
-              style={{
-                height: '24px',
-                padding: '0 var(--sp-sm)',
-                background: 'var(--ps-bg-input)',
-                border: 'var(--ps-border-width) solid var(--ps-border-light)',
-                borderRadius: 'var(--ps-radius)',
-                color: 'var(--ps-text)',
-                fontSize: 'var(--font-size-sm)',
-                outline: 'none'
-              }}
-              className="focus:border-[var(--ps-border-focus)] transition-colors font-medium cursor-pointer"
-              value={slug}
-              onChange={(e) => {
-                const url = new URL(window.location);
-                url.searchParams.set('slug', e.target.value);
-                url.searchParams.delete('versionId');
-                window.location.href = url.toString();
-              }}
-              title="Seleccionar página para editar"
-            >
-              <option value="home">home</option>
-              <option value="sistema">sistema</option>
-              <option value="videos">videos</option>
-              <option value="portafolio">portafolio</option>
-              <option value="contacto">contacto</option>
-            </select>
-
-            <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
-
-            {/* Versión */}
-            <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Versión:</span>
-            <select 
-              style={{
-                height: '24px',
-                padding: '0 var(--sp-sm)',
-                background: 'var(--ps-bg-input)',
-                border: 'var(--ps-border-width) solid var(--ps-border-light)',
-                borderRadius: 'var(--ps-radius)',
-                color: 'var(--ps-text)',
-                fontSize: 'var(--font-size-sm)',
-                outline: 'none',
-                maxWidth: '140px'
-              }}
-              className="focus:border-[var(--ps-border-focus)] transition-colors font-medium cursor-pointer"
-              value={currentVersionId || ''}
-              onChange={(e) => {
-                if (e.target.value) {
-                  const url = new URL(window.location);
-                  url.searchParams.set('versionId', e.target.value);
-                  window.history.pushState({}, '', url);
-                  setCurrentVersionId(e.target.value);
-                  fetchData();
-                }
-              }}
-            >
-              {versions.map(v => (
-                <option key={v.id} value={v.id}>
-                  {v.version_name} {v.is_active ? '(Activa)' : ''} {v.is_published ? '(EN VIVO)' : ''}
-                </option>
-              ))}
-            </select>
-
-            {/* Guardar y Publicar */}
-            <div className="flex items-center gap-2">
-              <button 
-                onClick={() => saveVersion(false)} 
-                disabled={saving || !currentVersionId}
-                style={{
-                  height: '24px',
-                  padding: '0 var(--sp-md)',
-                  background: 'var(--ps-bg-panel)',
-                  border: 'var(--ps-border-width) solid var(--ps-border-light)',
-                  borderRadius: 'var(--ps-radius)',
-                  color: 'var(--ps-text)',
-                  fontSize: 'var(--font-size-sm)',
-                  cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
-                  opacity: (saving || !currentVersionId) ? 0.5 : 1
-                }}
-                className="hover:bg-[var(--ps-bg-hover)] transition-colors font-medium"
-              >
-                {saving ? 'Guardando...' : 'Guardar'}
-              </button>
-              
-              <button 
-                onClick={handlePublish} 
-                disabled={saving || !currentVersionId}
-                style={{
-                  height: '24px',
-                  padding: '0 var(--sp-md)',
-                  background: 'var(--ps-accent)',
-                  border: 'none',
-                  borderRadius: 'var(--ps-radius)',
-                  color: '#fff',
-                  fontSize: 'var(--font-size-sm)',
-                  cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
-                  opacity: (saving || !currentVersionId) ? 0.5 : 1
-                }}
-                className="hover:opacity-90 transition-opacity font-bold"
-              >
-                Publicar versión
-              </button>
-            </div>
-
-            <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
-
-            {/* Vista Previa Externa */}
-            <a 
-              href={currentVersionId ? `/${slug === 'home' ? '' : slug}?versionId=${currentVersionId}` : `/${slug === 'home' ? '' : slug}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{
-                height: '24px',
-                padding: '0 var(--sp-md)',
-                background: 'var(--ps-bg-panel)',
-                border: 'var(--ps-border-width) solid var(--ps-border-light)',
-                borderRadius: 'var(--ps-radius)',
-                color: 'var(--ps-text)',
-                fontSize: 'var(--font-size-sm)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-              }}
-              className="hover:bg-[var(--ps-bg-hover)] hover:text-white transition-colors font-medium"
-              title="Abrir Vista Previa Externa en tiempo real"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span>Vista Previa Externa ↗</span>
-            </a>
-
             <button
               onClick={async () => {
                 await fetch('/api/auth/login', { method: 'DELETE' });
@@ -808,48 +686,6 @@ function VisualEditorContent() {
             </button>
         </div>
       </header>
-
-      {/* Secondary Toolbar (Non-sticky) */}
-      <div className="w-full border-b border-[var(--ps-border-dark)] px-4 py-1.5 flex justify-end items-center gap-1.5" style={{ background: 'var(--ps-bg-panel)' }}>
-        <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Crear Rama:</span>
-        <input 
-          type="text"
-          placeholder="Nueva versión..."
-          value={newVersionName}
-          onChange={(e) => setNewVersionName(e.target.value)}
-          style={{
-            height: '24px',
-            width: '140px',
-            padding: '0 var(--sp-xs)',
-            background: 'var(--ps-bg-input)',
-            border: 'var(--ps-border-width) solid var(--ps-border-light)',
-            borderRadius: 'var(--ps-radius)',
-            color: 'var(--ps-text)',
-            fontSize: 'var(--font-size-sm)',
-            outline: 'none'
-          }}
-          className="focus:border-[var(--ps-border-focus)] transition-colors placeholder:text-muted/50"
-        />
-        <button
-          onClick={() => saveVersion(true)}
-          disabled={saving || !newVersionName.trim()}
-          style={{
-            height: '24px',
-            padding: '0 var(--sp-md)',
-            background: 'var(--ps-accent)',
-            border: 'none',
-            borderRadius: 'var(--ps-radius)',
-            color: '#fff',
-            fontSize: '11px',
-            cursor: (saving || !newVersionName.trim()) ? 'not-allowed' : 'pointer',
-            opacity: (saving || !newVersionName.trim()) ? 0.5 : 1
-          }}
-          className="hover:bg-[var(--ps-accent-hover)] transition-colors font-semibold"
-          title="Crear nueva rama de versión como borrador"
-        >
-          Crear Rama
-        </button>
-      </div>
 
       <div className="flex-1 p-6 flex flex-col gap-6">
         {error && (
@@ -875,45 +711,310 @@ function VisualEditorContent() {
 
 
       <div className="flex flex-col lg:flex-row gap-4 relative flex-1">
-        {/* LEFT - Editor Tools */}
-        <div className="lg:w-[380px] w-full flex-shrink-0 flex flex-col gap-4 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-1 custom-scrollbar">
+        {/* Photoshop Floating Drawer */}
+        <div 
+          className="absolute left-0 top-0 bottom-0 z-[150] flex transition-all duration-200 ease-in-out"
+          style={{
+            width: isPanelExpanded ? '380px' : '12px',
+          }}
+          onMouseEnter={() => setIsPanelExpanded(true)}
+          onMouseLeave={() => setIsPanelExpanded(false)}
+        >
+          {/* Collapsed Bar Indicator */}
+          <div 
+            className="w-3 h-full flex-shrink-0 cursor-pointer border-r hover:bg-accent/20 transition-colors"
+            style={{
+              background: 'var(--ps-bg-toolbar, #1e1e1e)',
+              borderColor: 'var(--ps-border-dark, #151515)',
+            }}
+          >
+            {/* Tiny accent stripe showing it's active */}
+            <div className="w-[2px] h-20 bg-accent rounded-full mx-auto mt-10 opacity-60"></div>
+          </div>
 
-          {selectedComp ? (
-            /* Properties Panel */
-            <div className="flex-1">
-              <SmartPropertiesPanel
-                comp={selectedComp}
-                updateProp={updateProp}
-                onClose={() => setSelectedId(null)}
-                onFocusField={setFocusedField}
-                activeBp={previewBp}
-                onActiveBpChange={setPreviewBp}
-              />
-            </div>
-          ) : (
-            /* Layer Panel (StructureTree) */
-            <div className="bg-bg border border-border rounded-xl shadow-sm flex flex-col" style={{minHeight: '200px'}}>
-              <StructureTree
-                tree={components}
-                selectedId={selectedId}
-                onSelect={(id) => setSelectedId(id)}
-                onRemove={(id) => removeComponent(id)}
-                onClone={(id) => cloneComponent(id)}
-                onMove={(sourceId, targetParentId, dropIndex) => {
-                  setComponents(prev => {
-                    const newTree = performMove(prev, sourceId, targetParentId === 'sibling' ? null : targetParentId, dropIndex);
-                    return recalculateZIndices(newTree, previewBp);
-                  });
+          {/* Expanded Panel Container */}
+          {isPanelExpanded && (
+            <div 
+              className="flex-1 h-full flex flex-col overflow-hidden border-r shadow-2xl animate-in slide-in-from-left-4 duration-150"
+              style={{
+                background: 'var(--ps-bg-panel, #2c2c2c)',
+                borderColor: 'var(--ps-border, #404040)',
+                fontFamily: 'var(--font-ui, sans-serif)',
+                color: 'var(--ps-text, #b3b3b3)',
+              }}
+            >
+              {/* Tab Header Bar */}
+              <div 
+                className="flex border-b"
+                style={{
+                  background: 'var(--ps-bg-toolbar, #1e1e1e)',
+                  borderColor: 'var(--ps-border, #404040)',
                 }}
-                onUpdateName={(id, name) => {
-                  setComponents(prev => prev.map(c => c.id === id ? { ...c, name } : c));
-                }}
-                activeBp={previewBp}
-                onToggleVisibility={(id) => {
-                  setComponents(prev => toggleComponentVisibility(prev, id, previewBp));
-                }}
-              />
-              <ToolboxPanel />
+              >
+                {[
+                  { id: 'page', label: 'Página/Versión' },
+                  { id: 'structure', label: 'Estructura' },
+                  { id: 'properties', label: 'Propiedades' },
+                ].map(tab => {
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      style={{
+                        padding: '8px 12px',
+                        background: isActive ? 'var(--ps-bg-panel, #2c2c2c)' : 'transparent',
+                        color: isActive ? 'var(--ps-text, #ffffff)' : 'var(--ps-text-dim, #888888)',
+                        borderBottom: isActive ? '2px solid var(--ps-accent, #ffcc00)' : 'none',
+                        borderRight: '1px solid var(--ps-border-dark, #151515)',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                      }}
+                      className="hover:text-white transition-colors"
+                    >
+                      {tab.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Tab Content Container */}
+              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar flex flex-col gap-4">
+                
+                {/* TAB 1: PÁGINA/VERSIÓN */}
+                {activeTab === 'page' && (
+                  <div className="flex flex-col gap-4 text-xs">
+                    {/* Selector de Página */}
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Página</span>
+                      <select
+                        style={{
+                          height: '28px',
+                          padding: '0 8px',
+                          background: 'var(--ps-bg-input, #1c1c1c)',
+                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
+                          borderRadius: 'var(--ps-radius, 4px)',
+                          color: 'var(--ps-text, #ffffff)',
+                          outline: 'none',
+                          cursor: 'pointer',
+                        }}
+                        className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
+                        value={slug}
+                        onChange={(e) => {
+                          const url = new URL(window.location);
+                          url.searchParams.set('slug', e.target.value);
+                          url.searchParams.delete('versionId');
+                          window.location.href = url.toString();
+                        }}
+                      >
+                        <option value="home">home</option>
+                        <option value="sistema">sistema</option>
+                        <option value="videos">videos</option>
+                        <option value="portafolio">portafolio</option>
+                        <option value="contacto">contacto</option>
+                      </select>
+                    </div>
+
+                    {/* Selector de Versión */}
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Versión</span>
+                      <select
+                        style={{
+                          height: '28px',
+                          padding: '0 8px',
+                          background: 'var(--ps-bg-input, #1c1c1c)',
+                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
+                          borderRadius: 'var(--ps-radius, 4px)',
+                          color: 'var(--ps-text, #ffffff)',
+                          outline: 'none',
+                          cursor: 'pointer',
+                        }}
+                        className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
+                        value={currentVersionId || ''}
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            const url = new URL(window.location);
+                            url.searchParams.set('versionId', e.target.value);
+                            window.history.pushState({}, '', url);
+                            setCurrentVersionId(e.target.value);
+                            fetchData();
+                          }
+                        }}
+                      >
+                        {versions.map(v => (
+                          <option key={v.id} value={v.id}>
+                            {v.version_name} {v.is_active ? '(Activa)' : ''} {v.is_published ? '(EN VIVO)' : ''}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Guardar y Publicar */}
+                    <div className="flex flex-col gap-2 mt-2">
+                      <button
+                        onClick={() => saveVersion(false)}
+                        disabled={saving || !currentVersionId}
+                        style={{
+                          height: '30px',
+                          background: 'var(--ps-bg-toolbar, #1e1e1e)',
+                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
+                          borderRadius: 'var(--ps-radius, 4px)',
+                          color: 'var(--ps-text, #ffffff)',
+                          fontWeight: 'bold',
+                          cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
+                          opacity: (saving || !currentVersionId) ? 0.5 : 1,
+                        }}
+                        className="hover:bg-[var(--ps-bg-hover)] transition-colors"
+                      >
+                        {saving ? 'Guardando...' : 'Guardar Cambios'}
+                      </button>
+
+                      <button
+                        onClick={handlePublish}
+                        disabled={saving || !currentVersionId}
+                        style={{
+                          height: '30px',
+                          background: 'var(--ps-accent, #ffcc00)',
+                          border: 'none',
+                          borderRadius: 'var(--ps-radius, 4px)',
+                          color: '#000000',
+                          fontWeight: 'bold',
+                          cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
+                          opacity: (saving || !currentVersionId) ? 0.5 : 1,
+                        }}
+                        className="hover:opacity-90 transition-opacity"
+                      >
+                        Publicar Versión en Vivo
+                      </button>
+                    </div>
+
+                    <div style={{ height: '1px', background: 'var(--ps-border-dark)', margin: '8px 0' }}></div>
+
+                    {/* Vista Previa Externa */}
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Vista de Producción</span>
+                      <a
+                        href={currentVersionId ? `/${slug === 'home' ? '' : slug}?versionId=${currentVersionId}` : `/${slug === 'home' ? '' : slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          height: '30px',
+                          background: 'var(--ps-bg-toolbar, #1e1e1e)',
+                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
+                          borderRadius: 'var(--ps-radius, 4px)',
+                          color: 'var(--ps-text, #ffffff)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          textDecoration: 'none',
+                          fontWeight: 'bold',
+                        }}
+                        className="hover:bg-[var(--ps-bg-hover)] transition-colors"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                        <span>Vista Previa Externa ↗</span>
+                      </a>
+                    </div>
+
+                    <div style={{ height: '1px', background: 'var(--ps-border-dark)', margin: '8px 0' }}></div>
+
+                    {/* Crear Rama (Nueva Versión) */}
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Crear Rama (Nueva Versión)</span>
+                      <input
+                        type="text"
+                        placeholder="Nombre de la nueva rama..."
+                        value={newVersionName}
+                        onChange={(e) => setNewVersionName(e.target.value)}
+                        style={{
+                          height: '28px',
+                          padding: '0 8px',
+                          background: 'var(--ps-bg-input, #1c1c1c)',
+                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
+                          borderRadius: 'var(--ps-radius, 4px)',
+                          color: 'var(--ps-text, #ffffff)',
+                          outline: 'none',
+                        }}
+                        className="focus:border-[var(--ps-border-focus)] transition-colors placeholder:text-muted/50"
+                      />
+                      <button
+                        onClick={() => saveVersion(true)}
+                        disabled={saving || !newVersionName.trim()}
+                        style={{
+                          height: '28px',
+                          background: 'var(--ps-accent, #ffcc00)',
+                          border: 'none',
+                          borderRadius: 'var(--ps-radius, 4px)',
+                          color: '#000000',
+                          fontWeight: 'bold',
+                          cursor: (saving || !newVersionName.trim()) ? 'not-allowed' : 'pointer',
+                          opacity: (saving || !newVersionName.trim()) ? 0.5 : 1,
+                        }}
+                        className="hover:opacity-90 transition-colors"
+                      >
+                        Crear Rama
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 2: ESTRUCTURA */}
+                {activeTab === 'structure' && (
+                  <div className="flex flex-col gap-4 flex-1">
+                    <div className="flex-1 flex flex-col bg-[#222222] border border-[#111111] rounded-xl shadow-inner min-h-[300px]">
+                      <StructureTree
+                        tree={components}
+                        selectedId={selectedId}
+                        onSelect={(id) => setSelectedId(id)}
+                        onRemove={(id) => removeComponent(id)}
+                        onClone={(id) => cloneComponent(id)}
+                        onMove={(sourceId, targetParentId, dropIndex) => {
+                          setComponents(prev => {
+                            const newTree = performMove(prev, sourceId, targetParentId === 'sibling' ? null : targetParentId, dropIndex);
+                            return recalculateZIndices(newTree, previewBp);
+                          });
+                        }}
+                        onUpdateName={(id, name) => {
+                          setComponents(prev => prev.map(c => c.id === id ? { ...c, name } : c));
+                        }}
+                        activeBp={previewBp}
+                        onToggleVisibility={(id) => {
+                          setComponents(prev => toggleComponentVisibility(prev, id, previewBp));
+                        }}
+                      />
+                      <div className="p-2 border-t border-[#333333] bg-[#1e1e1e]">
+                        <ToolboxPanel />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 3: PROPIEDADES */}
+                {activeTab === 'properties' && (
+                  <div className="flex-1 flex flex-col">
+                    {selectedComp ? (
+                      <SmartPropertiesPanel
+                        comp={selectedComp}
+                        updateProp={updateProp}
+                        onClose={() => setSelectedId(null)}
+                        onFocusField={setFocusedField}
+                        activeBp={previewBp}
+                        onActiveBpChange={setPreviewBp}
+                      />
+                    ) : (
+                      <div className="flex-1 flex flex-col items-center justify-center text-center p-6 text-muted text-xs">
+                        <svg className="w-12 h-12 mb-3 text-[#555555]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                        <p className="font-bold mb-1">Ningún Componente Seleccionado</p>
+                        <p className="opacity-75">Selecciona un elemento en el lienzo o en la pestaña de Estructura para configurar sus propiedades.</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
