@@ -721,6 +721,48 @@ function VisualEditorContent() {
             ))}
           </select>
 
+          <div className="flex items-center gap-1">
+            <input 
+              type="text"
+              placeholder="Nueva versión..."
+              value={newVersionName}
+              onChange={(e) => setNewVersionName(e.target.value)}
+              style={{
+                height: '24px',
+                width: '100px',
+                padding: '0 var(--sp-xs)',
+                background: 'var(--ps-bg-input)',
+                border: 'var(--ps-border-width) solid var(--ps-border-light)',
+                borderRadius: 'var(--ps-radius)',
+                color: 'var(--ps-text)',
+                fontSize: 'var(--font-size-sm)',
+                outline: 'none'
+              }}
+              className="focus:border-[var(--ps-border-focus)] transition-colors placeholder:text-muted/50"
+            />
+            <button
+              onClick={() => saveVersion(true)}
+              disabled={saving || !newVersionName.trim()}
+              style={{
+                height: '24px',
+                padding: '0 var(--sp-xs)',
+                background: 'var(--ps-bg-panel)',
+                border: '1px solid var(--ps-border-light)',
+                borderRadius: 'var(--ps-radius)',
+                color: 'var(--ps-text)',
+                fontSize: '11px',
+                cursor: (saving || !newVersionName.trim()) ? 'not-allowed' : 'pointer',
+                opacity: (saving || !newVersionName.trim()) ? 0.5 : 1
+              }}
+              className="hover:bg-[var(--ps-bg-hover)] transition-colors font-medium"
+              title="Crear nueva rama de versión como borrador"
+            >
+              + Rama
+            </button>
+          </div>
+
+          <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
+
           <div className="flex items-center gap-0.5 bg-[var(--ps-bg-panel)] p-0.5 rounded-lg border border-[var(--ps-border-light)]">
             <button 
               onClick={() => setPublishLock(!publishLock)}
