@@ -29,7 +29,7 @@ export default function PageRenderer({ components, forceBp = 'desktop', onSelect
         const isSelected = comp.id === selectedId;
         const isEditable = !!onSelectComponent;
         
-        const l = comp.layout?.[forceBp] || { x: 0, y: 0, w: 24, h: 4 };
+        const l = comp._layout?.[forceBp] || comp.layout?.[forceBp] || { x: 0, y: 0, w: 24, h: 4 };
 
         return (
           <div
