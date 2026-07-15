@@ -6,7 +6,7 @@ import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { COMPONENT_DEFINITIONS, COMPONENT_REGISTRY } from '../../../components/page-builder/registry';
-import { migrateToTreeStructure, findComponent, updateComponentProp, removeComponentFromTree, cloneComponentInTree, addComponentToTree, updateGridLayout, performMove } from './treeHelpers';
+import { migrateToTreeStructure, findComponent, updateComponentProp, removeComponentFromTree, cloneComponentInTree, addComponentToTree, updateGridLayout, performMove, recalculateZIndices, toggleComponentVisibility } from './treeHelpers';
 import { DEFAULT_HOME_COMPONENTS } from '@/components/page-builder/defaultConfig';
 import PageRenderer from '@/components/page-builder/PageRenderer';
 import GridEditor from '@/components/page-builder/GridEditor';
