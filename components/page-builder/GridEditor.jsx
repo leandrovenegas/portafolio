@@ -94,7 +94,7 @@ export default function GridEditor({
       if (parentId) {
         onLayoutChange(parentId, allLayouts);
       } else {
-        onLayoutChange(allLayouts);
+        onLayoutChange(null, allLayouts);
       }
     }
   };
