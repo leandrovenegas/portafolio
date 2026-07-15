@@ -17,6 +17,7 @@ import SwatchesPanel from '@/components/page-builder/SwatchesPanel';
 import StylesPanel from '@/components/page-builder/StylesPanel';
 import HistoryPanel from '@/components/page-builder/HistoryPanel';
 import GlobalTypographyPanel from '@/components/page-builder/GlobalTypographyPanel';
+import ToolboxPanel from '@/components/page-builder/ToolboxPanel';
 
 
 function VisualEditorContent() {
