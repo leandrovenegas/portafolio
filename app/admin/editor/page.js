@@ -392,6 +392,7 @@ function VisualEditorContent() {
 
   const moveComponent = (id, direction) => {
     setComponents(prev => {
+      const idx = prev.findIndex(c => c.id === id);
       if (idx === -1) return prev;
       const newArr = [...prev];
       if (direction === 'up' && idx > 0) {
