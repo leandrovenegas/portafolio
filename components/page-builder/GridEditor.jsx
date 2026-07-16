@@ -17,10 +17,13 @@ export default function GridEditor({
   setActiveGridId = () => {},
   registry = {},
   onUpdateProp = null,
-  onDropComponent = null
+  onDropComponent = null,
+  showGridDebug = false
 }) {
   const { width, containerRef, mounted } = useContainerWidth();
   const wrapperRef = useRef(null);
+
+  const colsCount = forceBp === 'mobile' ? 12 : 24;
 
   // Esta grid está activa para edición si activeGridId coincide con su parentId
   const isInteractive = activeGridId === parentId;
@@ -105,6 +108,27 @@ export default function GridEditor({
       className="w-full h-full relative" 
       style={{ minHeight: '800px' }}
     >
+      {showGridDebug && mounted && (
+        <div 
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${colsCount}, 1fr)`,
+            gridAutoRows: `30px`,
+            gap: '10px',
+            padding: '10px',
+            opacity: 0.15,
+          }}
+        >
+          {Array.from({ length: colsCount * 30 }).map((_, i) => (
+            <div 
+              key={i} 
+              className="border border-accent border-dashed" 
+              style={{ borderRadius: '2px' }} 
+            />
+          ))}
+        </div>
+      )}
       {mounted && (
         <ResponsiveGridLayout
           width={width}
@@ -129,6 +153,7 @@ export default function GridEditor({
             }
           }}
           dropConfig={{ enabled: isInteractive && !activeChildId, defaultItem: { w: 24, h: 4 } }}
+          draggableHandle=".drag-handle"
           draggableCancel=".no-drag, input, textarea, button, select, a, [contenteditable]"
         >
         {components.map((comp) => {
@@ -141,6 +166,10 @@ export default function GridEditor({
           const isLockedByOther = !!activeChildId && !isEditingInternally;
           // ¿Está oculto en esta vista?
           const isHidden = comp._layout?.[forceBp]?.hidden === true;
+          // ¿Tiene drag handle interno?
+          const hasInternalDragHandle = comp.type === 'AvatarTextSection';
+          
+          let currentLayout = comp._layout?.[forceBp] || comp.layout?.[forceBp] || { x: 0, y: 0, w: 24, h: 4, zIndex: 1 };
 
           return (
             <div 
@@ -151,6 +180,7 @@ export default function GridEditor({
                 ...(isHidden ? { opacity: 0, pointerEvents: 'none', visibility: 'hidden' } : {})
               }}
               className={`relative group bg-transparent transition-opacity duration-150
+                ${!hasInternalDragHandle ? 'drag-handle' : ''}
                 ${isLockedByOther ? 'opacity-30 pointer-events-none' : 'opacity-100'}
                 ${isEditingInternally
                   ? 'ring-2 ring-accent/50 ring-inset z-30'
@@ -205,6 +235,15 @@ export default function GridEditor({
                 </div>
               )}
               
+              {/* Badge "Debug Grid" superpuesto para mostrar coordenadas y medidas (Objetivo 1) */}
+              {showGridDebug && (
+                <div className="absolute top-2 left-2 pointer-events-none z-[90] flex items-center justify-center">
+                  <div className="bg-bg/95 border border-border text-accent px-2 py-1 rounded text-[9px] font-mono shadow-md uppercase">
+                    X:{currentLayout.x} Y:{currentLayout.y} W:{currentLayout.w} H:{currentLayout.h} Z:{currentLayout.zIndex || 1}
+                  </div>
+                </div>
+              )}
+              
               {/* Contenido del componente — detiene propagación de eventos para aislar la capa */}
               <div 
                 className="w-full h-full overflow-hidden"
@@ -224,6 +263,7 @@ export default function GridEditor({
                   setActiveGridId={setActiveGridId}
                   registry={registry}
                   onPropChange={onUpdateProp ? (field, value) => onUpdateProp(comp.id, field, value) : null}
+                  showGridDebug={showGridDebug}
                 />
               </div>
             </div>

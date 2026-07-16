@@ -1,0 +1,684 @@
+{
+  "communities": {
+    "0": [
+      "next_old_2_dev_types_app_api_bunny_video_slug_route",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_checkfields",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_diff",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_firstarg",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_layoutprops",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_maybefield",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_negative",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_nonnegative",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_numeric",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_omitwithtag",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_pageprops",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_paramcheck",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_revalidaterange",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_routecontext",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_secondarg",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_segmentparams",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_tentry",
+      "next_old_2_dev_types_app_api_bunny_video_slug_route_zero"
+    ],
+    "1": [
+      "next_old_2_dev_types_app_api_pages_route",
+      "next_old_2_dev_types_app_api_pages_route_checkfields",
+      "next_old_2_dev_types_app_api_pages_route_diff",
+      "next_old_2_dev_types_app_api_pages_route_firstarg",
+      "next_old_2_dev_types_app_api_pages_route_layoutprops",
+      "next_old_2_dev_types_app_api_pages_route_maybefield",
+      "next_old_2_dev_types_app_api_pages_route_negative",
+      "next_old_2_dev_types_app_api_pages_route_nonnegative",
+      "next_old_2_dev_types_app_api_pages_route_numeric",
+      "next_old_2_dev_types_app_api_pages_route_omitwithtag",
+      "next_old_2_dev_types_app_api_pages_route_pageprops",
+      "next_old_2_dev_types_app_api_pages_route_paramcheck",
+      "next_old_2_dev_types_app_api_pages_route_revalidaterange",
+      "next_old_2_dev_types_app_api_pages_route_routecontext",
+      "next_old_2_dev_types_app_api_pages_route_secondarg",
+      "next_old_2_dev_types_app_api_pages_route_segmentparams",
+      "next_old_2_dev_types_app_api_pages_route_tentry",
+      "next_old_2_dev_types_app_api_pages_route_zero"
+    ],
+    "2": [
+      "next_old_2_dev_static_chunks_polyfills",
+      "next_old_2_dev_static_chunks_polyfills_cb",
+      "next_old_2_dev_static_chunks_polyfills_e",
+      "next_old_2_dev_static_chunks_polyfills_eb",
+      "next_old_2_dev_static_chunks_polyfills_hb",
+      "next_old_2_dev_static_chunks_polyfills_ib",
+      "next_old_2_dev_static_chunks_polyfills_jm",
+      "next_old_2_dev_static_chunks_polyfills_nb",
+      "next_old_2_dev_static_chunks_polyfills_ob",
+      "next_old_2_dev_static_chunks_polyfills_qm",
+      "next_old_2_dev_static_chunks_polyfills_rb",
+      "next_old_2_dev_static_chunks_polyfills_sb",
+      "next_old_2_dev_static_chunks_polyfills_t",
+      "next_old_2_dev_static_chunks_polyfills_tb",
+      "next_old_2_dev_static_chunks_polyfills_ub",
+      "next_old_2_dev_static_chunks_polyfills_zm"
+    ],
+    "3": [
+      "next_old_2_dev_types_app_admin_editor_page",
+      "next_old_2_dev_types_app_admin_editor_page_checkfields",
+      "next_old_2_dev_types_app_admin_editor_page_diff",
+      "next_old_2_dev_types_app_admin_editor_page_firstarg",
+      "next_old_2_dev_types_app_admin_editor_page_layoutprops",
+      "next_old_2_dev_types_app_admin_editor_page_maybefield",
+      "next_old_2_dev_types_app_admin_editor_page_negative",
+      "next_old_2_dev_types_app_admin_editor_page_nonnegative",
+      "next_old_2_dev_types_app_admin_editor_page_numeric",
+      "next_old_2_dev_types_app_admin_editor_page_omitwithtag",
+      "next_old_2_dev_types_app_admin_editor_page_pageprops",
+      "next_old_2_dev_types_app_admin_editor_page_revalidaterange",
+      "next_old_2_dev_types_app_admin_editor_page_secondarg",
+      "next_old_2_dev_types_app_admin_editor_page_segmentparams",
+      "next_old_2_dev_types_app_admin_editor_page_tentry",
+      "next_old_2_dev_types_app_admin_editor_page_zero"
+    ],
+    "4": [
+      "next_old_2_dev_types_app_admin_layout",
+      "next_old_2_dev_types_app_admin_layout_checkfields",
+      "next_old_2_dev_types_app_admin_layout_diff",
+      "next_old_2_dev_types_app_admin_layout_firstarg",
+      "next_old_2_dev_types_app_admin_layout_layoutprops",
+      "next_old_2_dev_types_app_admin_layout_maybefield",
+      "next_old_2_dev_types_app_admin_layout_negative",
+      "next_old_2_dev_types_app_admin_layout_nonnegative",
+      "next_old_2_dev_types_app_admin_layout_numeric",
+      "next_old_2_dev_types_app_admin_layout_omitwithtag",
+      "next_old_2_dev_types_app_admin_layout_pageprops",
+      "next_old_2_dev_types_app_admin_layout_revalidaterange",
+      "next_old_2_dev_types_app_admin_layout_secondarg",
+      "next_old_2_dev_types_app_admin_layout_segmentparams",
+      "next_old_2_dev_types_app_admin_layout_tentry",
+      "next_old_2_dev_types_app_admin_layout_zero"
+    ],
+    "5": [
+      "next_old_2_dev_types_app_layout",
+      "next_old_2_dev_types_app_layout_checkfields",
+      "next_old_2_dev_types_app_layout_diff",
+      "next_old_2_dev_types_app_layout_firstarg",
+      "next_old_2_dev_types_app_layout_layoutprops",
+      "next_old_2_dev_types_app_layout_maybefield",
+      "next_old_2_dev_types_app_layout_negative",
+      "next_old_2_dev_types_app_layout_nonnegative",
+      "next_old_2_dev_types_app_layout_numeric",
+      "next_old_2_dev_types_app_layout_omitwithtag",
+      "next_old_2_dev_types_app_layout_pageprops",
+      "next_old_2_dev_types_app_layout_revalidaterange",
+      "next_old_2_dev_types_app_layout_secondarg",
+      "next_old_2_dev_types_app_layout_segmentparams",
+      "next_old_2_dev_types_app_layout_tentry",
+      "next_old_2_dev_types_app_layout_zero"
+    ],
+    "6": [
+      "app_admin_editor_treehelpers",
+      "app_admin_editor_treehelpers_addcomponenttotree",
+      "app_admin_editor_treehelpers_calculatenextavailableposition",
+      "app_admin_editor_treehelpers_clonecomponentintree",
+      "app_admin_editor_treehelpers_extractcomponent",
+      "app_admin_editor_treehelpers_findcomponent",
+      "app_admin_editor_treehelpers_insertcomponentintoparent",
+      "app_admin_editor_treehelpers_migratetotreestructure",
+      "app_admin_editor_treehelpers_movecomponentintree",
+      "app_admin_editor_treehelpers_performmove",
+      "app_admin_editor_treehelpers_recalculatezindices",
+      "app_admin_editor_treehelpers_removecomponentfromtree",
+      "app_admin_editor_treehelpers_togglecomponentvisibility",
+      "app_admin_editor_treehelpers_updatecomponentprop",
+      "app_admin_editor_treehelpers_updategridlayout"
+    ],
+    "7": [
+      "next_old_2_dev_server_edge_runtime_webpack",
+      "next_old_2_dev_server_edge_runtime_webpack_applyhandler",
+      "next_old_2_dev_server_edge_runtime_webpack_applyinvalidatedmodules",
+      "next_old_2_dev_server_edge_runtime_webpack_createmodulehotobject",
+      "next_old_2_dev_server_edge_runtime_webpack_createrequire",
+      "next_old_2_dev_server_edge_runtime_webpack_hotapply",
+      "next_old_2_dev_server_edge_runtime_webpack_hotcheck",
+      "next_old_2_dev_server_edge_runtime_webpack_internalapply",
+      "next_old_2_dev_server_edge_runtime_webpack_loadupdatechunk",
+      "next_old_2_dev_server_edge_runtime_webpack_setstatus",
+      "next_old_2_dev_server_edge_runtime_webpack_trackblockingpromise",
+      "next_old_2_dev_server_edge_runtime_webpack_unblock",
+      "next_old_2_dev_server_edge_runtime_webpack_waitforblockingpromises",
+      "next_old_2_dev_server_edge_runtime_webpack_webpack_require"
+    ],
+    "8": [
+      "next_old_2_dev_static_chunks_webpack",
+      "next_old_2_dev_static_chunks_webpack_applyhandler",
+      "next_old_2_dev_static_chunks_webpack_applyinvalidatedmodules",
+      "next_old_2_dev_static_chunks_webpack_createmodulehotobject",
+      "next_old_2_dev_static_chunks_webpack_createrequire",
+      "next_old_2_dev_static_chunks_webpack_hotapply",
+      "next_old_2_dev_static_chunks_webpack_hotcheck",
+      "next_old_2_dev_static_chunks_webpack_internalapply",
+      "next_old_2_dev_static_chunks_webpack_loadupdatechunk",
+      "next_old_2_dev_static_chunks_webpack_setstatus",
+      "next_old_2_dev_static_chunks_webpack_trackblockingpromise",
+      "next_old_2_dev_static_chunks_webpack_unblock",
+      "next_old_2_dev_static_chunks_webpack_waitforblockingpromises",
+      "next_old_2_dev_static_chunks_webpack_webpack_require"
+    ],
+    "9": [
+      "next_old_2_dev_types_routes_d",
+      "next_old_2_dev_types_routes_d_approutehandlerroutes",
+      "next_old_2_dev_types_routes_d_approutes",
+      "next_old_2_dev_types_routes_d_layoutprops",
+      "next_old_2_dev_types_routes_d_layoutroutes",
+      "next_old_2_dev_types_routes_d_layoutslotmap",
+      "next_old_2_dev_types_routes_d_pageprops",
+      "next_old_2_dev_types_routes_d_pageroutes",
+      "next_old_2_dev_types_routes_d_parammap",
+      "next_old_2_dev_types_routes_d_paramsof",
+      "next_old_2_dev_types_routes_d_redirectroutes",
+      "next_old_2_dev_types_routes_d_rewriteroutes",
+      "next_old_2_dev_types_routes_d_routecontext",
+      "next_old_2_dev_types_routes_d_routes"
+    ],
+    "10": [
+      "next_old_2_types_routes_d",
+      "next_old_2_types_routes_d_approutehandlerroutes",
+      "next_old_2_types_routes_d_approutes",
+      "next_old_2_types_routes_d_layoutprops",
+      "next_old_2_types_routes_d_layoutroutes",
+      "next_old_2_types_routes_d_layoutslotmap",
+      "next_old_2_types_routes_d_pageprops",
+      "next_old_2_types_routes_d_pageroutes",
+      "next_old_2_types_routes_d_parammap",
+      "next_old_2_types_routes_d_paramsof",
+      "next_old_2_types_routes_d_redirectroutes",
+      "next_old_2_types_routes_d_rewriteroutes",
+      "next_old_2_types_routes_d_routecontext",
+      "next_old_2_types_routes_d_routes"
+    ],
+    "11": [
+      "scratch_restore",
+      "scratch_restore_code",
+      "scratch_restore_fs",
+      "scratch_restore_lines",
+      "scratch_restore_lines_code",
+      "scratch_restore_lines_fs",
+      "scratch_restore_menuopenindex",
+      "scratch_restore_recoveredlines"
+    ],
+    "12": [
+      "app_page",
+      "app_page_faqschema",
+      "app_page_getpagecomponents",
+      "app_page_home",
+      "app_page_localbusinessschema",
+      "app_page_metadata"
+    ],
+    "13": [
+      "scratch_process_diff2",
+      "scratch_process_diff2_data",
+      "scratch_process_diff2_fs",
+      "scratch_process_diff2_line",
+      "scratch_process_diff2_lines",
+      "scratch_process_diff2_recoveredlines"
+    ],
+    "14": [
+      "app_api_pages_route",
+      "app_api_pages_route_get",
+      "app_api_pages_route_patch",
+      "app_api_pages_route_post",
+      "app_api_pages_route_put"
+    ],
+    "15": [
+      "components_page_builder_registry",
+      "components_page_builder_registry_component_definitions",
+      "components_page_builder_registry_component_registry",
+      "components_page_builder_sections_containersection",
+      "components_page_builder_sections_containersection_containersection"
+    ],
+    "16": [
+      "components_page_builder_sections_avatartextsection",
+      "components_page_builder_sections_avatartextsection_avatartextsection",
+      "components_page_builder_sections_avatartextsection_default_inner_layout",
+      "components_page_builder_sections_avatartextsection_innercanvas",
+      "components_page_builder_sections_avatartextsection_toinlinestyle"
+    ],
+    "17": [
+      "next_old_2_dev_server_app_admin_editor_page",
+      "next_old_2_dev_server_app_api_bunny_video_slug_route",
+      "next_old_2_dev_server_app_api_pages_route",
+      "next_old_2_dev_server_webpack_runtime",
+      "next_old_2_dev_server_webpack_runtime_webpack_require"
+    ],
+    "18": [
+      "next_old_2_dev_types_validator",
+      "next_old_2_dev_types_validator_apppageconfig",
+      "next_old_2_dev_types_validator_check",
+      "next_old_2_dev_types_validator_isexpected",
+      "next_old_2_dev_types_validator_unused"
+    ],
+    "19": [
+      "next_old_2_types_validator",
+      "next_old_2_types_validator_apppageconfig",
+      "next_old_2_types_validator_check",
+      "next_old_2_types_validator_isexpected",
+      "next_old_2_types_validator_unused"
+    ],
+    "20": [
+      "scratch_check_sections_avatartextsection",
+      "scratch_check_sections_avatartextsection_avatartextsection",
+      "scratch_check_sections_avatartextsection_default_inner_layout",
+      "scratch_check_sections_avatartextsection_innercanvas",
+      "scratch_check_sections_avatartextsection_toinlinestyle"
+    ],
+    "21": [
+      "scratch_process_diff",
+      "scratch_process_diff_difftext",
+      "scratch_process_diff_fs",
+      "scratch_process_diff_lines",
+      "scratch_process_diff_recoveredlines"
+    ],
+    "22": [
+      "scratch_restore_lines_2",
+      "scratch_restore_lines_2_code",
+      "scratch_restore_lines_2_fs",
+      "scratch_restore_lines_2_lines",
+      "scratch_restore_lines_2_savesuccessindex"
+    ],
+    "23": [
+      "scratch_do_recover",
+      "scratch_do_recover_fs",
+      "scratch_do_recover_readline",
+      "scratch_do_recover_recover"
+    ],
+    "24": [
+      "scratch_do_recover2",
+      "scratch_do_recover2_fs",
+      "scratch_do_recover2_readline",
+      "scratch_do_recover2_recover"
+    ],
+    "25": [
+      "scratch_recover",
+      "scratch_recover_fs",
+      "scratch_recover_readline",
+      "scratch_recover_recover"
+    ],
+    "26": [
+      "scratch_recover2",
+      "scratch_recover2_fs",
+      "scratch_recover2_readline",
+      "scratch_recover2_recover"
+    ],
+    "27": [
+      "scratch_recover3",
+      "scratch_recover3_fs",
+      "scratch_recover3_readline",
+      "scratch_recover3_recover"
+    ],
+    "28": [
+      "scratch_refactor_ui",
+      "scratch_refactor_ui_code",
+      "scratch_refactor_ui_fs",
+      "scratch_refactor_ui_startindex"
+    ],
+    "29": [
+      "app_admin_editor_page",
+      "app_admin_editor_page_visualeditor",
+      "app_admin_editor_page_visualeditorcontent"
+    ],
+    "30": [
+      "components_page_builder_structuretree",
+      "components_page_builder_structuretree_structuretree",
+      "components_page_builder_structuretree_structuretreenode"
+    ],
+    "31": [
+      "scratch_fix_syntax",
+      "scratch_fix_syntax_code",
+      "scratch_fix_syntax_fs"
+    ],
+    "32": [
+      "scratch_reconstruct",
+      "scratch_reconstruct_fs",
+      "scratch_reconstruct_reconstruct"
+    ],
+    "33": [
+      "scratch_reconstructed_page",
+      "scratch_reconstructed_page_visualeditor",
+      "scratch_reconstructed_page_visualeditorcontent"
+    ],
+    "34": [
+      "scratch_recovered_page_new",
+      "scratch_recovered_page_new_visualeditor",
+      "scratch_recovered_page_new_visualeditorcontent"
+    ],
+    "35": [
+      "scratch_refactor_activegridid",
+      "scratch_refactor_activegridid_code",
+      "scratch_refactor_activegridid_fs"
+    ],
+    "36": [
+      "scratch_stitch",
+      "scratch_stitch_fs",
+      "scratch_stitch_stitch"
+    ],
+    "37": [
+      "components_page_builder_grideditor",
+      "components_page_builder_grideditor_grideditor"
+    ],
+    "38": [
+      "components_page_builder_toolboxpanel",
+      "components_page_builder_toolboxpanel_toolboxpanel"
+    ],
+    "39": [
+      "next_old_2_dev_package",
+      "next_old_2_dev_package_type"
+    ],
+    "40": [
+      "next_old_2_dev_types_cache_life_d",
+      "next_old_2_dev_types_cache_life_d_next_cache"
+    ],
+    "41": [
+      "next_old_2_dev_types_package",
+      "next_old_2_dev_types_package_type"
+    ],
+    "42": [
+      "next_old_2_package",
+      "next_old_2_package_type"
+    ],
+    "43": [
+      "scratch_check_grideditor",
+      "scratch_check_grideditor_grideditor"
+    ],
+    "44": [
+      "scratch_out",
+      "scratch_out_grideditor"
+    ],
+    "45": [
+      "supabase_pages_schema",
+      "supabase_pages_schema_public_page_versions"
+    ],
+    "46": [
+      "next_old_2_dev_server_app_admin_editor_page_client_reference_manifest"
+    ],
+    "47": [
+      "next_old_2_dev_server_app_api_bunny_video_slug_route_client_reference_manifest"
+    ],
+    "48": [
+      "next_old_2_dev_server_app_api_pages_route_client_reference_manifest"
+    ],
+    "49": [
+      "next_old_2_dev_server_interception_route_rewrite_manifest"
+    ],
+    "50": [
+      "next_old_2_dev_server_middleware"
+    ],
+    "51": [
+      "next_old_2_dev_server_middleware_build_manifest"
+    ],
+    "52": [
+      "next_old_2_dev_server_middleware_react_loadable_manifest"
+    ],
+    "53": [
+      "next_old_2_dev_server_next_font_manifest"
+    ],
+    "54": [
+      "next_old_2_dev_server_server_reference_manifest"
+    ],
+    "55": [
+      "next_old_2_dev_server_vendor_chunks_clsx"
+    ],
+    "56": [
+      "next_old_2_dev_server_vendor_chunks_fast_equals"
+    ],
+    "57": [
+      "next_old_2_dev_server_vendor_chunks_hls_js"
+    ],
+    "58": [
+      "next_old_2_dev_server_vendor_chunks_iceberg_js"
+    ],
+    "59": [
+      "next_old_2_dev_server_vendor_chunks_next"
+    ],
+    "60": [
+      "next_old_2_dev_server_vendor_chunks_object_assign"
+    ],
+    "61": [
+      "next_old_2_dev_server_vendor_chunks_prop_types"
+    ],
+    "62": [
+      "next_old_2_dev_server_vendor_chunks_react_draggable"
+    ],
+    "63": [
+      "next_old_2_dev_server_vendor_chunks_react_grid_layout"
+    ],
+    "64": [
+      "next_old_2_dev_server_vendor_chunks_react_is"
+    ],
+    "65": [
+      "next_old_2_dev_server_vendor_chunks_react_resizable"
+    ],
+    "66": [
+      "next_old_2_dev_server_vendor_chunks_supabase"
+    ],
+    "67": [
+      "next_old_2_dev_server_vendor_chunks_swc"
+    ],
+    "68": [
+      "next_old_2_dev_server_vendor_chunks_tslib"
+    ],
+    "69": [
+      "next_old_2_dev_static_chunks_app_admin_editor_page"
+    ],
+    "70": [
+      "next_old_2_dev_static_chunks_app_admin_layout"
+    ],
+    "71": [
+      "next_old_2_dev_static_chunks_app_api_bunny_video_slug_route"
+    ],
+    "72": [
+      "next_old_2_dev_static_chunks_app_api_pages_route"
+    ],
+    "73": [
+      "next_old_2_dev_static_chunks_app_layout"
+    ],
+    "74": [
+      "next_old_2_dev_static_chunks_app_pages_internals"
+    ],
+    "75": [
+      "next_old_2_dev_static_chunks_main_app"
+    ],
+    "76": [
+      "next_old_2_dev_static_development_buildmanifest"
+    ],
+    "77": [
+      "next_old_2_dev_static_development_ssgmanifest"
+    ],
+    "78": [
+      "next_old_2_dev_static_webpack_app_layout_6c102282bb24f71b_hot_update"
+    ],
+    "79": [
+      "next_old_2_dev_static_webpack_webpack_4766ca1d392ac642_hot_update"
+    ],
+    "80": [
+      "next_old_2_dev_static_webpack_webpack_6c102282bb24f71b_hot_update"
+    ],
+    "81": [
+      "scratch_recovered_code"
+    ],
+    "82": [
+      "scratch_stitched_page"
+    ]
+  },
+  "cohesion": {
+    "0": 0.1111111111111111,
+    "1": 0.1111111111111111,
+    "2": 0.21666666666666667,
+    "3": 0.125,
+    "4": 0.125,
+    "5": 0.125,
+    "6": 0.1619047619047619,
+    "7": 0.31868131868131866,
+    "8": 0.31868131868131866,
+    "9": 0.14285714285714285,
+    "10": 0.14285714285714285,
+    "11": 0.25,
+    "12": 0.4,
+    "13": 0.3333333333333333,
+    "14": 0.4,
+    "15": 0.5,
+    "16": 0.5,
+    "17": 0.4,
+    "18": 0.4,
+    "19": 0.4,
+    "20": 0.6,
+    "21": 0.4,
+    "22": 0.4,
+    "23": 0.5,
+    "24": 0.5,
+    "25": 0.5,
+    "26": 0.5,
+    "27": 0.5,
+    "28": 0.5,
+    "29": 0.6666666666666666,
+    "30": 0.6666666666666666,
+    "31": 0.6666666666666666,
+    "32": 0.6666666666666666,
+    "33": 0.6666666666666666,
+    "34": 0.6666666666666666,
+    "35": 0.6666666666666666,
+    "36": 0.6666666666666666,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0
+  },
+  "gods": [
+    {
+      "id": "next_old_2_dev_static_chunks_polyfills_ib",
+      "label": "ib()",
+      "degree": 8
+    },
+    {
+      "id": "next_old_2_dev_server_edge_runtime_webpack_setstatus",
+      "label": "setStatus()",
+      "degree": 6
+    },
+    {
+      "id": "next_old_2_dev_server_edge_runtime_webpack_hotcheck",
+      "label": "hotCheck()",
+      "degree": 6
+    },
+    {
+      "id": "next_old_2_dev_static_chunks_webpack_setstatus",
+      "label": "setStatus()",
+      "degree": 6
+    },
+    {
+      "id": "next_old_2_dev_static_chunks_webpack_hotcheck",
+      "label": "hotCheck()",
+      "degree": 6
+    },
+    {
+      "id": "next_old_2_dev_server_edge_runtime_webpack_createmodulehotobject",
+      "label": "createModuleHotObject()",
+      "degree": 5
+    },
+    {
+      "id": "next_old_2_dev_server_edge_runtime_webpack_internalapply",
+      "label": "internalApply()",
+      "degree": 5
+    },
+    {
+      "id": "next_old_2_dev_static_chunks_polyfills_e",
+      "label": "e()",
+      "degree": 5
+    },
+    {
+      "id": "next_old_2_dev_static_chunks_webpack_createmodulehotobject",
+      "label": "createModuleHotObject()",
+      "degree": 5
+    },
+    {
+      "id": "next_old_2_dev_static_chunks_webpack_internalapply",
+      "label": "internalApply()",
+      "degree": 5
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "verify_inferred",
+      "question": "Are the 4 inferred relationships involving `ib()` (e.g. with `e()` and `nb()`) actually correct?",
+      "why": "`ib()` has 4 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `COMPONENT_REGISTRY`, `COMPONENT_DEFINITIONS`, `fs` to the rest of the system?",
+      "why": "158 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `route.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `route.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `page.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `layout.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `layout.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

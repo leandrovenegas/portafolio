@@ -13,7 +13,8 @@ export default function ContainerSection({
   selectedId,
   activeGridId,
   setActiveGridId,
-  registry
+  registry,
+  showGridDebug = false
 }) {
   return (
     <div 
@@ -41,6 +42,7 @@ export default function ContainerSection({
           activeGridId={activeGridId}
           setActiveGridId={setActiveGridId}
           registry={registry}
+          showGridDebug={showGridDebug}
         />
       </div>
     </div>

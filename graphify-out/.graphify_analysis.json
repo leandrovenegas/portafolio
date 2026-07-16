@@ -363,146 +363,150 @@
       "components_page_builder_grideditor_grideditor"
     ],
     "38": [
+      "components_page_builder_pagerenderer",
+      "components_page_builder_pagerenderer_pagerenderer"
+    ],
+    "39": [
       "components_page_builder_toolboxpanel",
       "components_page_builder_toolboxpanel_toolboxpanel"
     ],
-    "39": [
+    "40": [
       "next_old_2_dev_package",
       "next_old_2_dev_package_type"
     ],
-    "40": [
+    "41": [
       "next_old_2_dev_types_cache_life_d",
       "next_old_2_dev_types_cache_life_d_next_cache"
     ],
-    "41": [
+    "42": [
       "next_old_2_dev_types_package",
       "next_old_2_dev_types_package_type"
     ],
-    "42": [
+    "43": [
       "next_old_2_package",
       "next_old_2_package_type"
     ],
-    "43": [
+    "44": [
       "scratch_check_grideditor",
       "scratch_check_grideditor_grideditor"
     ],
-    "44": [
+    "45": [
       "scratch_out",
       "scratch_out_grideditor"
     ],
-    "45": [
+    "46": [
       "supabase_pages_schema",
       "supabase_pages_schema_public_page_versions"
     ],
-    "46": [
+    "47": [
       "next_old_2_dev_server_app_admin_editor_page_client_reference_manifest"
     ],
-    "47": [
+    "48": [
       "next_old_2_dev_server_app_api_bunny_video_slug_route_client_reference_manifest"
     ],
-    "48": [
+    "49": [
       "next_old_2_dev_server_app_api_pages_route_client_reference_manifest"
     ],
-    "49": [
+    "50": [
       "next_old_2_dev_server_interception_route_rewrite_manifest"
     ],
-    "50": [
+    "51": [
       "next_old_2_dev_server_middleware"
     ],
-    "51": [
+    "52": [
       "next_old_2_dev_server_middleware_build_manifest"
     ],
-    "52": [
+    "53": [
       "next_old_2_dev_server_middleware_react_loadable_manifest"
     ],
-    "53": [
+    "54": [
       "next_old_2_dev_server_next_font_manifest"
     ],
-    "54": [
+    "55": [
       "next_old_2_dev_server_server_reference_manifest"
     ],
-    "55": [
+    "56": [
       "next_old_2_dev_server_vendor_chunks_clsx"
     ],
-    "56": [
+    "57": [
       "next_old_2_dev_server_vendor_chunks_fast_equals"
     ],
-    "57": [
+    "58": [
       "next_old_2_dev_server_vendor_chunks_hls_js"
     ],
-    "58": [
+    "59": [
       "next_old_2_dev_server_vendor_chunks_iceberg_js"
     ],
-    "59": [
+    "60": [
       "next_old_2_dev_server_vendor_chunks_next"
     ],
-    "60": [
+    "61": [
       "next_old_2_dev_server_vendor_chunks_object_assign"
     ],
-    "61": [
+    "62": [
       "next_old_2_dev_server_vendor_chunks_prop_types"
     ],
-    "62": [
+    "63": [
       "next_old_2_dev_server_vendor_chunks_react_draggable"
     ],
-    "63": [
+    "64": [
       "next_old_2_dev_server_vendor_chunks_react_grid_layout"
     ],
-    "64": [
+    "65": [
       "next_old_2_dev_server_vendor_chunks_react_is"
     ],
-    "65": [
+    "66": [
       "next_old_2_dev_server_vendor_chunks_react_resizable"
     ],
-    "66": [
+    "67": [
       "next_old_2_dev_server_vendor_chunks_supabase"
     ],
-    "67": [
+    "68": [
       "next_old_2_dev_server_vendor_chunks_swc"
     ],
-    "68": [
+    "69": [
       "next_old_2_dev_server_vendor_chunks_tslib"
     ],
-    "69": [
+    "70": [
       "next_old_2_dev_static_chunks_app_admin_editor_page"
     ],
-    "70": [
+    "71": [
       "next_old_2_dev_static_chunks_app_admin_layout"
     ],
-    "71": [
+    "72": [
       "next_old_2_dev_static_chunks_app_api_bunny_video_slug_route"
     ],
-    "72": [
+    "73": [
       "next_old_2_dev_static_chunks_app_api_pages_route"
     ],
-    "73": [
+    "74": [
       "next_old_2_dev_static_chunks_app_layout"
     ],
-    "74": [
+    "75": [
       "next_old_2_dev_static_chunks_app_pages_internals"
     ],
-    "75": [
+    "76": [
       "next_old_2_dev_static_chunks_main_app"
     ],
-    "76": [
+    "77": [
       "next_old_2_dev_static_development_buildmanifest"
     ],
-    "77": [
+    "78": [
       "next_old_2_dev_static_development_ssgmanifest"
     ],
-    "78": [
+    "79": [
       "next_old_2_dev_static_webpack_app_layout_6c102282bb24f71b_hot_update"
     ],
-    "79": [
+    "80": [
       "next_old_2_dev_static_webpack_webpack_4766ca1d392ac642_hot_update"
     ],
-    "80": [
+    "81": [
       "next_old_2_dev_static_webpack_webpack_6c102282bb24f71b_hot_update"
     ],
-    "81": [
+    "82": [
       "scratch_recovered_code"
     ],
-    "82": [
+    "83": [
       "scratch_stitched_page"
     ]
   },
@@ -589,7 +593,8 @@
     "79": 1.0,
     "80": 1.0,
     "81": 1.0,
-    "82": 1.0
+    "82": 1.0,
+    "83": 1.0
   },
   "gods": [
     {
@@ -644,41 +649,8 @@
     }
   ],
   "surprises": [],
-  "questions": [
-    {
-      "type": "verify_inferred",
-      "question": "Are the 4 inferred relationships involving `ib()` (e.g. with `e()` and `nb()`) actually correct?",
-      "why": "`ib()` has 4 INFERRED edges - model-reasoned connections that need verification."
-    },
-    {
-      "type": "isolated_nodes",
-      "question": "What connects `COMPONENT_REGISTRY`, `COMPONENT_DEFINITIONS`, `fs` to the rest of the system?",
-      "why": "158 weakly-connected nodes found - possible documentation gaps or missing edges."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `route.ts` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `route.ts` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `page.ts` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `layout.ts` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `layout.ts` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
-    }
-  ]
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
 }

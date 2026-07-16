@@ -3725,7 +3725,7 @@
       "label": "VisualEditor()",
       "file_type": "code",
       "source_file": "app/admin/editor/page.js",
-      "source_location": "L930",
+      "source_location": "L1025",
       "_origin": "ast",
       "community": 29,
       "norm_label": "visualeditor()",
@@ -6843,7 +6843,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/admin/editor/page.js",
-      "source_location": "L930",
+      "source_location": "L1025",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "app_admin_editor_page",
@@ -6861,5 +6861,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c6e8181aacfe160753e728a7aaa50593f24bfb84"
+  "built_at_commit": "ce16596b26fd62459ebf68cffed5b20525df6468"
 }

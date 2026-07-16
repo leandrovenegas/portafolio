@@ -49,6 +49,7 @@ function VisualEditorContent() {
 
   // Selected component for editing props
   const [selectedId, setSelectedId] = useState(null);
+  const [showGridDebug, setShowGridDebug] = useState(false);
   const [activeGridId, setActiveGridId] = useState(null); // null = root
 
   // Drag & Drop state
@@ -1048,6 +1049,31 @@ function VisualEditorContent() {
               ))}
             </div>
             <div className="w-[1px] h-4 bg-border"></div>
+            <button
+              onClick={() => setShowGridDebug(!showGridDebug)}
+              title={showGridDebug ? 'Ocultar Debug Grid' : 'Mostrar Debug Grid'}
+              className={`w-8 h-8 flex items-center justify-center text-sm rounded-full transition-all ${
+                showGridDebug
+                  ? 'bg-accent text-bg shadow-md'
+                  : 'text-muted hover:text-ink hover:bg-border'
+              }`}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {showGridDebug ? (
+                  <>
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                  </>
+                ) : (
+                  <>
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </>
+                )}
+              </svg>
+            </button>
+            <div className="w-[1px] h-4 bg-border"></div>
             <span className="text-[10px] font-mono text-muted tracking-widest uppercase flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block animate-pulse"></span>
               {slug}.cl
@@ -1100,7 +1126,8 @@ function VisualEditorContent() {
                   selectedId={selectedId}
                   activeGridId={activeGridId}
                   setActiveGridId={setActiveGridId}
-                  registry={COMPONENT_REGISTRY}
+                  registry={COMPONENT_DEFINITIONS}
+                  showGridDebug={showGridDebug}
                 />
               </div>
             </div>

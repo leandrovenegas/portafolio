@@ -19,6 +19,7 @@ import CellPhoneCTASection from './sections/CellPhoneCTASection';
 import FormatsSection from './sections/FormatsSection';
 import FinalCTASection from './sections/FinalCTASection';
 import ContainerSection from './sections/ContainerSection';
+import Button from './sections/Button';
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -41,7 +42,8 @@ export const COMPONENT_REGISTRY = {
   CellPhoneCTASection,
   FormatsSection,
   FinalCTASection,
-  ContainerSection
+  ContainerSection,
+  Button
 };
 
 
@@ -59,6 +61,28 @@ export const COMPONENT_DEFINITIONS = [
       bg: { type: 'color', label: 'Color de Fondo' },
       borderColor: { type: 'color', label: 'Color de Borde' },
       borderRadius: { type: 'text', label: 'Radio de Borde (ej. 8px, var(--ps-radius))' }
+    }
+  },
+  {
+    type: 'Button',
+    name: 'Botón',
+    defaultProps: {
+      bg: 'transparent',
+      borderColor: 'transparent',
+      borderRadius: 'var(--ps-radius)',
+      buttonText: 'Hacer clic aquí',
+      buttonLink: '#',
+      _styles: {
+        buttonText: {
+          mobile: { fontSize: 16, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.1', lineHeight: '1.2' },
+          tablet: { fontSize: 18, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.1', lineHeight: '1.2' },
+          desktop: { fontSize: 18, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.1', lineHeight: '1.2' }
+        }
+      }
+    },
+    defaultLayout: { desktop: { w: 8, h: 2 }, tablet: { w: 8, h: 2 }, mobile: { w: 12, h: 2 } },
+    propsConfig: {
+      buttonLink: { type: 'text', label: 'Enlace (URL)' }
     }
   },
   {

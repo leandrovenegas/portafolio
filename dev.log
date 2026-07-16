@@ -1,0 +1,88 @@
+
+> portfolio@0.1.0 dev /home/lv/proyects/portafolio
+> next dev --webpack
+
+▲ Next.js 16.1.6 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.22:3000
+- Environments: .env.local
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 5.3s
+⚠ Cross origin request detected from 192.168.1.22 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+○ Compiling middleware ...
+○ Compiling /admin/editor ...
+ GET /admin/editor?slug=home 200 in 47s (compile: 43s, proxy.ts: 552ms, render: 3.2s)
+○ Compiling /api/pages ...
+ GET /api/pages?slug=home&action=history&_=1784145507558 200 in 13.6s (compile: 12.9s, render: 640ms)
+ GET /api/pages?slug=home&versionId=df054a65-c087-41a3-a06e-11d2b5615dba&_=1784145507558 200 in 160ms (compile: 16ms, render: 144ms)
+ GET /api/bunny-video-slug?id=f8a865ba-05c8-4a1d-8ebc-958f0c944f58 200 in 5.3s (compile: 3.1s, render: 2.2s)
+ GET /admin/editor?slug=home 200 in 2.1s (compile: 1470ms, proxy.ts: 187ms, render: 440ms)
+ GET /admin/editor?slug=home 200 in 246ms (compile: 43ms, proxy.ts: 67ms, render: 137ms)
+ GET /admin/editor?slug=home 200 in 1486ms (compile: 647ms, proxy.ts: 655ms, render: 184ms)
+ GET /admin/editor?slug=home 200 in 1311ms (compile: 984ms, proxy.ts: 112ms, render: 215ms)
+ GET /admin/editor?slug=home 200 in 251ms (compile: 26ms, proxy.ts: 53ms, render: 172ms)
+ GET /admin/editor?slug=home 200 in 1209ms (compile: 939ms, proxy.ts: 105ms, render: 165ms)
+ GET /admin/editor?slug=home 200 in 1312ms (compile: 964ms, proxy.ts: 100ms, render: 248ms)
+ GET /admin/editor?slug=home 200 in 1196ms (compile: 745ms, proxy.ts: 132ms, render: 319ms)
+ GET /admin/editor?slug=home 200 in 280ms (compile: 28ms, proxy.ts: 52ms, render: 200ms)
+ GET /admin/editor?slug=home 200 in 1203ms (compile: 814ms, proxy.ts: 98ms, render: 291ms)
+ GET /admin/editor?slug=home 200 in 201ms (compile: 22ms, proxy.ts: 60ms, render: 119ms)
+ GET /admin/editor?slug=home 200 in 1297ms (compile: 456ms, proxy.ts: 650ms, render: 191ms)
+ GET /admin/editor?slug=home 200 in 370ms (compile: 22ms, proxy.ts: 71ms, render: 276ms)
+ GET /admin/editor?slug=home 200 in 1515ms (compile: 485ms, proxy.ts: 772ms, render: 259ms)
+ GET /admin/editor?slug=home 200 in 1467ms (compile: 992ms, proxy.ts: 135ms, render: 339ms)
+ GET /admin/editor?slug=home 200 in 1174ms (compile: 477ms, proxy.ts: 517ms, render: 180ms)
+ GET /admin/editor?slug=home 200 in 1525ms (compile: 1093ms, proxy.ts: 184ms, render: 248ms)
+ GET /admin/editor?slug=home 200 in 1242ms (compile: 846ms, proxy.ts: 110ms, render: 286ms)
+ GET /admin/editor?slug=home 200 in 213ms (compile: 41ms, proxy.ts: 67ms, render: 105ms)
+ GET /admin/editor?slug=home 200 in 1396ms (compile: 620ms, proxy.ts: 601ms, render: 176ms)
+ GET /admin/editor?slug=home 200 in 1534ms (compile: 606ms, proxy.ts: 737ms, render: 191ms)
+ GET /admin/editor?slug=home 200 in 229ms (compile: 32ms, proxy.ts: 71ms, render: 125ms)
+ GET /admin/editor?slug=home 200 in 1325ms (compile: 542ms, proxy.ts: 589ms, render: 194ms)
+ GET /admin/editor?slug=home 200 in 1394ms (compile: 589ms, proxy.ts: 584ms, render: 220ms)
+ GET /admin/editor?slug=home 200 in 1315ms (compile: 576ms, proxy.ts: 522ms, render: 217ms)
+ GET /admin/editor?slug=home 200 in 174ms (compile: 19ms, proxy.ts: 41ms, render: 113ms)
+ GET /admin/editor?slug=home 200 in 1233ms (compile: 889ms, proxy.ts: 107ms, render: 236ms)
+ GET /admin/editor?slug=home 200 in 207ms (compile: 28ms, proxy.ts: 54ms, render: 126ms)
+ GET /admin/editor?slug=home 200 in 1273ms (compile: 533ms, proxy.ts: 527ms, render: 213ms)
+ GET /admin/editor?slug=home 200 in 1288ms (compile: 953ms, proxy.ts: 99ms, render: 236ms)
+ GET /admin/editor?slug=home 200 in 173ms (compile: 17ms, proxy.ts: 24ms, render: 132ms)
+ GET /admin/editor?slug=home 200 in 1387ms (compile: 603ms, proxy.ts: 545ms, render: 240ms)
+ GET /admin/editor?slug=home 200 in 1427ms (compile: 611ms, proxy.ts: 610ms, render: 206ms)
+ GET /admin/editor?slug=home 200 in 201ms (compile: 23ms, proxy.ts: 48ms, render: 130ms)
+ GET /admin/editor?slug=home 200 in 1385ms (compile: 593ms, proxy.ts: 578ms, render: 213ms)
+ GET /admin/editor?slug=home 200 in 282ms (compile: 30ms, proxy.ts: 110ms, render: 142ms)
+ GET /admin/editor?slug=home 200 in 1230ms (compile: 445ms, proxy.ts: 599ms, render: 186ms)
+ GET /admin/editor?slug=home 200 in 176ms (compile: 39ms, proxy.ts: 33ms, render: 103ms)
+ GET /admin/editor?slug=home 200 in 1706ms (compile: 780ms, proxy.ts: 679ms, render: 246ms)
+ GET /admin/editor?slug=home 200 in 1549ms (compile: 1233ms, proxy.ts: 112ms, render: 204ms)
+ GET /admin/editor?slug=home 200 in 1258ms (compile: 573ms, proxy.ts: 552ms, render: 132ms)
+ GET /admin/editor?slug=home 200 in 180ms (compile: 21ms, proxy.ts: 62ms, render: 97ms)
+ GET /admin/editor?slug=home 200 in 1354ms (compile: 600ms, proxy.ts: 561ms, render: 193ms)
+ GET /admin/editor?slug=home 200 in 937ms (compile: 46ms, proxy.ts: 48ms, render: 843ms)
+ GET /admin/editor?slug=home 200 in 298ms (compile: 24ms, proxy.ts: 54ms, render: 219ms)
+ GET /admin/editor?slug=home 200 in 1189ms (compile: 851ms, proxy.ts: 125ms, render: 213ms)
+ GET /admin/editor?slug=home 200 in 196ms (compile: 22ms, proxy.ts: 51ms, render: 123ms)
+ GET /admin/editor?slug=home 200 in 1786ms (compile: 654ms, proxy.ts: 886ms, render: 246ms)
+ GET /admin/editor?slug=home 200 in 299ms (compile: 30ms, proxy.ts: 94ms, render: 175ms)
+ GET /admin/editor?slug=home 200 in 1567ms (compile: 619ms, proxy.ts: 702ms, render: 247ms)
+ GET /admin/editor?slug=home 200 in 1384ms (compile: 1059ms, proxy.ts: 95ms, render: 229ms)
+ GET /admin/editor?slug=home 200 in 175ms (compile: 19ms, proxy.ts: 41ms, render: 114ms)
+ GET /admin/editor?slug=home 200 in 1291ms (compile: 949ms, proxy.ts: 123ms, render: 219ms)
+ GET /admin/editor?slug=home 200 in 1452ms (compile: 1136ms, proxy.ts: 119ms, render: 197ms)
+ GET /admin/editor?slug=home 200 in 189ms (compile: 24ms, proxy.ts: 46ms, render: 120ms)
+ GET /admin/editor?slug=home 200 in 1352ms (compile: 570ms, proxy.ts: 588ms, render: 194ms)
+ GET /admin/editor?slug=home 200 in 1127ms (compile: 411ms, proxy.ts: 565ms, render: 151ms)
+ GET /admin/editor?slug=home 200 in 169ms (compile: 26ms, proxy.ts: 37ms, render: 106ms)
+ GET /admin/editor?slug=home 200 in 721ms (compile: 62ms, proxy.ts: 380ms, render: 279ms)
+ GET /admin/editor?slug=home 200 in 157ms (compile: 19ms, proxy.ts: 45ms, render: 93ms)
+ GET /admin/editor?slug=home 200 in 1301ms (compile: 1016ms, proxy.ts: 116ms, render: 169ms)
+ GET /admin/editor?slug=home 200 in 1448ms (compile: 659ms, proxy.ts: 580ms, render: 209ms)
+ GET /admin/editor?slug=home 200 in 190ms (compile: 21ms, proxy.ts: 48ms, render: 121ms)
+ GET /admin/editor?slug=home 200 in 1391ms (compile: 612ms, proxy.ts: 579ms, render: 201ms)
+ GET /admin/editor?slug=home 200 in 1446ms (compile: 581ms, proxy.ts: 683ms, render: 182ms)
+ GET /admin/editor?slug=home 200 in 1421ms (compile: 600ms, proxy.ts: 599ms, render: 222ms)
+ GET /admin/editor?slug=home 200 in 218ms (compile: 20ms, proxy.ts: 86ms, render: 112ms)

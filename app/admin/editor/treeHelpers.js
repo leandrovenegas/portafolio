@@ -89,6 +89,7 @@ export function cloneComponentInTree(tree, id) {
     if (comp.id === id) {
       const clonedComp = JSON.parse(JSON.stringify(comp));
       clonedComp.id = Date.now().toString() + '-' + Math.random().toString(36).substr(2, 5);
+      clonedComp.instanceId = Date.now().toString() + '-' + Math.random().toString(36).substr(2, 5);
       acc.push(clonedComp);
       cloned = true;
     }
