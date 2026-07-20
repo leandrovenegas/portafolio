@@ -1,569 +1,757 @@
 {
   "communities": {
     "0": [
-      "next_old_2_dev_types_app_api_bunny_video_slug_route",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_checkfields",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_diff",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_firstarg",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_layoutprops",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_maybefield",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_negative",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_nonnegative",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_numeric",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_omitwithtag",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_pageprops",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_paramcheck",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_revalidaterange",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_routecontext",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_secondarg",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_segmentparams",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_tentry",
-      "next_old_2_dev_types_app_api_bunny_video_slug_route_zero"
+      "app_api_page_config_route",
+      "app_api_page_config_route_get",
+      "app_api_page_config_route_patch",
+      "app_blog_page",
+      "app_blog_page_labpage",
+      "app_blog_page_metadata",
+      "app_blog_slug_page",
+      "app_blog_slug_page_generatemetadata",
+      "app_blog_slug_page_generatestaticparams",
+      "app_blog_slug_page_labpostpage",
+      "app_lab_page",
+      "app_lab_page_labpage",
+      "app_lab_page_metadata",
+      "app_lab_slug_page",
+      "app_lab_slug_page_generatemetadata",
+      "app_lab_slug_page_generatestaticparams",
+      "app_lab_slug_page_labpostpage",
+      "app_portafolio_page",
+      "app_portafolio_page_getpagecomponents",
+      "app_portafolio_page_metadata",
+      "app_portafolio_page_portafolio",
+      "app_videos_page",
+      "app_videos_page_getpagecomponents",
+      "app_videos_page_metadata",
+      "app_videos_page_videospage",
+      "components_animacion",
+      "components_animacion_animacion",
+      "components_animacion_frames",
+      "components_heroportafoliotexto",
+      "components_heroportafoliotexto_heroportafoliotexto",
+      "components_herovideo",
+      "components_herovideo_herovideo",
+      "components_mediapreconnect",
+      "components_mediapreconnect_mediapreconnect",
+      "components_page_builder_sections_herovideosection",
+      "components_page_builder_sections_herovideosection_herovideosection",
+      "lib_lab",
+      "lib_lab_getlabpostbyslug",
+      "lib_lab_getlabposts",
+      "lib_lab_labdirectory",
+      "lib_markdown",
+      "lib_markdown_configuremarkedrenderer",
+      "lib_markdown_parsemarkdown",
+      "lib_pageconfig",
+      "lib_pageconfig_configpath",
+      "lib_pageconfig_getpagetext",
+      "lib_pageconfig_readpageconfig",
+      "lib_pageconfig_writepageconfig"
     ],
     "1": [
-      "next_old_2_dev_types_app_api_pages_route",
-      "next_old_2_dev_types_app_api_pages_route_checkfields",
-      "next_old_2_dev_types_app_api_pages_route_diff",
-      "next_old_2_dev_types_app_api_pages_route_firstarg",
-      "next_old_2_dev_types_app_api_pages_route_layoutprops",
-      "next_old_2_dev_types_app_api_pages_route_maybefield",
-      "next_old_2_dev_types_app_api_pages_route_negative",
-      "next_old_2_dev_types_app_api_pages_route_nonnegative",
-      "next_old_2_dev_types_app_api_pages_route_numeric",
-      "next_old_2_dev_types_app_api_pages_route_omitwithtag",
-      "next_old_2_dev_types_app_api_pages_route_pageprops",
-      "next_old_2_dev_types_app_api_pages_route_paramcheck",
-      "next_old_2_dev_types_app_api_pages_route_revalidaterange",
-      "next_old_2_dev_types_app_api_pages_route_routecontext",
-      "next_old_2_dev_types_app_api_pages_route_secondarg",
-      "next_old_2_dev_types_app_api_pages_route_segmentparams",
-      "next_old_2_dev_types_app_api_pages_route_tentry",
-      "next_old_2_dev_types_app_api_pages_route_zero"
-    ],
-    "2": [
-      "next_old_2_dev_static_chunks_polyfills",
-      "next_old_2_dev_static_chunks_polyfills_cb",
-      "next_old_2_dev_static_chunks_polyfills_e",
-      "next_old_2_dev_static_chunks_polyfills_eb",
-      "next_old_2_dev_static_chunks_polyfills_hb",
-      "next_old_2_dev_static_chunks_polyfills_ib",
-      "next_old_2_dev_static_chunks_polyfills_jm",
-      "next_old_2_dev_static_chunks_polyfills_nb",
-      "next_old_2_dev_static_chunks_polyfills_ob",
-      "next_old_2_dev_static_chunks_polyfills_qm",
-      "next_old_2_dev_static_chunks_polyfills_rb",
-      "next_old_2_dev_static_chunks_polyfills_sb",
-      "next_old_2_dev_static_chunks_polyfills_t",
-      "next_old_2_dev_static_chunks_polyfills_tb",
-      "next_old_2_dev_static_chunks_polyfills_ub",
-      "next_old_2_dev_static_chunks_polyfills_zm"
-    ],
-    "3": [
-      "next_old_2_dev_types_app_admin_editor_page",
-      "next_old_2_dev_types_app_admin_editor_page_checkfields",
-      "next_old_2_dev_types_app_admin_editor_page_diff",
-      "next_old_2_dev_types_app_admin_editor_page_firstarg",
-      "next_old_2_dev_types_app_admin_editor_page_layoutprops",
-      "next_old_2_dev_types_app_admin_editor_page_maybefield",
-      "next_old_2_dev_types_app_admin_editor_page_negative",
-      "next_old_2_dev_types_app_admin_editor_page_nonnegative",
-      "next_old_2_dev_types_app_admin_editor_page_numeric",
-      "next_old_2_dev_types_app_admin_editor_page_omitwithtag",
-      "next_old_2_dev_types_app_admin_editor_page_pageprops",
-      "next_old_2_dev_types_app_admin_editor_page_revalidaterange",
-      "next_old_2_dev_types_app_admin_editor_page_secondarg",
-      "next_old_2_dev_types_app_admin_editor_page_segmentparams",
-      "next_old_2_dev_types_app_admin_editor_page_tentry",
-      "next_old_2_dev_types_app_admin_editor_page_zero"
-    ],
-    "4": [
-      "next_old_2_dev_types_app_admin_layout",
-      "next_old_2_dev_types_app_admin_layout_checkfields",
-      "next_old_2_dev_types_app_admin_layout_diff",
-      "next_old_2_dev_types_app_admin_layout_firstarg",
-      "next_old_2_dev_types_app_admin_layout_layoutprops",
-      "next_old_2_dev_types_app_admin_layout_maybefield",
-      "next_old_2_dev_types_app_admin_layout_negative",
-      "next_old_2_dev_types_app_admin_layout_nonnegative",
-      "next_old_2_dev_types_app_admin_layout_numeric",
-      "next_old_2_dev_types_app_admin_layout_omitwithtag",
-      "next_old_2_dev_types_app_admin_layout_pageprops",
-      "next_old_2_dev_types_app_admin_layout_revalidaterange",
-      "next_old_2_dev_types_app_admin_layout_secondarg",
-      "next_old_2_dev_types_app_admin_layout_segmentparams",
-      "next_old_2_dev_types_app_admin_layout_tentry",
-      "next_old_2_dev_types_app_admin_layout_zero"
-    ],
-    "5": [
-      "next_old_2_dev_types_app_layout",
-      "next_old_2_dev_types_app_layout_checkfields",
-      "next_old_2_dev_types_app_layout_diff",
-      "next_old_2_dev_types_app_layout_firstarg",
-      "next_old_2_dev_types_app_layout_layoutprops",
-      "next_old_2_dev_types_app_layout_maybefield",
-      "next_old_2_dev_types_app_layout_negative",
-      "next_old_2_dev_types_app_layout_nonnegative",
-      "next_old_2_dev_types_app_layout_numeric",
-      "next_old_2_dev_types_app_layout_omitwithtag",
-      "next_old_2_dev_types_app_layout_pageprops",
-      "next_old_2_dev_types_app_layout_revalidaterange",
-      "next_old_2_dev_types_app_layout_secondarg",
-      "next_old_2_dev_types_app_layout_segmentparams",
-      "next_old_2_dev_types_app_layout_tentry",
-      "next_old_2_dev_types_app_layout_zero"
-    ],
-    "6": [
-      "app_admin_editor_treehelpers",
-      "app_admin_editor_treehelpers_addcomponenttotree",
-      "app_admin_editor_treehelpers_calculatenextavailableposition",
-      "app_admin_editor_treehelpers_clonecomponentintree",
-      "app_admin_editor_treehelpers_extractcomponent",
-      "app_admin_editor_treehelpers_findcomponent",
-      "app_admin_editor_treehelpers_insertcomponentintoparent",
-      "app_admin_editor_treehelpers_migratetotreestructure",
-      "app_admin_editor_treehelpers_movecomponentintree",
-      "app_admin_editor_treehelpers_performmove",
-      "app_admin_editor_treehelpers_recalculatezindices",
-      "app_admin_editor_treehelpers_removecomponentfromtree",
-      "app_admin_editor_treehelpers_togglecomponentvisibility",
-      "app_admin_editor_treehelpers_updatecomponentprop",
-      "app_admin_editor_treehelpers_updategridlayout"
-    ],
-    "7": [
-      "next_old_2_dev_server_edge_runtime_webpack",
-      "next_old_2_dev_server_edge_runtime_webpack_applyhandler",
-      "next_old_2_dev_server_edge_runtime_webpack_applyinvalidatedmodules",
-      "next_old_2_dev_server_edge_runtime_webpack_createmodulehotobject",
-      "next_old_2_dev_server_edge_runtime_webpack_createrequire",
-      "next_old_2_dev_server_edge_runtime_webpack_hotapply",
-      "next_old_2_dev_server_edge_runtime_webpack_hotcheck",
-      "next_old_2_dev_server_edge_runtime_webpack_internalapply",
-      "next_old_2_dev_server_edge_runtime_webpack_loadupdatechunk",
-      "next_old_2_dev_server_edge_runtime_webpack_setstatus",
-      "next_old_2_dev_server_edge_runtime_webpack_trackblockingpromise",
-      "next_old_2_dev_server_edge_runtime_webpack_unblock",
-      "next_old_2_dev_server_edge_runtime_webpack_waitforblockingpromises",
-      "next_old_2_dev_server_edge_runtime_webpack_webpack_require"
-    ],
-    "8": [
-      "next_old_2_dev_static_chunks_webpack",
-      "next_old_2_dev_static_chunks_webpack_applyhandler",
-      "next_old_2_dev_static_chunks_webpack_applyinvalidatedmodules",
-      "next_old_2_dev_static_chunks_webpack_createmodulehotobject",
-      "next_old_2_dev_static_chunks_webpack_createrequire",
-      "next_old_2_dev_static_chunks_webpack_hotapply",
-      "next_old_2_dev_static_chunks_webpack_hotcheck",
-      "next_old_2_dev_static_chunks_webpack_internalapply",
-      "next_old_2_dev_static_chunks_webpack_loadupdatechunk",
-      "next_old_2_dev_static_chunks_webpack_setstatus",
-      "next_old_2_dev_static_chunks_webpack_trackblockingpromise",
-      "next_old_2_dev_static_chunks_webpack_unblock",
-      "next_old_2_dev_static_chunks_webpack_waitforblockingpromises",
-      "next_old_2_dev_static_chunks_webpack_webpack_require"
-    ],
-    "9": [
-      "next_old_2_dev_types_routes_d",
-      "next_old_2_dev_types_routes_d_approutehandlerroutes",
-      "next_old_2_dev_types_routes_d_approutes",
-      "next_old_2_dev_types_routes_d_layoutprops",
-      "next_old_2_dev_types_routes_d_layoutroutes",
-      "next_old_2_dev_types_routes_d_layoutslotmap",
-      "next_old_2_dev_types_routes_d_pageprops",
-      "next_old_2_dev_types_routes_d_pageroutes",
-      "next_old_2_dev_types_routes_d_parammap",
-      "next_old_2_dev_types_routes_d_paramsof",
-      "next_old_2_dev_types_routes_d_redirectroutes",
-      "next_old_2_dev_types_routes_d_rewriteroutes",
-      "next_old_2_dev_types_routes_d_routecontext",
-      "next_old_2_dev_types_routes_d_routes"
-    ],
-    "10": [
-      "next_old_2_types_routes_d",
-      "next_old_2_types_routes_d_approutehandlerroutes",
-      "next_old_2_types_routes_d_approutes",
-      "next_old_2_types_routes_d_layoutprops",
-      "next_old_2_types_routes_d_layoutroutes",
-      "next_old_2_types_routes_d_layoutslotmap",
-      "next_old_2_types_routes_d_pageprops",
-      "next_old_2_types_routes_d_pageroutes",
-      "next_old_2_types_routes_d_parammap",
-      "next_old_2_types_routes_d_paramsof",
-      "next_old_2_types_routes_d_redirectroutes",
-      "next_old_2_types_routes_d_rewriteroutes",
-      "next_old_2_types_routes_d_routecontext",
-      "next_old_2_types_routes_d_routes"
-    ],
-    "11": [
-      "scratch_restore",
-      "scratch_restore_code",
-      "scratch_restore_fs",
-      "scratch_restore_lines",
-      "scratch_restore_lines_code",
-      "scratch_restore_lines_fs",
-      "scratch_restore_menuopenindex",
-      "scratch_restore_recoveredlines"
-    ],
-    "12": [
+      "app_admin_editor_page",
+      "app_admin_editor_page_visualeditor",
+      "app_admin_editor_page_visualeditorcontent",
       "app_page",
       "app_page_faqschema",
       "app_page_getpagecomponents",
       "app_page_home",
       "app_page_localbusinessschema",
-      "app_page_metadata"
-    ],
-    "13": [
-      "scratch_process_diff2",
-      "scratch_process_diff2_data",
-      "scratch_process_diff2_fs",
-      "scratch_process_diff2_line",
-      "scratch_process_diff2_lines",
-      "scratch_process_diff2_recoveredlines"
-    ],
-    "14": [
-      "app_api_pages_route",
-      "app_api_pages_route_get",
-      "app_api_pages_route_patch",
-      "app_api_pages_route_post",
-      "app_api_pages_route_put"
-    ],
-    "15": [
-      "components_page_builder_registry",
+      "app_page_metadata",
+      "app_sistema_page",
+      "app_sistema_page_getsistemacomponents",
+      "app_sistema_page_metadata",
+      "app_sistema_page_sistemapage",
+      "app_sistema_page_videos",
+      "components_page_builder_defaultconfig",
+      "components_page_builder_defaultconfig_default_home_components",
+      "components_page_builder_globaltypographypanel",
+      "components_page_builder_globaltypographypanel_globaltypographypanel",
+      "components_page_builder_historypanel",
+      "components_page_builder_historypanel_historypanel",
+      "components_page_builder_livepreviewlistener",
+      "components_page_builder_livepreviewlistener_livepreviewlistener",
+      "components_page_builder_pagerenderer",
+      "components_page_builder_pagerenderer_pagerenderer",
       "components_page_builder_registry_component_definitions",
       "components_page_builder_registry_component_registry",
-      "components_page_builder_sections_containersection",
-      "components_page_builder_sections_containersection_containersection"
+      "components_page_builder_smartpropertiespanel",
+      "components_page_builder_smartpropertiespanel_breakpoints",
+      "components_page_builder_smartpropertiespanel_genericfield",
+      "components_page_builder_smartpropertiespanel_hero_editorial_text_fields",
+      "components_page_builder_smartpropertiespanel_postersrcfield",
+      "components_page_builder_smartpropertiespanel_sectionlabel",
+      "components_page_builder_smartpropertiespanel_smartpropertiespanel",
+      "components_page_builder_smartpropertiespanel_textfield",
+      "components_page_builder_stylespanel",
+      "components_page_builder_stylespanel_stylespanel",
+      "components_page_builder_swatchespanel",
+      "components_page_builder_swatchespanel_swatchespanel",
+      "components_page_builder_typographypanel",
+      "components_page_builder_typographypanel_breakpoints",
+      "components_page_builder_typographypanel_typographypanel",
+      "components_page_builder_usedraggable",
+      "components_page_builder_usedraggable_usedraggable"
     ],
-    "16": [
+    "2": [
+      "components_page_builder_registry",
+      "components_page_builder_sections_avatarsection",
+      "components_page_builder_sections_avatarsection_avatarsection",
+      "components_page_builder_sections_cellphonectasection",
+      "components_page_builder_sections_cellphonectasection_cellphonectasection",
+      "components_page_builder_sections_ctasection",
+      "components_page_builder_sections_ctasection_ctasection",
+      "components_page_builder_sections_ctawhatsapp",
+      "components_page_builder_sections_ctawhatsapp_ctawhatsapp",
+      "components_page_builder_sections_estrelassection",
+      "components_page_builder_sections_estrelassection_estrelassection",
+      "components_page_builder_sections_estrelassection_toinlinestyle",
+      "components_page_builder_sections_faqsection",
+      "components_page_builder_sections_faqsection_faqsection",
+      "components_page_builder_sections_finalctasection",
+      "components_page_builder_sections_finalctasection_finalctasection",
+      "components_page_builder_sections_formatssection",
+      "components_page_builder_sections_formatssection_formatssection",
+      "components_page_builder_sections_heroeditorialsection",
+      "components_page_builder_sections_heroeditorialsection_heroeditorialsection",
+      "components_page_builder_sections_heroeditorialsection_toinlinestyle",
+      "components_page_builder_sections_listsection",
+      "components_page_builder_sections_listsection_listsection",
+      "components_page_builder_sections_logossection",
+      "components_page_builder_sections_logossection_logossection",
+      "components_page_builder_sections_servicebuttonssection",
+      "components_page_builder_sections_servicebuttonssection_servicebuttonssection",
+      "components_page_builder_sections_servicessection",
+      "components_page_builder_sections_servicessection_servicessection",
+      "components_page_builder_sections_simplecenteredcta",
+      "components_page_builder_sections_simplecenteredcta_simplecenteredcta",
+      "components_page_builder_sections_simplecenteredcta_toinlinestyle",
+      "components_page_builder_sections_textosanimados",
+      "components_page_builder_sections_textosanimados_animationtoken",
+      "components_page_builder_sections_textosanimados_textosanimados",
+      "components_page_builder_sections_textosanimados_textosanimadosprops",
+      "components_page_builder_sections_textosanimados_toinlinestyle",
+      "components_page_builder_sections_textsection",
+      "components_page_builder_sections_textsection_textsection",
+      "components_page_builder_sections_textsection_toinlinestyle"
+    ],
+    "3": [
+      "anthropic_ai_sdk",
+      "google_generative_ai",
+      "hls_js",
+      "lucide_react",
+      "marked",
+      "mdx_js_loader",
+      "mdx_js_react",
+      "next",
+      "next_mdx",
+      "next_mdx_remote",
+      "next_third_parties",
+      "package_dependencies",
+      "package_dependencies_anthropic_ai_sdk",
+      "package_dependencies_google_generative_ai",
+      "package_dependencies_hls_js",
+      "package_dependencies_lucide_react",
+      "package_dependencies_marked",
+      "package_dependencies_mdx_js_loader",
+      "package_dependencies_mdx_js_react",
+      "package_dependencies_next",
+      "package_dependencies_next_mdx",
+      "package_dependencies_next_mdx_remote",
+      "package_dependencies_next_third_parties",
+      "package_dependencies_postcss",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_resend",
+      "package_dependencies_supabase_supabase_js",
+      "package_dependencies_tailwindcss",
+      "package_dependencies_tailwindcss_postcss",
+      "package_dependencies_tailwindcss_typography",
+      "postcss",
+      "react",
+      "react_dom",
+      "resend",
+      "supabase_supabase_js",
+      "tailwindcss",
+      "tailwindcss_postcss",
+      "tailwindcss_typography"
+    ],
+    "4": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "ref_mts",
+      "ref_next_dev_types_ts",
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx",
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_baseurl",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_ignoredeprecations",
+      "tsconfig_compileroptions_incremental",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_plugins",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_exclude",
+      "tsconfig_include",
+      "tsconfig_json_ref",
+      "tsconfig_paths"
+    ],
+    "5": [
+      "app_video_slug_actions",
+      "app_video_slug_actions_getsupabase",
+      "app_video_slug_actions_logctaclick",
+      "app_video_slug_actions_registerpagevisit",
+      "app_video_slug_actions_resend",
+      "app_video_slug_actions_submitemaillead",
+      "app_video_slug_landingclient",
+      "app_video_slug_landingclient_gtag",
+      "app_video_slug_landingclient_landingclient",
+      "app_video_slug_landingclient_landingclientprops",
+      "app_video_slug_landingclient_lead",
+      "app_video_slug_landingclient_trackevent",
+      "app_video_slug_landingclient_videodata",
+      "app_video_slug_landingclient_window",
+      "app_video_slug_page",
+      "app_video_slug_page_generatemetadata",
+      "app_video_slug_page_rawlead",
+      "app_video_slug_page_videolandingpage",
+      "app_video_slug_page_videoqueue",
+      "app_video_slug_page_videounavailable",
+      "components_bunnyvideoplayer",
+      "components_bunnyvideoplayer_bunnyvideoplayer",
+      "components_bunnyvideoplayer_slugify",
+      "components_page_builder_sections_videoreelsection",
+      "components_page_builder_sections_videoreelsection_videoreelsection",
+      "components_videoplayer",
+      "components_videoplayer_videoplayer",
+      "lib_supabase_spr",
+      "lib_supabase_spr_supabasespr"
+    ],
+    "6": [
+      "app_api_admin_portafolio_route",
+      "app_api_admin_portafolio_route_get",
+      "app_api_admin_portafolio_route_patch",
+      "app_api_newsletter_route",
+      "app_api_newsletter_route_post",
+      "app_api_orders_route",
+      "app_api_orders_route_get",
+      "app_api_orders_route_post",
+      "app_api_orders_route_put",
+      "app_api_pages_route",
+      "app_api_pages_route_get",
+      "app_api_pages_route_post",
+      "app_api_pages_route_put",
+      "app_api_products_route",
+      "app_api_products_route_get",
+      "app_api_products_route_put",
+      "app_api_webhooks_whatsapp_route",
+      "app_api_webhooks_whatsapp_route_get",
+      "app_api_webhooks_whatsapp_route_post",
+      "app_contenidos_page",
+      "app_contenidos_page_contenidos",
+      "app_playground_page",
+      "app_playground_page_playground",
       "components_page_builder_sections_avatartextsection",
       "components_page_builder_sections_avatartextsection_avatartextsection",
-      "components_page_builder_sections_avatartextsection_default_inner_layout",
-      "components_page_builder_sections_avatartextsection_innercanvas",
-      "components_page_builder_sections_avatartextsection_toinlinestyle"
+      "components_page_builder_sections_avatartextsection_toinlinestyle",
+      "lib_supabase",
+      "lib_supabase_supabase"
+    ],
+    "7": [
+      "package",
+      "package_browserslist",
+      "package_devdependencies",
+      "package_devdependencies_types_node",
+      "package_devdependencies_typescript",
+      "package_name",
+      "package_packagemanager",
+      "package_pnpm",
+      "package_pnpm_supportedarchitectures",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_check_bunny",
+      "package_scripts_dev",
+      "package_scripts_start",
+      "package_supportedarchitectures_cpu",
+      "package_supportedarchitectures_os",
+      "package_version",
+      "ref_chrome_90",
+      "ref_current",
+      "ref_edge_90",
+      "ref_firefox_88",
+      "ref_linux",
+      "ref_not_dead",
+      "ref_safari_14",
+      "ref_x64",
+      "types_node",
+      "typescript"
+    ],
+    "8": [
+      "app_api_bunny_video_slug_route",
+      "app_api_bunny_video_slug_route_get",
+      "app_api_bunny_videos_route",
+      "app_api_bunny_videos_route_get",
+      "app_api_video_config_route",
+      "app_api_video_config_route_get",
+      "app_api_video_config_route_patch",
+      "app_api_video_config_route_put",
+      "app_videos_slug_page",
+      "app_videos_slug_page_generatemetadata",
+      "app_videos_slug_page_videopage",
+      "components_videopageviewer",
+      "components_videopageviewer_videopageviewer",
+      "lib_bunny",
+      "lib_bunny_fetchbunnyvideos",
+      "lib_bunny_formatduration",
+      "lib_bunny_getvideoid",
+      "lib_bunny_makeuniqueslugs",
+      "lib_bunny_mapvideo",
+      "lib_bunny_slugify",
+      "lib_bunny_toisowithtimezone",
+      "lib_videoconfig",
+      "lib_videoconfig_configpath",
+      "lib_videoconfig_getenabledvideoids",
+      "lib_videoconfig_getvideoconfigmap",
+      "lib_videoconfig_readvideoconfig",
+      "lib_videoconfig_writevideoconfig"
+    ],
+    "9": [
+      "app_carrito_page",
+      "app_carrito_page_carritopage",
+      "app_carrito_page_cartcontent",
+      "app_carrito_page_confirmscreen",
+      "app_carrito_page_emptyscreen",
+      "app_carrito_page_field",
+      "app_carrito_page_formatclp",
+      "app_layout",
+      "app_layout_dmmono",
+      "app_layout_instrumentsans",
+      "app_layout_metadata",
+      "app_layout_rootlayout",
+      "components_carrito_addtocartbutton",
+      "components_carrito_addtocartbutton_addtocartbutton",
+      "components_carrito_cartbutton",
+      "components_carrito_cartbutton_cartbutton",
+      "components_carrito_cartcontext",
+      "components_carrito_cartcontext_cartcontext",
+      "components_carrito_cartcontext_cartprovider",
+      "components_carrito_cartcontext_usecart",
+      "components_cookiebanner",
+      "components_cookiebanner_cookiebanner",
+      "components_footer",
+      "components_footer_footer",
+      "components_nav",
+      "components_nav_nav"
+    ],
+    "10": [
+      "scratch_merge_mdx",
+      "scratch_merge_mdx_contentdir",
+      "scratch_merge_mdx_crazyaudio",
+      "scratch_merge_mdx_crazymain",
+      "scratch_merge_mdx_crazyprod",
+      "scratch_merge_mdx_fs",
+      "scratch_merge_mdx_incoaudio",
+      "scratch_merge_mdx_incomain",
+      "scratch_merge_mdx_incotv",
+      "scratch_merge_mdx_path"
+    ],
+    "11": [
+      "app_admin_tienda_page",
+      "app_admin_tienda_page_fmtdate",
+      "app_admin_tienda_page_formatclp",
+      "app_admin_tienda_page_orderstab",
+      "app_admin_tienda_page_producteditor",
+      "app_admin_tienda_page_productstab",
+      "app_admin_tienda_page_status_colors",
+      "app_admin_tienda_page_status_labels",
+      "app_admin_tienda_page_tiendaadminpage"
+    ],
+    "12": [
+      "app_precios_page",
+      "app_precios_page_emptystate",
+      "app_precios_page_formatclp",
+      "app_precios_page_getproducts",
+      "app_precios_page_metadata",
+      "app_precios_page_preciospage",
+      "app_precios_page_product",
+      "app_precios_page_waurl",
+      "app_precios_page_whatsappicon"
+    ],
+    "13": [
+      "scripts_publish_version",
+      "scripts_publish_version_args",
+      "scripts_publish_version_createclient",
+      "scripts_publish_version_envpath",
+      "scripts_publish_version_fs",
+      "scripts_publish_version_path",
+      "scripts_publish_version_publish",
+      "scripts_publish_version_supabase"
+    ],
+    "14": [
+      "app_proceso_page",
+      "app_proceso_page_metadata",
+      "app_proceso_page_procesopage",
+      "components_procesotimeline",
+      "components_procesotimeline_phases",
+      "components_procesotimeline_procesotimeline",
+      "components_procesotimeline_revealonscroll"
+    ],
+    "15": [
+      "scratch_diagnostic",
+      "scratch_diagnostic_checkimage",
+      "scratch_diagnostic_createclient",
+      "scratch_diagnostic_https",
+      "scratch_diagnostic_run",
+      "scratch_diagnostic_supabase",
+      "scratch_diagnostic_testsupabase"
+    ],
+    "16": [
+      "scripts_check_bunny",
+      "scripts_check_bunny_checks",
+      "scripts_check_bunny_envcontent",
+      "scripts_check_bunny_envpath",
+      "scripts_check_bunny_envvars",
+      "scripts_check_bunny_fs",
+      "scripts_check_bunny_path"
     ],
     "17": [
-      "next_old_2_dev_server_app_admin_editor_page",
-      "next_old_2_dev_server_app_api_bunny_video_slug_route",
-      "next_old_2_dev_server_app_api_pages_route",
-      "next_old_2_dev_server_webpack_runtime",
-      "next_old_2_dev_server_webpack_runtime_webpack_require"
+      "app_admin_portafolio_page",
+      "app_admin_portafolio_page_adminportafoliopage",
+      "app_admin_portafolio_page_field",
+      "app_admin_portafolio_page_mdxeditor",
+      "app_admin_portafolio_page_orgcard"
     ],
     "18": [
-      "next_old_2_dev_types_validator",
-      "next_old_2_dev_types_validator_apppageconfig",
-      "next_old_2_dev_types_validator_check",
-      "next_old_2_dev_types_validator_isexpected",
-      "next_old_2_dev_types_validator_unused"
+      "app_portafolio_slug_page",
+      "app_portafolio_slug_page_generatemetadata",
+      "app_portafolio_slug_page_getentitydata",
+      "app_portafolio_slug_page_portafolioslugpage",
+      "app_portafolio_slug_page_sectionwrapper"
     ],
     "19": [
-      "next_old_2_types_validator",
-      "next_old_2_types_validator_apppageconfig",
-      "next_old_2_types_validator_check",
-      "next_old_2_types_validator_isexpected",
-      "next_old_2_types_validator_unused"
+      "components_page_builder_sections_tituloanimado",
+      "components_page_builder_sections_tituloanimado_animationtoken",
+      "components_page_builder_sections_tituloanimado_tituloanimado",
+      "components_page_builder_sections_tituloanimado_tituloanimadoprops",
+      "components_page_builder_sections_tituloanimado_toinlinestyle"
     ],
     "20": [
-      "scratch_check_sections_avatartextsection",
-      "scratch_check_sections_avatartextsection_avatartextsection",
-      "scratch_check_sections_avatartextsection_default_inner_layout",
-      "scratch_check_sections_avatartextsection_innercanvas",
-      "scratch_check_sections_avatartextsection_toinlinestyle"
+      "jsconfig",
+      "jsconfig_compileroptions",
+      "jsconfig_compileroptions_paths",
+      "jsconfig_json_ref",
+      "jsconfig_paths"
     ],
     "21": [
-      "scratch_process_diff",
-      "scratch_process_diff_difftext",
-      "scratch_process_diff_fs",
-      "scratch_process_diff_lines",
-      "scratch_process_diff_recoveredlines"
+      "update_videos",
+      "update_videos_contentdir",
+      "update_videos_files",
+      "update_videos_fs",
+      "update_videos_path"
     ],
     "22": [
-      "scratch_restore_lines_2",
-      "scratch_restore_lines_2_code",
-      "scratch_restore_lines_2_fs",
-      "scratch_restore_lines_2_lines",
-      "scratch_restore_lines_2_savesuccessindex"
+      "app_admin_videos_page",
+      "app_admin_videos_page_adminvideospage",
+      "components_videoconfigdashboard",
+      "components_videoconfigdashboard_videoconfigdashboard"
     ],
     "23": [
-      "scratch_do_recover",
-      "scratch_do_recover_fs",
-      "scratch_do_recover_readline",
-      "scratch_do_recover_recover"
+      "app_api_admin_portafolio_mdx_route",
+      "app_api_admin_portafolio_mdx_route_content_dir",
+      "app_api_admin_portafolio_mdx_route_get",
+      "app_api_admin_portafolio_mdx_route_put"
     ],
     "24": [
-      "scratch_do_recover2",
-      "scratch_do_recover2_fs",
-      "scratch_do_recover2_readline",
-      "scratch_do_recover2_recover"
+      "app_videos_autoridad_page",
+      "app_videos_autoridad_page_autoridadpage",
+      "app_videos_autoridad_page_metadata",
+      "app_videos_autoridad_page_other_videos"
     ],
     "25": [
-      "scratch_recover",
-      "scratch_recover_fs",
-      "scratch_recover_readline",
-      "scratch_recover_recover"
+      "app_videos_stop_scrolling_page",
+      "app_videos_stop_scrolling_page_metadata",
+      "app_videos_stop_scrolling_page_other_videos",
+      "app_videos_stop_scrolling_page_stopscrollingpage"
     ],
     "26": [
-      "scratch_recover2",
-      "scratch_recover2_fs",
-      "scratch_recover2_readline",
-      "scratch_recover2_recover"
+      "app_videos_validacion_page",
+      "app_videos_validacion_page_metadata",
+      "app_videos_validacion_page_other_videos",
+      "app_videos_validacion_page_validacionpage"
     ],
     "27": [
-      "scratch_recover3",
-      "scratch_recover3_fs",
-      "scratch_recover3_readline",
-      "scratch_recover3_recover"
+      "app_videos_vsl_page",
+      "app_videos_vsl_page_metadata",
+      "app_videos_vsl_page_other_videos",
+      "app_videos_vsl_page_vslpage"
     ],
     "28": [
-      "scratch_refactor_ui",
-      "scratch_refactor_ui_code",
-      "scratch_refactor_ui_fs",
-      "scratch_refactor_ui_startindex"
+      "next_config",
+      "next_config_cspheader",
+      "next_config_nextconfig",
+      "next_config_withmdx"
     ],
     "29": [
-      "app_admin_editor_page",
-      "app_admin_editor_page_visualeditor",
-      "app_admin_editor_page_visualeditorcontent"
+      "scratch_check_active_home",
+      "scratch_check_active_home_createclient",
+      "scratch_check_active_home_supabase",
+      "scratch_check_active_home_test"
     ],
     "30": [
-      "components_page_builder_structuretree",
-      "components_page_builder_structuretree_structuretree",
-      "components_page_builder_structuretree_structuretreenode"
+      "scratch_update_links",
+      "scratch_update_links_fs",
+      "scratch_update_links_path",
+      "scratch_update_links_processdirectory"
     ],
     "31": [
-      "scratch_fix_syntax",
-      "scratch_fix_syntax_code",
-      "scratch_fix_syntax_fs"
+      "scratch_view_active_home_components",
+      "scratch_view_active_home_components_createclient",
+      "scratch_view_active_home_components_supabase",
+      "scratch_view_active_home_components_test"
     ],
     "32": [
-      "scratch_reconstruct",
-      "scratch_reconstruct_fs",
-      "scratch_reconstruct_reconstruct"
+      "test_supabase_script",
+      "test_supabase_script_createclient",
+      "test_supabase_script_supabase",
+      "test_supabase_script_test"
     ],
     "33": [
-      "scratch_reconstructed_page",
-      "scratch_reconstructed_page_visualeditor",
-      "scratch_reconstructed_page_visualeditorcontent"
+      "app_admin_page",
+      "app_admin_page_admindashboardpage",
+      "app_admin_page_metadata"
     ],
     "34": [
-      "scratch_recovered_page_new",
-      "scratch_recovered_page_new_visualeditor",
-      "scratch_recovered_page_new_visualeditorcontent"
+      "app_api_admin_clear_cache_route",
+      "app_api_admin_clear_cache_route_isadmin",
+      "app_api_admin_clear_cache_route_post"
     ],
     "35": [
-      "scratch_refactor_activegridid",
-      "scratch_refactor_activegridid_code",
-      "scratch_refactor_activegridid_fs"
+      "app_api_auth_login_route",
+      "app_api_auth_login_route_delete",
+      "app_api_auth_login_route_post"
     ],
     "36": [
-      "scratch_stitch",
-      "scratch_stitch_fs",
-      "scratch_stitch_stitch"
+      "app_contacto_page",
+      "app_contacto_page_contactpage",
+      "app_contacto_page_metadata"
     ],
     "37": [
-      "components_page_builder_grideditor",
-      "components_page_builder_grideditor_grideditor"
+      "app_contratar_editor_de_video_page",
+      "app_contratar_editor_de_video_page_contratareditorpage",
+      "app_contratar_editor_de_video_page_metadata"
     ],
     "38": [
-      "components_page_builder_pagerenderer",
-      "components_page_builder_pagerenderer_pagerenderer"
+      "app_creador_de_contenido_ia_page",
+      "app_creador_de_contenido_ia_page_creadorcontenidoiapage",
+      "app_creador_de_contenido_ia_page_metadata"
     ],
     "39": [
-      "components_page_builder_toolboxpanel",
-      "components_page_builder_toolboxpanel_toolboxpanel"
+      "app_director_creativo_chile_page",
+      "app_director_creativo_chile_page_directorcreativopage",
+      "app_director_creativo_chile_page_metadata"
     ],
     "40": [
-      "next_old_2_dev_package",
-      "next_old_2_dev_package_type"
+      "app_editor_de_video_para_redes_sociales_page",
+      "app_editor_de_video_para_redes_sociales_page_editorvideoredespage",
+      "app_editor_de_video_para_redes_sociales_page_metadata"
     ],
     "41": [
-      "next_old_2_dev_types_cache_life_d",
-      "next_old_2_dev_types_cache_life_d_next_cache"
+      "app_servicios_director_creativo_externo_page",
+      "app_servicios_director_creativo_externo_page_directorcreativoexternopage",
+      "app_servicios_director_creativo_externo_page_metadata"
     ],
     "42": [
-      "next_old_2_dev_types_package",
-      "next_old_2_dev_types_package_type"
+      "app_servicios_motion_design_page",
+      "app_servicios_motion_design_page_metadata",
+      "app_servicios_motion_design_page_motiondesignpage"
     ],
     "43": [
-      "next_old_2_package",
-      "next_old_2_package_type"
+      "app_servicios_produccion_audiovisual_empresas_page",
+      "app_servicios_produccion_audiovisual_empresas_page_metadata",
+      "app_servicios_produccion_audiovisual_empresas_page_produccionaudiovisualpage"
     ],
     "44": [
-      "scratch_check_grideditor",
-      "scratch_check_grideditor_grideditor"
+      "app_servicios_seo_video_page",
+      "app_servicios_seo_video_page_metadata",
+      "app_servicios_seo_video_page_seovideopage"
     ],
     "45": [
-      "scratch_out",
-      "scratch_out_grideditor"
+      "app_sobre_mi_page",
+      "app_sobre_mi_page_metadata",
+      "app_sobre_mi_page_sobremi"
     ],
     "46": [
-      "supabase_pages_schema",
-      "supabase_pages_schema_public_page_versions"
+      "app_videos_post_venta_page",
+      "app_videos_post_venta_page_metadata",
+      "app_videos_post_venta_page_postventapage"
     ],
     "47": [
-      "next_old_2_dev_server_app_admin_editor_page_client_reference_manifest"
+      "app_videos_primer_impacto_page",
+      "app_videos_primer_impacto_page_metadata",
+      "app_videos_primer_impacto_page_primerimpactopage"
     ],
     "48": [
-      "next_old_2_dev_server_app_api_bunny_video_slug_route_client_reference_manifest"
+      "middleware",
+      "middleware_config",
+      "middleware_middleware"
     ],
     "49": [
-      "next_old_2_dev_server_app_api_pages_route_client_reference_manifest"
+      "scratch_fetch_live",
+      "scratch_fetch_live_fetchpage",
+      "scratch_fetch_live_https"
     ],
     "50": [
-      "next_old_2_dev_server_interception_route_rewrite_manifest"
+      "scripts_get_org_data",
+      "scripts_get_org_data_getorgdata",
+      "scripts_get_org_data_parseenv"
     ],
     "51": [
-      "next_old_2_dev_server_middleware"
+      "test_products",
+      "test_products_main",
+      "test_products_supabase"
     ],
     "52": [
-      "next_old_2_dev_server_middleware_build_manifest"
+      "test_resend_script",
+      "test_resend_script_resend",
+      "test_resend_script_test"
     ],
     "53": [
-      "next_old_2_dev_server_middleware_react_loadable_manifest"
+      "app_admin_layout",
+      "app_admin_layout_adminlayout"
     ],
     "54": [
-      "next_old_2_dev_server_next_font_manifest"
+      "app_admin_login_page",
+      "app_admin_login_page_loginpage"
     ],
     "55": [
-      "next_old_2_dev_server_server_reference_manifest"
+      "app_api_bunny_status_route",
+      "app_api_bunny_status_route_get"
     ],
     "56": [
-      "next_old_2_dev_server_vendor_chunks_clsx"
+      "app_api_download_route",
+      "app_api_download_route_get"
     ],
     "57": [
-      "next_old_2_dev_server_vendor_chunks_fast_equals"
+      "app_api_thumbnail_videoid_route",
+      "app_api_thumbnail_videoid_route_get"
     ],
     "58": [
-      "next_old_2_dev_server_vendor_chunks_hls_js"
+      "app_api_upload_image_route",
+      "app_api_upload_image_route_post"
     ],
     "59": [
-      "next_old_2_dev_server_vendor_chunks_iceberg_js"
+      "app_sitemap",
+      "app_sitemap_sitemap"
     ],
     "60": [
-      "next_old_2_dev_server_vendor_chunks_next"
+      "components_estrellas",
+      "components_estrellas_estrellas"
     ],
     "61": [
-      "next_old_2_dev_server_vendor_chunks_object_assign"
+      "components_newslettersignup",
+      "components_newslettersignup_newslettersignup"
     ],
     "62": [
-      "next_old_2_dev_server_vendor_chunks_prop_types"
+      "data_portfolio",
+      "data_portfolio_portfolio"
     ],
     "63": [
-      "next_old_2_dev_server_vendor_chunks_react_draggable"
+      "data_videos",
+      "data_videos_videos"
     ],
     "64": [
-      "next_old_2_dev_server_vendor_chunks_react_grid_layout"
+      "postcss_config",
+      "postcss_config_config"
     ],
     "65": [
-      "next_old_2_dev_server_vendor_chunks_react_is"
+      "scratch_fetch_bunny",
+      "scratch_fetch_bunny_main"
     ],
     "66": [
-      "next_old_2_dev_server_vendor_chunks_react_resizable"
+      "scratch_find_contact",
+      "scratch_find_contact_main"
     ],
     "67": [
-      "next_old_2_dev_server_vendor_chunks_supabase"
+      "scratch_fix_db_links",
+      "scratch_fix_db_links_main"
     ],
     "68": [
-      "next_old_2_dev_server_vendor_chunks_swc"
-    ],
-    "69": [
-      "next_old_2_dev_server_vendor_chunks_tslib"
-    ],
-    "70": [
-      "next_old_2_dev_static_chunks_app_admin_editor_page"
-    ],
-    "71": [
-      "next_old_2_dev_static_chunks_app_admin_layout"
-    ],
-    "72": [
-      "next_old_2_dev_static_chunks_app_api_bunny_video_slug_route"
-    ],
-    "73": [
-      "next_old_2_dev_static_chunks_app_api_pages_route"
-    ],
-    "74": [
-      "next_old_2_dev_static_chunks_app_layout"
-    ],
-    "75": [
-      "next_old_2_dev_static_chunks_app_pages_internals"
-    ],
-    "76": [
-      "next_old_2_dev_static_chunks_main_app"
-    ],
-    "77": [
-      "next_old_2_dev_static_development_buildmanifest"
-    ],
-    "78": [
-      "next_old_2_dev_static_development_ssgmanifest"
-    ],
-    "79": [
-      "next_old_2_dev_static_webpack_app_layout_6c102282bb24f71b_hot_update"
-    ],
-    "80": [
-      "next_old_2_dev_static_webpack_webpack_4766ca1d392ac642_hot_update"
-    ],
-    "81": [
-      "next_old_2_dev_static_webpack_webpack_6c102282bb24f71b_hot_update"
-    ],
-    "82": [
-      "scratch_recovered_code"
-    ],
-    "83": [
-      "scratch_stitched_page"
+      "scratch_list_orgs",
+      "scratch_list_orgs_main"
     ]
   },
   "cohesion": {
-    "0": 0.1111111111111111,
-    "1": 0.1111111111111111,
-    "2": 0.21666666666666667,
-    "3": 0.125,
-    "4": 0.125,
-    "5": 0.125,
-    "6": 0.1619047619047619,
-    "7": 0.31868131868131866,
-    "8": 0.31868131868131866,
-    "9": 0.14285714285714285,
-    "10": 0.14285714285714285,
-    "11": 0.25,
-    "12": 0.4,
-    "13": 0.3333333333333333,
-    "14": 0.4,
-    "15": 0.5,
-    "16": 0.5,
+    "0": 0.08067375886524823,
+    "1": 0.07862679955703211,
+    "2": 0.07564102564102564,
+    "3": 0.05128205128205128,
+    "4": 0.06060606060606061,
+    "5": 0.11330049261083744,
+    "6": 0.09788359788359788,
+    "7": 0.07407407407407407,
+    "8": 0.15954415954415954,
+    "9": 0.11692307692307692,
+    "10": 0.2,
+    "11": 0.3055555555555556,
+    "12": 0.3333333333333333,
+    "13": 0.25,
+    "14": 0.3333333333333333,
+    "15": 0.38095238095238093,
+    "16": 0.2857142857142857,
     "17": 0.4,
-    "18": 0.4,
-    "19": 0.4,
-    "20": 0.6,
+    "18": 0.6,
+    "19": 0.5,
+    "20": 0.4,
     "21": 0.4,
-    "22": 0.4,
+    "22": 0.6666666666666666,
     "23": 0.5,
     "24": 0.5,
     "25": 0.5,
     "26": 0.5,
     "27": 0.5,
     "28": 0.5,
-    "29": 0.6666666666666666,
-    "30": 0.6666666666666666,
-    "31": 0.6666666666666666,
-    "32": 0.6666666666666666,
+    "29": 0.5,
+    "30": 0.5,
+    "31": 0.5,
+    "32": 0.5,
     "33": 0.6666666666666666,
-    "34": 0.6666666666666666,
+    "34": 1.0,
     "35": 0.6666666666666666,
     "36": 0.6666666666666666,
-    "37": 1.0,
-    "38": 1.0,
-    "39": 1.0,
-    "40": 1.0,
-    "41": 1.0,
-    "42": 1.0,
-    "43": 1.0,
-    "44": 1.0,
-    "45": 1.0,
-    "46": 1.0,
-    "47": 1.0,
-    "48": 1.0,
-    "49": 1.0,
+    "37": 0.6666666666666666,
+    "38": 0.6666666666666666,
+    "39": 0.6666666666666666,
+    "40": 0.6666666666666666,
+    "41": 0.6666666666666666,
+    "42": 0.6666666666666666,
+    "43": 0.6666666666666666,
+    "44": 0.6666666666666666,
+    "45": 0.6666666666666666,
+    "46": 0.6666666666666666,
+    "47": 0.6666666666666666,
+    "48": 0.6666666666666666,
+    "49": 0.6666666666666666,
     "50": 1.0,
-    "51": 1.0,
-    "52": 1.0,
+    "51": 0.6666666666666666,
+    "52": 0.6666666666666666,
     "53": 1.0,
     "54": 1.0,
     "55": 1.0,
@@ -579,76 +767,117 @@
     "65": 1.0,
     "66": 1.0,
     "67": 1.0,
-    "68": 1.0,
-    "69": 1.0,
-    "70": 1.0,
-    "71": 1.0,
-    "72": 1.0,
-    "73": 1.0,
-    "74": 1.0,
-    "75": 1.0,
-    "76": 1.0,
-    "77": 1.0,
-    "78": 1.0,
-    "79": 1.0,
-    "80": 1.0,
-    "81": 1.0,
-    "82": 1.0,
-    "83": 1.0
+    "68": 1.0
   },
   "gods": [
     {
-      "id": "next_old_2_dev_static_chunks_polyfills_ib",
-      "label": "ib()",
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 18
+    },
+    {
+      "id": "lib_supabase_supabase",
+      "label": "supabase",
+      "degree": 13
+    },
+    {
+      "id": "lib_videoconfig_readvideoconfig",
+      "label": "readVideoConfig()",
+      "degree": 13
+    },
+    {
+      "id": "lib_bunny_fetchbunnyvideos",
+      "label": "fetchBunnyVideos()",
+      "degree": 13
+    },
+    {
+      "id": "components_page_builder_usedraggable_usedraggable",
+      "label": "useDraggable()",
+      "degree": 9
+    },
+    {
+      "id": "lib_lab_getlabposts",
+      "label": "getLabPosts()",
+      "degree": 9
+    },
+    {
+      "id": "lib_markdown_parsemarkdown",
+      "label": "parseMarkdown()",
       "degree": 8
     },
     {
-      "id": "next_old_2_dev_server_edge_runtime_webpack_setstatus",
-      "label": "setStatus()",
-      "degree": 6
+      "id": "components_carrito_cartcontext_usecart",
+      "label": "useCart()",
+      "degree": 7
     },
     {
-      "id": "next_old_2_dev_server_edge_runtime_webpack_hotcheck",
-      "label": "hotCheck()",
-      "degree": 6
+      "id": "lib_lab_getlabpostbyslug",
+      "label": "getLabPostBySlug()",
+      "degree": 7
     },
     {
-      "id": "next_old_2_dev_static_chunks_webpack_setstatus",
-      "label": "setStatus()",
-      "degree": 6
-    },
-    {
-      "id": "next_old_2_dev_static_chunks_webpack_hotcheck",
-      "label": "hotCheck()",
-      "degree": 6
-    },
-    {
-      "id": "next_old_2_dev_server_edge_runtime_webpack_createmodulehotobject",
-      "label": "createModuleHotObject()",
-      "degree": 5
-    },
-    {
-      "id": "next_old_2_dev_server_edge_runtime_webpack_internalapply",
-      "label": "internalApply()",
-      "degree": 5
-    },
-    {
-      "id": "next_old_2_dev_static_chunks_polyfills_e",
-      "label": "e()",
-      "degree": 5
-    },
-    {
-      "id": "next_old_2_dev_static_chunks_webpack_createmodulehotobject",
-      "label": "createModuleHotObject()",
-      "degree": 5
-    },
-    {
-      "id": "next_old_2_dev_static_chunks_webpack_internalapply",
-      "label": "internalApply()",
-      "degree": 5
+      "id": "lib_pageconfig_readpageconfig",
+      "label": "readPageConfig()",
+      "degree": 7
     }
   ],
-  "surprises": [],
+  "surprises": [
+    {
+      "source": "GET()",
+      "target": "fetchBunnyVideos()",
+      "source_files": [
+        "app/api/bunny-video-slug/route.js",
+        "lib/bunny.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `GET()` unexpectedly reaches hub `fetchBunnyVideos()`"
+    },
+    {
+      "source": "GET()",
+      "target": "readPageConfig()",
+      "source_files": [
+        "app/api/page-config/route.js",
+        "lib/pageConfig.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `GET()` unexpectedly reaches hub `readPageConfig()`"
+    },
+    {
+      "source": "GET()",
+      "target": "readVideoConfig()",
+      "source_files": [
+        "app/api/video-config/route.js",
+        "lib/videoConfig.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `GET()` unexpectedly reaches hub `readVideoConfig()`"
+    },
+    {
+      "source": "generateStaticParams()",
+      "target": "getLabPosts()",
+      "source_files": [
+        "app/blog/[slug]/page.js",
+        "lib/lab.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `generateStaticParams()` unexpectedly reaches hub `getLabPosts()`"
+    },
+    {
+      "source": "generateMetadata()",
+      "target": "getLabPostBySlug()",
+      "source_files": [
+        "app/blog/[slug]/page.js",
+        "lib/lab.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `generateMetadata()` unexpectedly reaches hub `getLabPostBySlug()`"
+    }
+  ],
   "tokens": {
     "input": 0,
     "output": 0

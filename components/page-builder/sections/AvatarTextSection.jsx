@@ -1,10 +1,6 @@
 'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { ResponsiveGridLayout, useContainerWidth } from 'react-grid-layout';
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
-
-// ─── Helpers ────────────────────────────────────────────────────────────────
+import supabase from '@/lib/supabase';
 
 function toInlineStyle(styleObj) {
   if (!styleObj) return {};
@@ -20,8 +16,15 @@ function toInlineStyle(styleObj) {
     s.textTransform = styleObj.textTransform;
   if (styleObj.letterSpacing !== undefined && styleObj.letterSpacing !== '')
     s.letterSpacing = `${styleObj.letterSpacing}em`;
-  if (styleObj.lineHeight !== undefined && styleObj.lineHeight !== '')
+  if (styleObj.lineHeight !== undefined && styleObj.lineHeight !== '') {
     s.lineHeight = styleObj.lineHeight;
+    if (Number(styleObj.lineHeight) < 0) {
+      s.marginTop  = `${styleObj.lineHeight}em`;
+      s.lineHeight = 'normal';
+    }
+  }
+  if (styleObj.textIndent !== undefined && styleObj.textIndent !== '')
+    s.textIndent = `${styleObj.textIndent}px`;
   if (styleObj.paddingTop !== undefined && styleObj.paddingTop !== '')
     s.paddingTop = `${styleObj.paddingTop}px`;
   if (styleObj.paddingBottom !== undefined && styleObj.paddingBottom !== '')
@@ -29,133 +32,25 @@ function toInlineStyle(styleObj) {
   return s;
 }
 
-// Layout inicial de los sub-elementos (12 columnas)
-const DEFAULT_INNER_LAYOUT = {
-  avatar:      { x: 0, y: 0, w: 4, h: 8 },
-  title:       { x: 4, y: 0, w: 8, h: 4 },
-  description: { x: 4, y: 4, w: 8, h: 4 },
-};
-
-// ─── InnerCanvas: mini react-grid-layout solo en modo editor ────────────────
-
-function InnerCanvas({ slots, layout, onLayoutChange, selectedSubId, setSelectedSubId, isEditorActive }) {
-  const { width, containerRef, mounted } = useContainerWidth();
-  const [hoveredId, setHoveredId] = useState(null);
-
-  const rglLayout = Object.keys(layout).map((key) => ({
-    i: key,
-    x: layout[key].x,
-    y: layout[key].y,
-    w: layout[key].w,
-    h: layout[key].h,
-    minW: 1,
-    minH: 1,
-  }));
-
-  return (
-    <div ref={containerRef} className="w-full relative" style={{ minHeight: '200px' }}>
-      {mounted && (
-        <ResponsiveGridLayout
-          width={width}
-          className="layout"
-          layouts={{ desktop: rglLayout, tablet: rglLayout, mobile: rglLayout }}
-          breakpoints={{ desktop: 1024, tablet: 768, mobile: 0 }}
-          cols={{ desktop: 12, tablet: 12, mobile: 12 }}
-          rowHeight={24}
-          isDraggable={isEditorActive}
-          isResizable={isEditorActive}
-          useCSSTransforms
-          compactType={null}
-          preventCollision={false}
-          onLayoutChange={(currentLayout) => {
-            if (!onLayoutChange) return;
-            const updated = {};
-            currentLayout.forEach(({ i, x, y, w, h }) => {
-              updated[i] = { x, y, w, h };
-            });
-            onLayoutChange(updated);
-          }}
-          draggableCancel=".no-drag, input, textarea, button, [contenteditable]"
-        >
-          {Object.keys(slots).map((key) => {
-            const content = slots[key];
-            if (!content) return null;
-            const isSelected = selectedSubId === key;
-            const isHovered = hoveredId === key && !isSelected;
-
-            return (
-              <div
-                key={key}
-                className="relative"
-                style={{ cursor: isEditorActive ? 'grab' : 'default' }}
-                onMouseEnter={() => isEditorActive && setHoveredId(key)}
-                onMouseLeave={() => setHoveredId(null)}
-                onClick={(e) => {
-                  if (!isEditorActive) return;
-                  e.stopPropagation();
-                  setSelectedSubId(isSelected ? null : key);
-                }}
-              >
-                {/* ── Guías de margen en hover (estilo Figma) ────────────────── */}
-                {isEditorActive && (isHovered || isSelected) && (
-                  <>
-                    {/* Borde principal */}
-                    <div className={`absolute inset-0 pointer-events-none z-10 transition-all duration-100
-                      ${isSelected
-                        ? 'ring-2 ring-accent ring-inset'
-                        : 'ring-1 ring-dashed ring-accent/60 ring-inset'
-                      }`}
-                    />
-                    {/* Líneas de guía de margen — 4px desde cada borde */}
-                    {isHovered && !isSelected && (
-                      <>
-                        {/* Línea superior */}
-                        <div className="absolute top-1 left-0 right-0 h-px bg-accent/30 pointer-events-none z-10" />
-                        {/* Línea inferior */}
-                        <div className="absolute bottom-1 left-0 right-0 h-px bg-accent/30 pointer-events-none z-10" />
-                        {/* Línea izquierda */}
-                        <div className="absolute top-0 bottom-0 left-1 w-px bg-accent/30 pointer-events-none z-10" />
-                        {/* Línea derecha */}
-                        <div className="absolute top-0 bottom-0 right-1 w-px bg-accent/30 pointer-events-none z-10" />
-                        {/* Esquinas — marca de esquina estilo Photoshop */}
-                        <div className="absolute top-0.5 left-0.5 w-2.5 h-2.5 border-t border-l border-accent/70 pointer-events-none z-10" />
-                        <div className="absolute top-0.5 right-0.5 w-2.5 h-2.5 border-t border-r border-accent/70 pointer-events-none z-10" />
-                        <div className="absolute bottom-0.5 left-0.5 w-2.5 h-2.5 border-b border-l border-accent/70 pointer-events-none z-10" />
-                        <div className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 border-b border-r border-accent/70 pointer-events-none z-10" />
-                      </>
-                    )}
-                  </>
-                )}
-
-                {/* Badge de nombre del sub-elemento seleccionado */}
-                {isEditorActive && isSelected && (
-                  <div className="absolute bottom-full left-0 mb-0.5 bg-accent text-bg text-[9px] font-bold px-2 py-0.5 rounded-t z-[100] pointer-events-none uppercase tracking-wider">
-                    {key}
-                  </div>
-                )}
-
-                {/* Contenido del sub-elemento */}
-                <div className="w-full h-full overflow-hidden flex items-center justify-center">
-                  {content}
-                </div>
-              </div>
-            );
-          })}
-        </ResponsiveGridLayout>
-      )}
-    </div>
-  );
-}
-
-// ─── Componente principal ────────────────────────────────────────────────────
-
 /**
  * AvatarTextSection
  *
- * En modo editor: renderiza un InnerCanvas (react-grid-layout de 12 cols)
- * donde cada sub-elemento es un nodo drag & resize.
+ * Props visuales:
+ *   title, avatarSrc, avatarAlt, paragraphs, description,
+ *   showAccentBar, _styles, forceBp, elementOrder
  *
- * En modo público: renderiza con CSS normal.
+ * Props de edición (opcionales — solo en modo Editor Visual):
+ *   onPropChange(field, value)  — callback del editor; su presencia activa
+ *                                 el modo inline. Permite bidireccionalidad:
+ *                                 panel lateral → canvas y canvas → panel.
+ *   pageVersionId               — UUID de la fila en `page_versions`.
+ *   componentId                 — ID del componente dentro del array.
+ *   allComponents               — Array completo de componentes de la página.
+ *
+ * Bidireccionalidad:
+ *   - Panel lateral → canvas: useEffect sincroniza innerText del DOM cuando
+ *     el prop cambia desde afuera (panel) y el campo no está siendo editado.
+ *   - Canvas → panel: onBlur llama a onPropChange y persiste en Supabase.
  */
 export default function AvatarTextSection({
   title,
@@ -166,15 +61,16 @@ export default function AvatarTextSection({
   showAccentBar = true,
   _styles,
   forceBp = null,
-  // Layout interno guardado: { avatar: {x,y,w,h}, title: {x,y,w,h}, description: {x,y,w,h} }
-  innerLayout,
+  elementOrder,
   // ── CMS / Editor props ──
   onPropChange  = null,
-  activeGridId  = null,
-  id            = null,
+  pageVersionId = null,
+  componentId   = null,
+  allComponents = null,
 }) {
   // ── Breakpoint ──────────────────────────────────────────────────────────
-  const [bp, setBp] = useState(forceBp || 'desktop');
+  const [bp, setBp] = useState(forceBp || 'mobile');
+
   useEffect(() => {
     if (forceBp) { setBp(forceBp); return; }
     const check = () => {
@@ -191,25 +87,108 @@ export default function AvatarTextSection({
     return toInlineStyle(_styles[fieldName][bp]);
   };
 
-  // ── Modo editor ──────────────────────────────────────────────────────────
-  const isEditorActive = typeof onPropChange === 'function' && activeGridId === id;
-  const isEditable     = typeof onPropChange === 'function';
+  // ── Editor mode ──────────────────────────────────────────────────────────
+  const isEditable = typeof onPropChange === 'function';
 
-  // Sub-elemento seleccionado dentro del InnerCanvas
-  const [selectedSubId, setSelectedSubId] = useState(null);
+  // Refs para los elementos contentEditable
+  const titleRef       = useRef(null);
+  const descriptionRef = useRef(null);
 
-  // Layout interno del canvas
-  const currentInnerLayout = innerLayout || DEFAULT_INNER_LAYOUT;
+  // Rastrear qué campo está siendo editado activamente para no sobrescribir
+  // el DOM mientras el usuario escribe (el panel podría re-renderizar props)
+  const editingField = useRef(null);
 
-  const handleInnerLayoutChange = useCallback((updatedLayout) => {
-    onPropChange?.('innerLayout', updatedLayout);
-  }, [onPropChange]);
+  /**
+   * Sincronización Panel → Canvas
+   * Cuando el prop cambia desde el panel lateral, actualiza el DOM del
+   * elemento contentEditable SOLO si ese campo no está siendo editado.
+   */
+  useEffect(() => {
+    if (!isEditable) return;
+    if (titleRef.current && editingField.current !== 'title') {
+      const domText = titleRef.current.innerText;
+      const propText = title ?? '';
+      if (domText !== propText) titleRef.current.innerText = propText;
+    }
+  }, [title, isEditable]);
+
+  useEffect(() => {
+    if (!isEditable) return;
+    const propText = description !== undefined
+      ? description
+      : (paragraphs ? paragraphs.join('\n\n') : '');
+    if (descriptionRef.current && editingField.current !== 'description') {
+      const domText = descriptionRef.current.innerText;
+      if (domText !== propText) descriptionRef.current.innerText = propText;
+    }
+  }, [description, paragraphs, isEditable]);
+
+  // ── Persistencia Supabase ────────────────────────────────────────────────
+  const [saving,     setSaving]     = useState(false);
+  const [saveStatus, setSaveStatus] = useState(null); // null | 'ok' | 'error'
+  const saveTimer = useRef(null);
+
+  const persistToSupabase = useCallback(async (field, value) => {
+    if (!pageVersionId || !componentId || !allComponents) return;
+
+    setSaving(true);
+    setSaveStatus(null);
+    clearTimeout(saveTimer.current);
+
+    try {
+      const updatedComponents = allComponents.map((comp) => {
+        if (comp.id !== componentId) return comp;
+        return { ...comp, props: { ...comp.props, [field]: value } };
+      });
+
+      const { error } = await supabase
+        .from('page_versions')
+        .update({ components: updatedComponents })
+        .eq('id', pageVersionId);
+
+      if (error) throw error;
+      setSaveStatus('ok');
+    } catch (err) {
+      console.error('[AvatarTextSection] Error al guardar en Supabase:', err);
+      setSaveStatus('error');
+    } finally {
+      setSaving(false);
+      saveTimer.current = setTimeout(() => setSaveStatus(null), 2000);
+    }
+  }, [pageVersionId, componentId, allComponents]);
+
+  /**
+   * onFocus: marca qué campo está en edición para bloquear sincronización
+   * externa (evita que el panel sobrescriba lo que el usuario está escribiendo).
+   */
+  const handleFocus = useCallback((field) => {
+    editingField.current = field;
+  }, []);
+
+  /**
+   * onBlur: Canvas → Panel + Supabase
+   * Lee el innerText del DOM (fuente de verdad tras la edición inline),
+   * notifica al panel lateral y persiste.
+   */
+  const handleBlur = useCallback((field, e) => {
+    editingField.current = null;
+    const newValue = e.currentTarget.innerText;
+    onPropChange?.(field, newValue);
+    persistToSupabase(field, newValue);
+  }, [onPropChange, persistToSupabase]);
+
+  /** Previene Enter que genere <br>/<div> en contentEditable */
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  }, []);
 
   // ── Datos ────────────────────────────────────────────────────────────────
   const bodyText = description !== undefined
     ? description
     : (paragraphs ? paragraphs.join('\n\n') : '');
+  const order = elementOrder || ['title', 'avatar', 'description'];
 
+  // Estilo de borde para indicar que el campo es editable
   const editableOutline = isEditable
     ? {
         outline: '1.5px dashed rgba(250, 204, 21, 0.55)',
@@ -220,138 +199,133 @@ export default function AvatarTextSection({
       }
     : {};
 
-  // ── Sub-elementos ────────────────────────────────────────────────────────
-
-  const titleNode = title ? (
-    <div className={`w-full h-full flex items-center ${showAccentBar ? 'border-l-[4px] border-accent pl-4' : ''}`}>
-      <h2
-        data-field="title"
-        contentEditable={isEditable}
-        suppressContentEditableWarning
-        onBlur={(e) => onPropChange?.('title', e.currentTarget.innerText)}
-        className="font-display font-bold leading-tight text-white w-full"
-        style={{ textTransform: 'none', ...fieldStyle('title'), ...(isEditable ? editableOutline : {}) }}
-      >
-        {title}
-      </h2>
-    </div>
-  ) : null;
-
-  const avatarNode = avatarSrc ? (
-    <div className="relative w-full h-full flex items-center justify-center">
-      <div className="relative overflow-hidden rounded-full border border-white/10 shadow-[0_0_30px_rgba(255,204,0,0.15)] w-full h-full max-w-[192px] max-h-[192px] mx-auto">
-        <img
-          src={avatarSrc}
-          alt={avatarAlt || 'Avatar'}
-          className="w-full h-full object-cover"
-          data-field="avatarSrc"
-        />
-      </div>
-    </div>
-  ) : (
-    isEditable ? (
-        <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-accent/30 rounded-lg text-muted text-xs">
-          Sin imagen
-        </div>
-    ) : null
-  );
-
-  const descNode = bodyText ? (
-    <div className="w-full h-full flex items-start">
-      <p
-        data-field="description"
-        contentEditable={isEditable}
-        suppressContentEditableWarning
-        onBlur={(e) => onPropChange?.('description', e.currentTarget.innerText)}
-        className="font-body text-white/80 text-base leading-relaxed w-full"
-        style={{ whiteSpace: 'pre-wrap', ...fieldStyle('description'), ...(isEditable ? editableOutline : {}) }}
-      >
-        {bodyText}
-      </p>
-    </div>
-  ) : null;
-
-  // ── Render modo editor ───────────────────────────────────────────────────
-  if (isEditable) {
-    const slots = {
-      avatar:      avatarNode,
-      title:       titleNode,
-      description: descNode,
-    };
-
-    return (
-      <section className="w-full h-full relative group/avatartext">
-        {/* Drag handle exclusivo para AvatarTextSection */}
-        <div 
-          className="drag-handle absolute top-2 right-2 p-1.5 bg-black/40 hover:bg-black/60 rounded cursor-move opacity-0 group-hover/avatartext:opacity-100 transition-opacity z-[110] text-white"
-          title="Arrastrar componente"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="5 9 2 12 5 15"></polyline>
-            <polyline points="9 5 12 2 15 5"></polyline>
-            <polyline points="19 9 22 12 19 15"></polyline>
-            <polyline points="9 19 12 22 15 19"></polyline>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <line x1="12" y1="2" x2="12" y2="22"></line>
-          </svg>
-        </div>
-        {/* Etiqueta visual para identificar el componente */}
-        <div className="absolute top-0 left-0 bg-border text-muted text-[10px] px-2 py-0.5 font-mono uppercase tracking-widest z-10 opacity-0 group-hover/avatartext:opacity-100 transition-opacity pointer-events-none">
-          Avatar y Texto
-        </div>
-
-        {/* Hint para activar edición interna */}
-        {!isEditorActive && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-transparent group-hover/cell:bg-black/5 pointer-events-none">
-            <span className="opacity-0 group-hover:opacity-100 text-[10px] text-muted bg-s1/80 px-2 py-1 rounded border border-border transition-opacity">
-              Doble clic para editar internamente
-            </span>
-          </div>
-        )}
-        <InnerCanvas
-          slots={slots}
-          layout={currentInnerLayout}
-          onLayoutChange={handleInnerLayoutChange}
-          selectedSubId={selectedSubId}
-          setSelectedSubId={setSelectedSubId}
-          isEditorActive={isEditorActive}
-        />
-      </section>
-    );
-  }
-
-  // ── Render modo público ──────────────────────────────────────────────────
+  // ── Render ───────────────────────────────────────────────────────────────
   return (
     <section className="w-full flex flex-col gap-6">
-      {title && (
-        <div className={showAccentBar ? 'border-l-[5px] border-accent pl-5' : ''}>
-          <h2
-            className="font-display font-bold leading-[1.1] text-white max-w-3xl whitespace-pre-line"
-            style={{ textTransform: 'none', ...fieldStyle('title') }}
-          >
-            {title}
-          </h2>
+
+      {/* Indicador de guardado flotante — solo en modo editor */}
+      {isEditable && saveStatus && (
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '1.5rem',
+            right: '1.5rem',
+            zIndex: 9999,
+            padding: '0.4rem 0.9rem',
+            borderRadius: '0.4rem',
+            fontSize: '0.72rem',
+            fontWeight: 700,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+            background: saveStatus === 'ok' ? '#16a34a' : '#dc2626',
+            color: '#fff',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.35)',
+          }}
+        >
+          {saving && '⏳ Guardando…'}
+          {!saving && saveStatus === 'ok'    && '✓ Guardado'}
+          {!saving && saveStatus === 'error' && '✗ Error al guardar'}
         </div>
       )}
-      {avatarSrc && (
-        <div className="flex justify-center my-8">
-          <div className="relative w-48 h-48 rounded-full overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(255,204,0,0.15)] transition-all duration-300 hover:scale-105">
-            <img src={avatarSrc} alt={avatarAlt || 'Avatar'} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      )}
-      {bodyText && (
-        <div className="w-full max-w-3xl">
-          {bodyText.split('\n').map((p, i) => {
-            if (!p.trim()) return <br key={i} />;
-            return (
-              <p key={i} className="font-body text-white/80 text-lg md:text-xl leading-relaxed mb-6 last:mb-0" style={fieldStyle('description')}>
-                {p}
-              </p>
-            );
-          })}
-        </div>
-      )}
+
+      {order.map((key) => {
+
+        // ── Título ──────────────────────────────────────────────────────
+        if (key === 'title') {
+          return title && (
+            <div key="title" className={showAccentBar ? 'border-l-[5px] border-accent pl-5' : ''}>
+              <h2
+                ref={titleRef}
+                data-field="title"
+                className="font-display font-bold leading-[1.1] text-white max-w-3xl whitespace-pre-line"
+                style={{ textTransform: 'none', ...fieldStyle('title'), ...editableOutline }}
+                contentEditable={isEditable}
+                suppressContentEditableWarning
+                onFocus={isEditable ? () => handleFocus('title') : undefined}
+                onBlur={isEditable ? (e) => handleBlur('title', e) : undefined}
+                onKeyDown={isEditable ? handleKeyDown : undefined}
+              >
+                {title}
+              </h2>
+            </div>
+          );
+        }
+
+        // ── Avatar ──────────────────────────────────────────────────────
+        if (key === 'avatar') {
+          return avatarSrc && (
+            <div key="avatar" className="flex justify-center my-8">
+              <div className="relative w-48 h-48 rounded-full overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(255,204,0,0.15)] transition-all duration-300 hover:scale-105">
+                <img
+                  src={avatarSrc}
+                  alt={avatarAlt || 'Avatar'}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          );
+        }
+
+        // ── Descripción ─────────────────────────────────────────────────
+        if (key === 'description') {
+          return bodyText && (
+            <div key="description" className="w-full max-w-3xl">
+              {isEditable ? (
+                /*
+                 * En modo editor: un único <p> con contentEditable que
+                 * contiene el texto completo (con saltos de línea preservados).
+                 * Esto evita el problema de tener múltiples <p> con
+                 * contentEditable independientes que luego no se sincronizan.
+                 */
+                <p
+                  ref={descriptionRef}
+                  data-field="description"
+                  className="font-body text-white/80 text-lg md:text-xl leading-relaxed"
+                  style={{
+                    ...fieldStyle('description'),
+                    ...editableOutline,
+                    whiteSpace: 'pre-wrap',
+                  }}
+                  contentEditable
+                  suppressContentEditableWarning
+                  onFocus={() => handleFocus('description')}
+                  onBlur={(e) => handleBlur('description', e)}
+                  onKeyDown={handleKeyDown}
+                >
+                  {bodyText}
+                </p>
+              ) : (
+                /* Modo público: render normal con múltiples <p> */
+                bodyText.split('\n').map((p, i) => {
+                  if (!p.trim()) return <br key={i} />;
+                  return (
+                    <p
+                      data-field="description"
+                      key={i}
+                      className="font-body text-white/80 text-lg md:text-xl leading-relaxed mb-6 last:mb-0"
+                      style={fieldStyle('description')}
+                    >
+                      {p.includes('<Link')
+                        ? (
+                          <span dangerouslySetInnerHTML={{
+                            __html: p.replace(
+                              /<Link href='([^']+)' className='([^']+)'>([^<]+)<\/Link>/g,
+                              "<a href='$1' class='$2'>$3</a>"
+                            )
+                          }} />
+                        )
+                        : p
+                      }
+                    </p>
+                  );
+                })
+              )}
+            </div>
+          );
+        }
+
+        return null;
+      })}
     </section>
   );
 }

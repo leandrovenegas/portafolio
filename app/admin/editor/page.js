@@ -2,22 +2,18 @@
 
 import './photoshop.css';
 
-import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { COMPONENT_DEFINITIONS, COMPONENT_REGISTRY } from '../../../components/page-builder/registry';
-import { migrateToTreeStructure, findComponent, updateComponentProp, removeComponentFromTree, cloneComponentInTree, addComponentToTree, updateGridLayout, performMove, recalculateZIndices, toggleComponentVisibility } from './treeHelpers';
+import { COMPONENT_DEFINITIONS } from '@/components/page-builder/registry';
 import { DEFAULT_HOME_COMPONENTS } from '@/components/page-builder/defaultConfig';
 import PageRenderer from '@/components/page-builder/PageRenderer';
-import GridEditor from '@/components/page-builder/GridEditor';
-import StructureTree from '../../../components/page-builder/StructureTree';
 import Nav from '@/components/Nav';
 import SmartPropertiesPanel from '@/components/page-builder/SmartPropertiesPanel';
 import SwatchesPanel from '@/components/page-builder/SwatchesPanel';
 import StylesPanel from '@/components/page-builder/StylesPanel';
 import HistoryPanel from '@/components/page-builder/HistoryPanel';
 import GlobalTypographyPanel from '@/components/page-builder/GlobalTypographyPanel';
-import ToolboxPanel from '@/components/page-builder/ToolboxPanel';
 
 
 function VisualEditorContent() {
@@ -49,25 +45,12 @@ function VisualEditorContent() {
 
   // Selected component for editing props
   const [selectedId, setSelectedId] = useState(null);
-  const [showGridDebug, setShowGridDebug] = useState(false);
-  const [activeGridId, setActiveGridId] = useState(null); // null = root
 
   // Drag & Drop state
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const [editingNameId, setEditingNameId] = useState(null);
   const [previewBp, setPreviewBp] = useState('desktop'); // mobile | tablet | desktop
-
-  const [activeTab, setActiveTab] = useState('page'); // page | structure | properties
-  const [isPanelExpanded, setIsPanelExpanded] = useState(false);
-
-  useEffect(() => {
-    if (selectedId) {
-      setActiveTab('properties');
-    } else {
-      setActiveTab('structure');
-    }
-  }, [selectedId]);
 
   const handleDragStart = (e, index) => {
     setDraggedIndex(index);
@@ -116,10 +99,6 @@ function VisualEditorContent() {
     }
   }, [currentVersionId]);
 
-  const handleGridLayoutChange = useCallback((parentId, allLayouts) => {
-    setComponents(prev => updateGridLayout(prev, parentId, allLayouts));
-  }, []);
-
   const handleUndo = useCallback(() => {
     if (historyIndex > 0) {
       const prevIndex = historyIndex - 1;
@@ -138,7 +117,17 @@ function VisualEditorContent() {
 
   const handleDrop = (e, dropIndex) => {
     e.preventDefault();
-    // Reemplazado por treeHelpers / StructurePanel
+    if (draggedIndex === null || draggedIndex === dropIndex) {
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+      return;
+    }
+    const newComps = [...components];
+    const [removed] = newComps.splice(draggedIndex, 1);
+    newComps.splice(dropIndex, 0, removed);
+    setComponents(newComps);
+    setDraggedIndex(null);
+    setDragOverIndex(null);
   };
 
   const handleDragEnd = () => {
@@ -210,7 +199,6 @@ function VisualEditorContent() {
         if (!saving) {
           if (currentVersionId) {
             saveVersion(false);
-            saveVersion(false);
           } else {
             // Si no hay versión activa (modo local), creamos una nueva rama automáticamente
             saveVersion(true);
@@ -253,16 +241,15 @@ function VisualEditorContent() {
         setCurrentVersionId(targetVersion.id);
         const verRes = await fetch(`/api/pages?slug=${slug}&versionId=${targetVersion.id}&_=${ts}`, { cache: 'no-store' });
         const verData = await verRes.json();
-        const loadedComps = migrateToTreeStructure(verData.components || []);
+        const loadedComps = verData.components || [];
         setComponents(loadedComps);
         setHistory([{ actionName: 'Cargar versión', components: loadedComps, timestamp: Date.now() }]);
         setHistoryIndex(0);
       } else {
         // Fallback for first time
         if (slug === 'home') {
-          const defaultComps = migrateToTreeStructure(DEFAULT_HOME_COMPONENTS);
-          setComponents(defaultComps);
-          setHistory([{ actionName: 'Inicio (Local)', components: defaultComps, timestamp: Date.now() }]);
+          setComponents(DEFAULT_HOME_COMPONENTS);
+          setHistory([{ actionName: 'Inicio (Local)', components: DEFAULT_HOME_COMPONENTS, timestamp: Date.now() }]);
           setHistoryIndex(0);
         }
       }
@@ -270,9 +257,8 @@ function VisualEditorContent() {
       console.warn("Editor error:", err.message);
       setError("No se pudo conectar a la base de datos de versiones. Asegúrate de haber ejecutado el script SQL en Supabase. Cargando versión local por defecto...");
       if (slug === 'home') {
-        const defaultComps = migrateToTreeStructure(DEFAULT_HOME_COMPONENTS);
-        setComponents(defaultComps);
-        setHistory([{ actionName: 'Inicio (Local)', components: defaultComps, timestamp: Date.now() }]);
+        setComponents(DEFAULT_HOME_COMPONENTS);
+        setHistory([{ actionName: 'Inicio (Local)', components: DEFAULT_HOME_COMPONENTS, timestamp: Date.now() }]);
         setHistoryIndex(0);
       }
     } finally {
@@ -286,37 +272,19 @@ function VisualEditorContent() {
     setError('');
 
     try {
-      const currentVersion = versions.find(v => v.id === currentVersionId);
-      const isCurrentPublished = currentVersion?.is_published || false;
+      const vName = isNew ? newVersionName || `v${versions.length + 1}` : versions.find(v=>v.id===currentVersionId)?.version_name || 'v1';
       
-      // Auto-cloning logic:
-      // If we are NOT creating a new version explicitly (isNew = false)
-      // and we are editing a version that is currently published (isCurrentPublished = true)
-      // then we must clone this version instead of overwriting it.
-      let shouldClone = false;
-      if (!isNew && currentVersionId && isCurrentPublished) {
-        shouldClone = true;
-      }
-
-      let vName;
-      if (isNew) {
-        vName = newVersionName || `v${versions.length + 1}`;
-      } else if (shouldClone) {
-        vName = `${currentVersion?.version_name || 'v1'} (borrador)`;
-      } else {
-        vName = currentVersion?.version_name || 'v1';
-      }
-
       const payload = {
         slug,
         version_name: vName,
-        components
+        components,
+        is_active: true // Always set active when saving from editor for simplicity
       };
 
       let url = '/api/pages';
       let method = 'POST';
 
-      if (!shouldClone && !isNew && currentVersionId) {
+      if (!isNew && currentVersionId) {
         payload.id = currentVersionId;
         method = 'PUT';
       }
@@ -329,19 +297,12 @@ function VisualEditorContent() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       
-      setSaveSuccess(shouldClone ? 'Clonado como borrador' : 'Guardado correctamente');
+      setSaveSuccess('Guardado correctamente');
       setTimeout(() => setSaveSuccess(''), 3000);
       
-      if (isNew || shouldClone) {
+      if (isNew) {
         setNewVersionName('');
-        // Select the new version
-        if (data && data.id) {
-          const url = new URL(window.location);
-          url.searchParams.set('versionId', data.id);
-          window.history.pushState({}, '', url);
-          setCurrentVersionId(data.id);
-        }
-        await fetchData();
+        fetchData(); // Reload to get the new version ID
       } else {
         // Broadcast update to any open preview tabs so they refresh without F5
         if (typeof window !== 'undefined' && window.BroadcastChannel) {
@@ -349,7 +310,6 @@ function VisualEditorContent() {
           bc.postMessage({ type: 'saved', components });
           bc.close();
         }
-        await fetchData();
       }
       
       // Guardar estado en historial local cuando se guarda el documento
@@ -361,64 +321,41 @@ function VisualEditorContent() {
     }
   };
 
-  const publishVersion = async () => {
-    if (!currentVersionId) return;
-    setSaving(true);
-    setSaveSuccess('');
-    setError('');
-    try {
-      const res = await fetch('/api/pages', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: currentVersionId, is_published: true })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-      
-      setSaveSuccess('¡Publicado en Producción!');
-      setTimeout(() => setSaveSuccess(''), 3000);
-      fetchData(); // Reload versions to get updated is_published status
-    } catch (err) {
-      setError("Error al publicar: " + err.message);
-    } finally {
-      setSaving(false);
-    }
+  const moveComponent = (index, dir) => {
+    if (dir === 'up' && index === 0) return;
+    if (dir === 'down' && index === components.length - 1) return;
+    
+    const newComps = [...components];
+    const temp = newComps[index];
+    newComps[index] = newComps[dir === 'up' ? index - 1 : index + 1];
+    newComps[dir === 'up' ? index - 1 : index + 1] = temp;
+    setComponents(newComps);
   };
 
-  const handlePublish = async () => {
-    if (window.confirm("Esto se verá en vivo en el sitio público (Vercel). ¿Continuar?")) {
-      await publishVersion();
-    }
+  const removeComponent = (index) => {
+    const newComps = [...components];
+    const removed = newComps.splice(index, 1);
+    setComponents(newComps);
+    if (selectedId === removed[0].id) setSelectedId(null);
   };
 
-  const moveComponent = (id, direction) => {
-    setComponents(prev => {
-      const idx = prev.findIndex(c => c.id === id);
-      if (idx === -1) return prev;
-      const newArr = [...prev];
-      if (direction === 'up' && idx > 0) {
-        [newArr[idx - 1], newArr[idx]] = [newArr[idx], newArr[idx - 1]];
-      } else if (direction === 'down' && idx < newArr.length - 1) {
-        [newArr[idx], newArr[idx + 1]] = [newArr[idx + 1], newArr[idx]];
-      }
-      return newArr;
-    });
+  const cloneComponent = (index) => {
+    const compToClone = components[index];
+    // Deep clone to copy all nested props and _styles
+    const clonedComp = JSON.parse(JSON.stringify(compToClone));
+    clonedComp.id = Date.now().toString() + '-' + Math.random().toString(36).substr(2, 5);
+    
+    const newComps = [...components];
+    // Insert immediately after the original
+    newComps.splice(index + 1, 0, clonedComp);
+    setComponents(newComps);
+    // Optionally auto-select the clone
+    setSelectedId(clonedComp.id);
   };
 
-
-
-  const removeComponent = (id) => {
-    setComponents(prev => removeComponentFromTree(prev, id));
-    if (selectedId === id) setSelectedId(null);
-  };
-
-  const cloneComponent = (id) => {
-    setComponents(prev => cloneComponentInTree(prev, id));
-  };
-
-  const handleCopyStyle = (id) => {
-    const compToCopy = findComponent(components, id);
-    if (compToCopy && compToCopy.props._styles) {
+  const handleCopyStyle = (index) => {
+    const compToCopy = components[index];
+    if (compToCopy.props._styles) {
       setClipboardStyle({ type: compToCopy.type, data: compToCopy.props._styles });
       alert('Configuración (Estilos) copiada al portapapeles.');
     } else {
@@ -426,13 +363,12 @@ function VisualEditorContent() {
     }
   };
 
-  const handlePasteStyle = (id) => {
+  const handlePasteStyle = (index) => {
     if (!clipboardStyle) {
       alert('No hay ninguna configuración copiada.');
       return;
     }
-    const compTarget = findComponent(components, id);
-    if (!compTarget) return;
+    const compTarget = components[index];
     if (compTarget.type !== clipboardStyle.type) {
       const confirm = window.confirm(`El estilo copiado es de un componente [${clipboardStyle.type}]. ¿Estás seguro de pegarlo en un componente [${compTarget.type}]?`);
       if (!confirm) return;
@@ -441,28 +377,34 @@ function VisualEditorContent() {
     alert('Configuración pegada exitosamente.');
   };
 
-  const addComponent = (e, targetParentId = null) => {
+  const addComponent = (e) => {
     const type = e.target.value;
     if (!type) return;
     
     const def = COMPONENT_DEFINITIONS.find(d => d.type === type);
     if (def) {
-      const newComp = {
-        id: Date.now().toString(),
-        type: def.type,
-        props: JSON.parse(JSON.stringify(def.defaultProps)),
-        children: []
-      };
-      setComponents(prev => addComponentToTree(prev, newComp, targetParentId));
+      setComponents([
+        ...components,
+        {
+          id: Date.now().toString(),
+          type: def.type,
+          props: JSON.parse(JSON.stringify(def.defaultProps))
+        }
+      ]);
     }
     e.target.value = "";
   };
 
   const updateProp = (id, propKey, value) => {
-    setComponents(prev => updateComponentProp(prev, id, propKey, value));
+    setComponents(components.map(c => {
+      if (c.id === id) {
+        return { ...c, props: { ...c.props, [propKey]: value } };
+      }
+      return c;
+    }));
   };
 
-  const selectedComp = findComponent(components, selectedId);
+  const selectedComp = components.find(c => c.id === selectedId);
 
   if (loading) return <div>Cargando editor...</div>;
 
@@ -503,10 +445,10 @@ function VisualEditorContent() {
       <header 
         className="w-full z-50 flex items-center justify-between sticky top-0"
         style={{
-          minHeight: '40px',
+          height: 'var(--toolbar-height)',
           background: 'var(--ps-bg-toolbar)',
           borderBottom: 'var(--ps-border-width) solid var(--ps-border-dark)',
-          padding: '4px var(--sp-md)',
+          padding: '0 var(--sp-md)',
           color: 'var(--ps-text)',
           fontFamily: 'var(--font-ui)',
           fontSize: 'var(--font-size-sm)'
@@ -666,26 +608,133 @@ function VisualEditorContent() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-2 py-1">
-            <button
-              onClick={async () => {
-                await fetch('/api/auth/login', { method: 'DELETE' });
-                window.location.href = '/';
-              }}
-              style={{
-                color: 'var(--ps-text-dim)',
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                padding: '0 var(--sp-xs)'
-              }}
-              className="hover:text-[var(--ps-danger)] transition-colors"
-              title="Cerrar Sesión"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-            </button>
+        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          
+          <select
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-sm)',
+              background: 'var(--ps-bg-input)',
+              border: 'var(--ps-border-width) solid var(--ps-border-light)',
+              borderRadius: 'var(--ps-radius)',
+              color: 'var(--ps-text)',
+              fontSize: 'var(--font-size-sm)',
+              outline: 'none'
+            }}
+            className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
+            value={slug}
+            onChange={(e) => {
+              const url = new URL(window.location);
+              url.searchParams.set('slug', e.target.value);
+              url.searchParams.delete('versionId');
+              window.location.href = url.toString();
+            }}
+            title="Seleccionar página para editar"
+          >
+            <option value="home">home</option>
+            <option value="sistema">sistema</option>
+            <option value="videos">videos</option>
+            <option value="portafolio">portafolio</option>
+            <option value="contacto">contacto</option>
+          </select>
+
+          <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
+
+          <select 
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-sm)',
+              background: 'var(--ps-bg-input)',
+              border: 'var(--ps-border-width) solid var(--ps-border-light)',
+              borderRadius: 'var(--ps-radius)',
+              color: 'var(--ps-text)',
+              fontSize: 'var(--font-size-sm)',
+              outline: 'none',
+              maxWidth: '140px'
+            }}
+            className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
+            value={currentVersionId || ''}
+            onChange={(e) => {
+              if (e.target.value) {
+                const url = new URL(window.location);
+                url.searchParams.set('versionId', e.target.value);
+                window.history.pushState({}, '', url);
+                setCurrentVersionId(e.target.value);
+                fetchData();
+              }
+            }}
+          >
+            {versions.map(v => (
+              <option key={v.id} value={v.id}>
+                {v.version_name} {v.is_active ? '(Activa)' : ''}
+              </option>
+            ))}
+          </select>
+
+          <button 
+            onClick={() => saveVersion(false)} 
+            disabled={saving || !currentVersionId}
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-md)',
+              background: 'var(--ps-accent)',
+              border: 'none',
+              borderRadius: 'var(--ps-radius)',
+              color: '#fff',
+              fontSize: 'var(--font-size-sm)',
+              cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
+              opacity: (saving || !currentVersionId) ? 0.5 : 1
+            }}
+            className="hover:bg-[var(--ps-accent-hover)] transition-colors font-semibold"
+          >
+            {saving ? 'Guardando...' : 'Guardar'}
+          </button>
+
+          <a 
+            href={currentVersionId ? `/${slug === 'home' ? '' : slug}?versionId=${currentVersionId}` : `/${slug === 'home' ? '' : slug}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{
+              height: '24px',
+              padding: '0 var(--sp-md)',
+              background: 'var(--ps-bg-panel)',
+              border: 'var(--ps-border-width) solid var(--ps-border-light)',
+              borderRadius: 'var(--ps-radius)',
+              color: 'var(--ps-text)',
+              fontSize: 'var(--font-size-sm)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              textDecoration: 'none'
+            }}
+            className="hover:bg-[var(--ps-bg-hover)] hover:text-white transition-colors font-medium"
+            title="Abrir Vista Previa Externa en tiempo real"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span>Vista Previa Externa ↗</span>
+          </a>
+
+          <button
+            onClick={async () => {
+              await fetch('/api/auth/login', { method: 'DELETE' });
+              window.location.href = '/';
+            }}
+            style={{
+              color: 'var(--ps-text-dim)',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '0 var(--sp-xs)'
+            }}
+            className="hover:text-[var(--ps-danger)] transition-colors"
+            title="Cerrar Sesión"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
         </div>
       </header>
 
@@ -709,326 +758,216 @@ function VisualEditorContent() {
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             Editando: <span className="text-accent">{slug}</span>
           </h1>
+          
+          <div className="flex gap-2 items-center bg-bg p-1 rounded-lg border border-border shadow-sm">
+            <input 
+              type="text" 
+              placeholder="Nueva versión..." 
+              className="px-3 py-1.5 text-xs border-none focus:ring-0 outline-none w-32 bg-transparent text-ink placeholder:text-muted"
+              value={newVersionName}
+              onChange={e => setNewVersionName(e.target.value)}
+            />
+            <button 
+              onClick={() => saveVersion(true)}
+              disabled={saving}
+              className="bg-accent text-bg px-3 py-1.5 rounded-md text-xs font-semibold hover:opacity-90 transition-opacity"
+            >
+              Nueva Rama
+            </button>
+          </div>
         </div>
 
+      <div className="flex flex-col lg:flex-row gap-8 relative">
+        {/* LEFT - Editor Tools */}
+        <div className="lg:w-[400px] w-full flex-shrink-0 flex flex-col gap-6 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-2 scrollbar-thin">
+          
+          {selectedComp ? (
+            /* Properties Editor Panel (Focused Mode) */
+            <div className="flex-1">
+              <SmartPropertiesPanel
+                comp={selectedComp}
+                updateProp={updateProp}
+                onClose={() => setSelectedId(null)}
+                onFocusField={setFocusedField}
+                activeBp={previewBp}
+                onActiveBpChange={setPreviewBp}
+              />
+            </div>
+          ) : (
+            /* Structure Panel (List view when nothing is selected) */
+            <div className="bg-bg border border-border rounded-xl p-3 shadow-sm">
+              <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3 px-1">Estructura de la Página</h3>
+              <div className="flex flex-col gap-1">
+                {components.map((c, idx) => (
+                  <div
+                    key={c.id}
+                    draggable={editingNameId !== c.id}
+                    onDragStart={(e) => handleDragStart(e, idx)}
+                    onDragOver={(e) => handleDragOver(e, idx)}
+                    onDrop={(e) => handleDrop(e, idx)}
+                    onDragEnd={handleDragEnd}
+                    className={`relative flex justify-between items-center p-2 border rounded-lg cursor-pointer transition-all select-none
+                      ${selectedId === c.id ? 'border-accent bg-accent/5 ring-1 ring-accent/20' : 'border-border hover:border-accent/30 hover:bg-s1'}
+                      ${draggedIndex === idx ? 'opacity-40 scale-[0.98]' : 'opacity-100'}
+                    `}
+                    onClick={() => setSelectedId(c.id)}
+                    onDoubleClick={(e) => {
+                      e.stopPropagation();
+                      setEditingNameId(c.id);
+                    }}
+                  >
+                    {/* Drop indicator line - above */}
+                    {dragOverIndex === idx && draggedIndex !== idx && draggedIndex > idx && (
+                      <div className="absolute -top-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
+                    )}
 
-      <div className="flex flex-col lg:flex-row gap-4 relative flex-1">
-        {/* Photoshop Floating Drawer */}
-        <div 
-          className="absolute left-0 top-0 bottom-0 z-[150] flex transition-all duration-200 ease-in-out"
-          style={{
-            width: isPanelExpanded ? '380px' : '12px',
-          }}
-          onMouseEnter={() => setIsPanelExpanded(true)}
-          onMouseLeave={() => setIsPanelExpanded(false)}
-        >
-          {/* Collapsed Bar Indicator */}
-          <div 
-            className="w-3 h-full flex-shrink-0 cursor-pointer border-r hover:bg-accent/20 transition-colors"
-            style={{
-              background: 'var(--ps-bg-toolbar, #1e1e1e)',
-              borderColor: 'var(--ps-border-dark, #151515)',
-            }}
-          >
-            {/* Tiny accent stripe showing it's active */}
-            <div className="w-[2px] h-20 bg-accent rounded-full mx-auto mt-10 opacity-60"></div>
-          </div>
-
-          {/* Expanded Panel Container */}
-          {isPanelExpanded && (
-            <div 
-              className="flex-1 h-full flex flex-col overflow-hidden border-r shadow-2xl animate-in slide-in-from-left-4 duration-150"
-              style={{
-                background: 'var(--ps-bg-panel, #2c2c2c)',
-                borderColor: 'var(--ps-border, #404040)',
-                fontFamily: 'var(--font-ui, sans-serif)',
-                color: 'var(--ps-text, #b3b3b3)',
-              }}
-            >
-              {/* Tab Header Bar */}
-              <div 
-                className="flex border-b"
-                style={{
-                  background: 'var(--ps-bg-toolbar, #1e1e1e)',
-                  borderColor: 'var(--ps-border, #404040)',
-                }}
-              >
-                {[
-                  { id: 'page', label: 'Página/Versión' },
-                  { id: 'structure', label: 'Estructura' },
-                  { id: 'properties', label: 'Propiedades' },
-                ].map(tab => {
-                  const isActive = activeTab === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      style={{
-                        padding: '8px 12px',
-                        background: isActive ? 'var(--ps-bg-panel, #2c2c2c)' : 'transparent',
-                        color: isActive ? 'var(--ps-text, #ffffff)' : 'var(--ps-text-dim, #888888)',
-                        borderBottom: isActive ? '2px solid var(--ps-accent, #ffcc00)' : 'none',
-                        borderRight: '1px solid var(--ps-border-dark, #151515)',
-                        fontSize: '11px',
-                        fontWeight: 'bold',
-                        cursor: 'pointer',
-                      }}
-                      className="hover:text-white transition-colors"
+                    {/* Drag handle */}
+                    <div
+                      className="flex items-center gap-1.5 flex-1 min-w-0"
+                      title="Arrastrar para reordenar"
                     >
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Tab Content Container */}
-              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar flex flex-col gap-4">
-                
-                {/* TAB 1: PÁGINA/VERSIÓN */}
-                {activeTab === 'page' && (
-                  <div className="flex flex-col gap-4 text-xs">
-                    {/* Selector de Página */}
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Página</span>
-                      <select
-                        style={{
-                          height: '28px',
-                          padding: '0 8px',
-                          background: 'var(--ps-bg-input, #1c1c1c)',
-                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
-                          borderRadius: 'var(--ps-radius, 4px)',
-                          color: 'var(--ps-text, #ffffff)',
-                          outline: 'none',
-                          cursor: 'pointer',
-                        }}
-                        className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
-                        value={slug}
-                        onChange={(e) => {
-                          const url = new URL(window.location);
-                          url.searchParams.set('slug', e.target.value);
-                          url.searchParams.delete('versionId');
-                          window.location.href = url.toString();
-                        }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="text-muted/50 flex-shrink-0 cursor-grab active:cursor-grabbing"
                       >
-                        <option value="home">home</option>
-                        <option value="sistema">sistema</option>
-                        <option value="videos">videos</option>
-                        <option value="portafolio">portafolio</option>
-                        <option value="contacto">contacto</option>
-                      </select>
+                        <circle cx="8" cy="6" r="1.5"/>
+                        <circle cx="16" cy="6" r="1.5"/>
+                        <circle cx="8" cy="12" r="1.5"/>
+                        <circle cx="16" cy="12" r="1.5"/>
+                        <circle cx="8" cy="18" r="1.5"/>
+                        <circle cx="16" cy="18" r="1.5"/>
+                      </svg>
+                      {editingNameId === c.id ? (
+                        <input
+                          type="text"
+                          autoFocus
+                          defaultValue={c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
+                          onBlur={(e) => {
+                            const val = e.target.value.trim();
+                            if (val) {
+                              const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
+                              setComponents(updatedComps);
+                              saveComponentsSilently(updatedComps);
+                            }
+                            setEditingNameId(null);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              const val = e.currentTarget.value.trim();
+                              if (val) {
+                                const updatedComps = components.map(comp => comp.id === c.id ? { ...comp, name: val } : comp);
+                                setComponents(updatedComps);
+                                saveComponentsSilently(updatedComps);
+                              }
+                              setEditingNameId(null);
+                            } else if (e.key === 'Escape') {
+                              setEditingNameId(null);
+                            }
+                          }}
+                          className="font-medium text-xs text-ink bg-transparent border-b border-accent outline-none w-full"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        <span 
+                          className="font-medium truncate text-xs text-ink cursor-text"
+                          onDoubleClick={(e) => {
+                            e.stopPropagation();
+                            setEditingNameId(c.id);
+                          }}
+                        >
+                          {c.name || COMPONENT_DEFINITIONS.find(d => d.type === c.type)?.name || c.type}
+                        </span>
+                      )}
                     </div>
 
-                    {/* Selector de Versión */}
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Versión</span>
-                      <select
-                        style={{
-                          height: '28px',
-                          padding: '0 8px',
-                          background: 'var(--ps-bg-input, #1c1c1c)',
-                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
-                          borderRadius: 'var(--ps-radius, 4px)',
-                          color: 'var(--ps-text, #ffffff)',
-                          outline: 'none',
-                          cursor: 'pointer',
-                        }}
-                        className="focus:border-[var(--ps-border-focus)] transition-colors font-medium"
-                        value={currentVersionId || ''}
-                        onChange={(e) => {
-                          if (e.target.value) {
-                            const url = new URL(window.location);
-                            url.searchParams.set('versionId', e.target.value);
-                            window.history.pushState({}, '', url);
-                            setCurrentVersionId(e.target.value);
-                            fetchData();
-                          }
-                        }}
-                      >
-                        {versions.map(v => (
-                          <option key={v.id} value={v.id}>
-                            {v.version_name} {v.is_active ? '(Activa)' : ''} {v.is_published ? '(EN VIVO)' : ''}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Guardar y Publicar */}
-                    <div className="flex flex-col gap-2 mt-2">
+                    {/* Action buttons */}
+                    <div className="flex items-center gap-0.5 flex-shrink-0" onClick={e => e.stopPropagation()}>
                       <button
-                        onClick={() => saveVersion(false)}
-                        disabled={saving || !currentVersionId}
-                        style={{
-                          height: '30px',
-                          background: 'var(--ps-bg-toolbar, #1e1e1e)',
-                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
-                          borderRadius: 'var(--ps-radius, 4px)',
-                          color: 'var(--ps-text, #ffffff)',
-                          fontWeight: 'bold',
-                          cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
-                          opacity: (saving || !currentVersionId) ? 0.5 : 1,
-                        }}
-                        className="hover:bg-[var(--ps-bg-hover)] transition-colors"
+                        onClick={() => moveComponent(idx, 'up')}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
+                        title="Mover arriba"
                       >
-                        {saving ? 'Guardando...' : 'Guardar Cambios'}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
                       </button>
-
                       <button
-                        onClick={handlePublish}
-                        disabled={saving || !currentVersionId}
-                        style={{
-                          height: '30px',
-                          background: 'var(--ps-accent, #ffcc00)',
-                          border: 'none',
-                          borderRadius: 'var(--ps-radius, 4px)',
-                          color: '#000000',
-                          fontWeight: 'bold',
-                          cursor: (saving || !currentVersionId) ? 'not-allowed' : 'pointer',
-                          opacity: (saving || !currentVersionId) ? 0.5 : 1,
-                        }}
-                        className="hover:opacity-90 transition-opacity"
+                        onClick={() => moveComponent(idx, 'down')}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
+                        title="Mover abajo"
                       >
-                        Publicar Versión en Vivo
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                      </button>
+                      <button
+                        onClick={() => cloneComponent(idx)}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-ink transition-colors"
+                        title="Duplicar componente"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleCopyStyle(idx); }}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-blue-500 transition-colors"
+                        title="Copiar Configuración"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handlePasteStyle(idx); }}
+                        className="p-1 hover:bg-border rounded text-muted hover:text-green-500 transition-colors"
+                        title="Pegar Configuración"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                      </button>
+                      <button
+                        onClick={() => removeComponent(idx)}
+                        className="p-1 hover:bg-red-50 text-muted hover:text-red-500 transition-colors rounded"
+                        title="Eliminar"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
                       </button>
                     </div>
 
-                    <div style={{ height: '1px', background: 'var(--ps-border-dark)', margin: '8px 0' }}></div>
-
-                    {/* Vista Previa Externa */}
-                    <div className="flex flex-col gap-1.5">
-                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Vista de Producción</span>
-                      <a
-                        href={currentVersionId ? `/${slug === 'home' ? '' : slug}?versionId=${currentVersionId}` : `/${slug === 'home' ? '' : slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          height: '30px',
-                          background: 'var(--ps-bg-toolbar, #1e1e1e)',
-                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
-                          borderRadius: 'var(--ps-radius, 4px)',
-                          color: 'var(--ps-text, #ffffff)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '6px',
-                          textDecoration: 'none',
-                          fontWeight: 'bold',
-                        }}
-                        className="hover:bg-[var(--ps-bg-hover)] transition-colors"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                        <span>Vista Previa Externa ↗</span>
-                      </a>
-                    </div>
-
-                    <div style={{ height: '1px', background: 'var(--ps-border-dark)', margin: '8px 0' }}></div>
-
-                    {/* Crear Rama (Nueva Versión) */}
-                    <div className="flex flex-col gap-2">
-                      <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Crear Rama (Nueva Versión)</span>
-                      <input
-                        type="text"
-                        placeholder="Nombre de la nueva rama..."
-                        value={newVersionName}
-                        onChange={(e) => setNewVersionName(e.target.value)}
-                        style={{
-                          height: '28px',
-                          padding: '0 8px',
-                          background: 'var(--ps-bg-input, #1c1c1c)',
-                          border: 'var(--ps-border-width, 1px) solid var(--ps-border-light, #555555)',
-                          borderRadius: 'var(--ps-radius, 4px)',
-                          color: 'var(--ps-text, #ffffff)',
-                          outline: 'none',
-                        }}
-                        className="focus:border-[var(--ps-border-focus)] transition-colors placeholder:text-muted/50"
-                      />
-                      <button
-                        onClick={() => saveVersion(true)}
-                        disabled={saving || !newVersionName.trim()}
-                        style={{
-                          height: '28px',
-                          background: 'var(--ps-accent, #ffcc00)',
-                          border: 'none',
-                          borderRadius: 'var(--ps-radius, 4px)',
-                          color: '#000000',
-                          fontWeight: 'bold',
-                          cursor: (saving || !newVersionName.trim()) ? 'not-allowed' : 'pointer',
-                          opacity: (saving || !newVersionName.trim()) ? 0.5 : 1,
-                        }}
-                        className="hover:opacity-90 transition-colors"
-                      >
-                        Crear Rama
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* TAB 2: ESTRUCTURA */}
-                {activeTab === 'structure' && (
-                  <div className="flex flex-col gap-4 flex-1">
-                    <div className="flex-1 flex flex-col bg-[#222222] border border-[#111111] rounded-xl shadow-inner min-h-[300px]">
-                      <StructureTree
-                        tree={components}
-                        selectedId={selectedId}
-                        onSelect={(id) => setSelectedId(id)}
-                        onRemove={(id) => removeComponent(id)}
-                        onClone={(id) => cloneComponent(id)}
-                        onMove={(sourceId, targetParentId, dropIndex) => {
-                          setComponents(prev => {
-                            const newTree = performMove(prev, sourceId, targetParentId === 'sibling' ? null : targetParentId, dropIndex);
-                            return recalculateZIndices(newTree, previewBp);
-                          });
-                        }}
-                        onUpdateName={(id, name) => {
-                          setComponents(prev => prev.map(c => c.id === id ? { ...c, name } : c));
-                        }}
-                        activeBp={previewBp}
-                        onToggleVisibility={(id) => {
-                          setComponents(prev => toggleComponentVisibility(prev, id, previewBp));
-                        }}
-                      />
-                      <div className="p-2 border-t border-[#333333] bg-[#1e1e1e]">
-                        <ToolboxPanel />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* TAB 3: PROPIEDADES */}
-                {activeTab === 'properties' && (
-                  <div className="flex-1 flex flex-col">
-                    {selectedComp ? (
-                      <SmartPropertiesPanel
-                        comp={selectedComp}
-                        updateProp={updateProp}
-                        onClose={() => setSelectedId(null)}
-                        onFocusField={setFocusedField}
-                        activeBp={previewBp}
-                        onActiveBpChange={setPreviewBp}
-                      />
-                    ) : (
-                      <div className="flex-1 flex flex-col items-center justify-center text-center p-6 text-muted text-xs">
-                        <svg className="w-12 h-12 mb-3 text-[#555555]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                        </svg>
-                        <p className="font-bold mb-1">Ningún Componente Seleccionado</p>
-                        <p className="opacity-75">Selecciona un elemento en el lienzo o en la pestaña de Estructura para configurar sus propiedades.</p>
-                      </div>
+                    {/* Drop indicator line - below */}
+                    {dragOverIndex === idx && draggedIndex !== idx && draggedIndex < idx && (
+                      <div className="absolute -bottom-px left-2 right-2 h-0.5 bg-accent rounded-full z-10" />
                     )}
                   </div>
-                )}
+                ))}
+              </div>
+              <div className="mt-3">
+                <select 
+                  onChange={addComponent} 
+                  className="w-full p-2 border border-border rounded-lg text-xs bg-s1 text-ink hover:bg-s2 hover:border-accent focus:bg-s2 focus:border-accent transition-colors outline-none cursor-pointer font-medium" 
+                  defaultValue=""
+                >
+                  <option value="" disabled className="bg-s1 text-ink">+ Añadir bloque</option>
+                  {COMPONENT_DEFINITIONS.map(d => (
+                    <option key={d.type} value={d.type} className="bg-s1 text-ink">{d.name}</option>
+                  ))}
+                </select>
               </div>
             </div>
           )}
         </div>
 
-        {/* RIGHT - FULL BLEED CANVAS */}
-        <div className="flex-1 w-full relative overflow-y-auto" style={{
-          backgroundImage: `radial-gradient(var(--ps-border) 1px, transparent 1px)`,
-          backgroundSize: `20px 20px`
-        }}>
-          {/* Floating device switcher */}
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 bg-s1/90 backdrop-blur border border-border shadow-2xl px-3 py-2 rounded-full flex items-center gap-3">
-            <div className="flex items-center gap-1">
+        {/* RIGHT - Live Content Preview Frame */}
+        <div className="lg:flex-1 w-full bg-bg border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col sticky top-[73px] h-[calc(100vh-100px)]">
+          {/* Preview Toolbar */}
+          <div className="bg-s1 border-b border-border px-4 py-2 flex items-center justify-between z-20">
+            <div className="flex items-center gap-3">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/40" />
+              </div>
+              <span className="text-[10px] font-bold text-muted uppercase tracking-widest">Vista Previa en Vivo</span>
+            </div>
+
+            {/* Device Switcher */}
+            <div className="flex items-center gap-0.5 bg-s2 p-0.5 rounded-lg border border-border">
               {[
                 { id: 'mobile', label: '📱', title: 'Vista Móvil (390 x 844px)' },
                 { id: 'tablet', label: '💻', title: 'Vista Tablet (768px)' },
@@ -1038,9 +977,9 @@ function VisualEditorContent() {
                   key={dev.id}
                   onClick={() => setPreviewBp(dev.id)}
                   title={dev.title}
-                  className={`w-8 h-8 flex items-center justify-center text-sm rounded-full transition-all ${
-                    previewBp === dev.id
-                      ? 'bg-accent text-bg shadow-md scale-110'
+                  className={`w-7 h-7 flex items-center justify-center text-xs rounded transition-all ${
+                    previewBp === dev.id 
+                      ? 'bg-accent text-bg shadow-sm' 
                       : 'text-muted hover:text-ink hover:bg-border'
                   }`}
                 >
@@ -1048,74 +987,39 @@ function VisualEditorContent() {
                 </button>
               ))}
             </div>
-            <div className="w-[1px] h-4 bg-border"></div>
-            <button
-              onClick={() => setShowGridDebug(!showGridDebug)}
-              title={showGridDebug ? 'Ocultar Debug Grid' : 'Mostrar Debug Grid'}
-              className={`w-8 h-8 flex items-center justify-center text-sm rounded-full transition-all ${
-                showGridDebug
-                  ? 'bg-accent text-bg shadow-md'
-                  : 'text-muted hover:text-ink hover:bg-border'
-              }`}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                {showGridDebug ? (
-                  <>
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="3" y1="9" x2="21" y2="9"></line>
-                    <line x1="9" y1="21" x2="9" y2="9"></line>
-                  </>
-                ) : (
-                  <>
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </>
-                )}
-              </svg>
-            </button>
-            <div className="w-[1px] h-4 bg-border"></div>
-            <span className="text-[10px] font-mono text-muted tracking-widest uppercase flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block animate-pulse"></span>
-              {slug}.cl
-            </span>
+
+            <div className="flex items-center gap-2">
+               <span className="text-[9px] text-muted bg-border px-2 py-0.5 rounded-full font-mono uppercase">{slug}.cl</span>
+            </div>
           </div>
 
-          {/* Viewport wrapper */}
-          <div className="min-h-full w-full flex items-start justify-center pb-32">
-            <div
+          {/* Actual Content Mockup Wrapper */}
+          <div className="flex-1 overflow-y-auto bg-s2/20 custom-scrollbar p-4 flex justify-center items-start">
+            <div 
               id="mockup-viewport"
               onClick={(e) => {
+                // Prevent navigation for all links in the preview
                 const link = e.target.closest('a');
-                if (link) e.preventDefault();
+                if (link) {
+                  e.preventDefault();
+                }
               }}
               style={{
                 width: previewBp === 'mobile' ? '390px' : previewBp === 'tablet' ? '768px' : '100%',
-                minHeight: previewBp === 'mobile' ? '844px' : previewBp === 'tablet' ? '1024px' : '100%',
-                transition: 'width 0.4s cubic-bezier(0.25, 1, 0.5, 1), min-height 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
+                height: previewBp === 'mobile' ? '844px' : previewBp === 'tablet' ? '1024px' : '100%',
+                maxWidth: '100%',
+                transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
-              className={`bg-bg transition-all duration-400 relative flex flex-col ${
-                previewBp === 'desktop' ? '' : 'mt-8 border border-border shadow-2xl rounded-[2rem] overflow-hidden'
-              }`}
+              className="bg-bg border border-border rounded-xl shadow-lg overflow-y-auto min-h-full transition-all duration-300 relative flex flex-col"
             >
+              {/* Render the Nav component at the top of the mockup viewport */}
               <Nav forceShow={true} forceAbsolute={true} />
-
-              <div className="flex-1 w-full relative z-10">
-                {activeGridId && (
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex items-center gap-2 z-50 pointer-events-none">
-                    <button
-                      onClick={() => setActiveGridId(null)}
-                      className="bg-accent text-bg px-4 py-1.5 rounded-full text-xs font-bold shadow-lg pointer-events-auto hover:bg-accent/90 transition-colors flex items-center gap-2"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                      Volver a Grid Principal
-                    </button>
-                  </div>
-                )}
-                <GridEditor
-                  components={components}
+              
+              <div className="origin-top flex-1">
+                <PageRenderer 
+                  components={components} 
                   forceBp={previewBp}
                   onUpdateProp={updateProp}
-                  onLayoutChange={handleGridLayoutChange}
                   onSelectComponent={(compId, fieldKey) => {
                     setSelectedId(compId);
                     if (fieldKey) {
@@ -1124,16 +1028,13 @@ function VisualEditorContent() {
                     }
                   }}
                   selectedId={selectedId}
-                  activeGridId={activeGridId}
-                  setActiveGridId={setActiveGridId}
-                  registry={COMPONENT_DEFINITIONS}
-                  showGridDebug={showGridDebug}
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
   );

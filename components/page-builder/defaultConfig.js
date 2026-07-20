@@ -16,200 +16,29 @@ export const DEFAULT_HOME_COMPONENTS = [
       "backgroundColor": "#0D0D0D",
       "_styles": {
         "tagline": {
-          "mobile": {
-            "color": "",
-            "fontSize": 16,
-            "fontStyle": "normal",
-            "fontWeight": "500",
-            "lineHeight": 1,
-            "letterSpacing": "0",
-            "textTransform": "none"
-          },
-          "desktop": {
-            "color": "#ffffff",
-            "fontSize": 20,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "400",
-            "lineHeight": 1.5,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          }
+          "mobile": { "color": "", "fontSize": 16, "fontStyle": "normal", "fontWeight": "500", "lineHeight": 1, "letterSpacing": "0", "textTransform": "none" },
+          "desktop": { "color": "#ffffff", "fontSize": 20, "fontStyle": "normal", "textAlign": "left", "fontWeight": "400", "lineHeight": 1.5, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" }
         },
         "bodyText": {
-          "mobile": {
-            "color": "",
-            "fontSize": 20,
-            "fontStyle": "normal",
-            "fontWeight": "500",
-            "lineHeight": 1.4,
-            "letterSpacing": "0",
-            "textTransform": "none"
-          },
-          "tablet": {
-            "color": "#ffffff",
-            "fontSize": 22,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "400",
-            "lineHeight": 1.5,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          },
-          "desktop": {
-            "color": "#ffffff",
-            "fontSize": 24,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "400",
-            "lineHeight": 1.5,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          }
+          "mobile": { "color": "", "fontSize": 20, "fontStyle": "normal", "fontWeight": "500", "lineHeight": 1.4, "letterSpacing": "0", "textTransform": "none" },
+          "tablet": { "color": "#ffffff", "fontSize": 22, "fontStyle": "normal", "textAlign": "left", "fontWeight": "400", "lineHeight": 1.5, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" },
+          "desktop": { "color": "#ffffff", "fontSize": 24, "fontStyle": "normal", "textAlign": "left", "fontWeight": "400", "lineHeight": 1.5, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" }
         },
         "headline": {
-          "mobile": {
-            "color": "",
-            "fontSize": 36,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "900",
-            "lineHeight": 1.1,
-            "letterSpacing": 0,
-            "textTransform": "uppercase"
-          },
-          "tablet": {
-            "color": "#ffffff",
-            "fontSize": 48,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "900",
-            "lineHeight": 1.1,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          },
-          "desktop": {
-            "color": "#ffffff",
-            "fontSize": 56,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "900",
-            "lineHeight": 1.1,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          }
+          "mobile": { "color": "", "fontSize": 36, "fontStyle": "normal", "textAlign": "left", "fontWeight": "900", "lineHeight": 1.1, "letterSpacing": 0, "textTransform": "uppercase" },
+          "tablet": { "color": "#ffffff", "fontSize": 48, "fontStyle": "normal", "textAlign": "left", "fontWeight": "900", "lineHeight": 1.1, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" },
+          "desktop": { "color": "#ffffff", "fontSize": 56, "fontStyle": "normal", "textAlign": "left", "fontWeight": "900", "lineHeight": 1.1, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" }
         },
         "pillText": {
-          "mobile": {
-            "color": "",
-            "fontSize": 20,
-            "fontStyle": "normal",
-            "fontWeight": "300",
-            "lineHeight": "1.5",
-            "letterSpacing": "-0.01",
-            "textTransform": "none"
-          },
-          "tablet": {
-            "color": "#c8f135",
-            "fontSize": 29,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "400",
-            "lineHeight": 1.5,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          },
-          "desktop": {
-            "color": "#c8f135",
-            "fontSize": 25,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "300",
-            "lineHeight": 1.6,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          }
+          "mobile": { "color": "", "fontSize": 20, "fontStyle": "normal", "fontWeight": "300", "lineHeight": "1.5", "letterSpacing": "-0.01", "textTransform": "none" },
+          "tablet": { "color": "#c8f135", "fontSize": 29, "fontStyle": "normal", "textAlign": "left", "fontWeight": "400", "lineHeight": 1.5, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" },
+          "desktop": { "color": "#c8f135", "fontSize": 25, "fontStyle": "normal", "textAlign": "left", "fontWeight": "300", "lineHeight": 1.6, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" }
         },
         "headlineKeyword": {
-          "mobile": {
-            "color": "",
-            "fontSize": 36,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "900",
-            "lineHeight": 1.1,
-            "letterSpacing": "0",
-            "textTransform": "uppercase",
-            "textDecoration": "none"
-          },
-          "tablet": {
-            "color": "#FFCC00",
-            "fontSize": 48,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "900",
-            "lineHeight": 1.1,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          },
-          "desktop": {
-            "color": "#FFCC00",
-            "fontSize": 56,
-            "fontStyle": "normal",
-            "textAlign": "left",
-            "fontWeight": "900",
-            "lineHeight": 1.1,
-            "paddingTop": 0,
-            "letterSpacing": 0,
-            "paddingBottom": 0,
-            "textTransform": "none",
-            "textDecoration": "none"
-          }
+          "mobile": { "color": "", "fontSize": 36, "fontStyle": "normal", "textAlign": "left", "fontWeight": "900", "lineHeight": 1.1, "letterSpacing": "0", "textTransform": "uppercase", "textDecoration": "none" },
+          "tablet": { "color": "#FFCC00", "fontSize": 48, "fontStyle": "normal", "textAlign": "left", "fontWeight": "900", "lineHeight": 1.1, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" },
+          "desktop": { "color": "#FFCC00", "fontSize": 56, "fontStyle": "normal", "textAlign": "left", "fontWeight": "900", "lineHeight": 1.1, "paddingTop": 0, "letterSpacing": 0, "paddingBottom": 0, "textTransform": "none", "textDecoration": "none" }
         }
-      }
-    },
-    "layout": {
-      "desktop": {
-        "x": 0,
-        "y": 0,
-        "w": 12,
-        "h": 4
-      },
-      "tablet": {
-        "x": 0,
-        "y": 0,
-        "w": 12,
-        "h": 4
-      },
-      "mobile": {
-        "x": 0,
-        "y": 0,
-        "w": 12,
-        "h": 4
       }
     }
   },
@@ -220,26 +49,6 @@ export const DEFAULT_HOME_COMPONENTS = [
     "props": {
       "title": "Mira mi estilo de creación de videos",
       "videoGuid": "f8a865ba-05c8-4a1d-8ebc-958f0c944f58"
-    },
-    "layout": {
-      "desktop": {
-        "x": 0,
-        "y": 4,
-        "w": 12,
-        "h": 4
-      },
-      "tablet": {
-        "x": 0,
-        "y": 4,
-        "w": 12,
-        "h": 4
-      },
-      "mobile": {
-        "x": 0,
-        "y": 4,
-        "w": 12,
-        "h": 4
-      }
     }
   },
   {
@@ -265,26 +74,6 @@ export const DEFAULT_HOME_COMPONENTS = [
           "buttonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20tengo%20una%20idea%2Fproducto%20pero%20necesito%20ayuda%20para%20grabar%20el%20video."
         }
       ]
-    },
-    "layout": {
-      "desktop": {
-        "x": 0,
-        "y": 8,
-        "w": 12,
-        "h": 4
-      },
-      "tablet": {
-        "x": 0,
-        "y": 8,
-        "w": 12,
-        "h": 4
-      },
-      "mobile": {
-        "x": 0,
-        "y": 8,
-        "w": 12,
-        "h": 4
-      }
     }
   },
   {
@@ -295,26 +84,6 @@ export const DEFAULT_HOME_COMPONENTS = [
       "text": "Apuesto a que tienes videos grabados en el celular que nunca llegaste a editar. No necesitas ser el mejor grabando, la edición hace magia. Vamos a hacer ese video realidad.",
       "buttonText": "Contratar por videos en el celular",
       "buttonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20tengo%20videos%20grabados%20en%20el%20celular%20que%20quiero%20que%20me%20edites."
-    },
-    "layout": {
-      "desktop": {
-        "x": 0,
-        "y": 12,
-        "w": 12,
-        "h": 4
-      },
-      "tablet": {
-        "x": 0,
-        "y": 12,
-        "w": 12,
-        "h": 4
-      },
-      "mobile": {
-        "x": 0,
-        "y": 12,
-        "w": 12,
-        "h": 4
-      }
     }
   },
   {
@@ -340,26 +109,6 @@ export const DEFAULT_HOME_COMPONENTS = [
           "description": "¿Sabes que con un video no basta? Te presento mi estrategia de contenidos mensual, con métricas de rendimiento. Como <a href=\"/creador-de-contenido-ia\" class=\"underline text-ink hover:text-accent\">creador de contenido con IA</a>, integro herramientas de inteligencia artificial en el proceso para producir más contenido sin perder calidad."
         }
       ]
-    },
-    "layout": {
-      "desktop": {
-        "x": 0,
-        "y": 16,
-        "w": 12,
-        "h": 4
-      },
-      "tablet": {
-        "x": 0,
-        "y": 16,
-        "w": 12,
-        "h": 4
-      },
-      "mobile": {
-        "x": 0,
-        "y": 16,
-        "w": 12,
-        "h": 4
-      }
     }
   },
   {
@@ -371,45 +120,13 @@ export const DEFAULT_HOME_COMPONENTS = [
       "description": "Con 10 años como productor audiovisual en Chile, he dirigido campañas para marcas como LAN y Valook (815K visualizaciones orgánicas), además de liderar la producción de Incoludido, una campaña de crowdfunding que superó su meta con cobertura en TV nacional.",
       "_styles": {
         "title": {
-          "mobile": {
-            "color": "#ffffff",
-            "textAlign": "center"
-          },
-          "desktop": {
-            "color": "#ffffff",
-            "textAlign": "center"
-          }
+          "mobile": { "color": "#ffffff", "textAlign": "center" },
+          "desktop": { "color": "#ffffff", "textAlign": "center" }
         },
         "description": {
-          "mobile": {
-            "color": "#ffffff",
-            "textAlign": "center"
-          },
-          "desktop": {
-            "color": "#ffffff",
-            "textAlign": "center"
-          }
+          "mobile": { "color": "#ffffff", "textAlign": "center" },
+          "desktop": { "color": "#ffffff", "textAlign": "center" }
         }
-      }
-    },
-    "layout": {
-      "desktop": {
-        "x": 0,
-        "y": 20,
-        "w": 12,
-        "h": 4
-      },
-      "tablet": {
-        "x": 0,
-        "y": 20,
-        "w": 12,
-        "h": 4
-      },
-      "mobile": {
-        "x": 0,
-        "y": 20,
-        "w": 12,
-        "h": 4
       }
     }
   },
@@ -421,26 +138,6 @@ export const DEFAULT_HOME_COMPONENTS = [
       "buttonText": "Hablar con Leandro",
       "buttonLink": "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20sistema%20de%20video%20marketing.",
       "subtitle": "<a href=\"/contratar-editor-de-video\" class=\"underline text-ink hover:text-accent\">¿Buscas contratar un editor de video?</a>"
-    },
-    "layout": {
-      "desktop": {
-        "x": 0,
-        "y": 24,
-        "w": 12,
-        "h": 4
-      },
-      "tablet": {
-        "x": 0,
-        "y": 24,
-        "w": 12,
-        "h": 4
-      },
-      "mobile": {
-        "x": 0,
-        "y": 24,
-        "w": 12,
-        "h": 4
-      }
     }
   }
 ];

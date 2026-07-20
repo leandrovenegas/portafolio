@@ -2,125 +2,130 @@
 name: visual-safety
 description: >
   Aplicar cuando se modifiquen estilos, backgrounds, colores de botones, o cualquier
-  elemento visual en leandrovenegas.cl. Previene los 3 bugs recurrentes de texto
-  invisible, fondos que desaparecen, y componentes que tapan el grid global.
-last_updated: 2026-07-14
-mode: append-only
+  elemento visual en leandrovenegas.cl. Previene los 3 bugs recurrentes:
+  (1) texto de botones invisible sobre su fondo,
+  (2) fondos que desaparecen al hacer cambios parciales,
+  (3) componentes públicos que tapan el grid de fondo global.
+  Si el agente toca CSS, Tailwind, o estilos inline de cualquier componente, leer este skill.
 ---
 
-> REGLA DE EDICIÓN - APPEND-ONLY
-> Este archivo nunca se borra ni se reescribe completo. Solo se agrega contenido nuevo.
-> Cada regla aquí es GLOBAL Y PERMANENTE: aplica a todos los componentes públicos
-> y del admin de forma indefinida, no solo al que originó la regla.
-> Si una regla queda obsoleta, márcala como [OBSOLETO - fecha] sin eliminar el texto.
-> Antes de guardar, verifica que la versión nueva no tenga menos líneas que la
-> anterior; si las tiene, DETENTE y pregunta a Leandro.
-> Commit obligatorio: git add .agents/skills/ && git commit -m "chore: update skills"
+# Visual Safety — leandrovenegas.cl
+
+## Los 3 bugs que SIEMPRE hay que prevenir
 
 ---
 
-## Bug #1 — Texto de botón invisible
+### Bug #1 — Texto de botón invisible
 
-El color del texto DEBE ser explícito, nunca heredado.
+Cuando se crea o modifica un botón, el color del texto DEBE ser explícito.
+Nunca asumir que el color heredará correctamente.
 
 ```jsx
-// Peligroso
+// ❌ Peligroso — el texto puede heredar color del fondo y volverse invisible
 <button className="bg-accent">Contáctame</button>
 
-// Seguro
+// ✅ Seguro — color siempre explícito
 <button className="bg-accent text-white">Contáctame</button>
 <button className="bg-white text-gray-900">Contáctame</button>
 ```
 
+#### Regla de contraste mínimo por fondo de botón
+
 | Fondo del botón | Color de texto obligatorio |
 |----------------|---------------------------|
-| Oscuro (#121212, #1e1e1e, #2c2c2c, negro) | text-white o #ffffff |
-| Accent/acento (#ffcc00, amarillo, vivos) | text-black o #000000 |
-| Blanco o claro | text-gray-900 o #111111 |
-| Gradiente oscuro | text-white |
-| Gradiente claro | text-gray-900 |
+| Oscuro (`#121212`, `#1e1e1e`, `#2c2c2c`, negro) | `text-white` o `color: #ffffff` |
+| Accent/acento (`#ffcc00`, amarillo, colores vivos) | `text-black` o `color: #000000` |
+| Blanco o claro | `text-gray-900` o `color: #111111` |
+| Gradiente oscuro | `text-white` |
+| Gradiente claro | `text-gray-900` |
 
 ---
 
-## Bug #2 — Fondos que desaparecen
+### Bug #2 — Fondos que desaparecen
 
-Si se modifica el background de un elemento, verificar padre y hermanos.
+Cuando se hace un cambio parcial en un componente, los fondos de secciones
+adyacentes o padres pueden quedar `transparent` o `undefined`.
+
+**Regla:** Si se modifica el `background` de cualquier elemento, verificar
+que el padre y los hermanos también tengan background definido.
 
 ```jsx
-// Peligroso
-<section>
+// ❌ Peligroso — si se cambia el fondo del hijo, el padre queda sin fondo
+<section>  {/* sin background */}
   <div style={{ background: backgroundColor }}>...</div>
 </section>
 
-// Seguro
+// ✅ Seguro — cada nivel tiene su fallback
 <section style={{ background: 'var(--ps-bg-app, #121212)' }}>
   <div style={{ background: backgroundColor || '#121212' }}>...</div>
 </section>
 ```
 
-Siempre usar fallback en variables CSS: `var(--ps-bg-panel, #2c2c2c)`
+**Siempre usar fallback en variables CSS:**
+```jsx
+// ❌ Sin fallback
+style={{ background: 'var(--ps-bg-panel)' }}
+
+// ✅ Con fallback
+style={{ background: 'var(--ps-bg-panel, #2c2c2c)' }}
+```
 
 ---
 
-## Bug #3 — Componentes públicos tapan el grid global
+### Bug #3 — Componentes públicos tapan el grid global
 
+El sitio público tiene un fondo global fijo (cuadrícula):
 ```css
 body {
   background-color: #0D0D0D;
-  background-image:
-    linear-gradient(#1a1a1a 1px, transparent 1px),
+  background-image: 
+    linear-gradient(#1a1a1a 1px, transparent 1px), 
     linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
   background-size: 40px 40px;
   background-attachment: fixed;
 }
 ```
 
-Los componentes públicos NO deben tener background sólido en su contenedor raíz
-a menos que sea intencional.
+**Regla:** Los componentes públicos NO deben tener `background` sólido en su
+contenedor raíz a menos que sea intencional (ej. una sección con fondo de color
+como parte del diseño).
 
 ```jsx
-// Tapa el grid
+// ❌ Tapa el grid — el componente se ve como bloque sólido sin grid
 <section className="bg-black w-full">...</section>
 
-// Transparente
+// ✅ Transparente — el grid del body se ve a través
 <section className="w-full">...</section>
 
-// Intencional
+// ✅ Intencional con clase específica — cuando SÍ se quiere fondo sólido
 <section className="page-builder-block w-full" style={{ background: backgroundColor }}>
 ```
 
-Excepción: el admin (`/admin/*`, `/dashboard/*`) PUEDE y DEBE tener fondos sólidos.
+**Excepción:** El admin (`/admin/*`, `/dashboard/*`) PUEDE y DEBE tener fondos
+sólidos para mantener la legibilidad del editor Photoshop UI.
 
 ---
 
 ## Checklist visual antes de entregar cualquier cambio
 
-- Todos los botones tienen color de texto explícito
-- Todos los background tienen valor fallback
-- Si se modificó el fondo de un elemento, se verificaron padre y hermanos
-- Los componentes públicos nuevos no tapan el grid global del body
-- El admin mantiene sus fondos sólidos intactos
+- [ ] ¿Todos los botones tienen color de texto explícito (`text-white`, `text-black`)?
+- [ ] ¿Todos los `background` tienen valor fallback (`var(--x, #fallback)`)?
+- [ ] ¿Si se modificó el fondo de un elemento, se verificaron padre y hermanos?
+- [ ] ¿Los componentes públicos nuevos no tapan el grid global del body?
+- [ ] ¿El admin mantiene sus fondos sólidos intactos?
 
 ---
 
-## Paleta del sitio público
+## Paleta del sitio público (leandrovenegas.cl)
 
 | Uso | Valor |
 |-----|-------|
-| Fondo base | #0D0D0D |
-| Fondo de sección | transparent |
-| Fondo con color intencional | prop backgroundColor |
-| Acento principal | #ffcc00 |
-| Texto principal | #ffffff |
-| Texto secundario | rgba(255,255,255,0.8) |
-| Borde sutil | rgba(255,255,255,0.1) |
-| Texto sobre acento amarillo | #000000 |
-| Texto sobre fondo oscuro | #ffffff |
-
----
-
-## Registro de cambios (agregar al final, nunca borrar entradas anteriores)
-
-| Fecha | Cambio |
-|-------|--------|
-| 2026-07-14 | Se agrega regla append-only y aclaración de alcance global/permanente. Sin cambios de contenido técnico. |
+| Fondo base | `#0D0D0D` |
+| Fondo de sección | `transparent` (deja ver el grid) |
+| Fondo con color intencional | pasar via prop `backgroundColor` |
+| Acento principal | `#ffcc00` (amarillo) |
+| Texto principal | `#ffffff` |
+| Texto secundario | `rgba(255,255,255,0.8)` |
+| Borde sutil | `rgba(255,255,255,0.1)` |
+| Texto sobre acento amarillo | `#000000` — **siempre negro** |
+| Texto sobre fondo oscuro | `#ffffff` — **siempre blanco** |

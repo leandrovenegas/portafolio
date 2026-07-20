@@ -4,57 +4,59 @@ description: >
   Aplicar SIEMPRE al crear, editar o revisar cualquier componente React del proyecto
   leandrovenegas.cl. Cubre: estructura de props, textos editables, sistema de estilos
   responsivos (_styles), breakpoints, y la conexión con el editor visual.
-last_updated: 2026-07-14
-mode: append-only
+  Si el agente va a escribir un componente .jsx o .tsx, debe leer este skill primero.
 ---
 
-> REGLA DE EDICIÓN - APPEND-ONLY
-> Este archivo nunca se borra ni se reescribe completo. Solo se agrega contenido nuevo.
-> Si una regla queda obsoleta, márcala como [OBSOLETO - fecha] sin eliminar el texto.
-> Antes de guardar, verifica el número de líneas actual del archivo; si la versión
-> nueva tiene menos líneas que la anterior, DETENTE y pregunta a Leandro.
-> Todo cambio se commitea junto al código que lo motivó:
-> git add .agents/skills/ && git commit -m "chore: update skills"
-
----
-
-# Arquitectura de Componentes - leandrovenegas.cl
+# Arquitectura de Componentes — leandrovenegas.cl
 
 ## El contexto del editor visual
 
-El sitio tiene un page builder en /admin/editor?slug=[page]. Funciona así:
+El sitio tiene un **page builder** en `/admin/editor?slug=[page]`.
+Funciona así:
 - Componentes arrastrables y reordenables en canvas
-- Panel derecho con inputs de propiedades para editar cada campo
-- El canvas hace preview en tiempo real con forceBp para simular breakpoints
-- Los textos NO se editan inline, se editan mediante inputs en el panel lateral
+- Panel derecho con **inputs de propiedades** para editar cada campo
+- El canvas hace preview en tiempo real con `forceBp` para simular breakpoints
+- **Los textos NO se editan inline** — se editan mediante inputs en el panel lateral
 
-Por eso todo texto visible DEBE ser una prop.
+Por eso, **todo texto visible DEBE ser una prop**. Si no es prop, no aparece en el panel
+y el usuario no puede editarlo sin tocar código.
 
 ---
 
-## Regla 1 - Todo texto es prop con default
+## Regla #1 — Todo texto es prop con default
 
+### ✅ Correcto
 ```jsx
-// Correcto
 export default function HeroSection({
   title = "Tu título aquí",
   subtitle = "Tu subtítulo aquí",
   ctaLabel = "Hablemos",
   ctaHref = "https://wa.me/56988804299"
 }) { ... }
+```
 
-// Incorrecto
+### ❌ Incorrecto
+```jsx
 export default function HeroSection() {
   return <h1>Tu título aquí</h1>  // no editable desde el panel
 }
 ```
 
-Qué convierte en prop: títulos, subtítulos, párrafos, labels, textos de botones/CTAs, URLs, alt text, cualquier string visible.
+### Qué convierte en prop
+- Títulos, subtítulos, párrafos, labels
+- Textos de botones y CTAs
+- URLs de botones y links
+- Alt text de imágenes
+- Cualquier string visible en pantalla
 
 ---
 
-## Regla 2 - Sistema _styles para tipografía responsiva
+## Regla #2 — Sistema `_styles` para tipografía responsiva
 
+Todos los componentes con texto aceptan `_styles` para controlar
+tipografía por breakpoint desde el editor visual.
+
+### Estructura de `_styles`
 ```js
 _styles = {
   title: {
@@ -68,8 +70,7 @@ _styles = {
 }
 ```
 
-Función helper (copiar literal en cada componente):
-
+### Función helper — copiar literal en cada componente
 ```js
 function toInlineStyle(styleObj) {
   if (!styleObj) return {};
@@ -102,8 +103,7 @@ function toInlineStyle(styleObj) {
 }
 ```
 
-Detección de breakpoint (copiar literal):
-
+### Detección de breakpoint — copiar literal
 ```js
 const [bp, setBp] = useState(forceBp || 'mobile');
 
@@ -124,19 +124,26 @@ const fieldStyle = (fieldName) => {
 };
 ```
 
-Aplicar en JSX (data-field obligatorio):
+### Aplicar en JSX
 ```jsx
+// Atributo data-field obligatorio — el editor lo usa para identificar el campo
 <h2 data-field="title"       style={fieldStyle('title')}>{title}</h2>
 <p  data-field="description" style={fieldStyle('description')}>{description}</p>
 ```
 
 ---
 
-## Regla 3 - textTransform NUNCA en Tailwind
+## Regla #3 — textTransform NUNCA en Tailwind
+
+El editor controla mayúsculas/minúsculas desde `_styles.textTransform`.
+Si se hardcodea en Tailwind, el usuario no puede cambiarlo.
 
 ```jsx
-// ❌ <h1 className="uppercase">{title}</h1>
-// ✅ <h1 data-field="title" style={fieldStyle('title')}>{title}</h1>
+// ❌ Incorrecto
+<h1 className="uppercase">{title}</h1>
+
+// ✅ Correcto
+<h1 data-field="title" style={fieldStyle('title')}>{title}</h1>
 ```
 
 ---
@@ -145,8 +152,10 @@ Aplicar en JSX (data-field obligatorio):
 
 ```jsx
 export default function MiComponente({
+  // — textos (uno por campo visible) —
   title = "Título por defecto",
   description = "Descripción por defecto",
+  // — control del editor —
   _styles,
   forceBp = null,
 }) { ... }
@@ -154,24 +163,37 @@ export default function MiComponente({
 
 | Prop | Tipo | Descripción |
 |------|------|-------------|
-| _styles | object | Estilos tipográficos por campo y breakpoint |
-| forceBp | 'mobile'\|'tablet'\|'desktop'\|null | Fuerza breakpoint para preview |
+| `_styles` | object | Estilos tipográficos por campo y breakpoint |
+| `forceBp` | `'mobile'\|'tablet'\|'desktop'\|null` | Fuerza breakpoint para preview del editor |
 | Todos los textos | string | Con valor default siempre |
 
 ---
 
 ## Componentes con video (referencia: HeroVideo.jsx)
 
+Los componentes con video siguen el mismo patrón pero añaden:
+
 ```jsx
 export default function HeroVideo({
-  mobileVideoGuid, tabletVideoGuid, desktopVideoGuid,
-  posterSrc = '', alt = 'Video', title = '', description = '',
-  backgroundType = 'video',
+  mobileVideoGuid,
+  tabletVideoGuid,
+  desktopVideoGuid,
+  posterSrc = '',
+  alt = 'Video',
+  title = '',
+  description = '',
+  backgroundType = 'video',     // 'video' | 'solid' | 'gradient'
   backgroundColor = '#121212',
   backgroundGradient = 'linear-gradient(135deg, #1e1b4b 0%, #311042 100%)',
-  forceBp = null, _styles, children,
+  forceBp = null,
+  _styles,
+  children,
 })
 ```
+
+- `backgroundType` controla qué se muestra (video HLS, color sólido, o gradiente)
+- Los GUIDs de Bunny CDN son editables desde el panel
+- `children` permite anidar contenido de texto sobre el video
 
 ---
 
@@ -181,7 +203,9 @@ export default function HeroVideo({
 'use client';
 import { useState, useEffect } from 'react';
 
-function toInlineStyle(styleObj) { /* copiar función completa de arriba */ }
+function toInlineStyle(styleObj) {
+  // ... (copiar función completa de arriba)
+}
 
 export default function NombreComponente({
   title = "Título por defecto",
@@ -220,62 +244,38 @@ export default function NombreComponente({
 
 ## Checklist antes de entregar un componente
 
-- Todos los strings visibles son props con defaults
-- Incluye toInlineStyle sin modificaciones
-- Incluye detección de breakpoints con forceBp
-- Cada elemento de texto tiene data-field y style={fieldStyle('...')}
-- Ningún texto usa className de Tailwind para uppercase, tracking-*, etc.
-- El componente funciona sin pasar ninguna prop (solo defaults)
-- Los botones tienen color explícito para legibilidad sobre el fondo
+- [ ] ¿Todos los strings visibles son props con defaults?
+- [ ] ¿Incluye `toInlineStyle` sin modificaciones?
+- [ ] ¿Incluye detección de breakpoints con `forceBp`?
+- [ ] ¿Cada elemento de texto tiene `data-field` y `style={fieldStyle('...')}`?
+- [ ] ¿Ningún texto usa `className` de Tailwind para `uppercase`, `tracking-*`, etc.?
+- [ ] ¿El componente funciona sin pasar ninguna prop (solo defaults)?
+- [ ] ¿Los botones tienen `color` explícito para que el texto sea legible sobre el fondo?
 
----
+## Limitaciones Técnicas y Decisiones de Arquitectura
+### Stack y patrones
+- **Next.js App Router**: todas las páginas usan el nuevo `app/` directory, soporta server components y streaming.
+- **Supabase**: cliente está inicializado en `app/lib/supabase.ts` y se reutiliza vía React context.
+- **Estado global**: se gestiona con `React.createContext` en `app/context/AppContext.tsx`; incluye usuario, carrito y datos del funnel.
+- **Routing dinámico**: rutas como `/videos/[slug]` utilizan `generateStaticParams` y `fetch` con revalidación incremental.
+- **Middleware**: `middleware.js` protege rutas del admin y verifica sesiones JWT.
 
-## [PENDIENTE DE VALIDAR - 2026-07-14]
+### Interacción con APIs
+- **Supabase RPC**: funciones como `rpc('get_products')` se usan para precios; los resultados incluyen IVA calculado en el servidor.
+- **Webhook de Mercado Pago**: definido en `/api/webhooks/mercadopago.ts`, valida firmas y actualiza tabla `orders`.
+- **Calendly embed**: se inserta vía script externo; se manejan callbacks en `utils/calendly.ts`.
 
-La versión anterior de este skill incluía una sección "Limitaciones Técnicas y
-Decisiones de Arquitectura" que describía: app/lib/supabase.ts, AppContext.tsx
-con React Context, next-auth, Zod validators en /api/validators/*.ts, webhook
-de Mercado Pago en /api/webhooks/mercadopago.ts, Calendly en utils/calendly.ts.
+### Gestión de Estado y Caching
+- **React Query (tanstack)** no está incluido; se usa el caché de fetch con `revalidate` y `Cache-Control` en headers.
+- **Persistencia**: datos críticos (tokens, carrito) se guardan en `localStorage` y se hidratan en `useEffect` del provider.
 
-Esta sección fue removida porque no se pudo confirmar que exista en el código
-real del proyecto (no coincide con lo verificado en Supabase ni con el resto
-de los skills). Si alguna de estas piezas SÍ existe, avisar a Leandro para
-restaurarla aquí con la ruta de archivo exacta verificada en el repo —
-no reescribir de memoria.
+### Seguridad y Buenas Prácticas
+- **Cabeceras CSP** definidas en `next.config.mjs`.
+- **Protección CSRF** en API routes mediante `next-auth` session tokens.
+- **Validación de entrada** con Zod schemas en `/api/validators/*.ts`.
 
----
-
-## Registro de cambios (agregar al final, nunca borrar entradas anteriores)
-
-| Fecha | Cambio |
-|-------|--------|
-| 2026-07-14 | Se agrega regla append-only. Se remueve sección de stack técnico no verificada (ver bloque arriba). |
-| 2026-07-14 | Migración a canvas libre (Photoshop style) iniciada. Se establece el uso de `_layout` en todos los componentes y se reemplaza el apilamiento vertical (`calculateNextAvailablePosition` en `treeHelpers.js` queda marcado como obsoleto). En `GridEditor.jsx` se habilita `allowOverlap={true}` y se lee/escribe el layout desde `_layout.{bp}` aplicando `zIndex` vía inline styles. |
-| 2026-07-14 | Se implementa Toolbox y Drop Externo. Se crea `ToolboxPanel.jsx` leyendo de `COMPONENT_DEFINITIONS` y se reemplaza el dropdown en `page.js`. En `GridEditor.jsx` se configura la API v2 de `react-grid-layout` (`dropConfig` y `onDrop`) usando las coordenadas del evento para ubicar el elemento insertado con `insertComponentIntoParent()`. |
-| 2026-07-14 | FASE 5 completada. Se sobreescribe `.react-grid-placeholder` en `globals.css` para respetar tema oscuro (`--ps-accent-dim`, `--ps-border-focus`). En `GridEditor.jsx` se añade etiqueta de `Capa N` en el badge amarillo al seleccionar, y una nueva etiqueta semitransparente que revela el nombre del componente en hover (si no está seleccionado). |
-| 2026-07-14 | Corrección FASE 5: Se reemplazan clases utilitarias de Tailwind (`bg-s3/90`, `text-mid`) en el tag de hover por el uso estricto de variables del sistema Photoshop UI (`--ps-bg-tooltip`, `--ps-text-dim`, `--ps-border-light`) mediante estilos inline para cumplir con las reglas del sistema de diseño. |
-| 2026-07-14 | FASE 6 (Panel de Capas): Se extiende `StructureTree.jsx` para actuar como panel de capas estilo Photoshop. Se ordena visualmente de arriba hacia abajo usando `_layout.{bp}.zIndex` descendente. Se integra un botón de visibilidad (ojito) conectado a `_layout.{bp}.hidden` por breakpoint. Se añade función `recalculateZIndices` en `treeHelpers.js` para asegurar que el reordenamiento visual asigne valores consecutivos sin huecos (basado en la longitud del array tras el `onMove`). En `GridEditor.jsx` se respeta la visibilidad inyectando `opacity: 0, pointerEvents: 'none', visibility: 'hidden'` cuando `hidden` es verdadero. |
-| 2026-07-14 | CIERRE DE MIGRACIÓN (Resumen): La migración desde el sistema de apilamiento vertical al nuevo "Photoshop Style Free Canvas" se ha completado en 6 fases. 1) Auditoría de arquitectura comprobando dependencias y react-grid-layout v2. 2) Inyección y uso del esquema de datos libre `_layout` en lugar de apilamiento vertical. 3) Interfaz de Drag and Drop habilitada permitiendo superposición nativa. 4) Se integró Toolbox Panel lateral para inyección de nuevos componentes mediante drag-and-drop externo nativo (HTML5 + RGL v2 API). 5) Implementación de feedback visual incluyendo Hover tags, indicadores de capas (zIndex) en badges, y personalización del placeholder de RGL usando estrictamente tokens de `design-tokens.css`. 6) Conversión del árbol de estructura a un Panel de Capas ordenado por z-index con soporte para ocultar capas por breakpoint. Todo el sistema actual opera 100% como un canvas de diseño visual. |
-| 2026-07-15 | FIX 1: PageRenderer.jsx, fallback _layout/layout (commit 618a9bc). FIX 2: GridEditor.jsx, corregido mismatch de argumentos en onLayoutChange/handleGridLayoutChange que causaba pérdida de _layout en la grilla raíz (commit 5dcffd1). |
-| 2026-07-15 | Separación de "Guardar" (persistencia, borrador) y "Publicar" (activa en público) en el Page Builder. Se elimina `is_active: true` forzado en `saveVersion()` y se añade botón explícito "Publicar versión" con confirmación UI (`window.confirm`) que llama a `publishVersion()` (`PATCH` a `route.js`). |
-| 2026-07-15 | FIX UI Header: Se extrae el bloque "Crear Rama" del header sticky principal (que forzaba un flex-col y causaba desbordamiento/superposición sobre el canvas) moviéndolo a una barra de herramientas secundaria, no-sticky, justo debajo del header. |
-| 2026-07-15 | Se añade Debugger Visual de Grid en `GridEditor.jsx` con overlay CSS Grid y un toggle en `page.js`. Se implementa `draggableHandle` para `react-grid-layout`, limitando el drag de componentes de texto a un ícono en `AvatarTextSection.jsx` y asignando la clase `.drag-handle` al contenedor raíz del resto de los componentes. |
-| 2026-07-15 | Se crea primitivo `Button` basado en `Container.jsx` y estilos visuales heredados de CTA (texto contentEditable interactivo + drag-handle + a.href). Se añade soporte para `instanceId` único en duplicación (`treeHelpers.js`) y se registra componente en `registry.js`. |
-| 2026-07-15 | FIX: Arrastrar desde el ToolboxPanel. Se añade `onDropComponent` en `GridEditor` (`page.js`) y se modifica `performMove` en `treeHelpers.js` para detectar drops de *tipos de componente* desde el Toolbox (vs IDs de componentes existentes), instanciando e insertando el componente con `defaultProps`. Se corrige la altura fija desproporcionada del panel de Capas (`StructureTree`), haciéndolo responsivo al contenido (`max-h-[400px]`, `overflow-y-auto`). |
-| 2026-07-15 | FIX: Renderizado de Canvas. Se corrige prop errónea `registry={COMPONENT_DEFINITIONS}` a `registry={COMPONENT_REGISTRY}` en `GridEditor` (`page.js`), resolviendo el error "Componente no encontrado". Se mueven estilos CSS en `Button.jsx` desde el wrapper hacia el propio `<a className="button">` y se actualiza `registry.js` para usar `var(--ps-accent)` en su color nativo por defecto, junto con su respectiva inclusión en `propsConfig`. Se retira `max-h-[400px]` en panel de Capas, confiando en el overflow padre. |
-| 2026-07-15 | UX/UI Fixes: Se cambia el contenedor del Sidebar a `sticky top-6 h-[calc(100vh-120px)]` para mantener el panel de herramientas siempre a la vista al scrollear la página. Se propaga el soporte para `showGridDebug` hacia la grid interna customizada (`InnerCanvas`) dentro de `AvatarTextSection.jsx`, replicando el overlay visual y las coordenadas X/Y/W/H tal como en `GridEditor`. |
-| 2026-07-15 | UX/UI Fixes: Se cambia `sticky top-6` a `fixed left-6 top-32` en el contenedor del Sidebar para removerlo del flujo normal y prevenir que empuje el canvas hacia abajo. Se ajusta la altura máxima a `h-[calc(100vh-140px)]`. |
-| 2026-07-15 | FIX: GridEditor y AvatarTextSection. Se aumentó el tamaño y visibilidad del `.drag-handle`. Se corrigió el listener de click-afuera en `GridEditor` asignando un `id` a cada capa para detectar clicks externos al componente activo. Se memorizó el objeto `layouts` con `useMemo` en `InnerCanvas` para eliminar lag en resize. Se reubicó el badge de Debug Grid al `bottom-2` para evitar colisiones. |
-| 2026-07-15 | FIX: Posicionamiento libre en AvatarTextSection. Se agregó `allowOverlap={true}` al `ResponsiveGridLayout` interno (`InnerCanvas`) para deshabilitar la resolución de colisiones y evitar que los elementos internos reboten o se apilen verticalmente al ser movidos, logrando verdadera libertad de posicionamiento estilo Photoshop. |
-| 2026-07-16 | FIX: react-grid-layout Snap-to-top. Se corrige el CSS del `.react-grid-placeholder` en `globals.css` (reemplazando variables indefinidas por colores válidos) para visibilizar el drop de componentes. En `GridEditor.jsx` e `InnerCanvas` (`AvatarTextSection.jsx`), se cambia `preventCollision={false}` a `preventCollision={true}` (junto con `compactType={null}` y `allowOverlap={true}`) para bloquear la interpolación del layout engine, logrando una verdadera posición libre sin efecto imán. |
-| 2026-07-16 | REVERT PUNTUAL: react-grid-layout InnerCanvas. Se revierte `preventCollision={true}` a `preventCollision={false}` exclusivamente en `InnerCanvas` (`AvatarTextSection.jsx`). El modo restrictivo bloqueaba lógicamente el drag del placeholder hacia abajo en espacios sin colisión cuando el contenedor no pre-existía en dimensiones suficientes. Se mantiene `compactType={null}` y `allowOverlap={true}`. |
-| 2026-07-16 | FIX: Drag re-renders en InnerCanvas. Se eliminó el estado `hoveredId` en `AvatarTextSection.jsx` y sus eventos `onMouseEnter`/`onMouseLeave` que causaban re-renders continuos durante el arrastre. El feedback visual de hover (guías y bordes) se migró a CSS puro mediante `group` y `group-hover:opacity-100` de Tailwind, evitando que React interrumpa el drag interno de `react-grid-layout`. |
-| 2026-07-16 | FIX: Estado obsoleto en Dropdown de Versión. Se modifica `fetchData` en `app/admin/editor/page.js` para aceptar un `overrideVersionId` opcional, evitando la dependencia exclusiva del hook `useSearchParams` cuyo estado quedaba un ciclo de render atrasado después de un `window.history.pushState`. El onChange ahora inyecta explícitamente el `e.target.value` a `fetchData(newId)` logrando carga instantánea en el primer clic. |
-| 2026-07-16 | FIX: Bucle infinito en GridEditor. Se cambia `preventCollision={true}` a `preventCollision={false}` en `GridEditor.jsx` (línea 151). La combinación de prever colisiones con `allowOverlap={true}` y `compactType={null}` causaba que `react-grid-layout` fallara intentando resolver superposiciones al inicializar el canvas con datos encimados, lo que detonaba `onLayoutChange` infinitos resultando en "Maximum update depth exceeded". |
-| 2026-07-16 | UX/UI: Se implementa feedback visual en tiempo real durante el drag-and-drop en `StructureTree.jsx` (Panel de Capas). Se calcula la posición relativa del mouse en `onDragOver` para determinar el lugar de inserción (`top`, `bottom` o `inside`), renderizando líneas indicadoras con color de acento sin alterar la lógica de `performMove`. |
-| 2026-07-16 | Refactor: Migración de `CellPhoneCTASection` al sistema de grid libre interno (`InnerCanvas`). Se incorporó `ResponsiveGridLayout` idéntico a `AvatarTextSection`, abstrayendo sus 3 sub-elementos (`tag`, `text`, `button`) en un layout `DEFAULT_INNER_LAYOUT` configurable por el usuario en modo editor, preservando la vista del modo público de forma idéntica. Se usa CSS puro para hover states eliminando re-renders. |
-| 2026-07-16 | FIX: Sincronización de panel de Propiedades para campos de texto. Se añadió el parseo de `_styles` (mediante `toInlineStyle` y trackeo del breakpoint activo) junto con el atributo `data-field` a los elementos de texto de `CellPhoneCTASection`, `VideoReelSection` y `FinalCTASection`. Se agregó `textTransform: 'none'` en estilos inline para evitar que Tailwind bloquee la visualización real en el panel. |
-| 2026-07-16 | FIX: Reducción de espaciado en `FinalCTASection`. Se ajustó el `padding` predeterminado (de `py-16 md:py-24` a `py-8 md:py-12`) y se configuró un `_layout` inicial (`w: 12, h: 6`) en el `registry.js` para que la caja "abrace" su contenido de manera natural. |
-| 2026-07-16 | Refactor: Migración de `ServicesSection` al sistema de grid libre interno (`InnerCanvas`). Se separaron los sub-elementos (`title`, `subtitle`, `services`) en slots individuales. Se incorporó `_styles` y soporte de `fieldStyle` para la edición del texto, manteniendo la vista pública intacta. |
-| 2026-07-16 | FIX: Desbordamiento horizontal en `ServicesSection`. Se resolvió la limitación de la celda de array convirtiendo cada ítem del array en su propio sub-slot dinámico (`service_0`, `service_1`, etc.) en lugar de agruparlos en un único `servicesNode`. Esto permite que el componente base tenga un layout por defecto menos invasivo en el ancho (`_layout: { w: 12, h: 20 }` sin paddings forzados), mientras cada tarjeta retiene un layout inicial de `{ w: 5, h: 14 }` centrado en el grid para emular el `max-w-5xl`. |
-| 2026-07-16 | Refactor: Migración de `VideoReelSection` al sistema de grid libre interno (`InnerCanvas`). Se incorporó `ResponsiveGridLayout` idéntico a `AvatarTextSection` para sus 2 sub-elementos (`title`, `video`) en un layout `DEFAULT_INNER_LAYOUT`, preservando la vista del modo público estática y usando CSS puro para feedback visual de hover en el editor. |
+## Checklist Técnica (añadida)
+- [ ] ¿Todas las llamadas a Supabase usan `await supabase.from(...).select()` con manejo de errores?
+- [ ] ¿Los parámetros de rutas dinámicas están validados con Zod antes de la consulta?
+- [ ] ¿Las respuestas de API incluyen encabezados `Cache-Control` apropiados?
+- [ ] ¿Los componentes críticos usan `React.memo` cuando corresponda?

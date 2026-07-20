@@ -68,8 +68,9 @@ export default function BunnyVideoPlayer({
   const contentUrl   = `https://${CDN_HOSTNAME}/${videoId}/playlist.m3u8`;
   const embedUrl = validLibraryId ? `${EMBED_BASE}/${libraryId}/${videoId}` : '';
   const iframeSrc = validLibraryId
-    ? `${embedUrl}?autoplay=${autoplay}&muted=${muted}&preload=false&title=false&logo=false`
+    ? `${embedUrl}?autoplay=${autoplay}&muted=${muted}&preload=false&title=false&logo=false&color=3B82F6`
     : '';
+    
 
   // uploadDate: must be full ISO-8601 with timezone (Google requirement)
   const safeUploadDate = uploadDate
@@ -108,7 +109,7 @@ export default function BunnyVideoPlayer({
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
             className={className}
-            style={{ border: 0, ...style }}
+            style={style}
           />
         )}
       </>
@@ -132,7 +133,7 @@ export default function BunnyVideoPlayer({
             loading="lazy"
             allow="autoplay; fullscreen"
             allowFullScreen
-            className="absolute inset-0 w-full h-full border-0"
+            className="absolute inset-0 w-full h-full"
           />
         )}
       </div>

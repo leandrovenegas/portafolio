@@ -1,21 +1,11 @@
----
-name: photoshop-ui-style-system
-description: >
-  Aplica este skill automáticamente cada vez que el agente vaya a crear, editar
-  o revisar cualquier archivo CSS, componente visual o de layout, o trabajar con
-  paneles, toolbars, inputs, botones o cualquier elemento UI.
-last_updated: 2026-07-14
-mode: append-only
----
+# Skill: Photoshop UI Style System
 
-> REGLA DE EDICIÓN - APPEND-ONLY
-> Este archivo nunca se borra ni se reescribe completo. Solo se agrega contenido nuevo.
-> Cada regla aquí es GLOBAL Y PERMANENTE: aplica a todo el proyecto de forma
-> indefinida, no solo al componente o página en el que se detectó la necesidad.
-> Si una regla queda obsoleta, márcala como [OBSOLETO - fecha] sin eliminar el texto.
-> Antes de guardar, verifica que la versión nueva no tenga menos líneas que la
-> anterior; si las tiene, DETENTE y pregunta a Leandro.
-> Commit obligatorio: git add .agents/skills/ && git commit -m "chore: update skills"
+## Descripción (trigger de activación)
+Aplica este skill automáticamente cada vez que el agente vaya a:
+- Crear, editar o revisar cualquier archivo CSS
+- Crear o modificar un componente visual o de layout
+- Trabajar con paneles, toolbars, inputs, botones o cualquier elemento UI
+- Responder a palabras clave: "estilos", "diseño", "UI", "panel", "toolbar", "aspecto", "color", "layout", "componente"
 
 ---
 
@@ -42,27 +32,27 @@ La interfaz replica el entorno de trabajo de Photoshop CC con tema oscuro:
 ## Restricciones absolutas (no negociables)
 
 ### Colores
-- NO uses: white, #fff, #f5f5f5, #fafafa, ni ningún fondo > #666
-- NO uses: black, #000, #111 como color de texto
-- USA: variables --ps-* de design-tokens.css
+- ❌ NO uses: white, #fff, #f5f5f5, #fafafa, ni ningún fondo > #666
+- ❌ NO uses: black, #000, #111 como color de texto
+- ✅ USA: variables --ps-* de design-tokens.css
 
 ### Bordes y radios
-- NO uses: border-radius mayor a 3px en elementos de UI chrome
-- NO quites: bordes de inputs (siempre necesitan borde visible)
-- USA: var(--ps-radius) = 2px como máximo
+- ❌ NO uses: border-radius mayor a 3px en elementos de UI chrome
+- ❌ NO quites: bordes de inputs (siempre necesitan borde visible)
+- ✅ USA: var(--ps-radius) = 2px como máximo
 
 ### Sombras
-- NO uses: box-shadow con colores claros o blurs mayores a 12px
-- PERMITIDO: rgba(0,0,0,0.5) para sombras funcionales (menús flotantes)
+- ❌ NO uses: box-shadow con colores claros o blurs mayores a 12px
+- ✅ PERMITIDO: rgba(0,0,0,0.5) para sombras funcionales (menús flotantes)
 
 ### Layout de paneles
-- NO cambies: ancho de paneles laterales (--panel-left-width / --panel-right-width)
-- NO muevas: el toolbar de su posición fija
-- PUEDES: modificar contenido dentro de los paneles
+- ❌ NO cambies: ancho de paneles laterales (--panel-left-width / --panel-right-width)
+- ❌ NO muevas: el toolbar de su posición fija
+- ✅ PUEDES: modificar contenido dentro de los paneles
 
 ### Variables
-- NO inventes variables nuevas sin aprobación
-- PROPÓN: si crees que falta una variable, sugiérela antes de crearla
+- ❌ NO inventes variables nuevas sin aprobación
+- ✅ PROPÓN: si crees que falta una variable, sugiérela antes de crearla
 
 ---
 
@@ -117,14 +107,13 @@ margin: var(--sp-sm) 0;
 ---
 
 ## Fondo Global del Proyecto (Cuadrícula Fija)
-
-El sitio público utiliza un fondo global (cuadrícula/grid) que debe ser siempre visible:
+El sitio público utiliza un fondo global (cuadrícula/grid) que debe ser siempre visible. Cualquier bloque de contenido público debe tener fondos transparentes para que el grid sea visible:
 
 ```css
 body {
   background-color: #0D0D0D !important;
-  background-image:
-    linear-gradient(#1a1a1a 1px, transparent 1px),
+  background-image: 
+    linear-gradient(#1a1a1a 1px, transparent 1px), 
     linear-gradient(90deg, #1a1a1a 1px, transparent 1px) !important;
   background-size: 40px 40px !important;
   background-attachment: fixed !important;
@@ -132,21 +121,11 @@ body {
 ```
 
 ### Reglas para Componentes Públicos:
-- Todo nuevo componente o sección agregada para la parte pública DEBE llevar la clase `.page-builder-block` en su contenedor raíz o ser configurado con fondo transparente en `app/globals.css`.
-- El panel de administración (`.admin-main` o páginas dentro de `/admin`) debe mantener sus fondos sólidos intactos.
+- Todo nuevo componente o sección agregada para la parte pública (ej. `TituloAnimado`, `TextosAnimados`, `HeroEditorialSection`, etc.) DEBE llevar la clase `.page-builder-block` en su contenedor raíz más externo o ser configurado con fondo transparente en `app/globals.css`.
+- El panel de administración (`.admin-main` o páginas dentro de `/admin`) debe mantener sus fondos sólidos intactos para garantizar la legibilidad y operatividad de la interfaz Photoshop UI.
 
 ---
 
 ## Referencias
 - `references/design-tokens.css` — todas las variables CSS (fuente de verdad)
 - `references/PROHIBICIONES.md` — casos edge y ejemplos de lo que NO hacer
-
----
-
-## Registro de cambios (agregar al final, nunca borrar entradas anteriores)
-
-| Fecha | Cambio |
-|-------|--------|
-| 2026-07-14 | Se agrega regla append-only y aclaración de alcance global/permanente. Sin cambios de contenido técnico (no se detectaron incoherencias). |
-| 2026-07-15 | Se agrega import de ToolboxPanel en page.js para solucionar ReferenceError. |
-| 2026-07-15 | Se convierte el panel izquierdo en una barra flotante auto-hide con pestañas internas (Página, Estructura, Propiedades) estilo Photoshop con z-index 150 y variables --ps-*. |

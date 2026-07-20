@@ -18,8 +18,7 @@ import ServicesSection from './sections/ServicesSection';
 import CellPhoneCTASection from './sections/CellPhoneCTASection';
 import FormatsSection from './sections/FormatsSection';
 import FinalCTASection from './sections/FinalCTASection';
-import ContainerSection from './sections/ContainerSection';
-import Button from './sections/Button';
+import HeroPortafolioTexto from '../HeroPortafolioTexto';
 
 export const COMPONENT_REGISTRY = {
   HeroVideoSection,
@@ -42,49 +41,11 @@ export const COMPONENT_REGISTRY = {
   CellPhoneCTASection,
   FormatsSection,
   FinalCTASection,
-  ContainerSection,
-  Button
+  HeroPortafolioTexto,
 };
 
 
 export const COMPONENT_DEFINITIONS = [
-  {
-    type: 'ContainerSection',
-    name: 'Contenedor',
-    defaultProps: {
-      bg: 'var(--ps-bg-panel)',
-      borderColor: 'var(--ps-border)',
-      borderRadius: 'var(--ps-radius)'
-    },
-    defaultLayout: { desktop: { w: 24, h: 6 }, tablet: { w: 24, h: 6 }, mobile: { w: 12, h: 6 } },
-    propsConfig: {
-      bg: { type: 'color', label: 'Color de Fondo' },
-      borderColor: { type: 'color', label: 'Color de Borde' },
-      borderRadius: { type: 'text', label: 'Radio de Borde (ej. 8px, var(--ps-radius))' }
-    }
-  },
-  {
-    type: 'Button',
-    name: 'Botón',
-    defaultProps: {
-      bg: 'transparent',
-      borderColor: 'transparent',
-      borderRadius: 'var(--ps-radius)',
-      buttonText: 'Hacer clic aquí',
-      buttonLink: '#',
-      _styles: {
-        buttonText: {
-          mobile: { fontSize: 16, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.1', lineHeight: '1.2' },
-          tablet: { fontSize: 18, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.1', lineHeight: '1.2' },
-          desktop: { fontSize: 18, color: '', fontWeight: '700', fontStyle: 'normal', textTransform: 'uppercase', letterSpacing: '0.1', lineHeight: '1.2' }
-        }
-      }
-    },
-    defaultLayout: { desktop: { w: 8, h: 2 }, tablet: { w: 8, h: 2 }, mobile: { w: 12, h: 2 } },
-    propsConfig: {
-      buttonLink: { type: 'text', label: 'Enlace (URL)' }
-    }
-  },
   {
     type: 'HeroVideoSection',
     name: 'Hero Clásico',
@@ -358,6 +319,7 @@ export const COMPONENT_DEFINITIONS = [
     name: 'Video Reel',
     defaultProps: {
       title: "Mira mi estilo de creación de videos",
+      subtitle: "",
       videoGuid: "f8a865ba-05c8-4a1d-8ebc-958f0c944f58"
     }
   },
@@ -425,5 +387,13 @@ export const COMPONENT_DEFINITIONS = [
       buttonText: "Hablar con Leandro",
       buttonLink: "https://wa.me/56988804299?text=Hola%20Leandro%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20sistema%20de%20video%20marketing."
     }
+  },{
+  type: 'HeroPortafolioTexto',
+  name: 'Hero Portafolio (Texto + Animación)',
+  defaultProps: {
+    pillText: 'Proyectos y Organizaciones',
+    headline: 'Portafolio de Dirección Creativa y Producción Audiovisual',
+    descriptionHtml: '<p>Diez años construyendo campañas que generan resultados medibles.</p>'
   }
+}
 ];

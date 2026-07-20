@@ -71,7 +71,7 @@ export default async function Portafolio({ searchParams }) {
     <>
       <MediaPreconnect bunny />
       <main className="min-h-screen bg-bg relative overflow-hidden pb-24">
-        <HeroPortafolioTexto headline="Dirección Creativa y Producción Audiovisual" descriptionHtml={descripcionLocal} />
+
         {components && components.length > 0 && (
           <div className="w-full relative z-20 bg-bg">
             <LivePreviewListener initialComponents={components} />
