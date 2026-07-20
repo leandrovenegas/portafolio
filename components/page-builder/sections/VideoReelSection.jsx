@@ -40,7 +40,7 @@ export default function VideoReelSection({
             autoplay={false}
             muted={false}
             unstyled={true}
-            className="absolute inset-0 w-full h-full border-8 border-red-500"
+            className="absolute inset-0 w-full h-full"
           />
         </div>
       </div>
