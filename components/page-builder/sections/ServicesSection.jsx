@@ -22,8 +22,8 @@ export default function ServicesSection({
   forceBp = null
 }) {
   return (
-    <section className="w-full py-16 md:py-24 flex flex-col gap-12">
-      <div className="flex flex-col gap-4 text-center max-w-3xl mx-auto px-4">
+    <section className="w-full py-16 md:py-24 grid grid-cols-1 gap-12">
+      <div className="col-span-1 grid grid-cols-1 gap-4 text-center max-w-3xl mx-auto px-4 justify-items-center">
         {title && (
           <h2 
             data-field="title"
@@ -42,11 +42,11 @@ export default function ServicesSection({
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full px-4">
+      <div className="col-span-1 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto w-full px-4">
         {services.map((svc) => (
           <div
             key={svc.id || svc.title}
-            className="group flex flex-col justify-between p-8 rounded-2xl border border-border/30 bg-[#0F0F0F] transition-all duration-300 hover:border-accent/30 hover:shadow-[0_0_40px_rgba(255,204,0,0.05)] hover:-translate-y-1"
+            className="col-span-1 group flex flex-col justify-between p-8 rounded-2xl border border-border/30 bg-[#0F0F0F] transition-all duration-300 hover:border-accent/30 hover:shadow-[0_0_40px_rgba(255,204,0,0.05)] hover:-translate-y-1"
           >
             <div className="flex flex-col gap-4">
               <h3 className="font-display text-2xl md:text-3xl text-ink tracking-tight uppercase group-hover:text-accent transition-colors duration-300">

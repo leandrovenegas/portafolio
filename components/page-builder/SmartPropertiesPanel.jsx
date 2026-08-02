@@ -17,6 +17,8 @@ const HERO_EDITORIAL_TEXT_FIELDS = [
   { key: 'pillText',        label: 'Pill / Etiqueta',         long: false },
   { key: 'headline',        label: 'Título Principal',         long: false },
   { key: 'headlineKeyword', label: 'Palabra Clave (acento)',   long: false },
+  { key: 'roleText',        label: 'Rol / Especialidad',      long: false },
+  { key: 'statusText',      label: 'Estado (Disponible)',     long: false },
   { key: 'bodyText',        label: 'Cuerpo de Texto',          long: true  },
   { key: 'tagline',         label: 'Tagline (cita lateral)',   long: false },
 ];

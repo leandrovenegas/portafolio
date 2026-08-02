@@ -14,9 +14,9 @@ export default function CTAWhatsapp({
 
   return (
     <section className="py-16 md:py-24 px-6">
-      <div className="max-w-2xl mx-auto text-center">
+      <div className="max-w-2xl mx-auto text-center grid grid-cols-1 gap-6 justify-items-center">
         {/* WhatsApp Icon */}
-        <div className="mb-6 flex justify-center">
+        <div className="col-span-1 flex justify-center">
           <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -36,14 +36,14 @@ export default function CTAWhatsapp({
 
         {/* Title */}
         {title && (
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-ink mb-4">
+          <h2 className="col-span-1 text-3xl md:text-4xl font-display font-bold text-ink">
             {title}
           </h2>
         )}
 
         {/* Description */}
         {description && (
-          <p className="text-lg text-mid max-w-xl mx-auto mb-8">
+          <p className="col-span-1 text-lg text-mid max-w-xl mx-auto">
             {description}
           </p>
         )}
@@ -53,7 +53,7 @@ export default function CTAWhatsapp({
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-display font-semibold px-8 py-4 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl"
+          className="col-span-1 inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-display font-semibold px-8 py-4 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 

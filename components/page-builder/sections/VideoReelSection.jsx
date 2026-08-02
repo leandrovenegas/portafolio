@@ -9,28 +9,27 @@ export default function VideoReelSection({
   forceBp = null
 }) {
   return (
-    <section className="w-full py-16 md:py-24 flex flex-col items-center gap-10">
+    <section className="w-full py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-items-center">
       {title && (
-    <div>
+        <div className="col-span-1 text-center md:text-left w-full">
           <h2 
             data-field="title"
-            className="font-display text-4Sxl md:text-5xl text-ink text-center max-w-3xl tracking-tight leading-tight"
+            className="font-display text-4xl md:text-5xl text-ink tracking-tight leading-tight"
           >
             {title}
           </h2>
-        {subtitle && (
-          <p 
-            data-field="subtitle"
-            className="mt-4 text-lg text-center md:text-xl text-ink/70 max-w-2xl mx-auto"
-          >
-            {subtitle}
-          </p>
-        )}
-    </div>
-       
+          {subtitle && (
+            <p 
+              data-field="subtitle"
+              className="mt-4 text-lg md:text-xl text-ink/70 max-w-2xl"
+            >
+              {subtitle}
+            </p>
+          )}
+        </div>
       )}
       
-      <div className="w-full max-w-[340px] px-4 md:px-0 mx-auto">
+      <div className="col-span-1 w-full max-w-[340px] px-4 md:px-0 mx-auto">
         <div className="relative rounded-2xl overflow-hidden border border-border/40 shadow-[0_0_50px_rgba(255,204,0,0.08)] bg-black/60 aspect-[9/16] transition-all duration-500 hover:border-accent/30 hover:shadow-[0_0_60px_rgba(255,204,0,0.12)]">
           <VideoPlayer
             src={videoGuid}

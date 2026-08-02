@@ -4,20 +4,20 @@ export default function CTASection({ title, description, buttonText, buttonLink,
 
   return (
     <section id="contacto">
-      <div className="border-t border-border pt-16 flex flex-col items-center text-center gap-8">
+      <div className="border-t border-border pt-16 grid grid-cols-1 gap-8 justify-items-center text-center">
         {title && (
-          <h2 className="font-display text-5xl md:text-6xl text-white max-w-2xl">
+          <h2 className="col-span-1 font-display text-5xl md:text-6xl text-white max-w-2xl">
             {title}
           </h2>
         )}
         {description && (
-          <p className="font-body text-white/80 text-lg max-w-xl">
+          <p className="col-span-1 font-body text-white/80 text-lg max-w-xl">
             {description}
           </p>
         )}
         
         {displayButtonText && (
-          <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
+          <div className="col-span-1 flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto justify-center">
             <a 
               href={displayButtonLink} 
               target="_blank" 

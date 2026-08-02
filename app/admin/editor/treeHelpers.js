@@ -6,35 +6,31 @@
 export function migrateToTreeStructure(components) {
   if (!Array.isArray(components)) return [];
   
-  let currentY = { desktop: 0, tablet: 0, mobile: 0 };
-
-  return components.map(comp => {
+  return components.map((comp, index) => {
     const updatedComp = { ...comp };
     
-    if (updatedComp.layout) {
-      const migratedLayout = { ...updatedComp.layout };
-      ['desktop', 'tablet'].forEach(bp => {
-        if (migratedLayout[bp]) {
-          let l = migratedLayout[bp];
-          if (l.w === 12 && l.x === 0) {
-            migratedLayout[bp] = { ...l, w: 24 };
-          }
-        }
-      });
-      updatedComp.layout = migratedLayout;
-    }
-
-    // Migración a _layout (Photoshop style) con posición fallback
+    // Cleanup of old layout data - only keep zIndex and hidden
     if (!updatedComp._layout) {
        const oldL = updatedComp.layout || {};
        updatedComp._layout = {
-         desktop: oldL.desktop ? { ...oldL.desktop, zIndex: 1 } : { x: 0, y: currentY.desktop, w: 24, h: 4, zIndex: 1 },
-         tablet: oldL.tablet ? { ...oldL.tablet, zIndex: 1 } : { x: 0, y: currentY.tablet, w: 24, h: 4, zIndex: 1 },
-         mobile: oldL.mobile ? { ...oldL.mobile, zIndex: 1 } : { x: 0, y: currentY.mobile, w: 12, h: 4, zIndex: 1 }
+         desktop: oldL.desktop ? { zIndex: oldL.desktop.zIndex || 1, hidden: !!oldL.desktop.hidden } : { zIndex: 1, hidden: false },
+         tablet: oldL.tablet ? { zIndex: oldL.tablet.zIndex || 1, hidden: !!oldL.tablet.hidden } : { zIndex: 1, hidden: false },
+         mobile: oldL.mobile ? { zIndex: oldL.mobile.zIndex || 1, hidden: !!oldL.mobile.hidden } : { zIndex: 1, hidden: false }
        };
-       currentY.desktop += updatedComp._layout.desktop.h;
-       currentY.tablet += updatedComp._layout.tablet.h;
-       currentY.mobile += updatedComp._layout.mobile.h;
+    } else {
+       ['desktop', 'tablet', 'mobile'].forEach(bp => {
+         if (updatedComp._layout[bp]) {
+           const l = updatedComp._layout[bp];
+           updatedComp._layout[bp] = { zIndex: l.zIndex || 1, hidden: !!l.hidden };
+         } else {
+           updatedComp._layout[bp] = { zIndex: 1, hidden: false };
+         }
+       });
+    }
+    
+    // Remove old layout object completely
+    if (updatedComp.layout) {
+      delete updatedComp.layout;
     }
 
     if (comp.children) {
@@ -122,57 +118,9 @@ export function addComponentToTree(tree, newComp, parentId = null) {
 }
 
 export function updateGridLayout(tree, parentId, allLayouts) {
-  const updateLayoutsForArray = (arr) => {
-    return arr.map(comp => {
-      const dL = allLayouts.desktop?.find(l => l.i === comp.id);
-      const tL = allLayouts.tablet?.find(l => l.i === comp.id);
-      const mL = allLayouts.mobile?.find(l => l.i === comp.id);
-      
-      if (!dL && !tL && !mL) return comp;
-      
-      return {
-        ...comp,
-        _layout: {
-          desktop: dL ? { x: dL.x, y: dL.y, w: dL.w, h: dL.h, zIndex: comp._layout?.desktop?.zIndex || 1 } : (comp._layout?.desktop || {x:0, y:0, w:24, h:4, zIndex:1}),
-          tablet: tL ? { x: tL.x, y: tL.y, w: tL.w, h: tL.h, zIndex: comp._layout?.tablet?.zIndex || 1 } : (comp._layout?.tablet || {x:0, y:0, w:24, h:4, zIndex:1}),
-          mobile: mL ? { x: mL.x, y: mL.y, w: mL.w, h: mL.h, zIndex: comp._layout?.mobile?.zIndex || 1 } : (comp._layout?.mobile || {x:0, y:0, w:12, h:4, zIndex:1}),
-        }
-      };
-    });
-  };
-
-  if (!parentId) {
-    // Si parentId es null, es la grilla principal
-    return updateLayoutsForArray(tree);
-  }
-
-  // Si hay parentId, buscar ese contenedor y actualizar sus hijos
-  return tree.map(comp => {
-    if (comp.id === parentId) {
-      return { ...comp, children: updateLayoutsForArray(comp.children || []) };
-    }
-    if (comp.children) {
-      return { ...comp, children: updateGridLayout(comp.children, parentId, allLayouts) };
-    }
-    return comp;
-  });
-}
-
-// [OBSOLETO - 2026-07-14] Fuerza el apilamiento vertical que bloquea el canvas libre
-function calculateNextAvailablePosition(children, bp, originalW) {
-  const MAX_COLS = { desktop: 24, tablet: 24, mobile: 12 };
-  const cols = MAX_COLS[bp] || 24;
-  
-  const safeW = Math.min(originalW, cols);
-
-  if (!children || children.length === 0) return { x: 0, y: 0, w: safeW };
-  
-  const maxY = children.reduce((max, child) => {
-    const layout = child.layout?.[bp];
-    return layout ? Math.max(max, layout.y + layout.h) : max;
-  }, 0);
-  
-  return { x: 0, y: maxY, w: safeW };
+  // Legacy stub to prevent crashes if this function is called anywhere.
+  // We no longer use react-grid-layout.
+  return tree;
 }
 
 // Extrae un componente del árbol y retorna [árbol_sin_componente, componente_extraido]
@@ -195,39 +143,6 @@ function extractComponent(tree, id) {
     return comp;
   });
   return [newTree, extracted];
-}
-
-export function moveComponentInTree(tree, sourceId, targetParentId, dropIndex = -1) {
-  // 1. Extraer el componente origen
-  const [treeWithoutSource, sourceComp] = extractComponent(tree, sourceId);
-  if (!sourceComp) return tree; // No se encontró
-
-  // 2. [OBSOLETO - 2026-07-14] La lógica de recalcular posición según siblings/stack
-  // se remueve porque ahora _layout determina coordenadas absolutas (Photoshop style)
-  const newComp = { ...sourceComp };
-
-  // 3. Insertar el componente en el destino
-  const insertIntoArray = (arr, item, idx) => {
-    const res = [...arr];
-    if (idx >= 0 && idx <= res.length) res.splice(idx, 0, item);
-    else res.push(item);
-    return res;
-  };
-
-  if (!targetParentId) {
-    return insertIntoArray(treeWithoutSource, newComp, dropIndex);
-  }
-
-  return treeWithoutSource.map(comp => {
-    if (comp.id === targetParentId) {
-      return { ...comp, children: insertIntoArray(comp.children || [], newComp, dropIndex) };
-    }
-    if (comp.children) {
-      const [childTree, _] = extractComponent([comp], 'dummy'); // Solo para iterar
-      // Realmente necesitamos recursividad para la inserción
-    }
-    return comp;
-  });
 }
 
 // Inserción recursiva helper
@@ -257,30 +172,15 @@ export function performMove(tree, sourceId, targetParentId, dropIndex = -1) {
   if (!sourceComp) return tree;
 
   const newComp = { ...sourceComp };
-  
-  // [OBSOLETO - 2026-07-14] Removido recálculo de posición vertical
-  /*
-  const targetParent = targetParentId ? findComponent(treeWithoutSource, targetParentId) : null;
-  const siblings = targetParent ? (targetParent.children || []) : treeWithoutSource;
-
-  newComp.layout = {
-    desktop: { ...newComp.layout?.desktop, ...calculateNextAvailablePosition(siblings, 'desktop', newComp.layout?.desktop?.w || 24) },
-    tablet: { ...newComp.layout?.tablet, ...calculateNextAvailablePosition(siblings, 'tablet', newComp.layout?.tablet?.w || 24) },
-    mobile: { ...newComp.layout?.mobile, ...calculateNextAvailablePosition(siblings, 'mobile', newComp.layout?.mobile?.w || 12) }
-  };
-  */
-
   return insertComponentIntoParent(treeWithoutSource, newComp, targetParentId, dropIndex);
 }
 
 export function recalculateZIndices(tree, bp) {
-  // Cuando se llama a esta función, el array `tree` ya refleja el orden deseado visualmente.
-  // Por lo tanto, el primer elemento (index 0) debe tener el mayor zIndex.
   const total = tree.length;
   return tree.map((comp, index) => {
     const newComp = { ...comp };
     if (!newComp._layout) newComp._layout = {};
-    if (!newComp._layout[bp]) newComp._layout[bp] = { x: 0, y: 0, w: 12, h: 4, zIndex: 1 };
+    if (!newComp._layout[bp]) newComp._layout[bp] = { zIndex: 1, hidden: false };
     
     newComp._layout = {
       ...newComp._layout,
@@ -302,7 +202,7 @@ export function toggleComponentVisibility(tree, id, bp) {
     if (comp.id === id) {
       const newComp = { ...comp };
       if (!newComp._layout) newComp._layout = {};
-      if (!newComp._layout[bp]) newComp._layout[bp] = { x: 0, y: 0, w: 12, h: 4, zIndex: 1 };
+      if (!newComp._layout[bp]) newComp._layout[bp] = { zIndex: 1, hidden: false };
       
       newComp._layout = {
         ...newComp._layout,

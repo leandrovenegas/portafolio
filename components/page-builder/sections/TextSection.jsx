@@ -67,11 +67,11 @@ export default function TextSection({ title, paragraphs, description, _styles, f
   const bodyText = description !== undefined ? description : (paragraphs ? paragraphs.join('\n\n') : '');
 
   return (
-    <section>
+    <section className="w-full grid grid-cols-1 gap-6">
       {title && (
         <h2 
           data-field="title"
-          className="font-display text-4xl md:text-5xl text-white max-w-3xl mb-8"
+          className="col-span-1 font-display text-4xl md:text-5xl text-white max-w-3xl mb-4"
           style={fieldStyle('title')}
         >
           {title}
@@ -83,7 +83,7 @@ export default function TextSection({ title, paragraphs, description, _styles, f
           <p 
             data-field="description"
             key={i} 
-            className="font-body text-white/80 text-lg leading-relaxed mb-6 last:mb-0"
+            className="col-span-1 font-body text-white/80 text-lg leading-relaxed max-w-3xl"
             style={fieldStyle('description')}
           >
             {renderText(p)}

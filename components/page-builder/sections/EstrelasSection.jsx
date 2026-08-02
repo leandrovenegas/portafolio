@@ -117,9 +117,9 @@ export default function EstrelasSection({
       <div className={`px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20`}>
         <div className="mx-auto max-w-4xl">
           {/* Contenedor de estrellas */}
-          <div className={`flex flex-col gap-6 sm:gap-8 ${textAlignClass}`}>
+          <div className={`grid grid-cols-1 gap-6 sm:gap-8 justify-items-center ${textAlignClass}`}>
             {/* Estrellas */}
-            <div className={`flex gap-${spacing === 6 ? '1' : spacing === 8 ? '2' : '3'} ${alignmentClass}`} style={{ gap: `${spacing}px` }}>
+            <div className={`col-span-1 flex gap-${spacing === 6 ? '1' : spacing === 8 ? '2' : '3'} ${alignmentClass}`} style={{ gap: `${spacing}px` }}>
               {[...Array(5)].map((_, i) => (
                 <div key={i} className="flex-shrink-0">
                   <Star filled={i < normalizedRating} />
@@ -131,7 +131,7 @@ export default function EstrelasSection({
             {title && (
               <h3 
                 data-field="title"
-                className="font-bold tracking-tight text-gray-900 font-display"
+                className="col-span-1 font-bold tracking-tight text-gray-900 font-display"
                 style={{ 
                   ...fieldStyle('title'),
                   fontSize: fieldStyle('title').fontSize || `${getTitleSize()}px`
@@ -145,7 +145,7 @@ export default function EstrelasSection({
             {description && (
               <p 
                 data-field="description"
-                className="text-gray-600 leading-relaxed font-body"
+                className="col-span-1 text-gray-600 leading-relaxed font-body"
                 style={{ 
                   ...fieldStyle('description'),
                   fontSize: fieldStyle('description').fontSize || `${getTextSize()}px`
@@ -157,7 +157,7 @@ export default function EstrelasSection({
 
             {/* Rating con reseñas si está habilitado */}
             {showLabel && (
-              <div className="flex flex-col gap-2 sm:gap-3">
+              <div className="col-span-1 flex flex-col gap-2 sm:gap-3">
                 <p className="font-semibold text-gray-900" style={{ fontSize: `${getTextSize()}px` }}>
                   {normalizedRating.toFixed(1)} / 5
                 </p>

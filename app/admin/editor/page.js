@@ -52,6 +52,11 @@ function VisualEditorContent() {
   const [editingNameId, setEditingNameId] = useState(null);
   const [previewBp, setPreviewBp] = useState('desktop'); // mobile | tablet | desktop
 
+  // Panel State
+  const [panelHovered, setPanelHovered] = useState(false);
+  const [panelPinned, setPanelPinned] = useState(false);
+  const isPanelOpen = panelHovered || panelPinned;
+
   const handleDragStart = (e, index) => {
     setDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
@@ -443,9 +448,9 @@ function VisualEditorContent() {
 
       {/* Integrated Admin Header */}
       <header 
-        className="w-full z-50 flex items-center justify-between sticky top-0"
+        className="w-full z-50 flex items-center justify-between sticky top-0 flex-wrap gap-4 py-2"
         style={{
-          height: 'var(--toolbar-height)',
+          minHeight: 'var(--toolbar-height)',
           background: 'var(--ps-bg-toolbar)',
           borderBottom: 'var(--ps-border-width) solid var(--ps-border-dark)',
           padding: '0 var(--sp-md)',
@@ -455,10 +460,10 @@ function VisualEditorContent() {
         }}
       >
         <div className="flex items-center gap-6">
-          <Link href="/admin" style={{ color: 'var(--ps-text)', fontWeight: 'var(--font-weight-bold)' }} className="hover:opacity-70 transition-opacity">
+          <Link href="/admin" style={{ color: 'var(--ps-text)', fontWeight: 'var(--font-weight-bold)' }} className="hover:opacity-70 transition-opacity whitespace-nowrap">
             Administración
           </Link>
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1 flex-wrap">
             <Link href="/admin" 
               style={{
                 padding: '0 var(--sp-sm)',
@@ -672,6 +677,26 @@ function VisualEditorContent() {
             ))}
           </select>
 
+          <div style={{ width: '1px', height: '16px', background: 'var(--ps-border-dark)', margin: '0 var(--sp-xs)' }} />
+
+          {/* Nueva Rama (Unificada en Header) */}
+          <div className="flex gap-1 items-center bg-[var(--ps-bg-input)] rounded border border-[var(--ps-border-light)] focus-within:border-[var(--ps-border-focus)] transition-colors pr-1 h-[24px]">
+            <input 
+              type="text" 
+              placeholder="Nueva versión..." 
+              className="px-2 h-full text-[var(--font-size-sm)] border-none outline-none w-28 bg-transparent text-[var(--ps-text)] placeholder:text-[var(--ps-text-dim)] font-medium"
+              value={newVersionName}
+              onChange={e => setNewVersionName(e.target.value)}
+            />
+            <button 
+              onClick={() => saveVersion(true)}
+              disabled={saving}
+              className="bg-[var(--ps-accent)] text-white px-2 h-4/5 rounded-sm text-[var(--font-size-xs)] font-semibold hover:bg-[var(--ps-accent-hover)] transition-colors disabled:opacity-50"
+            >
+              Crear
+            </button>
+          </div>
+
           <button 
             onClick={() => saveVersion(false)} 
             disabled={saving || !currentVersionId}
@@ -753,33 +778,49 @@ function VisualEditorContent() {
           </div>
         )}
 
-        <div className="flex justify-between items-center mb-2">
-          <h1 className="text-xl font-display text-ink flex items-center gap-2">
-            <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            Editando: <span className="text-accent">{slug}</span>
-          </h1>
-          
-          <div className="flex gap-2 items-center bg-bg p-1 rounded-lg border border-border shadow-sm">
-            <input 
-              type="text" 
-              placeholder="Nueva versión..." 
-              className="px-3 py-1.5 text-xs border-none focus:ring-0 outline-none w-32 bg-transparent text-ink placeholder:text-muted"
-              value={newVersionName}
-              onChange={e => setNewVersionName(e.target.value)}
-            />
-            <button 
-              onClick={() => saveVersion(true)}
-              disabled={saving}
-              className="bg-accent text-bg px-3 py-1.5 rounded-md text-xs font-semibold hover:opacity-90 transition-opacity"
-            >
-              Nueva Rama
-            </button>
-          </div>
-        </div>
+        {isPanelOpen && panelPinned && (
+          <div 
+            className="fixed inset-0 z-[90]" 
+            onClick={() => setPanelPinned(false)}
+          />
+        )}
 
-      <div className="flex flex-col lg:flex-row gap-8 relative">
-        {/* LEFT - Editor Tools */}
-        <div className="lg:w-[400px] w-full flex-shrink-0 flex flex-col gap-6 sticky top-[73px] self-start max-h-[calc(100vh-100px)] overflow-y-auto pr-2 scrollbar-thin">
+      <div className="flex w-full relative h-[calc(100vh-var(--toolbar-height)-50px)]">
+        {/* LEFT - Editor Tools (Floating Auto-hide Dock) */}
+        <div 
+          onMouseEnter={() => setPanelHovered(true)}
+          onMouseLeave={() => setPanelHovered(false)}
+          className={`fixed left-0 top-[var(--toolbar-height)] h-[calc(100vh-var(--toolbar-height))] z-[100] flex flex-col border-r border-border/80 shadow-2xl transition-all duration-300 ease-in-out overflow-hidden ${isPanelOpen ? 'bg-[#121212] w-[320px] md:w-[400px] px-4 py-6' : 'w-12 bg-[#1A1A1A] cursor-pointer hover:bg-[#242424]'}`}
+        >
+          {/* Collapsed Tab Indicator (Siempre visible cuando está colapsado) */}
+          {!isPanelOpen && (
+            <div 
+              className="absolute inset-0 flex flex-col items-center justify-start pt-6 gap-3 cursor-pointer select-none"
+              onClick={() => setPanelPinned(true)}
+              title="Click para fijar / Hover para previsualizar"
+            >
+              <div className="w-8 h-8 rounded-lg bg-[#262626] border border-[#333333] flex items-center justify-center text-accent shadow-md hover:scale-105 hover:border-accent transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                </svg>
+              </div>
+              <span className="text-[10px] font-mono font-bold text-muted uppercase tracking-widest [writing-mode:vertical-lr] rotate-180 opacity-60">
+                Estructura
+              </span>
+            </div>
+          )}
+          {/* Edge Indicator / Pin Toggle */}
+          <div 
+            onClick={() => setPanelPinned(!panelPinned)}
+            className={`absolute top-4 -right-3 w-6 h-6 bg-s2 border border-border rounded-full flex items-center justify-center cursor-pointer shadow-md text-muted hover:text-ink hover:border-accent transition-all z-50 ${isPanelOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            title={panelPinned ? 'Desfijar panel' : 'Fijar panel abierto'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill={panelPinned ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="17" x2="12" y2="22"></line><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 11.24V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3v5.24a2 2 0 0 1-1.11 1.31l-1.78.9A2 2 0 0 0 5 15.24Z"></path></svg>
+          </div>
+
+          <div className={`flex-1 flex flex-col gap-6 overflow-y-auto scrollbar-thin transition-opacity duration-200 ${isPanelOpen ? 'opacity-100' : 'opacity-0 hidden'}`}>
           
           {selectedComp ? (
             /* Properties Editor Panel (Focused Mode) */
@@ -951,10 +992,11 @@ function VisualEditorContent() {
               </div>
             </div>
           )}
+          </div>
         </div>
 
-        {/* RIGHT - Live Content Preview Frame */}
-        <div className="lg:flex-1 w-full bg-bg border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col sticky top-[73px] h-[calc(100vh-100px)]">
+        {/* RIGHT - Live Content Preview Frame (Now Full Width) */}
+        <div className="flex-1 w-full bg-bg border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col h-full ml-0 relative z-10 transition-all duration-300">
           {/* Preview Toolbar */}
           <div className="bg-s1 border-b border-border px-4 py-2 flex items-center justify-between z-20">
             <div className="flex items-center gap-3">
@@ -1022,6 +1064,7 @@ function VisualEditorContent() {
                   onUpdateProp={updateProp}
                   onSelectComponent={(compId, fieldKey) => {
                     setSelectedId(compId);
+                    setPanelPinned(true); // Abrir y fijar automáticamente el panel lateral
                     if (fieldKey) {
                       setFocusedField(fieldKey);
                       setShowTypography(true);

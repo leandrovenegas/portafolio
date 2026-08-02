@@ -343,11 +343,11 @@ export default function TituloAnimado({
   }
 
   return (
-    <div 
-      className="page-builder-block w-full rounded-2xl overflow-hidden flex items-center justify-center min-h-[300px] py-12 md:py-16 shadow-2xl relative"
+    <section 
+      className="page-builder-block w-full rounded-2xl overflow-hidden grid grid-cols-1 justify-items-center items-center min-h-[300px] py-12 md:py-16 shadow-2xl relative"
       style={bgStyle}
     >
-      <div className="w-full max-w-5xl flex items-center justify-center p-4" ref={containerRef}>
+      <div className="col-span-1 w-full max-w-5xl flex items-center justify-center p-4" ref={containerRef}>
         <div 
           className="flex flex-wrap justify-center gap-x-4 gap-y-3 text-center select-none font-display font-black tracking-tight text-4xl md:text-6xl lg:text-7xl uppercase max-w-5xl leading-none"
           style={toInlineStyle(textStyles[bp])}
@@ -367,6 +367,6 @@ export default function TituloAnimado({
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

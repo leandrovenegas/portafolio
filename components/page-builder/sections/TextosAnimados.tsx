@@ -588,8 +588,8 @@ export default function TextosAnimados({
   }
 
   return (
-    <div 
-      className="page-builder-block w-full rounded-2xl overflow-hidden flex flex-col items-center justify-center min-h-[400px] py-16 md:py-24 shadow-2xl relative gap-6"
+    <section 
+      className="page-builder-block w-full rounded-2xl overflow-hidden grid grid-cols-1 items-center justify-items-center min-h-[400px] py-16 md:py-24 shadow-2xl relative gap-6"
     >
       <div 
         className="absolute inset-0 w-full h-full z-0 pointer-events-none" 
@@ -629,11 +629,11 @@ export default function TextosAnimados({
       )}
 
       {/* 3. Contenido Principal */}
-      <div className="relative z-20 w-full max-w-5xl flex flex-col items-center justify-center p-4 text-center gap-6" ref={containerRef}>
+      <div className="col-span-1 relative z-20 w-full max-w-5xl grid grid-cols-1 items-center justify-items-center p-4 text-center gap-6" ref={containerRef}>
         {/* Title */}
         <div 
           data-field="titulo"
-          className="flex flex-wrap justify-center gap-x-4 gap-y-3 text-center select-none font-display font-black tracking-tight text-4xl md:text-6xl lg:text-7xl uppercase max-w-5xl leading-none"
+          className="col-span-1 flex flex-wrap justify-center gap-x-4 gap-y-3 text-center select-none font-display font-black tracking-tight text-4xl md:text-6xl lg:text-7xl uppercase max-w-5xl leading-none"
           style={toInlineStyle(titleStyles[bp])}
         >
           {titleTokens.map((token, idx) => (
@@ -654,7 +654,7 @@ export default function TextosAnimados({
         {/* Subtitle */}
         <div 
           data-field="subtitulo"
-          className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-center select-none font-display font-medium text-lg md:text-xl lg:text-2xl max-w-4xl leading-relaxed"
+          className="col-span-1 flex flex-wrap justify-center gap-x-3 gap-y-2 text-center select-none font-display font-medium text-lg md:text-xl lg:text-2xl max-w-4xl leading-relaxed"
           style={toInlineStyle(subtitleStyles[bp])}
         >
           {subtitleTokens.map((token, idx) => (
@@ -672,6 +672,6 @@ export default function TextosAnimados({
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

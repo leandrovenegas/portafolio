@@ -174,9 +174,9 @@ export default function LogosSection({
       ) : (
         /* Static Grid Layout */
         <div className="w-full max-w-5xl mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8 py-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-8 items-center justify-items-center py-4">
             {logoList.map((logo, idx) => (
-              <div key={`logo-grid-${logo.id || 'img'}-${idx}`} className="flex items-center justify-center">
+              <div key={`logo-grid-${logo.id || 'img'}-${idx}`} className="col-span-1 flex items-center justify-center">
                 {logo.link ? (
                   <a 
                     href={logo.link} 

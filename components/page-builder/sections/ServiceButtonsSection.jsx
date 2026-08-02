@@ -1,8 +1,8 @@
 export default function ServiceButtonsSection({ title, description, items }) {
   return (
-    <section className="py-8">
+    <section className="py-8 w-full grid grid-cols-1 gap-8">
       {(title || description) && (
-        <div className="flex flex-col gap-4 mb-12">
+        <div className="col-span-1 grid grid-cols-1 gap-4">
           {title && (
             <h2 className="font-display text-4xl md:text-5xl text-ink max-w-3xl">
               {title}
@@ -17,14 +17,14 @@ export default function ServiceButtonsSection({ title, description, items }) {
       )}
       
       {items && items.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="col-span-1 grid grid-cols-1 md:grid-cols-3 gap-6">
           {items.map((item, i) => (
             <a 
               key={i}
               href={item.link || '#'}
               target={item.link && item.link.startsWith('http') ? '_blank' : undefined}
               rel={item.link && item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group flex flex-col justify-between p-8 bg-s1 border border-border hover:border-accent/40 transition-all duration-300 relative overflow-hidden min-h-[180px] h-full"
+              className="col-span-1 group flex flex-col justify-between p-8 bg-s1 border border-border hover:border-accent/40 transition-all duration-300 relative overflow-hidden min-h-[180px] h-full"
             >
               {/* Subtle background glow on hover */}
               <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

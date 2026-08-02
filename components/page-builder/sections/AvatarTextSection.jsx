@@ -201,7 +201,7 @@ export default function AvatarTextSection({
 
   // ── Render ───────────────────────────────────────────────────────────────
   return (
-    <section className="w-full flex flex-col gap-6">
+    <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-start md:items-center">
 
       {/* Indicador de guardado flotante — solo en modo editor */}
       {isEditable && saveStatus && (
@@ -233,7 +233,7 @@ export default function AvatarTextSection({
         // ── Título ──────────────────────────────────────────────────────
         if (key === 'title') {
           return title && (
-            <div key="title" className={showAccentBar ? 'border-l-[5px] border-accent pl-5' : ''}>
+            <div key="title" className={`col-span-1 md:col-span-2 ${showAccentBar ? 'border-l-[5px] border-accent pl-5' : ''}`}>
               <h2
                 ref={titleRef}
                 data-field="title"
@@ -254,7 +254,7 @@ export default function AvatarTextSection({
         // ── Avatar ──────────────────────────────────────────────────────
         if (key === 'avatar') {
           return avatarSrc && (
-            <div key="avatar" className="flex justify-center my-8">
+            <div key="avatar" className="col-span-1 md:col-start-2 flex justify-center my-4 md:my-0">
               <div className="relative w-48 h-48 rounded-full overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(255,204,0,0.15)] transition-all duration-300 hover:scale-105">
                 <img
                   src={avatarSrc}
@@ -269,7 +269,7 @@ export default function AvatarTextSection({
         // ── Descripción ─────────────────────────────────────────────────
         if (key === 'description') {
           return bodyText && (
-            <div key="description" className="w-full max-w-3xl">
+            <div key="description" className="col-span-1 md:col-start-1 w-full max-w-3xl">
               {isEditable ? (
                 /*
                  * En modo editor: un único <p> con contentEditable que

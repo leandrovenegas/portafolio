@@ -56,19 +56,21 @@ export default function HeroVideoSection({
       backgroundColor={backgroundColor}
       backgroundGradient={backgroundGradient}
     >
-      <h1 data-field="title" className={`font-display ${titleSizeClass} text-ink leading-[0.9] mb-8 max-w-5xl font-bold`}>
-        {title}
-      </h1>
-      {description1 && (
-        <p data-field="description1" className={`font-body text-mid ${descSizeClass} max-w-2xl leading-relaxed mb-12 drop-shadow-md text-ink/90`}>
-          {description1}
-        </p>
-      )}
-      {description2 && (
-        <p data-field="description2" className={`font-body text-mid ${descSizeClass} max-w-2xl leading-relaxed drop-shadow-md text-ink/90`}>
-          {description2}
-        </p>
-      )}
+      <div className="grid grid-cols-1 gap-6 max-w-5xl">
+        <h1 data-field="title" className={`col-span-1 font-display ${titleSizeClass} text-ink leading-[0.9] font-bold mb-2`}>
+          {title}
+        </h1>
+        {description1 && (
+          <p data-field="description1" className={`col-span-1 font-body text-mid ${descSizeClass} max-w-2xl leading-relaxed drop-shadow-md text-ink/90`}>
+            {description1}
+          </p>
+        )}
+        {description2 && (
+          <p data-field="description2" className={`col-span-1 font-body text-mid ${descSizeClass} max-w-2xl leading-relaxed drop-shadow-md text-ink/90`}>
+            {description2}
+          </p>
+        )}
+      </div>
     </HeroVideo>
   );
 }

@@ -2,6 +2,13 @@
 
 import { COMPONENT_REGISTRY } from './registry';
 
+function getComponentFileName(type) {
+  if (type === 'HeroPortafolioTexto') {
+    return 'components/HeroPortafolioTexto.jsx';
+  }
+  return `components/page-builder/sections/${type}.jsx`;
+}
+
 export default function PageRenderer({ components, forceBp = null, onSelectComponent = null, selectedId = null, onUpdateProp = null }) {
   if (!components || !components.length) {
     return null;
@@ -16,6 +23,9 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
           console.warn(`Component type ${comp.type} not found in registry.`);
           return null;
         }
+
+        const isHidden = comp._layout?.[forceBp || 'desktop']?.hidden === true;
+        if (isHidden) return null;
 
         const isSelected = comp.id === selectedId;
         const isEditable = !!onSelectComponent;
@@ -35,17 +45,23 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
                 ${isEditable ? (isSelected ? 'ring-4 ring-accent ring-inset z-30 cursor-pointer group' : 'hover:ring-2 hover:ring-accent/40 hover:ring-inset z-20 cursor-pointer group') : ''}
               `}
             >
-              {/* Hover Badge */}
+              {/* Permanent Component Tag */}
               {isEditable && (
-                <div className="absolute top-3 right-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none uppercase tracking-wider">
-                  Editar {comp.name || comp.type}
+                <div className="absolute top-3 right-3 bg-[#0a0a0a]/90 text-accent border border-accent/20 text-[10px] font-mono px-2.5 py-1 rounded-md shadow-lg z-40 pointer-events-none transition-all group-hover:border-accent/50 uppercase tracking-wider">
+                  {comp.type}
                 </div>
               )}
 
-              {/* Selection Highlight Label */}
+              {/* Selection Highlight Label with File Path */}
               {isEditable && isSelected && (
-                <div className="absolute top-3 left-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg z-50 pointer-events-none uppercase tracking-wider">
-                  Editando
+                <div className="absolute top-3 left-3 bg-accent text-bg text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-xl z-50 pointer-events-none uppercase tracking-wider flex flex-col gap-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-bg animate-pulse" />
+                    <span>Editando</span>
+                  </div>
+                  <div className="text-[9px] font-mono normal-case tracking-normal opacity-90 border-t border-bg/25 pt-1 mt-0.5">
+                    {getComponentFileName(comp.type)}
+                  </div>
                 </div>
               )}
 
@@ -74,17 +90,23 @@ export default function PageRenderer({ components, forceBp = null, onSelectCompo
               ${isEditable ? (isSelected ? 'ring-4 ring-accent ring-inset z-30 cursor-pointer group' : 'hover:ring-2 hover:ring-accent/40 hover:ring-inset z-20 cursor-pointer group') : ''}
             `}
           >
-            {/* Hover Badge */}
+            {/* Permanent Component Tag */}
             {isEditable && (
-              <div className="absolute top-3 right-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none uppercase tracking-wider">
-                Editar {comp.name || comp.type}
+              <div className="absolute top-3 right-3 bg-[#0a0a0a]/90 text-accent border border-accent/20 text-[10px] font-mono px-2.5 py-1 rounded-md shadow-lg z-40 pointer-events-none transition-all group-hover:border-accent/50 uppercase tracking-wider">
+                {comp.type}
               </div>
             )}
 
-            {/* Selection Highlight Label */}
+            {/* Selection Highlight Label with File Path */}
             {isEditable && isSelected && (
-              <div className="absolute top-3 left-3 bg-accent text-bg text-[10px] font-bold px-2 py-1 rounded shadow-lg z-50 pointer-events-none uppercase tracking-wider">
-                Editando
+              <div className="absolute top-3 left-3 bg-accent text-bg text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-xl z-50 pointer-events-none uppercase tracking-wider flex flex-col gap-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-bg animate-pulse" />
+                  <span>Editando</span>
+                </div>
+                <div className="text-[9px] font-mono normal-case tracking-normal opacity-90 border-t border-bg/25 pt-1 mt-0.5">
+                  {getComponentFileName(comp.type)}
+                </div>
               </div>
             )}
 

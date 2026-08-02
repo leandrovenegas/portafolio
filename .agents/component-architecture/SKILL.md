@@ -278,4 +278,14 @@ export default function NombreComponente({
 - [ ] ¿Todas las llamadas a Supabase usan `await supabase.from(...).select()` con manejo de errores?
 - [ ] ¿Los parámetros de rutas dinámicas están validados con Zod antes de la consulta?
 - [ ] ¿Las respuestas de API incluyen encabezados `Cache-Control` apropiados?
-- [ ] ¿Los componentes críticos usan `React.memo` cuando corresponda?
+- [ ] ¿Los componentes críticos usan `React.memo` cuando corresponda?
+
+---
+
+## Historial de Cambios
+
+| Fecha | Cambio |
+|---|---|
+| 2026-08-02 | Rediseño de `HeroEditorialSection` a formato tarjeta credencial/badge de staff (foto + nombre + rol + estado disponible). Inclusión de props `roleText`, `statusText`, `statusColor`, integración con `SmartPropertiesPanel.jsx`, `registry.js`, `defaultConfig.js` y uso de CSS Grid nativo con `grid-template-areas`. |
+| 2026-08-02 | Ajustes visuales en `HeroEditorialSection`: actualización de copy principal ("GRABO Y EDITO TUS VIDEOS DURANTE TODO UN MES..."), cinta lanyard en forma de V centrada sobre la credencial con overflow hacia arriba y micro-interacción hover sutil mediante transform de bajo contraste. |
+

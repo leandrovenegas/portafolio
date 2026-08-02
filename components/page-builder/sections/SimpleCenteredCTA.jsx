@@ -76,12 +76,12 @@ export default function SimpleCenteredCTA({
   return (
     <div style={{ backgroundColor: backgroundColor || 'var(--accent, #3b82f6)' }} className="transition-colors duration-300">
       <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-2xl text-center grid grid-cols-1 gap-6 justify-items-center">
           
           {headline && (
             <h2 
               data-field="headline"
-              className="text-3xl font-bold tracking-tight text-white sm:text-4xl font-display"
+              className="col-span-1 text-3xl font-bold tracking-tight text-white sm:text-4xl font-display"
               style={fieldStyle('headline')}
             >
               {headline}
@@ -91,14 +91,14 @@ export default function SimpleCenteredCTA({
           {description && (
             <p 
               data-field="description"
-              className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white/80 font-body"
+              className="col-span-1 mx-auto max-w-xl text-lg leading-8 text-white/80 font-body"
               style={fieldStyle('description')}
             >
               {formatDescription(description)}
             </p>
           )}
 
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <div className="col-span-1 mt-4 flex items-center justify-center gap-x-6">
             {primaryButtonText && primaryButtonLink && (
               <Link
                 href={primaryButtonLink}
